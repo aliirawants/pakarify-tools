@@ -553,6 +553,78 @@ body.sheetmax{overflow:hidden}
 .gno{font-style:normal;display:inline-grid;place-items:center;min-width:20px;height:18px;border-radius:6px;background:var(--bg3);color:var(--ink2);font-size:10.5px;font-weight:800;margin-right:6px;vertical-align:1px}
 .ph.drag{cursor:grabbing;box-shadow:0 6px 16px rgba(23,71,184,.35);z-index:5}
 .ph.custom,.ms.custom{outline:2px dashed rgba(217,147,11,.9);outline-offset:1px}
+/* ---- TOR Otomatis ---- */
+.torbar{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:14px;padding:16px 18px;margin-bottom:18px}
+.torbar select{width:100%}
+.torst{grid-column:1/-1;font-size:12.5px;color:var(--ink3)}
+@media (max-width:700px){.torbar{grid-template-columns:1fr}}
+.torscroll{overflow-x:auto;padding-bottom:20px}
+.torpages{display:flex;flex-direction:column;align-items:center;gap:22px;min-width:794px}
+.tpage{width:794px;height:1123px;flex:none;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(11,26,51,.14);font-family:'Poppins',sans-serif;color:#0B1A33;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.tpage [contenteditable]{outline:0;border-radius:4px;transition:background .15s}
+.tpage [contenteditable]:hover{background:rgba(37,99,235,.06)}
+.tpage [contenteditable]:focus{background:rgba(37,99,235,.08);box-shadow:0 0 0 1.5px rgba(37,99,235,.5)}
+.tcover{background:#2F6BFF;color:#fff;padding:56px 58px}
+.tcover [contenteditable]:hover,.tcover [contenteditable]:focus{background:rgba(255,255,255,.12)}
+.tcover .dia{position:absolute;border:1.5px solid rgba(255,255,255,.28);transform:rotate(45deg)}
+.tcover .dia.a{width:430px;height:430px;right:-120px;top:390px}
+.tcover .dia.b{width:250px;height:250px;right:-30px;top:480px;background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.18)}
+.tcover .ln{position:absolute;left:-60px;top:-40px;width:520px;height:1px;background:rgba(255,255,255,.28);transform:rotate(-36deg);transform-origin:left}
+.tcover .top{display:flex;justify-content:space-between;align-items:flex-start;position:relative}
+.tlogo{height:38px;display:flex;align-items:center;gap:7px;font-weight:600;font-size:15px;letter-spacing:-.01em}
+.tlogo img{height:38px;width:auto;display:block}
+.tlogo .mk{width:14px;height:18px;background:linear-gradient(160deg,#FF4FB8,#8B5CF6);border-radius:3px 9px 3px 9px}
+.tpill{background:#0B1220;color:#fff;font-size:10.5px;font-weight:500;padding:7px 12px;border-radius:5px;display:inline-block}
+.tcover .mid{position:absolute;left:58px;right:58px;top:250px}
+.tcover .tof{font-size:58px;line-height:1.02;font-weight:300;letter-spacing:-.02em}
+.tcover .tref{font-size:58px;line-height:1.02;font-weight:800;letter-spacing:-.02em;margin-bottom:46px}
+.tcover h1{font-size:27px;font-weight:700;line-height:1.25;margin-bottom:14px;max-width:620px}
+.tcover .sub{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;line-height:1.75;max-width:600px;margin-bottom:26px;opacity:.95}
+.tcover .foot{position:absolute;left:58px;right:58px;bottom:44px;border-top:1px solid rgba(255,255,255,.35);padding-top:18px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+.tcover .foot b{display:block;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+.tcover .foot span{font-size:11.5px;opacity:.92}
+.tcontent{background:#F3F6FC;padding:54px 54px 0}
+.tbody{background:#fff;height:1013px;padding:30px 36px 20px;overflow:hidden;font-size:11.2px;line-height:1.78;color:#3D4D6A}
+.tfoot{height:56px;display:flex;justify-content:space-between;align-items:center;font-size:9px;color:#8795AF}
+.tfoot b{color:#2F6BFF;font-weight:700;font-size:10.5px}
+.tblk{position:relative}
+.tsh{display:flex;gap:12px;align-items:flex-start;margin:20px 0 12px}
+.tblk:first-child .tsh{margin-top:0}
+.tsh .no{background:#2F6BFF;color:#fff;font-size:10.5px;font-weight:700;border-radius:6px;padding:4px 8px;line-height:1.3;margin-top:3px}
+.tsh h2{font-size:19px;font-weight:700;color:#0B1A33;line-height:1.2}
+.tsh small{display:block;font-size:8px;font-weight:600;letter-spacing:.24em;color:#8795AF;text-transform:uppercase;margin-top:3px}
+.tp{text-align:justify;margin-bottom:9px}
+.tli{display:grid;grid-template-columns:30px 1fr;gap:8px;margin-bottom:7px;align-items:start}
+.tli .n{background:#EAF1FE;color:#2F6BFF;font-size:9px;font-weight:700;border-radius:5px;text-align:center;padding:2px 0;margin-top:2px}
+.tinfo{display:grid;grid-template-columns:110px 1fr;gap:4px 18px;margin-bottom:8px}
+.tinfo b{color:#0B1A33;font-weight:700}
+.trun{width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:11px}
+.trun th{background:#2F6BFF;color:#fff;text-align:left;padding:9px 14px;font-weight:600}
+.trun td{padding:10px 14px;border-bottom:1px solid #E6ECF6;color:#0B1A33}
+.trun tr:nth-child(even) td{background:#F6F9FE}
+.tmh{border:1px solid #DCE5F5;border-bottom:0;border-radius:10px 10px 0 0;background:#EEF3FE;padding:12px 18px;margin-top:12px;display:flex;gap:12px;align-items:baseline}
+.tmh i{font-style:normal;font-size:8.5px;font-weight:700;letter-spacing:.18em;color:#2F6BFF;white-space:nowrap}
+.tmh b{font-size:14px;font-weight:700;color:#0B1A33;line-height:1.3}
+.tsub{border:1px solid #DCE5F5;border-top:1px solid #E8EEF8;padding:14px 18px 14px}
+.tsub.last{border-radius:0 0 10px 10px}
+.tsub h4{font-size:12.5px;font-weight:700;color:#0B1A33;margin-bottom:5px;display:flex;gap:8px}
+.tsub h4 em{font-style:normal;color:#2F6BFF}
+.tout{background:#F2F6FE;border-left:3px solid #2F6BFF;padding:8px 12px;margin-top:8px;font-style:italic}
+.tout i{display:block;font-style:normal;font-size:8px;font-weight:700;letter-spacing:.18em;color:#2F6BFF}
+.tctl{position:absolute;right:-30px;top:0;display:flex;flex-direction:column;gap:3px;opacity:0;transition:opacity .15s}
+.tblk:hover>.tctl{opacity:1}
+.tctl button{width:22px;height:22px;border-radius:6px;border:1px solid #D3DDEC;background:#fff;color:#47587A;font-size:13px;line-height:1;padding:0}
+.tctl button:hover{color:#2F6BFF;border-color:#2F6BFF}
+@media print{
+  @page{size:A4;margin:0}
+  body.print-tor{background:#fff!important}
+  body.print-tor>:not(main),body.print-tor main>:not(#v-tor),body.print-tor #v-tor .vhead,body.print-tor .torbar{display:none!important}
+  body.print-tor #v-tor,body.print-tor #v-tor .wrap,body.print-tor .torscroll{padding:0!important;margin:0!important;max-width:none!important;width:auto!important;overflow:visible!important;background:none!important}
+  body.print-tor #torPages{gap:0;min-width:0;display:block}
+  body.print-tor .tpage{box-shadow:none;break-after:page;page-break-after:always}
+  body.print-tor .tctl{display:none!important}
+  body.print-tor [contenteditable]{background:none!important;box-shadow:none!important}
+}
 [hidden]{display:none!important}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
@@ -570,6 +642,7 @@ body.sheetmax{overflow:hidden}
       <a href="#narasumber" data-v="narasumber">Narasumber</a>
       <a href="#topik" data-v="topik">Topik</a>
       <a href="#jadwal" data-v="jadwal">Jadwal</a>
+      <a href="#tor" data-v="tor">TOR</a>
       <a href="#segera" data-v="segera">Segera</a>
     </nav>
     <div class="right">
@@ -729,6 +802,23 @@ body.sheetmax{overflow:hidden}
   </div>
 </section>
 
+<!-- ======================== TOR OTOMATIS ======================== -->
+<section id="v-tor" data-view="tor" class="view view-band" hidden>
+  <div class="wrap">
+    <div class="vhead">
+      <div><h1>TOR <em>Otomatis</em></h1><p>Pilih kelas, salin prompt ke ChatGPT (web search aktif), tempel hasilnya. Semua teks di preview bisa diklik dan diedit. Unduh PDF sekaligus menyimpan TOR ke Database Kelas.</p></div>
+      <div class="acts"><button class="btn sec" id="torPromptBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Salin prompt ChatGPT</button><button class="btn sec" id="torPasteBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Tempel hasil</button><button class="btn soft" id="torSaveBtn">Simpan ke Database Kelas</button><button class="btn pri" id="torPdfBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Unduh PDF</button></div>
+    </div>
+    <div class="torbar card">
+      <div class="fld"><label for="torCls">TOR untuk kelas</label><select id="torCls"></select></div>
+      <div class="fld"><label for="torKode">Kode TOR</label><input id="torKode" placeholder="#Pakarify18"></div>
+      <div class="fld" style="grid-column:1/-1"><label for="torFokus">Fokus / catatan untuk ChatGPT (opsional)</label><textarea id="torFokus" style="min-height:60px;font-family:var(--f)" placeholder="mis. fokus studi kasus Kalimantan, peserta banyak dari BPBD, tekankan output peta siap laporan"></textarea></div>
+      <div class="torst" id="torSt"></div>
+    </div>
+    <div class="torscroll"><div class="torpages" id="torPages"></div></div>
+  </div>
+</section>
+
 <!-- ======================== SEGERA ======================== -->
 <section id="v-segera" data-view="segera" class="view view-band" hidden>
   <div class="wrap">
@@ -814,7 +904,7 @@ const TABS = {
   db: {sheet:'Database Narasumber', cols:{nama:'Nama Lengkap Narasumber', perusahaan:'Perusahaan / Afiliasi Pekerjaan', kontak:'Kontak Narasumber', reachout:'Reachout', keterangan:'Keterangan', id:'ID', jabatan:'Jabatan', level:'Level', tipe:'Tipe', linkedin:'LinkedIn', bidang:'Bidang', rekom:'Rekomendasi Kelas', pks:'Link PKS', dokumen:'Link Dokumen', folder:'Folder Drive'}},
   types: {sheet:'Tipe Narasumber', cols:{id:'ID', nama:'Tipe', kunci:'Kata Kunci'}},
   topics: {sheet:'Riset Topik', cols:{id:'ID', judul:'Judul', tool:'Tool', alternatif:'Alternatif Berbayar', kategori:'Kategori', pembeli:'Target Pembeli', targetAds:'Target Ads', output:'Output Peserta', skor:'Skor (JSON)', total:'Skor Total', status:'Status', pilih:'Dipilih', terbaik:'Terbaik', alasan:'Alasan Laku', risiko:'Risiko Tidak Laku', kompetitor:'Kompetitor', lanjutan:'Kelas Lanjutan', momen:'Momen', masukKelas:'Masuk Database Kelas', batch:'Batch', dibuat:'Dibuat'}},
-  classes: {sheet:'Jadwal Kelas', cols:{judul:'Judul Kelas', kategori:'Category', pic:'PIC', pembicara:'Pembicara', sesi:'Jumlah Sesi', tanggalTeks:'Tanggal Kelas FIX', progress:'Progress', peserta:'Jml Peserta Aktual', propose:'Link Propose', tor:'Link TOR', brief:'Brief LP & Poster', feedback:'Feedback Kelas', review:'Review Kelas', id:'ID', mulai:'Tanggal Mulai', urutan:'Urutan', fase:'Fase Custom',
+  classes: {sheet:'Jadwal Kelas', cols:{judul:'Judul Kelas', kategori:'Category', pic:'PIC', pembicara:'Pembicara', sesi:'Jumlah Sesi', tanggalTeks:'Tanggal Kelas FIX', progress:'Progress', peserta:'Jml Peserta Aktual', propose:'Link Propose', tor:'Link TOR', brief:'Brief LP & Poster', feedback:'Feedback Kelas', review:'Review Kelas', id:'ID', mulai:'Tanggal Mulai', urutan:'Urutan', fase:'Fase Custom', torData:'TOR Data',
     // URL dari smart chip / hyperlink, dikirim Code.gs (hanya dibaca)
     proposeUrl:'_url_Link Propose', torUrl:'_url_Link TOR', briefUrl:'_url_Brief LP & Poster', feedbackUrl:'_url_Feedback Kelas'}},
 };
@@ -1517,6 +1607,209 @@ async function downloadCal() {
   canvas.toBlob(b => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `Kalender-Kelas-Pakarify-${iso(new Date())}.png`; document.body.appendChild(a); a.click(); a.remove(); toast('Gambar kalender diunduh (jika browser mengizinkan unduhan)'); });
 }
 
+/* ---------- TOR Otomatis ---------- */
+const TOR_RUNDOWN = [['18.45 - 19.00 WIB', 'Persiapan'], ['19.00 - 19.15 WIB', 'Pembukaan & Pengenalan Narasumber'], ['19.15 - 20.30 WIB', 'Materi'], ['20.30 - 20.50 WIB', 'Sesi Tanya Jawab'], ['20.50 - 21.00 WIB', 'Dokumentasi & Penutup']];
+const TOR_SEC = [['Pendahuluan', 'Latar belakang kelas'], ['Tujuan Kegiatan', 'Yang ingin dicapai'], ['Rundown & Tempat Pelaksanaan', 'Jadwal kegiatan'], ['Peserta', 'Target audiens'], ['Pokok Pembahasan', 'Kurikulum kelas'], ['Penyelenggara', 'Tentang Pakarify'], ['Penutup', 'Kata penutup']];
+let TOR = null;   // {cid, d} — TOR yang sedang dibuka
+const torFull = d => d.judul + (d.subjudul ? ': ' + d.subjudul : '');
+const torPenyelenggara = d => `Kelas “${torFull(d)}” ini diselenggarakan oleh Pakarify, sebuah platform pengembangan kompetensi di bawah naungan ekosistem Hcelerate yang berfokus pada upskilling talenta digital, profesional, dan akademisi.`;
+const torPenutup = d => `Demikian Term of Reference (ToR) ini kami susun sebagai acuan pelaksanaan kegiatan webinar “${torFull(d)}”. Besar harapan kami kegiatan ini dapat memberikan wawasan strategis dan keterampilan praktis bagi para peserta untuk beradaptasi dengan teknologi, meningkatkan produktivitas, di era kecerdasan buatan. Atas perhatian dan kerja sama Bapak/Ibu, kami ucapkan terima kasih.`;
+function torTanggal(c) {
+  const d = startOf(c); if (!d) return 'Menyesuaikan';
+  const e = addDays(d, Math.max(1, +c.sesi || 1) - 1);
+  if (+e === +d) return `${d.getDate()} ${BULAN[d.getMonth()]} ${d.getFullYear()}`;
+  return d.getMonth() === e.getMonth() ? `${d.getDate()}–${e.getDate()} ${BULAN[d.getMonth()]} ${d.getFullYear()}` : `${d.getDate()} ${BULAN[d.getMonth()]} – ${e.getDate()} ${BULAN[e.getMonth()]} ${e.getFullYear()}`;
+}
+function torBase(c) {
+  const s = String(c.judul || ''), i = s.indexOf(':');
+  return {kode:(String(c.tor || '').match(/#Pakarify\s*\d+/i) || [''])[0].replace(/\s+/g, ''), judul:(i > 0 ? s.slice(0, i) : s).trim(), subjudul:i > 0 ? s.slice(i + 1).trim() : '',
+    tanggal:torTanggal(c), waktu:'19.00 - 21.00 WIB', tempat:'Live Zoom dan Live Youtube Unlisted', pendahuluan:[], tujuan:[], rundown:TOR_RUNDOWN.map(r => [...r]),
+    peserta:'Peserta kelas ini adalah masyarakat umum, khususnya mahasiswa, praktisi, pekerja corporate, akademisi, freelancer, dan bidang relevan lainnya.', modul:[], penyelenggara:null, penutup:null, fokus:''};
+}
+function torOpen(cid) {
+  const c = S.classes.find(x => x.id === cid); if (!c) { TOR = null; return renderTor(); }
+  let saved = null; try { saved = c.torData ? JSON.parse(c.torData) : null; } catch (_) {}
+  const draft = store.get('pkt-tor-' + cid, null);
+  TOR = {cid, d:{...torBase(c), ...(draft || saved || {})}, fromDraft:!!draft};
+  renderTor();
+}
+function torDraft() { if (TOR) { store.set('pkt-tor-' + TOR.cid, TOR.d); TOR.fromDraft = true; torStatus(); } }
+function torStatus() {
+  if (!TOR) return; const c = S.classes.find(x => x.id === TOR.cid);
+  $('#torSt').textContent = TOR.fromDraft ? 'Ada perubahan yang baru tersimpan di browser ini. Tekan "Simpan ke Database Kelas" atau "Unduh PDF" untuk menyimpannya ke Sheet.' : c && c.torData ? 'TOR ini sudah tersimpan di Database Kelas (kolom TOR Data).' : 'TOR baru: salin prompt ke ChatGPT lalu tempel hasilnya.';
+}
+const torEd = (path, val, tag = 'span', cls = '') => `<${tag} class="${cls}" contenteditable="plaintext-only" spellcheck="false" data-tp="${path}">${esc(val ?? '')}</${tag}>`;
+function torBlocks(d) {
+  const B = [], sh = i => `<div class="tsh"><span class="no">0${i + 1}</span><div><h2>${TOR_SEC[i][0]}</h2><small>${TOR_SEC[i][1]}</small></div></div>`;
+  const ctl = (add, del) => `<div class="tctl">${add ? `<button data-toradd="${add}" title="Tambah di bawahnya">+</button>` : ''}${del ? `<button data-tordel="${del}" title="Hapus">×</button>` : ''}</div>`;
+  const list = (k, fn) => (d[k].length ? d[k] : ['']).forEach((v, i) => { if (!d[k].length) d[k].push(''); B.push({h:fn(v, i) + ctl(k + '.' + i, d[k].length > 1 ? k + '.' + i : '')}); });
+  B.push({keep:1, h:sh(0)});
+  list('pendahuluan', (p, i) => torEd('pendahuluan.' + i, p, 'p', 'tp'));
+  B.push({keep:1, h:sh(1) + '<p class="tp">Adapun tujuan dari pelaksanaan kelas ini adalah:</p>'});
+  list('tujuan', (t, i) => `<div class="tli"><span class="n">${String(i + 1).padStart(2, '0')}</span>${torEd('tujuan.' + i, t)}</div>`);
+  B.push({h:sh(2) + `<div class="tinfo"><b>Hari, tanggal</b>${torEd('tanggal', d.tanggal)}<b>Waktu</b>${torEd('waktu', d.waktu)}<b>Tempat</b>${torEd('tempat', d.tempat)}</div>`});
+  const last = d.rundown.length - 1;
+  B.push({h:`<table class="trun"><thead><tr><th style="width:38%">Waktu</th><th>Kegiatan</th></tr></thead><tbody>${d.rundown.map((r, i) => `<tr><td>${torEd(`rundown.${i}.0`, r[0])}</td><td>${torEd(`rundown.${i}.1`, r[1])}</td></tr>`).join('')}</tbody></table>${ctl('rundown.' + last, last > 0 ? 'rundown.' + last : '')}`});
+  B.push({h:sh(3) + torEd('peserta', d.peserta, 'p', 'tp')});
+  B.push({keep:1, h:sh(4) + `<p class="tp">Adapun pokok pembahasan <b style="color:#0B1A33">“${esc(torFull(d))}”</b> adalah sebagai berikut:</p>`});
+  d.modul.forEach((m, i) => {
+    m.sub = m.sub || [];
+    B.push({keep:1, h:`<div class="tmh"><i>MODUL ${i + 1}</i>${torEd(`modul.${i}.judul`, m.judul, 'b')}</div>${ctl('modul.' + i, 'modul.' + i)}`});
+    m.sub.forEach((s, j) => B.push({h:`<div class="tsub${j === m.sub.length - 1 ? ' last' : ''}"><h4><em>${i + 1}.${j + 1}</em>${torEd(`modul.${i}.sub.${j}.judul`, s.judul)}</h4>${torEd(`modul.${i}.sub.${j}.isi`, s.isi, 'div', 'tp')}<div class="tout"><i>OUTPUT</i>${torEd(`modul.${i}.sub.${j}.output`, s.output)}</div></div>${ctl(`modul.${i}.sub.${j}`, m.sub.length > 1 ? `modul.${i}.sub.${j}` : '')}`}));
+  });
+  if (!d.modul.length) B.push({h:`<p class="tp" style="color:#8795AF">Belum ada modul. Tempel hasil ChatGPT, atau <button class="btn soft xs" data-toradd="modul.-1">+ Tambah modul</button></p>`});
+  B.push({h:sh(5) + torEd('penyelenggara', d.penyelenggara ?? torPenyelenggara(d), 'p', 'tp')});
+  B.push({h:sh(6) + torEd('penutup', d.penutup ?? torPenutup(d), 'p', 'tp')});
+  return B;
+}
+function torCover(d) {
+  return `<div class="tpage tcover"><span class="ln"></span><span class="dia a"></span><span class="dia b"></span>
+    <div class="top"><div class="tlogo"><img src="assets/pakarify-logo.png" alt="Pakarify" onerror="this.outerHTML='<span class=mk></span>pakarify'"></div><span class="tpill">Term of Reference · ${torEd('kode', d.kode || '#Pakarify')}</span></div>
+    <div class="mid"><div class="tof">term of</div><div class="tref">reference</div>${torEd('judul', d.judul, 'h1')}${torEd('subjudul', d.subjudul, 'div', 'sub')}<span class="tpill">Diselenggarakan oleh Pakarify × Hcelerate</span></div>
+    <div class="foot"><div><b>Hari, tanggal</b>${torEd('tanggal', d.tanggal)}</div><div><b>Waktu</b>${torEd('waktu', d.waktu)}</div><div><b>Tempat</b>${torEd('tempat', d.tempat)}</div></div></div>`;
+}
+function renderTor() {
+  const host = $('#torPages'); if (!host || $('#v-tor').hidden) return;
+  $('#torCls').innerHTML = '<option value="">Pilih kelas dari Database Kelas…</option>' + ordered().map((c, i) => `<option value="${c.id}" ${TOR && TOR.cid === c.id ? 'selected' : ''}>${i + 1}. ${esc(c.judul.replace(/^Masterclass\s*/i, ''))}${c.torData ? '  ✓ TOR' : ''}</option>`).join('');
+  if (!TOR) { host.innerHTML = `<div class="card empty" style="width:794px"><h4>Pilih kelas dulu</h4><p>TOR terhubung ke baris kelas itu di Database Kelas, jadi bisa dibuka dan diedit lagi kapan saja.</p></div>`; $('#torSt').textContent = ''; $('#torKode').value = ''; $('#torFokus').value = ''; return; }
+  const d = TOR.d; $('#torKode').value = d.kode || ''; if (document.activeElement !== $('#torFokus')) $('#torFokus').value = d.fokus || '';
+  host.innerHTML = torCover(d);
+  let pg = 1, body;
+  const newPage = () => { pg++; const p = document.createElement('div'); p.className = 'tpage tcontent'; p.innerHTML = `<div class="tbody"></div><div class="tfoot"><span>Term of Reference - ${esc(d.judul)}</span><b>${pg}</b></div>`; host.appendChild(p); body = p.firstChild; };
+  newPage();
+  // isi dialirkan blok demi blok; blok yang tidak muat pindah ke halaman baru (judul bagian ikut pindah)
+  torBlocks(d).forEach(b => {
+    const el = document.createElement('div'); el.className = 'tblk'; if (b.keep) el.dataset.keep = 1; el.innerHTML = b.h; body.appendChild(el);
+    if (body.scrollHeight > body.clientHeight + 1 && body.children.length > 1) {
+      const mv = [el]; let prev = el.previousElementSibling;
+      while (prev && prev.dataset.keep && body.children.length > mv.length + 1) { mv.unshift(prev); prev = prev.previousElementSibling; }
+      newPage(); mv.forEach(m => body.appendChild(m));
+    }
+  });
+  torStatus();
+}
+function torSet(path, v) {
+  const ks = path.split('.'); let o = TOR.d;
+  for (let i = 0; i < ks.length - 1; i++) o = o[ks[i]];
+  const k = ks[ks.length - 1]; if (String(o[k] ?? '') === v) return false;
+  o[k] = v; return true;
+}
+function torArr(path) { const ks = path.split('.'), i = +ks.pop(); let o = TOR.d; ks.forEach(k => o = o[k]); return [o, i]; }
+function torAdd(path) {
+  const [arr, i] = torArr(path);
+  const tpl = /^modul\.-?\d+$/.test(path) ? {judul:'Judul modul', sub:[{judul:'Judul sub-topik', isi:'Deskripsi praktik sub-topik.', output:'Peserta menghasilkan …'}]}
+    : /\.sub\.\d+$/.test(path) ? {judul:'Judul sub-topik', isi:'Deskripsi praktik sub-topik.', output:'Peserta menghasilkan …'}
+    : /^rundown/.test(path) ? ['00.00 - 00.00 WIB', 'Kegiatan'] : 'Teks baru';
+  arr.splice(i + 1, 0, tpl); torDraft(); renderTor();
+}
+function torDel(path) { const [arr, i] = torArr(path); arr.splice(i, 1); torDraft(); renderTor(); }
+function promptTor(c, d) {
+  const n = Math.max(1, +c.sesi || 1);
+  return `Kamu adalah penyusun Term of Reference (TOR) kelas online Pakarify, platform upskilling di bawah ekosistem Hcelerate. Gunakan web search untuk riset singkat topik ini (konteks Indonesia, kebutuhan kerja nyata, tools/data terbaru yang relevan), lalu tulis isi TOR.
+
+DATA KELAS
+- Judul: ${torFull(d)}
+- Kategori: ${c.kategori || '-'}
+- Narasumber: ${c.pembicara || '-'}
+- Format: ${n} sesi online (Zoom), tiap sesi 2 jam (19.00–21.00 WIB), pendekatan step-by-step dan project-based
+- Tanggal: ${d.tanggal}${d.fokus ? `\n- Fokus khusus dari tim: ${d.fokus}` : ''}
+
+ATURAN PANJANG (wajib, supaya Pendahuluan + Tujuan + Rundown muat dalam 1 halaman A4)
+- pendahuluan: TEPAT 4 paragraf, masing-masing 40–55 kata. Alur: (1) isu atau kebutuhan di lapangan, (2) tantangan yang dihadapi target peserta, (3) bagaimana tool/metode di kelas ini menjawabnya (sebut fitur/teknik spesifik), (4) "Melalui kelas ini, peserta menghasilkan ..." berisi output konkret.
+- tujuan: 5–6 butir, masing-masing maksimal 18 kata, diawali kata kerja (Memahami, Mengidentifikasi, Mempraktikkan, Menghasilkan, Menyusun, ...).
+- peserta: 1 kalimat dengan format "Peserta kelas ini adalah masyarakat umum, khususnya ...".
+- modul: ${n >= 2 ? '4 modul (modul 1–2 untuk sesi 1, modul 3–4 untuk sesi 2)' : '2–3 modul'}, berurutan dari dasar hingga output akhir. Tiap modul 2–4 sub-topik. Tiap sub-topik: judul singkat (maks 8 kata), isi 45–70 kata (apa yang dipraktikkan dan mengapa penting), output 1 kalimat yang diawali "Peserta menghasilkan ...".
+
+GAYA
+- Bahasa Indonesia formal dan lugas seperti TOR resmi. Tanpa klaim berlebihan, tanpa emoji, tanpa markdown di dalam teks.
+- Tekankan praktik langsung dan output kerja yang bisa dipakai (peta, tabel, dashboard, laporan, dsb. sesuai topik).
+- Bila hasil kelas berupa estimasi atau latihan, sebutkan batasannya secara wajar.
+
+FORMAT JAWABAN
+Balas HANYA dengan satu blok kode berlabel pakarify-tor berisi JSON valid:
+\`\`\`pakarify-tor
+{
+  "subjudul": "subjudul kelas (isi hanya jika judul belum punya subjudul)",
+  "pendahuluan": ["paragraf 1", "paragraf 2", "paragraf 3", "paragraf 4"],
+  "tujuan": ["...", "..."],
+  "peserta": "Peserta kelas ini adalah masyarakat umum, khususnya ...",
+  "modul": [
+    {"judul": "Judul modul", "sub": [
+      {"judul": "Judul sub-topik", "isi": "...", "output": "Peserta menghasilkan ..."}
+    ]}
+  ]
+}
+\`\`\``;
+}
+function openTorPrompt() {
+  if (!TOR) return toast('Pilih kelas dulu', 'err');
+  const c = S.classes.find(x => x.id === TOR.cid);
+  openModal(`<div class="mh"><div><h3>Prompt ChatGPT · TOR</h3><p>Atur fokus bila perlu, salin, lalu tempel di ChatGPT dengan web search aktif.</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
+    <div class="mb"><div class="fld"><label for="tpF">Fokus / catatan (opsional)</label><textarea id="tpF" style="min-height:70px;font-family:var(--f)" placeholder="mis. studi kasus Kalimantan, peserta banyak dari BPBD">${esc(TOR.d.fokus || '')}</textarea></div><div class="promptbox" id="pBox"></div></div>
+    <div class="mf"><button class="btn sec" data-mclose>Tutup</button><button class="btn sec" id="tpPaste">Sudah, tempel hasil</button><button class="btn pri" id="pCopy">Salin prompt</button></div>`);
+  const upd = () => { TOR.d.fokus = $('#tpF').value; $('#pBox').textContent = promptTor(c, TOR.d); };
+  $('#tpF').addEventListener('input', () => { upd(); torDraft(); }); upd();
+  $('#tpPaste').onclick = () => { closeModal(); setTimeout(openTorPaste, 10); };
+  $('#pCopy').onclick = async () => { try { await navigator.clipboard.writeText($('#pBox').textContent); toast('Prompt disalin. Tempel di ChatGPT.'); } catch (_) { const r = document.createRange(); r.selectNodeContents($('#pBox')); getSelection().removeAllRanges(); getSelection().addRange(r); toast('Teks sudah dipilih. Tekan Ctrl/Cmd + C.', 'info'); } };
+}
+function parseTor(txt) {
+  const f = txt.match(/```(?:pakarify-tor|json)?\s*([\s\S]*?)```/i), body = f ? f[1] : txt;
+  const a = body.indexOf('{'), b = body.lastIndexOf('}'); if (a < 0 || b < a) return null;
+  try { return JSON.parse(body.slice(a, b + 1).replace(/,\s*([}\]])/g, '$1')); } catch (_) { return null; }
+}
+function openTorPaste() {
+  if (!TOR) return toast('Pilih kelas dulu', 'err');
+  openModal(`<div class="mh"><div><h3>Tempel hasil ChatGPT · TOR</h3><p>Tempel seluruh jawaban (blok pakarify-tor). Isi Pendahuluan, Tujuan, Peserta, dan Pokok Pembahasan akan diganti; tanggal, rundown, penyelenggara, dan penutup tetap.</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
+    <div class="mb"><div class="fld"><label for="pasteIn">Jawaban ChatGPT</label><textarea id="pasteIn" style="min-height:220px" placeholder="Tempel di sini…"></textarea></div><div class="parse wait" id="pasteOut">Menunggu teks…</div></div>
+    <div class="mf"><button class="btn sec" data-mclose>Batal</button><button class="btn pri" id="pasteSave" disabled>Masukkan ke TOR</button></div>`);
+  let o = null;
+  $('#pasteIn').addEventListener('input', e => {
+    o = parseTor(e.target.value); const out = $('#pasteOut');
+    if (!o) { out.className = 'parse bad'; out.textContent = 'Format belum terbaca. Salin seluruh blok kode dari ChatGPT, termasuk tanda { dan }.'; $('#pasteSave').disabled = true; return; }
+    const nSub = (o.modul || []).reduce((s, m) => s + (m.sub || m.subtopik || []).length, 0);
+    out.className = 'parse ok'; out.textContent = `Terbaca: ${(o.pendahuluan || []).length} paragraf pendahuluan · ${(o.tujuan || []).length} tujuan · ${(o.modul || []).length} modul / ${nSub} sub-topik.`; $('#pasteSave').disabled = false;
+  });
+  $('#pasteSave').onclick = () => {
+    const d = TOR.d, arr = v => Array.isArray(v) ? v.map(String) : String(v || '').split(/\n\s*\n/).map(s => s.trim()).filter(Boolean);
+    if (o.pendahuluan) d.pendahuluan = arr(o.pendahuluan);
+    if (o.tujuan) d.tujuan = arr(o.tujuan);
+    if (o.peserta) d.peserta = String(o.peserta);
+    if (o.subjudul && !d.subjudul) d.subjudul = String(o.subjudul);
+    if (Array.isArray(o.modul)) d.modul = o.modul.map(m => ({judul:String(m.judul || ''), sub:(m.sub || m.subtopik || []).map(s => ({judul:String(s.judul || ''), isi:String(s.isi || s.deskripsi || ''), output:String(s.output || '')}))}));
+    closeModal(); torDraft(); renderTor(); toast('Hasil ChatGPT masuk ke TOR. Cek & edit di preview.');
+  };
+}
+async function torSave(msg = 'TOR disimpan ke Database Kelas') {
+  if (!TOR) return false; const c = S.classes.find(x => x.id === TOR.cid); if (!c) return false;
+  c.torData = JSON.stringify(TOR.d);
+  try { await api.save('classes', c); store.set('pkt-tor-' + TOR.cid, null); TOR.fromDraft = false; torStatus(); renderKelasTable(); if (msg) toast(msg); return true; }
+  catch (e) { toast('Gagal menyimpan TOR: ' + e.message, 'err'); return false; }
+}
+async function torPdf() {
+  if (!TOR) return toast('Pilih kelas dulu', 'err');
+  document.activeElement?.blur?.();
+  await torSave('TOR disimpan ke Database Kelas. Pilih "Simpan sebagai PDF" di jendela cetak.');
+  renderTor();
+  const title = document.title; document.title = `Term Of Reference (TOR) ${torFull(TOR.d)}`.replace(/[\\/:*?"<>|]/g, ' ').replace(/\s+/g, ' ');
+  document.body.classList.add('print-tor');
+  const done = () => { document.body.classList.remove('print-tor'); document.title = title; removeEventListener('afterprint', done); };
+  addEventListener('afterprint', done);
+  setTimeout(() => print(), 60);
+}
+document.addEventListener('focusout', e => {
+  const t = e.target; if (!TOR || !t.dataset?.tp) return;
+  if (!torSet(t.dataset.tp, t.textContent.trim())) return;
+  torDraft();
+  setTimeout(() => { const a = document.activeElement?.dataset?.tp; renderTor(); if (a) $(`#torPages [data-tp="${a}"]`)?.focus(); }, 0);
+});
+document.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey && e.target.dataset?.tp && e.target.tagName !== 'P' && e.target.tagName !== 'DIV') { e.preventDefault(); e.target.blur(); } });
+document.addEventListener('change', e => { if (e.target.id === 'torCls') torOpen(e.target.value); });
+document.addEventListener('input', e => {
+  if (!TOR) return;
+  if (e.target.id === 'torKode') { TOR.d.kode = e.target.value.trim(); torDraft(); const k = $('#torPages [data-tp="kode"]'); if (k) k.textContent = TOR.d.kode || '#Pakarify'; }
+  if (e.target.id === 'torFokus') { TOR.d.fokus = e.target.value; torDraft(); }
+});
+
 /* ---------- Database Kelas (tabel ala spreadsheet) ---------- */
 function linkCell(v, url) {
   const s = String(v ?? '').trim(); if (!s && !url) return '<span class="muted">–</span>';
@@ -1537,7 +1830,7 @@ function renderKelasTable() {
   const rows = all.map((c, i) => ({c, no:i + 1})).filter(({c}) => !hide.has(c.progress) && (!q || [c.judul, c.pembicara, c.kategori, c.pic].join(' ').toLowerCase().includes(q)));
   const ce = (c, f) => `<div contenteditable="plaintext-only" spellcheck="false" data-cf="${f}">${esc(c[f] ?? '')}</div>`;
   const L = '<span class="lock" title="Dilindungi Code.gs, ubah di Sheet">🔒</span>';
-  T.innerHTML = `<thead><tr><th class="sk k0"></th><th class="sk k1">No</th><th class="sk k2">Judul Kelas</th><th>Category</th><th>PIC</th><th>Pembicara</th><th>Jumlah Sesi</th><th>Tanggal Kelas FIX</th><th>Progress</th><th>Jml Peserta Aktual</th><th>Link Propose ${L}</th><th>Link TOR ${L}</th><th>Brief LP &amp; Poster ${L}</th><th>Feedback Kelas ${L}</th><th>Review Kelas ${L}</th></tr></thead><tbody>` +
+  T.innerHTML = `<thead><tr><th class="sk k0"></th><th class="sk k1">No</th><th class="sk k2">Judul Kelas</th><th>Category</th><th>PIC</th><th>Pembicara</th><th>Jumlah Sesi</th><th>Tanggal Kelas FIX</th><th>Progress</th><th>Jml Peserta Aktual</th><th>Link Propose ${L}</th><th>Link TOR ${L}</th><th>Brief LP &amp; Poster ${L}</th><th>Feedback Kelas ${L}</th><th>Review Kelas ${L}</th><th>TOR Tools</th></tr></thead><tbody>` +
     (rows.length ? rows.map(({c, no}) => { const st = startOf(c), n = +c.sesi || 1;
       return `<tr data-crow="${c.id}" style="--rowbg:${colorOf(c.progress)}">
         <td class="sk k0"><div class="grip" draggable="true" data-grip="${c.id}" title="Seret untuk mengubah urutan">⋮⋮</div></td>
@@ -1551,7 +1844,8 @@ function renderKelasTable() {
         <td><select data-cf="progress" style="font-weight:700">${[...new Set([...progs, c.progress].filter(Boolean))].map(p => `<option ${p === c.progress ? 'selected' : ''}>${esc(p)}</option>`).join('')}</select></td>
         <td><input data-cf="peserta" inputmode="numeric" style="width:80px" value="${esc(c.peserta ?? '')}" placeholder="–"></td>
         <td>${linkCell(c.propose, c.proposeUrl)}</td><td>${linkCell(c.tor, c.torUrl)}</td><td>${linkCell(c.brief, c.briefUrl)}</td><td>${linkCell(c.feedback, c.feedbackUrl)}</td><td><div class="ro">${esc(c.review || '') || '<span class="muted">–</span>'}</div></td>
-      </tr>`; }).join('') : `<tr><td colspan="15" style="padding:30px;text-align:center;color:var(--ink3)">Tidak ada kelas yang cocok dengan filter.</td></tr>`) + '</tbody>';
+        <td><button class="btn ${c.torData ? 'soft' : 'sec'} xs" data-toropen="${c.id}">${c.torData ? '✓ Buka TOR' : '+ Buat TOR'}</button></td>
+      </tr>`; }).join('') : `<tr><td colspan="16" style="padding:30px;text-align:center;color:var(--ink3)">Tidak ada kelas yang cocok dengan filter.</td></tr>`) + '</tbody>';
 }
 async function setCell(id, f, v) {
   const c = S.classes.find(x => x.id === id); if (!c) return;
@@ -1855,7 +2149,7 @@ function delKandidat(id) {
 }
 
 document.addEventListener('click', async e => {
-  const t = e.target.closest('[data-open],[data-close],[data-mclose],[data-st],[data-del],[data-todb],[data-tipe],[data-tn],[data-pick],[data-best],[data-unpick],[data-tokelas],[data-tdel],[data-cedit],[data-cdel],[data-dbdel],[data-ph],[data-go],[data-nt],[data-kl],[data-kt],#kReset,#bulkDB,#bulkTipe,#tGugur,#tAuto,#wReset,#addClassBtn,#addClassBtn2,#calPrev,#calNext,#calToday,#calDl,#teamLinkBtn,#setBtn,#statusBtn,[data-s],[data-w],[data-fase],[data-kf],[data-sz],[data-cs],[data-doclink],#colorBtn,#orderReset');
+  const t = e.target.closest('[data-open],[data-close],[data-mclose],[data-st],[data-del],[data-todb],[data-tipe],[data-tn],[data-pick],[data-best],[data-unpick],[data-tokelas],[data-tdel],[data-cedit],[data-cdel],[data-dbdel],[data-ph],[data-go],[data-nt],[data-kl],[data-kt],#kReset,#bulkDB,#bulkTipe,#tGugur,#tAuto,#wReset,#addClassBtn,#addClassBtn2,#calPrev,#calNext,#calToday,#calDl,#teamLinkBtn,#setBtn,#statusBtn,[data-s],[data-w],[data-fase],[data-kf],[data-sz],[data-cs],[data-doclink],[data-toropen],[data-toradd],[data-tordel],#torPromptBtn,#torPasteBtn,#torSaveBtn,#torPdfBtn,#colorBtn,#orderReset');
   if (!t) { if (!e.target.closest('.pop')) closePop(); return; }
   const d = t.dataset;
   if (d.open) { const [a, b] = d.open.split('-'); closeModal(); setTimeout(() => a === 'prompt' ? openPrompt(b) : openPaste(b), 10); return; }
@@ -1877,6 +2171,13 @@ document.addEventListener('click', async e => {
   if (d.ph) { e.stopPropagation(); if (ganttJust) return; return phasePop(d.ph, d.phase, t); }
   if (d.fase) { closePop(); return openFaseForm(d.fase); }
   if (d.doclink) { e.preventDefault(); e.stopPropagation(); return openLinkForm(d.doclink, d.kind); }
+  if (d.toropen) { const id = d.toropen; location.hash = 'tor'; setTimeout(() => torOpen(id), 30); return; }
+  if (d.toradd) { document.activeElement?.blur?.(); return torAdd(d.toradd); }
+  if (d.tordel) return torDel(d.tordel);
+  if (t.id === 'torPromptBtn') return openTorPrompt();
+  if (t.id === 'torPasteBtn') return openTorPaste();
+  if (t.id === 'torSaveBtn') { document.activeElement?.blur?.(); return TOR ? torSave() : toast('Pilih kelas dulu', 'err'); }
+  if (t.id === 'torPdfBtn') return torPdf();
   if ('kf' in d) { const h = new Set(S.khide); h.has(d.kf) ? h.delete(d.kf) : h.add(d.kf); S.khide = [...h]; store.set('pkt-khide', S.khide); return renderKelasTable(); }
   if (d.sz) return setSheetSize(d.sz);
   if (d.cs) { S.cal.sort = d.cs; store.set('pkt-calsort', d.cs); $$('#calSort button').forEach(b => b.setAttribute('aria-pressed', b === t)); return renderJadwal(); }
@@ -1947,7 +2248,7 @@ $('#railNext').addEventListener('click', () => { const r = $('#rail'); r.scrollB
 /* =====================================================================
    ROUTER & BOOT
    ===================================================================== */
-const VIEWS = ['home','narasumber','topik','jadwal','segera'];
+const VIEWS = ['home','narasumber','topik','jadwal','tor','segera'];
 function route() {
   const h = location.hash.slice(1);
   if (h === 'kalender-tim') { document.body.classList.add('teammode'); $$('[data-view]').forEach(s => s.hidden = s.dataset.view !== 'team'); $('#pill').hidden = true; $('#setBtn').hidden = true; $('#statusBtn').hidden = true; $('#sheetBtn').hidden = true; renderTeam(); scrollTo(0, 0); return; }
@@ -1956,6 +2257,7 @@ function route() {
   $$('[data-view]').forEach(s => s.hidden = s.dataset.view !== v);
   $$('#pill a').forEach(a => a.dataset.v === v ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
   closePop(); scrollTo({top:0});
+  if (v === 'tor') renderTor();
 }
 async function renderTeam() {
   const slot = $('#teamSlot');
