@@ -548,6 +548,8 @@ body.sheetmax{overflow:hidden}
 .xt .lock{color:var(--ink3);font-weight:400}
 .cr-row{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line)}
 .cr-row input[type=color]{width:40px;height:30px;border:0;padding:0;background:none}
+.doclink{display:block;border:0;background:none;padding:0;margin-top:4px;font-size:11.5px;font-weight:700;color:var(--ink2);text-align:left}
+.doclink:hover{color:var(--blue-d);text-decoration:underline}
 .gno{font-style:normal;display:inline-grid;place-items:center;min-width:20px;height:18px;border-radius:6px;background:var(--bg3);color:var(--ink2);font-size:10.5px;font-weight:800;margin-right:6px;vertical-align:1px}
 .ph.drag{cursor:grabbing;box-shadow:0 6px 16px rgba(23,71,184,.35);z-index:5}
 .ph.custom,.ms.custom{outline:2px dashed rgba(217,147,11,.9);outline-offset:1px}
@@ -812,7 +814,9 @@ const TABS = {
   db: {sheet:'Database Narasumber', cols:{nama:'Nama Lengkap Narasumber', perusahaan:'Perusahaan / Afiliasi Pekerjaan', kontak:'Kontak Narasumber', reachout:'Reachout', keterangan:'Keterangan', id:'ID', jabatan:'Jabatan', level:'Level', tipe:'Tipe', linkedin:'LinkedIn', bidang:'Bidang', rekom:'Rekomendasi Kelas', pks:'Link PKS', dokumen:'Link Dokumen', folder:'Folder Drive'}},
   types: {sheet:'Tipe Narasumber', cols:{id:'ID', nama:'Tipe', kunci:'Kata Kunci'}},
   topics: {sheet:'Riset Topik', cols:{id:'ID', judul:'Judul', tool:'Tool', alternatif:'Alternatif Berbayar', kategori:'Kategori', pembeli:'Target Pembeli', targetAds:'Target Ads', output:'Output Peserta', skor:'Skor (JSON)', total:'Skor Total', status:'Status', pilih:'Dipilih', terbaik:'Terbaik', alasan:'Alasan Laku', risiko:'Risiko Tidak Laku', kompetitor:'Kompetitor', lanjutan:'Kelas Lanjutan', momen:'Momen', masukKelas:'Masuk Database Kelas', batch:'Batch', dibuat:'Dibuat'}},
-  classes: {sheet:'Jadwal Kelas', cols:{judul:'Judul Kelas', kategori:'Category', pic:'PIC', pembicara:'Pembicara', sesi:'Jumlah Sesi', tanggalTeks:'Tanggal Kelas FIX', progress:'Progress', peserta:'Jml Peserta Aktual', propose:'Link Propose', tor:'Link TOR', brief:'Brief LP & Poster', feedback:'Feedback Kelas', review:'Review Kelas', id:'ID', mulai:'Tanggal Mulai'}},
+  classes: {sheet:'Jadwal Kelas', cols:{judul:'Judul Kelas', kategori:'Category', pic:'PIC', pembicara:'Pembicara', sesi:'Jumlah Sesi', tanggalTeks:'Tanggal Kelas FIX', progress:'Progress', peserta:'Jml Peserta Aktual', propose:'Link Propose', tor:'Link TOR', brief:'Brief LP & Poster', feedback:'Feedback Kelas', review:'Review Kelas', id:'ID', mulai:'Tanggal Mulai', urutan:'Urutan', fase:'Fase Custom',
+    // URL dari smart chip / hyperlink, dikirim Code.gs (hanya dibaca)
+    proposeUrl:'_url_Link Propose', torUrl:'_url_Link TOR', briefUrl:'_url_Brief LP & Poster', feedbackUrl:'_url_Feedback Kelas'}},
 };
 const ARR = new Set(['tipe','sumber']);
 const BOOL = new Set(['dosen','pembicara','profilJelas','magang','masukKelas']);
@@ -836,7 +840,7 @@ function fromSheet(tab, row) {
     else if (k === 'skor') { try { v = JSON.parse(v || '{}'); } catch (_) { v = {}; } }
     else if (k === 'pilih') v = /otomatis/i.test(v) || v === '' ? null : yes(v);
     else if (k === 'terbaik') v = yes(v);
-    else if (['tahun','tahunPerusahaan','sesi','peserta','level','total'].includes(k)) v = numOr(v, v === '' ? null : v);
+    else if (['tahun','tahunPerusahaan','sesi','peserta','level','total','urutan'].includes(k)) v = numOr(v, v === '' ? null : v);
     else if (tab === 'classes' && k === 'pembicara' && (typeof v === 'boolean' || /^(true|false)$/i.test(String(v).trim()))) v = '';  // sel dropdown kosong terbaca FALSE
     o[k] = v; }
   return o;
@@ -859,6 +863,10 @@ const api = {
   async save(tab, rec) {
     if (!isLive()) return persistDemo();
     await call('upsert', {sheet: TABS[tab].sheet, record: toSheet(tab, rec)});
+  },
+  async bulk(tab, recs) {
+    if (!isLive()) return persistDemo();
+    await call('bulk', {sheet: TABS[tab].sheet, records: recs.map(r => toSheet(tab, r))});
   },
   async remove(tab, id) {
     if (!isLive()) return persistDemo();
@@ -1111,6 +1119,21 @@ function setFase(id, k, v) {
   if (JSON.stringify(v) === JSON.stringify(FASE0[k])) delete o[k]; else o[k] = v;
   if (Object.keys(o).length) S.fase[id] = o; else delete S.fase[id];
   store.set('pkt-fase', S.fase);
+  const c = S.classes.find(x => x.id === id); if (c) { c.fase = S.fase[id] ? JSON.stringify(S.fase[id]) : ''; debounceSave('classes', c); }
+}
+// Sheet (kolom Urutan & Fase Custom) jadi sumber utama saat terhubung
+function syncFromClasses() {
+  const withNo = S.classes.filter(c => +c.urutan > 0);
+  if (withNo.length) { S.order = [...withNo].sort((a, b) => a.urutan - b.urutan).map(c => c.id); store.set('pkt-order', S.order); }
+  if (isLive() || S.classes.some(c => c.fase)) {
+    S.fase = {}; S.classes.forEach(c => { if (c.fase) try { S.fase[c.id] = JSON.parse(c.fase); } catch (_) {} });
+    store.set('pkt-fase', S.fase);
+  }
+}
+async function saveOrder() {
+  const changed = ordered().filter((c, i) => { const was = c.urutan; c.urutan = i + 1; return was !== i + 1; });
+  if (!changed.length) return;
+  try { await api.bulk('classes', changed.map(c => ({id:c.id, urutan:c.urutan}))); toast('Urutan disimpan ke Sheet'); } catch (e) { toast('Gagal menyimpan urutan: ' + e.message, 'err'); }
 }
 /* ---------- urutan, warna & riwayat narasumber ---------- */
 function ordered() {
@@ -1262,7 +1285,16 @@ function renderDB() {
 }
 function docSlot(n, kind) {
   const url = kind === 'PKS' ? n.pks : n.dokumen;
-  return `<label class="doc ${url ? 'has' : ''}" data-drop="${n.id}" data-kind="${kind}"><b>${kind === 'PKS' ? 'Link PKS' : 'Dokumen'}</b>${url ? `<a href="${esc(url)}" target="_blank" rel="noopener" data-stop>${kind === 'PKS' ? 'Buka PKS' : 'Buka folder'} ↗</a>` : `<span class="up">${ICON.up.replace('<svg', '<svg width="13" height="13" style="vertical-align:-2px"')} Upload / tarik file</span>`}<input type="file" class="sr" data-file="${n.id}" data-kind="${kind}"></label>`;
+  return `<label class="doc ${url ? 'has' : ''}" data-drop="${n.id}" data-kind="${kind}"><b>${kind === 'PKS' ? 'Link PKS' : 'Dokumen'}</b>${url ? `<a href="${esc(url)}" target="_blank" rel="noopener" data-stop>${kind === 'PKS' ? 'Buka PKS' : 'Buka folder'} ↗</a>` : `<span class="up">${ICON.up.replace('<svg', '<svg width="13" height="13" style="vertical-align:-2px"')} Upload / tarik file</span>`}<button type="button" class="doclink" data-doclink="${n.id}" data-kind="${kind}">🔗 ${url ? 'Ganti link' : 'Tempel link'}</button><input type="file" class="sr" data-file="${n.id}" data-kind="${kind}"></label>`;
+}
+function openLinkForm(id, kind) {
+  const n = S.db.find(x => x.id === id); if (!n) return; const key = kind === 'PKS' ? 'pks' : 'dokumen';
+  openModal(`<div class="mh"><div><h3>${kind === 'PKS' ? 'Link PKS' : 'Link dokumen'} · ${esc(n.nama)}</h3><p>Tempel link Google Drive / Docs yang sudah ada. Tersimpan ke kolom ${kind === 'PKS' ? 'Link PKS' : 'Link Dokumen'} di Database Narasumber.</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
+    <form class="mb" id="lnkForm"><div class="fld"><label for="lnkIn">Link</label><input id="lnkIn" type="url" value="${esc(n[key] || '')}" placeholder="https://drive.google.com/…"></div></form>
+    <div class="mf">${n[key] ? '<button class="btn ghost" id="lnkDel">Kosongkan</button>' : ''}<button class="btn sec" data-mclose>Batal</button><button class="btn pri" id="lnkSave">Simpan link</button></div>`);
+  const save = async v => { n[key] = v; closeModal(); renderDB(); if ($('#drawer').classList.contains('on')) openDB(id); await saveRec('db', n, v ? 'Link disimpan' : 'Link dikosongkan'); };
+  $('#lnkSave').onclick = $('#lnkForm').onsubmit = e => { e && e.preventDefault(); const v = $('#lnkIn').value.trim(); if (v && !/^https?:\/\//i.test(v)) return toast('Link harus diawali https://', 'err'); save(v); };
+  if ($('#lnkDel')) $('#lnkDel').onclick = () => save('');
 }
 function openDB(id) {
   const n = S.db.find(x => x.id === id); if (!n) return; const rk = rekomFor(n);
@@ -1486,11 +1518,15 @@ async function downloadCal() {
 }
 
 /* ---------- Database Kelas (tabel ala spreadsheet) ---------- */
-function linkCell(v) {
-  const s = String(v ?? '').trim(); if (!s) return '<span class="muted">–</span>';
-  const m = s.match(/https?:\/\/\S+/); if (!m) return `<div class="ro">${esc(s)}</div>`;
-  const u = m[0], lbl = s.replace(u, '').replace(/[()\[\]]/g, '').trim() || (/document/.test(u) ? 'Doc' : /spreadsheets/.test(u) ? 'Sheet' : /presentation/.test(u) ? 'Slides' : /drive\.google|folders/.test(u) ? 'Drive' : u.replace(/^https?:\/\/(www\.)?/, '').split('/')[0]);
-  return `<a class="lk" href="${esc(u)}" target="_blank" rel="noopener" title="${esc(u)}">${ICON.ext}${esc(lbl)}</a>`;
+function linkCell(v, url) {
+  const s = String(v ?? '').trim(); if (!s && !url) return '<span class="muted">–</span>';
+  const m = url ? [url] : s.match(/https?:\/\/\S+/); if (!m) return `<div class="ro" title="Link belum terbaca. Pastikan sel berisi smart chip / hyperlink">${esc(s)}</div>`;
+  const u = m[0], lbl = url && s ? s : lbl0(s, u);
+  return `<a class="lk" href="${esc(u)}" target="_blank" rel="noopener" title="${esc(s || u)}">${ICON.ext}${esc(lbl)}</a>`;
+}
+function lbl0(s, u) {
+  const lbl = s.replace(u, '').replace(/[()\[\]]/g, '').trim() || (/document/.test(u) ? 'Doc' : /spreadsheets/.test(u) ? 'Sheet' : /presentation/.test(u) ? 'Slides' : /drive\.google|folders/.test(u) ? 'Drive' : u.replace(/^https?:\/\/(www\.)?/, '').split('/')[0]);
+  return lbl;
 }
 function renderKelasTable() {
   const T = $('#kelasTable'); if (!T) return;
@@ -1514,7 +1550,7 @@ function renderKelasTable() {
         <td style="min-width:220px"><input type="date" data-cf="mulai" value="${st ? iso(st) : ''}"><div class="tt">${esc(c.tanggalTeks || '')}</div></td>
         <td><select data-cf="progress" style="font-weight:700">${[...new Set([...progs, c.progress].filter(Boolean))].map(p => `<option ${p === c.progress ? 'selected' : ''}>${esc(p)}</option>`).join('')}</select></td>
         <td><input data-cf="peserta" inputmode="numeric" style="width:80px" value="${esc(c.peserta ?? '')}" placeholder="–"></td>
-        <td>${linkCell(c.propose)}</td><td>${linkCell(c.tor)}</td><td>${linkCell(c.brief)}</td><td>${linkCell(c.feedback)}</td><td><div class="ro">${esc(c.review || '') || '<span class="muted">–</span>'}</div></td>
+        <td>${linkCell(c.propose, c.proposeUrl)}</td><td>${linkCell(c.tor, c.torUrl)}</td><td>${linkCell(c.brief, c.briefUrl)}</td><td>${linkCell(c.feedback, c.feedbackUrl)}</td><td><div class="ro">${esc(c.review || '') || '<span class="muted">–</span>'}</div></td>
       </tr>`; }).join('') : `<tr><td colspan="15" style="padding:30px;text-align:center;color:var(--ink3)">Tidak ada kelas yang cocok dengan filter.</td></tr>`) + '</tbody>';
 }
 async function setCell(id, f, v) {
@@ -1557,7 +1593,7 @@ function openFaseForm(id) {
       <div class="grid2"><div class="fld"><label for="f-konf">Konfirmasi narasumber</label>${dIn('f-konf', p.konf)}</div><div class="fld"><label for="f-H">Sesi 1 kelas (ke Sheet)</label>${dIn('f-H', p.H)}</div></div>
     </form>
     <div class="mf"><button class="btn ghost" id="fReset">Kembalikan otomatis</button><button class="btn sec" data-mclose>Batal</button><button class="btn pri" id="fSave">Simpan jadwal</button></div>`);
-  $('#fReset').onclick = () => { delete S.fase[id]; store.set('pkt-fase', S.fase); closeModal(); renderJadwal(); toast('Jadwal kembali otomatis', 'info'); };
+  $('#fReset').onclick = () => { ['reach', 'mkt', 'prep', 'konf'].forEach(k => setFase(id, k, FASE0[k])); closeModal(); renderJadwal(); toast('Jadwal kembali otomatis', 'info'); };
   $('#fSave').onclick = async () => {
     const H = parseIso($('#f-H').value) || p.H, g = k => parseIso($('#' + k).value);
     F.forEach(([k]) => { const a = g('f-' + k + '0'), b = g('f-' + k + '1'); if (a && b) setFase(id, k, [dayDiff(a, H), dayDiff(b < a ? a : b, H)]); });
@@ -1596,7 +1632,7 @@ document.addEventListener('pointerup', async () => {
   if (ph === 'run') { const H = addDays(p.H, delta); toast(`Kelas dipindah ke ${fmtL(H)}`); return setCell(id, 'mulai', iso(H)); }
   if (ph === 'konf') setFase(id, 'konf', dayDiff(p.konf, p.H) + delta);
   else setFase(id, ph, [dayDiff(p[ph][0], p.H) + delta, dayDiff(p[ph][1], p.H) + delta]);
-  renderJadwal(); toast(`Fase digeser ${delta > 0 ? '+' : ''}${delta} hari`, 'ok', {label:'Urungkan', fn:() => { if (prev) S.fase[id] = prev; else delete S.fase[id]; store.set('pkt-fase', S.fase); renderJadwal(); }});
+  renderJadwal(); toast(`Fase digeser ${delta > 0 ? '+' : ''}${delta} hari`, 'ok', {label:'Urungkan', fn:() => { setFase(id, ph, (prev && prev[ph] != null) ? prev[ph] : FASE0[ph]); renderJadwal(); }});
 });
 // drag & drop urutan kelas
 let rowDrag = null;
@@ -1605,8 +1641,10 @@ document.addEventListener('dragover', e => { if (!rowDrag) return; const tr = e.
 document.addEventListener('drop', e => {
   if (!rowDrag) return; const tr = e.target.closest('#kelasTable tr[data-crow]'); if (!tr) return; e.preventDefault();
   const below = tr.classList.contains('drop-below'), ids = ordered().map(c => c.id).filter(x => x !== rowDrag);
-  if (tr.dataset.crow !== rowDrag) { ids.splice(ids.indexOf(tr.dataset.crow) + (below ? 1 : 0), 0, rowDrag); S.order = ids; store.set('pkt-order', ids); }
+  const moved = tr.dataset.crow !== rowDrag;
+  if (moved) { ids.splice(ids.indexOf(tr.dataset.crow) + (below ? 1 : 0), 0, rowDrag); S.order = ids; store.set('pkt-order', ids); }
   rowDrag = null; renderKelasTable(); renderJadwal();
+  if (moved) saveOrder();
 });
 document.addEventListener('dragend', () => { if (!rowDrag) return; rowDrag = null; $$('#kelasTable .dragging, #kelasTable .drop-above, #kelasTable .drop-below').forEach(x => x.classList.remove('dragging', 'drop-above', 'drop-below')); });
 // edit sel
@@ -1817,7 +1855,7 @@ function delKandidat(id) {
 }
 
 document.addEventListener('click', async e => {
-  const t = e.target.closest('[data-open],[data-close],[data-mclose],[data-st],[data-del],[data-todb],[data-tipe],[data-tn],[data-pick],[data-best],[data-unpick],[data-tokelas],[data-tdel],[data-cedit],[data-cdel],[data-dbdel],[data-ph],[data-go],[data-nt],[data-kl],[data-kt],#kReset,#bulkDB,#bulkTipe,#tGugur,#tAuto,#wReset,#addClassBtn,#addClassBtn2,#calPrev,#calNext,#calToday,#calDl,#teamLinkBtn,#setBtn,#statusBtn,[data-s],[data-w],[data-fase],[data-kf],[data-sz],[data-cs],#colorBtn,#orderReset');
+  const t = e.target.closest('[data-open],[data-close],[data-mclose],[data-st],[data-del],[data-todb],[data-tipe],[data-tn],[data-pick],[data-best],[data-unpick],[data-tokelas],[data-tdel],[data-cedit],[data-cdel],[data-dbdel],[data-ph],[data-go],[data-nt],[data-kl],[data-kt],#kReset,#bulkDB,#bulkTipe,#tGugur,#tAuto,#wReset,#addClassBtn,#addClassBtn2,#calPrev,#calNext,#calToday,#calDl,#teamLinkBtn,#setBtn,#statusBtn,[data-s],[data-w],[data-fase],[data-kf],[data-sz],[data-cs],[data-doclink],#colorBtn,#orderReset');
   if (!t) { if (!e.target.closest('.pop')) closePop(); return; }
   const d = t.dataset;
   if (d.open) { const [a, b] = d.open.split('-'); closeModal(); setTimeout(() => a === 'prompt' ? openPrompt(b) : openPaste(b), 10); return; }
@@ -1838,11 +1876,12 @@ document.addEventListener('click', async e => {
   if (d.dbdel) { const i = S.db.findIndex(x => x.id === d.dbdel); const n = S.db[i]; try { await api.remove('db', n.id); S.db.splice(i, 1); closeDrawer(); renderAll(); return toast(`${n.nama} dihapus dari database`, 'info'); } catch (e) { return toast(e.message, 'err'); } }
   if (d.ph) { e.stopPropagation(); if (ganttJust) return; return phasePop(d.ph, d.phase, t); }
   if (d.fase) { closePop(); return openFaseForm(d.fase); }
+  if (d.doclink) { e.preventDefault(); e.stopPropagation(); return openLinkForm(d.doclink, d.kind); }
   if ('kf' in d) { const h = new Set(S.khide); h.has(d.kf) ? h.delete(d.kf) : h.add(d.kf); S.khide = [...h]; store.set('pkt-khide', S.khide); return renderKelasTable(); }
   if (d.sz) return setSheetSize(d.sz);
   if (d.cs) { S.cal.sort = d.cs; store.set('pkt-calsort', d.cs); $$('#calSort button').forEach(b => b.setAttribute('aria-pressed', b === t)); return renderJadwal(); }
   if (t.id === 'colorBtn') return openColors();
-  if (t.id === 'orderReset') { S.order = []; store.set('pkt-order', []); renderKelasTable(); renderJadwal(); return toast('Urutan kembali seperti di Sheet', 'info'); }
+  if (t.id === 'orderReset') { S.order = []; store.set('pkt-order', []); renderKelasTable(); renderJadwal(); toast('Urutan kembali seperti baris di Sheet', 'info'); return saveOrder(); }
   if (d.go) { location.hash = d.go; return; }
   if (d.nt) { S.nt = d.nt; $$('[data-nt]').forEach(b => b.setAttribute('aria-selected', b.dataset.nt === d.nt)); ['kandidat','db','ideal'].forEach(k => $('#nt-' + k).hidden = k !== d.nt); return; }
   if (d.kl) { const n = +d.kl, L = S.kf.levels; S.kf.levels = L.includes(n) ? L.filter(x => x !== n) : [...L, n]; store.set('pkt-kf2', S.kf); return renderKandidat(); }
@@ -1920,12 +1959,12 @@ function route() {
 }
 async function renderTeam() {
   const slot = $('#teamSlot');
-  if (settings.url && !settings.pass) { try { const j = await fetch(settings.url, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify({action:'calendar'})}).then(r => r.json()); if (j.ok) S.classes = (j.data || []).map(r => fromSheet('classes', r)); } catch (_) {} }
+  if (settings.url && !settings.pass) { try { const j = await fetch(settings.url, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify({action:'calendar'})}).then(r => r.json()); if (j.ok) { S.classes = (j.data || []).map(r => fromSheet('classes', r)); syncFromClasses(); } } catch (_) {} }
   slot.innerHTML = `<div class="calwrap"><div class="calbar"><h3>${BULAN[today0().getMonth()]} ${today0().getFullYear()} · 13 minggu</h3><div class="r"><button class="btn soft sm" id="calDl">Unduh PNG</button></div></div><div class="legend"><span><i style="background:#BFD4FB"></i>Reachout</span><span><i style="background:#5C93F0"></i>Marketing</span><span><i style="background:#2563EB"></i>Persiapan</span><span><i style="background:var(--gold);transform:rotate(45deg);width:10px"></i>Konfirmasi H-7</span><span><i style="background:#0B1A33"></i>Pelaksanaan</span></div><div class="gscroll"><div class="gantt" id="teamGantt"></div></div></div>`;
   S.cal.show = 'aktif'; renderJadwal($('#teamGantt'));
 }
 async function boot() {
-  try { const d = await api.load(); Object.assign(S, d); if (!S.types.length) S.types = seed().types; }
+  try { const d = await api.load(); Object.assign(S, d); if (!S.types.length) S.types = seed().types; syncFromClasses(); }
   catch (e) { toast('Gagal memuat dari Sheet: ' + e.message + '. Menampilkan mode contoh.', 'err'); settings.pass = ''; Object.assign(S, store.get('pkt-demo2', null) || seed()); }
   renderAll(); route();
   if (settings.url && !settings.pass && location.hash !== '#kalender-tim' && !store.get('pkt-skip-pass', false)) askPass();
