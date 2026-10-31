@@ -841,7 +841,7 @@ body.sheetmax{overflow:hidden}
     <div class="vhead bf-ro" hidden><div><div class="eyebrow">Brief untuk tim · hanya baca</div><h1 id="bfRoTitle" style="font-size:clamp(22px,3vw,30px)">Brief Landing Page</h1></div><div class="acts"><button class="btn pri" id="bfDlBtn2">Unduh HTML</button></div></div>
     <div class="torbar card bf-edit">
       <div class="fld"><label for="bfCls">Brief untuk kelas</label><select id="bfCls"></select></div>
-      <div class="fld"><span class="l">Jenis halaman</span><div class="seg" id="bfType"><button data-bt2="ecourse" aria-pressed="true">E-course</button><button data-bt2="kelas" aria-pressed="false">Halaman Kelas</button></div></div>
+      <div class="fld"><span class="l">Jenis halaman</span><div class="seg" id="bfType"><button data-bt2="ecourse" aria-pressed="true">E-course</button><button data-bt2="kelas" aria-pressed="false">Halaman Kelas</button><button data-bt2="ig" aria-pressed="false">Instagram</button></div></div>
       <div class="torst" id="bfSt"></div>
     </div>
     <div id="bfPrev"></div>
@@ -1906,8 +1906,98 @@ const BRIEF_CSS = `.bpage{max-width:1100px;margin:0 auto;background:#fff;border-
 .bnc .bp b,.bpk .bp b{font-size:28px}.bghost{display:block;text-align:center;border:2px solid #5B3BDB;color:#5B3BDB;border-radius:10px;padding:11px;font-weight:600;margin-top:12px}
 .bfaq{display:grid;gap:10px}.bq{border:1px solid #E6E1F7;border-radius:14px;padding:14px 18px;position:relative}.bq b{display:block;font-size:15px;margin-bottom:4px}.bq p{margin:0;font-size:14px;color:#5E5480;line-height:1.55}
 .bmuted{color:#9A90BD;font-size:14px}
-@media (max-width:820px){.bhero,.bfit,.bns{grid-template-columns:1fr}.bhero h1{font-size:32px}.bsec,.bhero{padding:28px 20px}}`;
-document.head.insertAdjacentHTML('beforeend', '<style>' + BRIEF_CSS + '</style>');
+.iggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:900px;margin:0 auto}
+.igp{aspect-ratio:4/5;padding:22px 22px 14px;display:flex;flex-direction:column;position:relative;overflow:hidden;border:1px solid #ECE9F4}
+.igp.kuning{background:#FCD34D;color:#2A0A6B}.igp.putih{background:#fff;color:#2A0A6B}.igp.ungu{background:#2A0A6B;color:#fff}
+.igp .lab{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#7C5CE0;margin-bottom:10px}.igp.ungu .lab{color:#FCD34D}.igp.kuning .lab{color:#2A0A6B}
+.igp h3{font-size:17px;font-weight:800;line-height:1.22;margin:0 0 12px}.igp .big{font-size:30px;font-weight:800;line-height:1;margin:6px 0 14px}
+.igp .vis{flex:1;min-height:0;border-radius:10px;background:repeating-linear-gradient(135deg,rgba(91,59,219,.07) 0 10px,rgba(91,59,219,.13) 10px 20px);display:flex;align-items:center;justify-content:center;padding:12px;font-size:11.5px;text-align:center;line-height:1.45;color:#4A4170;overflow:hidden}
+.igp.ungu .vis{background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 10px,rgba(255,255,255,.12) 10px 20px);color:#E9E4FF}.igp.kuning .vis{background:rgba(255,255,255,.35)}
+.igp .vis img{width:100%;height:100%;object-fit:cover;border-radius:10px}
+.igp .pill{margin-top:auto;background:#2A0A6B;color:#fff;border-radius:8px;padding:9px;text-align:center;font-weight:700;font-size:12px}
+.igp .ft{display:flex;justify-content:space-between;font-size:10px;opacity:.55;margin-top:8px}.igp .no{position:absolute;left:8px;top:6px;font-size:10px;font-weight:800;opacity:.45}
+.igd{display:grid;gap:14px}.igrow{border:1px solid #E6E1F7;border-radius:16px;padding:16px 18px;display:grid;grid-template-columns:190px 1fr 1fr;gap:18px;position:relative}
+.igrow h4{font-size:15px;margin:0 0 6px;line-height:1.3}.igmeta{font-size:12.5px;color:#7A6FA3;display:grid;gap:4px}.igmeta b{color:#2A0A6B}
+.igk{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9A90BD;margin-bottom:6px}
+.igrow ol{margin:0;padding-left:18px;display:grid;gap:5px;font-size:13.5px;line-height:1.5}
+.igcap{white-space:pre-wrap;font-size:13.5px;line-height:1.6;background:#FAF9FE;border:1px solid #EFEBFA;border-radius:12px;padding:12px 14px;margin:0}
+.cv{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px}.cvb{background:#F1EFF8;border-radius:14px;padding:14px 16px}.cvb.end{background:#DCF5E4}
+.cvb b{display:block;font-size:14px;margin-bottom:4px}.cvb small{display:block;font-size:11.5px;color:#9A90BD;margin-bottom:8px}.cvb ul{margin:0;padding-left:16px;font-size:13px;color:#4A4170;display:grid;gap:5px}.cvb p{font-size:13px;color:#4A4170;margin:0}
+.cvt{width:100%;border-collapse:collapse;font-size:13px;margin-top:16px}.cvt th{text-align:left;color:#9A90BD;font-weight:600;padding:8px 10px;border-bottom:1px solid #E6E1F7;white-space:nowrap}
+.cvt td{padding:10px;border-bottom:1px solid #EFEBFA;vertical-align:top;line-height:1.45}.cvt td:first-child{color:#16A34A;font-weight:700;white-space:nowrap}
+.cvg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.cvg>div{border-radius:14px;padding:14px 16px}.cvg .ok{background:#ECFDF3}.cvg .no{background:#FEF2F2}.cvg h3{font-size:14px;margin:0 0 8px}.cvg ul{margin:0;padding-left:16px;font-size:13px;display:grid;gap:5px}
+.cvscroll{overflow-x:auto}
+@media (max-width:820px){.bhero,.bfit,.bns{grid-template-columns:1fr}.bhero h1{font-size:32px}.bsec,.bhero{padding:28px 20px}.iggrid{grid-template-columns:repeat(2,1fr)}.igrow,.cv,.cvg{grid-template-columns:1fr}}`;
+const TYPE_LBL = {ecourse:'E-course', kelas:'Halaman Kelas', ig:'Instagram'};
+// 6 postingan mengikuti funnel CAVAC: Reach → Problem → Education → Proof → Trust → Conversion
+const IG_FUNNEL = [['Reach', 'Edukasi', 'putih'], ['Problem', 'Edukasi', 'putih'], ['Education', 'Edukasi', 'putih'], ['Proof', 'Bukti', 'ungu'], ['Trust', 'Bukti', 'ungu'], ['Conversion', 'Penawaran', 'kuning']];
+const IG_WARNA = {Penawaran:'kuning', Edukasi:'putih', Bukti:'ungu'};
+function igBase(c) {
+  const d = startOf(c), e = d ? addDays(d, Math.max(1, +c.sesi || 1) - 1) : null;
+  const tgl = d ? (+e === +d ? `${d.getDate()} ${BLN[d.getMonth()]}` : d.getMonth() === e.getMonth() ? `${d.getDate()}–${e.getDate()} ${BLN[d.getMonth()]}` : `${d.getDate()} ${BLN[d.getMonth()]} – ${e.getDate()} ${BLN[e.getMonth()]}`).toUpperCase() : 'SEGERA';
+  const tag = ({Geospasial:'GIS', 'Carbon & ESG':'Carbon', 'Kreatif & Media':'Kreatif', 'Data & Analitik':'Data', 'AI & No-code':'AI', 'Karier & Profesional':'Karier'})[catToType(c.kategori)] || c.kategori || 'Pakarify';
+  return {tag, tanggal:tgl, judulKelas:c.judul.replace(/^Masterclass\s*/i, ''),
+    posts:IG_FUNNEL.map(([tahap, tipe, warna], i) => ({tahap, tipe, warna, judul:tipe === 'Penawaran' ? c.judul.replace(/^Masterclass\s*/i, '').split(':')[0] : 'Headline postingan ' + (i + 1), visual:'', img:'', cep:'', value:'', angle:'', slides:[''], cta:tipe === 'Penawaran' ? 'Early bird s.d. H-7' : '', caption:''})),
+    cavac:{arah:'', cep:[''], value:[''], angle:[''], lakukan:[''], hindari:['']}};
+}
+function renderIg(d) {
+  const ed = BF.edit, card = (p, i) => {
+    const lab = `<div class="lab">${esc(p.tipe)} · ${bEd('tag', d.tag)}</div>`;
+    const body = p.tipe === 'Penawaran' ? `${bEd('tanggal', d.tanggal, 'div', 'big')}${bEd(`posts.${i}.judul`, p.judul, 'h3')}<span class="pill">${bEd(`posts.${i}.cta`, p.cta)}</span>`
+      : `${bEd(`posts.${i}.judul`, p.judul, 'h3')}<div class="vis">${p.img ? `<img src="${esc(p.img)}" alt="">` : esc(p.visual || 'Arahan visual muncul di sini')}</div><div class="ft"><span>pakarify</span><span>geser →</span></div>`;
+    return `<div class="igp ${p.warna || IG_WARNA[p.tipe] || 'putih'}"><span class="no">${i + 1}</span>${lab}${body}</div>`;
+  };
+  let h = `<div class="bpage" id="bfPage"><div class="bhead"><span>Brief Instagram · 6 postingan + CAVAC · Pakarify</span><span>${esc(BF.judul)}</span></div>`;
+  h += bSec('Grid feed (mockup)', 'Arahan tampilan untuk desainer. Nomor = urutan posting; di feed, postingan terakhir tampil paling atas.', `<div class="iggrid">${d.posts.map(card).join('')}</div>`);
+  h += bSec('Detail per postingan', 'Isi tiap slide carousel, CTA, dan caption. Semua bisa diedit.', `<div class="igd">${d.posts.map((p, i) => `<div class="igrow">
+      <div><div class="igk">Postingan ${i + 1}</div>${bEd(`posts.${i}.judul`, p.judul, 'h4')}<div class="igmeta"><span>Tahap: <b>${bEd(`posts.${i}.tahap`, p.tahap)}</b></span><span>Jenis: <b>${bEd(`posts.${i}.tipe`, p.tipe)}</b></span>${ed ? `<select class="sel" data-igwarna="${i}" style="margin-top:6px">${['kuning', 'putih', 'ungu'].map(w => `<option ${(p.warna || IG_WARNA[p.tipe]) === w ? 'selected' : ''}>${w}</option>`).join('')}</select><input class="bimg" data-igimg="${i}" placeholder="Link gambar (opsional)" value="${esc(p.img)}">` : ''}</div></div>
+      <div><div class="igk">Arahan visual</div><div class="bvis" style="margin-bottom:12px">${bEd(`posts.${i}.visual`, p.visual)}</div><div class="igk">Isi slide carousel</div><ol>${bList(`posts.${i}.slides`, p.slides)}</ol>${p.tipe !== 'Penawaran' ? `<div class="igk" style="margin-top:10px">CTA</div>${bEd(`posts.${i}.cta`, p.cta, 'p', 'bnote')}` : ''}</div>
+      <div><div class="igk">Caption</div>${bEd(`posts.${i}.caption`, p.caption, 'div', 'igcap')}</div></div>`).join('')}</div>`);
+  const cv = d.cavac, box = (t, s, key, end) => `<div class="cvb${end ? ' end' : ''}"><b>${t}</b><small>${s}</small><ul>${bList('cavac.' + key, cv[key])}</ul></div>`;
+  h += bSec('CAVAC simplified', 'Versi ringkas untuk desainer: dari arah brand ke isi tiap postingan.', `<div class="cv"><div class="cvb"><b>Arah Brand</b><small>Kesan yang mau dibangun</small>${bEd('cavac.arah', cv.arah, 'p')}</div>${box('CEP', 'Kapan skill ini dicari?', 'cep')}${box('Advertised Value', 'Nilai yang dijanjikan', 'value')}${box('Angle → Konten', 'Sudut cerita yang dipakai', 'angle', 1)}</div>
+    <div class="cvscroll"><table class="cvt"><thead><tr><th>Tahap</th><th>CEP (situasi)</th><th>Value</th><th>Angle</th><th>Headline</th><th>CTA</th></tr></thead><tbody>${d.posts.map((p, i) => `<tr><td>${i + 1} · ${esc(p.tahap)}</td><td>${bEd(`posts.${i}.cep`, p.cep)}</td><td>${bEd(`posts.${i}.value`, p.value)}</td><td>${bEd(`posts.${i}.angle`, p.angle)}</td><td><b>${esc(p.judul)}</b></td><td>${esc(p.cta)}</td></tr>`).join('')}</tbody></table></div>
+    <div class="cvg"><div class="ok"><h3>Lakukan</h3><ul>${bList('cavac.lakukan', cv.lakukan)}</ul></div><div class="no"><h3>Hindari</h3><ul>${bList('cavac.hindari', cv.hindari)}</ul></div></div>`);
+  return h + '</div>';
+}
+function promptIg(c) {
+  const t = torOfClass(c), n = narsumOf(c), ec = BF.all.ecourse || BF.all.kelas;
+  return `Kamu content strategist Instagram Pakarify (platform upskilling di ekosistem Hcelerate). Susun 6 postingan feed (carousel) untuk promosi kelas di bawah, lengkap dengan CAVAC versi sederhana untuk desainer dan caption. Pakai web search seperlunya untuk memastikan istilah/tool akurat.
+
+DATA KELAS
+- Judul: ${c.judul}
+- Kategori: ${c.kategori || '-'} · Tanggal: ${torTanggal(c)} · ${Math.max(1, +c.sesi || 1)} malam via Zoom
+- Narasumber: ${n ? `${n.nama} — ${[n.jabatan, n.perusahaan].filter(Boolean).join(', ')}. Catatan: ${n.keterangan || '-'}` : (c.pembicara || '-')}${ec && ec.harga ? `\n- Harga: ${ec.harga}${ec.coret ? ' (normal ' + ec.coret + ')' : ''} · ${ec.catatanHarga || ''}` : ''}
+${t ? `- Ringkasan TOR: ${(t.pendahuluan || []).join(' ').slice(0, 700)}
+
+MATERI (FIX dari TOR — konten tidak boleh menjanjikan hal di luar ini)
+${(t.modul || []).map((m, i) => `Modul ${i + 1}: ${m.judul}\n${(m.sub || []).map((s, j) => `  ${i + 1}.${j + 1} ${s.judul}${s.output ? ` → ${s.output}` : ''}`).join('\n')}`).join('\n')}` : '- TOR belum ada; simpulkan dari judul kelas.'}
+
+STRUKTUR 6 POSTINGAN (urut funnel)
+1 Reach (Edukasi): masuk lewat situasi kerja yang familiar.
+2 Problem (Edukasi): bikin gap/masalah terasa nyata.
+3 Education (Edukasi): mini-framework yang langsung bisa dipahami.
+4 Proof (Bukti): tunjukkan bentuk output nyata dari materi, bukan janji.
+5 Trust (Bukti): kurangi keraguan (narasumber, batas analisis, cara belajar).
+6 Conversion (Penawaran): kemas kelas sebagai workflow siap praktik + info tanggal/harga.
+
+GAYA BAHASA (penting)
+- Bahasa Indonesia sehari-hari seperti admin Pakarify ngobrol ke followers, pakai "kamu". Kalimat pendek, to the point.
+- JANGAN terdengar seperti AI: hindari "di era digital", "tingkatkan potensimu", "secara komprehensif", "memberdayakan", "revolusioner", "jangan lewatkan kesempatan emas", pembuka "Halo sobat", rentetan emoji, dan tanda pisah panjang berlebihan.
+- Headline maks 9 kata, bikin penasaran atau relate, bukan slogan.
+- Caption 50–90 kata: hook 1 kalimat, 2–4 kalimat isi, CTA jelas, lalu 3–5 hashtag relevan. Boleh 1–2 emoji kalau natural.
+
+FORMAT JAWABAN
+Balas HANYA dengan satu blok kode berlabel pakarify-ig berisi JSON valid:
+\`\`\`pakarify-ig
+{
+  "cavac": {"arah": "1 kalimat arah brand", "cep": ["3 situasi kapan skill ini dicari"], "value": ["3 nilai yang dijanjikan"], "angle": ["4 sudut cerita"], "lakukan": ["3 aturan konten"], "hindari": ["3 hal yang dihindari"]},
+  "posts": [
+    {"tahap": "Reach", "tipe": "Edukasi", "cep": "", "value": "", "angle": "", "judul": "headline di gambar", "visual": "arahan gambar untuk desainer, maks 30 kata", "slides": ["isi slide 2", "isi slide 3", "isi slide 4"], "cta": "", "caption": ""}
+  ]
+}
+\`\`\`
+posts berisi TEPAT 6 objek sesuai urutan funnel. slides 3–5 poin, masing-masing maks 20 kata. tipe hanya "Edukasi", "Bukti", atau "Penawaran".`;
+}document.head.insertAdjacentHTML('beforeend', '<style>' + BRIEF_CSS + '</style>');
 const FAQ_EC = [
   {q:'Setelah bayar, kapan bisa mulai nonton?', a:'Akses materi langsung dikirim setelah pembayaran terkonfirmasi, jadi kamu bisa mulai belajar hari itu juga.'},
   {q:'Berapa lama aksesnya?', a:'Video, slide, dan dataset latihan bisa kamu buka ulang kapan saja selama masa akses berlaku.'},
@@ -1948,6 +2038,7 @@ function cardFrom(c) {
   return {cid:c.id, label:live ? 'Kelas live' : 'E-course', judul:c.judul.replace(/^Masterclass\s*/i, ''), deskripsi:ds, harga:'', coret:'', catatan:live ? torTanggal(c) : '', cta:live ? 'Lihat jadwal' : 'Lihat isi'};
 }
 function bfBase(c, type) {
+  if (type === 'ig') return igBase(c);
   const n = narsumOf(c), t = torOfClass(c), mat = materiFrom(c, type), nSub = mat.reduce((x, m) => x + m.sub.length, 0), ec = type === 'ecourse';
   const kat = catToType(c.kategori) || c.kategori || 'Pakarify';
   const b = {badge:ec ? `E-course · Track ${kat}` : `Kelas live · ${Math.max(1, +c.sesi || 1)} malam via Zoom`, chip:'', judul:c.judul.replace(/^Masterclass\s*/i, ''), subjudul:'',
@@ -1967,7 +2058,7 @@ function bfOpen(cid, type, edit = true, raw = null, judul = '') {
   const c = S.classes.find(x => x.id === cid);
   let saved = {}; try { saved = JSON.parse(raw ?? (c && c.briefData) ?? '{}') || {}; } catch (_) {}
   const draft = edit ? store.get('pkt-brief-' + cid, null) : null;
-  BF = {cid, type:type === 'kelas' ? 'kelas' : 'ecourse', all:{...saved, ...(draft || {})}, edit, fromDraft:!!draft, judul:judul || (c ? c.judul : '')};
+  BF = {cid, type:TYPE_LBL[type] ? type : 'ecourse', all:{...saved, ...(draft || {})}, edit, fromDraft:!!draft, judul:judul || (c ? c.judul : '')};
   bfEnsure(); renderBrief();
 }
 function bfEnsure() { const c = bfC(); if (!BF.all[BF.type] && c && BF.edit) BF.all[BF.type] = bfBase(c, BF.type); BF.d = BF.all[BF.type] || null; }
@@ -2004,9 +2095,10 @@ function renderBrief() {
   if (!BF || BF.edit) $('#bfCls').innerHTML = '<option value="">Pilih kelas dari Database Kelas…</option>' + ordered().map((c, i) => `<option value="${c.id}" ${BF && BF.cid === c.id ? 'selected' : ''}>${i + 1}. ${esc(c.judul.replace(/^Masterclass\s*/i, ''))}${c.briefData ? '  ✓ Brief' : ''}</option>`).join('');
   $$('#bfType button').forEach(b => b.setAttribute('aria-pressed', b.dataset.bt2 === (BF ? BF.type : 'ecourse')));
   if (!BF) { host.innerHTML = `<div class="card empty"><h4>Pilih kelas dulu</h4><p>Brief tersimpan per kelas di Database Kelas dan bisa dibagikan ke tim lewat link.</p></div>`; $('#bfSt').textContent = ''; return; }
-  if (!BF.edit) $('#bfRoTitle').textContent = `Brief ${BF.type === 'ecourse' ? 'E-course' : 'Halaman Kelas'} · ${BF.judul.replace(/^Masterclass\s*/i, '')}`;
+  if (!BF.edit) $('#bfRoTitle').textContent = `Brief ${TYPE_LBL[BF.type]} · ${BF.judul.replace(/^Masterclass\s*/i, '')}`;
   const d = BF.d;
-  if (!d) { host.innerHTML = `<div class="card empty"><h4>Brief ${BF.type === 'ecourse' ? 'E-course' : 'Halaman Kelas'} belum dibuat</h4><p>Minta Product Owner membuat dan menyimpan brief ini dulu.</p></div>`; return; }
+  if (!d) { host.innerHTML = `<div class="card empty"><h4>Brief ${TYPE_LBL[BF.type]} belum dibuat</h4><p>Minta Product Owner membuat dan menyimpan brief ini dulu.</p></div>`; return; }
+  if (BF.type === 'ig') { host.innerHTML = renderIg(d); return bfStatus(); }
   const ec = BF.type === 'ecourse', nMalam = Math.max(1, ...d.materi.map(m => +(String(m.menit).match(/Malam (\d+)/) || [0, 1])[1]));
   let h = `<div class="bpage" id="bfPage"><div class="bhead"><span>Brief ${ec ? 'Landing Page E-course' : 'Halaman Kelas'} · Pakarify</span><span>${esc(BF.judul)}</span></div>
     <div class="bhero"><div><div class="bchips"><span class="bbadge">${bEd('badge', d.badge)}</span>${d.chip || BF.edit ? `<span class="bchip">${bEd('chip', d.chip)}</span>` : ''}</div>${bEd('judul', d.judul, 'h1')}${bEd('subjudul', d.subjudul, 'p', 'blead')}${bEd('deskripsi', d.deskripsi, 'p', 'bdesc')}</div>
@@ -2033,6 +2125,7 @@ function renderBrief() {
 function bfPath(path) { const ks = path.split('.'), last = ks.pop(); let o = BF.d; ks.forEach(k => o = o[k]); return [o, last]; }
 function bfBlank(v) { return typeof v === 'string' ? '' : Array.isArray(v) ? [bfBlank(v[0] ?? '')] : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, bfBlank(x)])) : v; }
 function promptBrief(c) {
+  if (BF.type === 'ig') return promptIg(c);
   const t = torOfClass(c), n = narsumOf(c), ec = BF.type === 'ecourse';
   return `Kamu copywriter landing page Pakarify (platform upskilling di ekosistem Hcelerate). Tulis isi halaman ${ec ? 'E-COURSE (rekaman kelas yang sudah berjalan, ditonton mandiri)' : 'KELAS LIVE (via Zoom, malam hari)'} untuk kelas di bawah. Pakai web search seperlunya untuk memastikan istilah/tool akurat dan data narasumber benar.
 
@@ -2070,12 +2163,12 @@ Balas HANYA dengan satu blok kode berlabel pakarify-brief berisi JSON valid:
 // pastikan modul TOR tersedia: impor dari Link TOR bila TOR belum dibuat di tools
 async function bfEnsureTor(c) {
   if (!torOfClass(c) && c.torUrl) await torImport(c);
-  if (torOfClass(c) && BF && BF.d && !BF.d.materi.length) { BF.d.materi = materiFrom(c, BF.type); bfDraft(); renderBrief(); }
+  if (torOfClass(c) && BF && BF.d && BF.d.materi && !BF.d.materi.length) { BF.d.materi = materiFrom(c, BF.type); bfDraft(); renderBrief(); }
 }
 async function openBriefPrompt() {
   const c = bfC(); if (!c) return toast('Pilih kelas dulu', 'err');
   await bfEnsureTor(c);
-  openModal(`<div class="mh"><div><h3>Prompt ChatGPT · Brief ${BF.type === 'ecourse' ? 'E-course' : 'Halaman Kelas'}</h3><p>Salin, lalu tempel di ChatGPT dengan web search aktif. ${torOfClass(c) ? 'Modul TOR ikut dikirim.' : 'Kelas ini belum punya TOR, jadi daftar materi masih kosong.'}</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
+  openModal(`<div class="mh"><div><h3>Prompt ChatGPT · Brief ${TYPE_LBL[BF.type]}</h3><p>Salin, lalu tempel di ChatGPT dengan web search aktif. ${torOfClass(c) ? 'Modul TOR ikut dikirim.' : 'Kelas ini belum punya TOR, jadi daftar materi masih kosong.'}</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
     <div class="mb"><div class="promptbox" id="pBox">${esc(promptBrief(c))}</div></div>
     <div class="mf"><button class="btn sec" data-mclose>Tutup</button><button class="btn sec" id="bpPaste">Sudah, tempel hasil</button><button class="btn pri" id="pCopy">Salin prompt</button></div>`);
   $('#bpPaste').onclick = () => { closeModal(); setTimeout(openBriefPaste, 10); };
@@ -2089,9 +2182,17 @@ function openBriefPaste() {
   let o = null;
   $('#pasteIn').addEventListener('input', e => { o = parseTor(e.target.value); const out = $('#pasteOut');
     if (!o) { out.className = 'parse bad'; out.textContent = 'Format belum terbaca. Salin seluruh blok kode dari ChatGPT, termasuk tanda { dan }.'; $('#pasteSave').disabled = true; return; }
+    if (BF.type === 'ig') { const ok = Array.isArray(o.posts) && o.posts.length; out.className = ok ? 'parse ok' : 'parse bad'; out.textContent = ok ? `Terbaca: ${o.posts.length} postingan · CAVAC ${o.cavac ? 'ada' : 'tidak ada'}.` : 'Blok terbaca, tapi tidak ada "posts". Pastikan memakai prompt Instagram.'; $('#pasteSave').disabled = !ok; return; }
     out.className = 'parse ok'; out.textContent = `Terbaca: ${(o.outputs || []).length} output · ${(o.cocok || []).length} cocok · ${(o.kurang || []).length} kurang cocok · ${((o.narsum || {}).bullets || []).length} poin narasumber.`; $('#pasteSave').disabled = false; });
   $('#pasteSave').onclick = () => {
     const d = BF.d, S2 = v => String(v ?? ''), A = v => Array.isArray(v) ? v.map(S2) : [];
+    if (BF.type === 'ig') {
+      const cv = o.cavac || {};
+      d.cavac = {arah:S2(cv.arah) || d.cavac.arah, cep:A(cv.cep).length ? A(cv.cep) : d.cavac.cep, value:A(cv.value).length ? A(cv.value) : d.cavac.value, angle:A(cv.angle).length ? A(cv.angle) : d.cavac.angle, lakukan:A(cv.lakukan).length ? A(cv.lakukan) : d.cavac.lakukan, hindari:A(cv.hindari).length ? A(cv.hindari) : d.cavac.hindari};
+      d.posts = o.posts.slice(0, 6).map((p, i) => { const old = d.posts[i] || {}, tipe = ['Edukasi', 'Bukti', 'Penawaran'].includes(p.tipe) ? p.tipe : (old.tipe || 'Edukasi');
+        return {tahap:S2(p.tahap) || old.tahap || '', tipe, warna:tipe === old.tipe ? old.warna : IG_WARNA[tipe], judul:S2(p.judul), visual:S2(p.visual), img:old.img || '', cep:S2(p.cep), value:S2(p.value), angle:S2(p.angle), slides:A(p.slides).length ? A(p.slides) : [''], cta:S2(p.cta), caption:S2(p.caption)}; });
+      closeModal(); bfDraft(); renderBrief(); return toast('6 postingan + CAVAC masuk. Cek & edit di preview.');
+    }
     ['chip', 'subjudul', 'deskripsi'].forEach(k => { if (o[k]) d[k] = S2(o[k]); });
     if (Array.isArray(o.outputs) && o.outputs.length) d.outputs = o.outputs.map((x, i) => ({judul:S2(x.judul), deskripsi:S2(x.deskripsi), visual:S2(x.visual), img:(d.outputs[i] || {}).img || ''}));
     if (o.cocok) d.cocok = A(o.cocok); if (o.kurang) d.kurang = A(o.kurang);
@@ -2119,7 +2220,7 @@ function bfDownload() {
   node.querySelectorAll('[contenteditable]').forEach(e => { e.removeAttribute('contenteditable'); e.removeAttribute('data-bp'); e.removeAttribute('spellcheck'); });
   node.querySelectorAll('.bctl,.bimg,.bvrow,.bmodeseg,select,button').forEach(e => e.remove());
   node.querySelectorAll('details').forEach(e => e.setAttribute('open', ''));
-  const title = `Brief ${BF.type === 'ecourse' ? 'LP E-course' : 'Halaman Kelas'} - ${BF.judul.replace(/^Masterclass\s*/i, '')}`.replace(/[\\/:*?"<>|]/g, ' ').replace(/\s+/g, ' ').trim();
+  const title = `Brief ${({ecourse:'LP E-course', kelas:'Halaman Kelas', ig:'Instagram'})[BF.type]} - ${BF.judul.replace(/^Masterclass\s*/i, '')}`.replace(/[\\/:*?"<>|]/g, ' ').replace(/\s+/g, ' ').trim();
   const html = `<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>body{margin:0;background:#F4F2FB;padding:24px}${BRIEF_CSS}</style></head><body>${node.outerHTML}</body></html>`;
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([html], {type:'text/html'})); a.download = title + '.html'; document.body.appendChild(a); a.click(); a.remove();
   toast('File HTML brief diunduh');
@@ -2136,12 +2237,16 @@ document.addEventListener('focusout', e => {
   const t = e.target; if (!BF || !BF.edit || !t.dataset?.bp) return;
   const [o, k] = bfPath(t.dataset.bp), v = t.textContent.trim(); if (String(o[k] ?? '') === v) return;
   o[k] = v; bfDraft();
+  // Instagram: headline/tag tampil di grid & detail sekaligus, jadi render ulang lalu kembalikan fokus
+  if (BF.type === 'ig') setTimeout(() => { const a = document.activeElement, p = a?.dataset?.bp, i = p ? $$(`#bfPrev [data-bp="${p}"]`).indexOf(a) : -1; renderBrief(); if (p) $$(`#bfPrev [data-bp="${p}"]`)[i]?.focus(); }, 0);
 });
 document.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey && e.target.dataset?.bp && !['P', 'DIV'].includes(e.target.tagName)) { e.preventDefault(); e.target.blur(); } });
 document.addEventListener('change', e => {
   const t = e.target; if (t.id === 'bfCls') { if (t.value) bfOpen(t.value, BF ? BF.type : 'ecourse'); else { BF = null; renderBrief(); } return; }
   if (!BF || !BF.d) return;
   if (t.id === 'bfVid') { BF.d.videoLink = t.value.trim(); bfDraft(); renderBrief(); }
+  if (t.dataset.igwarna != null) { BF.d.posts[+t.dataset.igwarna].warna = t.value; bfDraft(); renderBrief(); }
+  if (t.dataset.igimg != null) { BF.d.posts[+t.dataset.igimg].img = t.value.trim(); bfDraft(); renderBrief(); }
   if (t.dataset.bimg != null) { BF.d.outputs[+t.dataset.bimg].img = t.value.trim(); bfDraft(); renderBrief(); }
   if ('bfoto' in t.dataset) { BF.d.narsum.foto = t.value.trim(); bfDraft(); renderBrief(); }
   if (t.dataset.bfpick != null) { const c = S.classes.find(x => x.id === t.value); if (c) { BF.d.setelah.kartu[+t.dataset.bfpick] = cardFrom(c); bfDraft(); renderBrief(); } }
@@ -2599,7 +2704,7 @@ $('#railNext').addEventListener('click', () => { const r = $('#rail'); r.scrollB
 const VIEWS = ['home','narasumber','topik','jadwal','tor','brief','segera'];
 function route() {
   const h = location.hash.slice(1);
-  const bm = h.match(/^brief\/([^/]+)\/?(ecourse|kelas)?/);
+  const bm = h.match(/^brief\/([^/]+)\/?(ecourse|kelas|ig)?/);
   if (bm) {   // link brief untuk tim: bisa edit kalau ada passcode, selain itu hanya baca
     $$('[data-view]').forEach(s => s.hidden = s.dataset.view !== 'brief'); closePop(); scrollTo({top:0});
     if (isLive()) { $('#pill').hidden = false; bfOpen(bm[1], bm[2] || 'ecourse'); } else { $('#pill').hidden = true; $('#setBtn').hidden = true; $('#statusBtn').hidden = true; $('#sheetBtn').hidden = true; bfOpenShared(bm[1], bm[2] || 'ecourse'); }
