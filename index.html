@@ -1655,6 +1655,43 @@ function torBase(c) {
     tanggal:torTanggal(c), waktu:'19.00 - 21.00 WIB', tempat:'Live Zoom dan Live Youtube Unlisted', pendahuluan:[], tujuan:[], rundown:TOR_RUNDOWN.map(r => [...r]),
     peserta:'Peserta kelas ini adalah masyarakat umum, khususnya mahasiswa, praktisi, pekerja corporate, akademisi, freelancer, dan bidang relevan lainnya.', modul:[], penyelenggara:null, penutup:null, fokus:''};
 }
+// Pecah isi Google Docs TOR (template Pakarify) jadi pendahuluan / tujuan / peserta / modul → sub-topik → output
+function parseTorDoc(items, c) {
+  const L = items.filter(x => !x.tb).map(x => ({...x, t:String(x.t).replace(/\s+/g, ' ').trim()}));
+  const head = (s, re) => s.length < 60 && re.test(s.replace(/^\s*(\d+|[ivx]+)\s*[.)]\s*/i, '').trim());
+  const SEC = {pendahuluan:/^pendahuluan$/i, tujuan:/^tujuan( kegiatan)?$/i, rundown:/^rundown/i, peserta:/^peserta$/i, pokok:/^pokok pembahasan$/i, penyelenggara:/^penyelenggara$/i, penutup:/^penutup$/i};
+  const at = {}; L.forEach((x, i) => { for (const k in SEC) if (at[k] == null && head(x.t, SEC[k])) at[k] = i; });
+  const range = (a, ...ends) => { if (at[a] == null) return []; const e = ends.map(k => at[k]).filter(v => v != null && v > at[a]); return L.slice(at[a] + 1, e.length ? Math.min(...e) : L.length); };
+  const longs = arr => arr.filter(x => x.t.length > 60 && !/^adapun\b/i.test(x.t)).map(x => x.t);
+  const out = {pendahuluan:longs(range('pendahuluan', 'tujuan', 'rundown')), tujuan:range('tujuan', 'rundown', 'peserta').filter(x => !/^adapun\b/i.test(x.t) && x.t.length > 15).map(x => x.t),
+    peserta:range('peserta', 'pokok').map(x => x.t).join(' '), modul:[]};
+  let mod = null, sub = null;
+  for (const x of range('pokok', 'penyelenggara', 'penutup')) {
+    const s = x.t;
+    if (/^adapun\b/i.test(s)) continue;
+    if (/^peserta (akan )?menghasilkan/i.test(s)) { if (sub) sub.output = s; continue; }
+    const num = s.match(/^(?:modul\s*)?(\d+)\s*[.):]\s*(.+)$/i);
+    if (num && s.length < 140) { mod = {judul:num[2].trim(), sub:[]}; out.modul.push(mod); sub = null; continue; }
+    if (s.length <= 120 && !/[.!?]$/.test(s)) { if (!mod) { mod = {judul:'Modul ' + (out.modul.length + 1), sub:[]}; out.modul.push(mod); } sub = {judul:s, isi:'', output:''}; mod.sub.push(sub); continue; }
+    if (sub) sub.isi = (sub.isi ? sub.isi + ' ' : '') + s;
+  }
+  out.modul = out.modul.filter(m => m.sub.length || m.judul);
+  return out;
+}
+// ambil TOR dari dokumen di kolom Link TOR lalu simpan ke TOR Data (dipakai TOR Otomatis & Brief LP)
+async function torImport(c) {
+  if (!isLive()) { toast('Impor dari Link TOR butuh tools terhubung ke Sheet (passcode).', 'err'); return false; }
+  toast('Membaca dokumen TOR dari Google Docs…', 'info');
+  try {
+    const j = await call('tordoc', {id:c.id}), p = parseTorDoc(j.items || [], c);
+    if (!p.modul.length) { toast('Dokumen terbaca, tapi bagian Pokok Pembahasan / modul tidak ditemukan. Cek format TOR-nya.', 'err'); return false; }
+    const d = {...torBase(c), ...(torOfClass(c) || {}), pendahuluan:p.pendahuluan, tujuan:p.tujuan, modul:p.modul, sumber:'Link TOR'};
+    if (p.peserta) d.peserta = p.peserta;
+    c.torData = JSON.stringify(d); await api.save('classes', c);
+    toast(`TOR diimpor: ${p.modul.length} modul · ${p.modul.reduce((s, m) => s + m.sub.length, 0)} sub-topik`);
+    return true;
+  } catch (e) { toast('Gagal membaca Link TOR: ' + e.message, 'err'); return false; }
+}
 function torOpen(cid) {
   const c = S.classes.find(x => x.id === cid); if (!c) { TOR = null; return renderTor(); }
   let saved = null; try { saved = c.torData ? JSON.parse(c.torData) : null; } catch (_) {}
@@ -1665,6 +1702,7 @@ function torOpen(cid) {
 function torDraft() { if (TOR) { store.set('pkt-tor-' + TOR.cid, TOR.d); TOR.fromDraft = true; torStatus(); } }
 function torStatus() {
   if (!TOR) return; const c = S.classes.find(x => x.id === TOR.cid);
+  if (c && c.torUrl && !c.torData && !TOR.fromDraft) { $('#torSt').innerHTML = 'Kelas ini sudah punya dokumen TOR di kolom Link TOR. <button class="btn soft xs" id="torImportBtn">Impor dari Link TOR</button> supaya modulnya dipakai apa adanya.'; return; }
   $('#torSt').textContent = TOR.fromDraft ? 'Ada perubahan yang baru tersimpan di browser ini. Tekan "Simpan ke Database Kelas" atau "Unduh PDF" untuk menyimpannya ke Sheet.' : c && c.torData ? 'TOR ini sudah tersimpan di Database Kelas (kolom TOR Data).' : 'TOR baru: salin prompt ke ChatGPT lalu tempel hasilnya.';
 }
 const torEd = (path, val, tag = 'span', cls = '') => `<${tag} class="${cls}" contenteditable="plaintext-only" spellcheck="false" data-tp="${path}">${esc(val ?? '')}</${tag}>`;
@@ -2001,13 +2039,18 @@ function promptBrief(c) {
 DATA KELAS
 - Judul: ${c.judul}
 - Kategori: ${c.kategori || '-'} · Jumlah sesi: ${c.sesi || '-'} · Tanggal: ${torTanggal(c)}
-${t ? `- Ringkasan TOR: ${(t.pendahuluan || []).join(' ').slice(0, 900)}\n- Modul: ${(t.modul || []).map((m, i) => `${i + 1}) ${m.judul}: ${(m.sub || []).map(s => s.judul).join(', ')}`).join(' | ')}` : '- TOR belum ada; simpulkan dari judul kelas.'}
+${t ? `- Ringkasan TOR: ${(t.pendahuluan || []).join(' ').slice(0, 900)}${(t.tujuan || []).length ? `\n- Tujuan kelas: ${t.tujuan.join('; ')}` : ''}${t.peserta ? `\n- Target peserta (TOR): ${t.peserta}` : ''}
+
+MATERI (FIX dari TOR — jangan ditambah, dikurangi, atau diganti)
+${(t.modul || []).map((m, i) => `Modul ${i + 1}: ${m.judul}\n${(m.sub || []).map((s, j) => `  ${i + 1}.${j + 1} ${s.judul}${s.output ? ` → ${s.output}` : ''}`).join('\n')}`).join('\n')}` : '- TOR belum ada; simpulkan dari judul kelas.'}
 - Narasumber: ${n ? `${n.nama} — ${[n.jabatan, n.perusahaan].filter(Boolean).join(', ')}. Bidang: ${n.bidang || '-'}. Catatan: ${n.keterangan || '-'}. LinkedIn: ${n.linkedin || '-'}` : (c.pembicara || '-')}
 
 GAYA BAHASA
 - Bahasa Indonesia santai tapi tetap profesional, sapa pembaca dengan "kamu". Kalimat pendek dan konkret, seperti ngobrol. Hindari kata klise ala AI (mis. "era digital", "memberdayakan", "secara komprehensif", "tingkatkan potensimu", "revolusioner", "siap bersaing"). Tanpa emoji.
 - Fokus ke hasil kerja nyata yang bisa dibuat peserta, bukan janji abstrak.
-- Data narasumber: tulis hanya fakta yang ada di data atau terverifikasi lewat web search. Jangan mengarang angka atau jabatan.
+- Data narasumber: tulis hanya fakta yang ada di data atau terverifikasi lewat web search. Jangan mengarang angka atau jabatan.${t ? `
+- Daftar materi sudah fix dari TOR dan TIDAK perlu kamu tulis. Semua isi lain (subjudul, deskripsi, 5 output, cocok/kurang cocok) wajib konsisten dengan modul & output di atas: jangan menjanjikan topik, tool, atau hasil yang tidak ada di materi.
+- 5 output ambil dari output sub-topik TOR (boleh diringkas/digabung), bukan output baru.` : ''}
 
 ISI YANG DIBUTUHKAN
 - chip: label pendek maks 5 kata (mis. "Lanjutan dari QGIS Essentials" atau "Cocok untuk pemula").
@@ -2024,8 +2067,14 @@ Balas HANYA dengan satu blok kode berlabel pakarify-brief berisi JSON valid:
 {"chip":"","subjudul":"","deskripsi":"","outputs":[{"judul":"","deskripsi":"","visual":""}],"cocok":[""],"kurang":[""],"narsum":{"bullets":[""],"profil":""}${ec ? ',"lanjutan":{"judul":"","deskripsi":""}' : ''}}
 \`\`\``;
 }
-function openBriefPrompt() {
+// pastikan modul TOR tersedia: impor dari Link TOR bila TOR belum dibuat di tools
+async function bfEnsureTor(c) {
+  if (!torOfClass(c) && c.torUrl) await torImport(c);
+  if (torOfClass(c) && BF && BF.d && !BF.d.materi.length) { BF.d.materi = materiFrom(c, BF.type); bfDraft(); renderBrief(); }
+}
+async function openBriefPrompt() {
   const c = bfC(); if (!c) return toast('Pilih kelas dulu', 'err');
+  await bfEnsureTor(c);
   openModal(`<div class="mh"><div><h3>Prompt ChatGPT · Brief ${BF.type === 'ecourse' ? 'E-course' : 'Halaman Kelas'}</h3><p>Salin, lalu tempel di ChatGPT dengan web search aktif. ${torOfClass(c) ? 'Modul TOR ikut dikirim.' : 'Kelas ini belum punya TOR, jadi daftar materi masih kosong.'}</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
     <div class="mb"><div class="promptbox" id="pBox">${esc(promptBrief(c))}</div></div>
     <div class="mf"><button class="btn sec" data-mclose>Tutup</button><button class="btn sec" id="bpPaste">Sudah, tempel hasil</button><button class="btn pri" id="pCopy">Salin prompt</button></div>`);
@@ -2437,7 +2486,7 @@ function delKandidat(id) {
 }
 
 document.addEventListener('click', async e => {
-  const t = e.target.closest('[data-open],[data-close],[data-mclose],[data-st],[data-del],[data-todb],[data-tipe],[data-tn],[data-pick],[data-best],[data-unpick],[data-tokelas],[data-tdel],[data-cedit],[data-cdel],[data-dbdel],[data-ph],[data-go],[data-nt],[data-kl],[data-kt],#kReset,#bulkDB,#bulkTipe,#tGugur,#tAuto,#wReset,#addClassBtn,#addClassBtn2,#calPrev,#calNext,#calToday,#calDl,#teamLinkBtn,#setBtn,#statusBtn,[data-s],[data-w],[data-fase],[data-kf],[data-sz],[data-cs],[data-doclink],[data-toropen],[data-toradd],[data-tordel],[data-bt2],[data-bfadd],[data-bfdel],[data-bfmode],#bfPromptBtn,#bfPasteBtn,#bfSaveBtn,#bfShareBtn,#bfDlBtn,#bfDlBtn2,#bfReMat,#torPromptBtn,#torPasteBtn,#torSaveBtn,#torPdfBtn,#colorBtn,#orderReset');
+  const t = e.target.closest('[data-open],[data-close],[data-mclose],[data-st],[data-del],[data-todb],[data-tipe],[data-tn],[data-pick],[data-best],[data-unpick],[data-tokelas],[data-tdel],[data-cedit],[data-cdel],[data-dbdel],[data-ph],[data-go],[data-nt],[data-kl],[data-kt],#kReset,#bulkDB,#bulkTipe,#tGugur,#tAuto,#wReset,#addClassBtn,#addClassBtn2,#calPrev,#calNext,#calToday,#calDl,#teamLinkBtn,#setBtn,#statusBtn,[data-s],[data-w],[data-fase],[data-kf],[data-sz],[data-cs],[data-doclink],[data-toropen],[data-toradd],[data-tordel],[data-bt2],[data-bfadd],[data-bfdel],[data-bfmode],#bfPromptBtn,#bfPasteBtn,#bfSaveBtn,#bfShareBtn,#bfDlBtn,#bfDlBtn2,#bfReMat,#torImportBtn,#torPromptBtn,#torPasteBtn,#torSaveBtn,#torPdfBtn,#colorBtn,#orderReset');
   if (!t) { if (!e.target.closest('.pop')) closePop(); return; }
   const d = t.dataset;
   if (d.open) { const [a, b] = d.open.split('-'); closeModal(); setTimeout(() => a === 'prompt' ? openPrompt(b) : openPaste(b), 10); return; }
@@ -2470,7 +2519,8 @@ document.addEventListener('click', async e => {
   if (d.bfadd) { document.activeElement?.blur?.(); const [o, k] = bfPath(d.bfadd); o.splice(+k + 1, 0, bfBlank(o[k])); bfDraft(); return renderBrief(); }
   if (d.bfdel) { const [o, k] = bfPath(d.bfdel); o.splice(+k, 1); bfDraft(); return renderBrief(); }
   if (d.bfmode) { const st = BF.d.setelah, need = d.bfmode === 'dua' ? 2 : d.bfmode === 'satu' ? 1 : 0; st.mode = d.bfmode; while (st.kartu.length < need) st.kartu.push({cid:'', label:'Kelas live', judul:'Pilih kelas di atas', deskripsi:'', harga:'', coret:'', catatan:'', cta:'Lihat jadwal'}); bfDraft(); return renderBrief(); }
-  if (t.id === 'bfReMat') { const c = bfC(); if (!c) return; const m = materiFrom(c, BF.type); if (!m.length) return toast('Kelas ini belum punya modul di TOR', 'err'); BF.d.materi = m; bfDraft(); renderBrief(); return toast('Daftar materi diambil ulang dari TOR'); }
+  if (t.id === 'torImportBtn') { const c = S.classes.find(x => x.id === TOR?.cid); if (c && await torImport(c)) { store.set('pkt-tor-' + c.id, null); torOpen(c.id); renderKelasTable(); } return; }
+  if (t.id === 'bfReMat') { const c = bfC(); if (!c) return; if (c.torUrl && !torOfClass(c)) await torImport(c); const m = materiFrom(c, BF.type); if (!m.length) return toast('Kelas ini belum punya modul di TOR', 'err'); BF.d.materi = m; bfDraft(); renderBrief(); return toast('Daftar materi diambil ulang dari TOR'); }
   if (t.id === 'bfPromptBtn') return openBriefPrompt();
   if (t.id === 'bfPasteBtn') return openBriefPaste();
   if (t.id === 'bfSaveBtn') return bfSave();
