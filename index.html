@@ -701,7 +701,7 @@ body.sheetmax{overflow:hidden}
         </div>
       </div>
       <div class="sfil" id="kelasFil"></div>
-      <div class="xscroll" id="kelasWrap"><table class="xt" id="kelasTable"></table></div>
+      <div class="xscroll" id="kelasWrap"><table class="xt" id="kelasTable"></table></div><datalist id="narsumList"></datalist>
       <div class="shint">Klik sel untuk mengubah (tersimpan otomatis ke Sheet). Seret ⋮⋮ untuk mengubah urutan. Geser tabel dengan scroll / Shift+scroll atau tarik area kosong. Kolom 🔒 dilindungi Code.gs, ubah langsung di Sheet.</div>
     </div>
     <div class="stats" id="jStats"></div>
@@ -821,7 +821,7 @@ function toSheet(tab, r) {
   if (tab === 'topics') { const s = scoreT(r); r = {...r, total:s.total, status:s.lolos ? 'Lolos' : 'Gugur: ' + s.fails.join(', ')}; }
   for (const k in cols) { if (!(k in r)) continue; let v = r[k];
     if (ARR.has(k)) v = (v || []).join(', ');
-    else if (BOOL.has(k)) v = v === true ? 'Ya' : v === false ? 'Tidak' : '';
+    else if (BOOL.has(k) && tab !== 'classes') v = v === true ? 'Ya' : v === false ? 'Tidak' : '';
     else if (k === 'skor') v = JSON.stringify(v || {});
     else if (k === 'pilih') v = v === true ? 'Ya' : v === false ? 'Tidak' : 'Otomatis';
     else if (k === 'terbaik') v = v ? 'Ya' : '';
@@ -832,11 +832,12 @@ function fromSheet(tab, row) {
   const o = {}; const cols = TABS[tab].cols;
   for (const k in cols) { let v = row[cols[k]]; if (v === undefined) continue;
     if (ARR.has(k)) v = listOf(v);
-    else if (BOOL.has(k)) v = v === '' ? null : yes(v);
+    else if (BOOL.has(k) && tab !== 'classes') v = v === '' ? null : yes(v);  // 'pembicara' di Jadwal Kelas = nama, bukan Ya/Tidak
     else if (k === 'skor') { try { v = JSON.parse(v || '{}'); } catch (_) { v = {}; } }
     else if (k === 'pilih') v = /otomatis/i.test(v) || v === '' ? null : yes(v);
     else if (k === 'terbaik') v = yes(v);
     else if (['tahun','tahunPerusahaan','sesi','peserta','level','total'].includes(k)) v = numOr(v, v === '' ? null : v);
+    else if (tab === 'classes' && k === 'pembicara' && (typeof v === 'boolean' || /^(true|false)$/i.test(String(v).trim()))) v = '';  // sel dropdown kosong terbaca FALSE
     o[k] = v; }
   return o;
 }
@@ -1269,6 +1270,7 @@ function openDB(id) {
     <div class="dr-h"><div style="flex:1;min-width:0"><div style="margin-bottom:6px">${lvlBadge(+n.level || 0)}</div><h3>${esc(n.nama)}</h3><p>${esc(n.jabatan || '')}${n.perusahaan ? ' · ' + esc(n.perusahaan) : ''}</p></div><button class="icon-btn" data-close aria-label="Tutup">${ICON.x}</button></div>
     <div class="dr-b">
       <div class="blk"><h5>Rekomendasi kelas</h5>${rk.length ? `<div style="display:grid;gap:8px">${rk.map((r, j) => `<div style="background:var(--bg2);border-radius:14px;padding:10px 12px"><b style="font-size:13.5px">${j + 1}. ${esc(r.judul)}</b><div style="font-size:12px;color:var(--ink2);margin-top:2px">${esc(r.why)} · ${r.src}</div></div>`).join('')}</div>` : '<p>Belum ada kelas aktif atau topik terpilih yang cocok. Tambah tipe atau bidang supaya pencocokan lebih tepat.</p>'}</div>
+      <div class="blk"><h5>Kelas yang sudah dibersamai</h5>${histBlock(n)}</div>
       <div class="grid2">
         <div class="fld"><label for="dbKontak">Kontak narasumber</label><input id="dbKontak" value="${esc(n.kontak || '')}" placeholder="WhatsApp / email"></div>
         <div class="fld"><label for="dbReach">Reachout</label><select id="dbReach">${['Belum','Dihubungi','Interview','Setuju','Menolak'].map(o => `<option ${n.reachout === o ? 'selected' : ''}>${o}</option>`).join('')}</select></div>
@@ -1285,6 +1287,18 @@ function openDB(id) {
   bind('#dbKontak', 'kontak'); bind('#dbLi', 'linkedin'); bind('#dbBidang', 'bidang'); bind('#dbKet', 'keterangan');
   $('#dbReach').addEventListener('change', e => { n.reachout = e.target.value; saveRec('db', n, 'Status reachout disimpan'); });
   $('#dbLevel').addEventListener('change', e => { n.level = e.target.value ? +e.target.value : ''; saveRec('db', n); renderDB(); });
+  $('#dbAddKls').addEventListener('change', async e => {
+    const c = S.classes.find(x => x.id === e.target.value); if (!c) return;
+    c.pembicara = n.nama; openDB(n.id); renderDB(); renderKelasTable(); renderJadwal();
+    await saveRec('classes', c, `${n.nama} dicatat sebagai pembicara "${c.judul.replace(/^Masterclass\s*/i, '')}"`);
+  });
+}
+// riwayat kelas di drawer + dropdown untuk menautkan kelas ke narasumber ini
+function histBlock(n) {
+  const hc = classesOf(n), pes = hc.reduce((s, c) => s + (+c.peserta || 0), 0), mine = new Set(hc.map(c => c.id));
+  const opts = ordered().filter(c => !mine.has(c.id)).sort((a, b) => !!a.pembicara - !!b.pembicara);
+  const list = hc.length ? `<div style="display:grid;gap:6px">${hc.map(c => { const d = startOf(c); return `<div style="background:${colorOf(c.progress, 'var(--bg2)')};border-radius:12px;padding:8px 12px"><b style="font-size:13px">${esc(c.judul)}</b><div style="font-size:12px;color:var(--ink2);margin-top:2px">${d ? fmtL(d) : 'Tanggal belum diisi'} · ${esc(c.progress || '–')}${c.peserta ? ' · ' + esc(c.peserta) + ' peserta' : ''}</div></div>`; }).join('')}<p class="muted" style="font-size:12px">${hc.length} kelas${pes ? ' · total ' + pes + ' peserta' : ''}</p></div>` : '<p>Belum tercatat sebagai pembicara di Jadwal Kelas.</p>';
+  return list + `<div class="fld" style="margin-top:10px"><label for="dbAddKls">Tautkan kelas dari Jadwal Kelas</label><select id="dbAddKls"><option value="">Pilih kelas yang dibawakan ${esc(n.nama.split(',')[0])}…</option>${opts.map(c => `<option value="${c.id}">${c.pembicara ? '' : '⚠ Pembicara kosong · '}${esc(c.judul.replace(/^Masterclass\s*/i, ''))}${c.pembicara ? ' (sekarang: ' + esc(c.pembicara) + ')' : ''}</option>`).join('')}</select><span class="hint">Mengisi kolom Pembicara kelas itu di Sheet dengan nama narasumber ini.</span></div>`;
 }
 async function toDB(list) {
   for (const k of list) {
@@ -1482,6 +1496,7 @@ function renderKelasTable() {
   const T = $('#kelasTable'); if (!T) return;
   const all = ordered(), q = S.kq.toLowerCase(), hide = new Set(S.khide), progs = progressList();
   $('#kelasCnt').textContent = `${all.length} kelas`;
+  $('#narsumList').innerHTML = S.db.map(n => `<option value="${esc(n.nama)}">`).join('');
   $('#kelasFil').innerHTML = progs.map(p => `<button data-kf="${esc(p)}" aria-pressed="${!hide.has(p)}" style="background:${colorOf(p)}"><i style="background:${colorOf(p)}"></i>${esc(p)} <span style="opacity:.6">${all.filter(c => c.progress === p).length}</span></button>`).join('');
   const rows = all.map((c, i) => ({c, no:i + 1})).filter(({c}) => !hide.has(c.progress) && (!q || [c.judul, c.pembicara, c.kategori, c.pic].join(' ').toLowerCase().includes(q)));
   const ce = (c, f) => `<div contenteditable="plaintext-only" spellcheck="false" data-cf="${f}">${esc(c[f] ?? '')}</div>`;
@@ -1494,7 +1509,7 @@ function renderKelasTable() {
         <td class="sk k2">${ce(c, 'judul')}</td>
         <td style="min-width:120px">${ce(c, 'kategori')}</td>
         <td style="min-width:70px">${ce(c, 'pic')}</td>
-        <td style="min-width:180px">${ce(c, 'pembicara')}</td>
+        <td style="min-width:200px"><input list="narsumList" data-cf="pembicara" value="${esc(c.pembicara || '')}" placeholder="Pilih narasumber…" style="width:100%"></td>
         <td><select data-cf="sesi">${[...new Set([1, 2, 3, n])].map(v => `<option value="${v}" ${v === n ? 'selected' : ''}>${v}</option>`).join('')}</select></td>
         <td style="min-width:220px"><input type="date" data-cf="mulai" value="${st ? iso(st) : ''}"><div class="tt">${esc(c.tanggalTeks || '')}</div></td>
         <td><select data-cf="progress" style="font-weight:700">${[...new Set([...progs, c.progress].filter(Boolean))].map(p => `<option ${p === c.progress ? 'selected' : ''}>${esc(p)}</option>`).join('')}</select></td>
