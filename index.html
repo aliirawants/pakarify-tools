@@ -553,6 +553,17 @@ body.sheetmax{overflow:hidden}
 .gno{font-style:normal;display:inline-grid;place-items:center;min-width:20px;height:18px;border-radius:6px;background:var(--bg3);color:var(--ink2);font-size:10.5px;font-weight:800;margin-right:6px;vertical-align:1px}
 .ph.drag{cursor:grabbing;box-shadow:0 6px 16px rgba(23,71,184,.35);z-index:5}
 .ph.custom,.ms.custom{outline:2px dashed rgba(217,147,11,.9);outline-offset:1px}
+/* ---- Brief LP (mode edit) ---- */
+#bfPrev [data-bp]{outline:0;border-radius:4px;transition:background .15s}
+#bfPrev [data-bp]:hover{background:rgba(91,59,219,.07)}
+#bfPrev [data-bp]:focus{background:rgba(91,59,219,.1);box-shadow:0 0 0 1.5px rgba(91,59,219,.5)}
+#bfPrev [data-bp]:empty::before{content:'Klik untuk mengisi…';color:#B5ACD6;font-weight:400}
+.bctl{position:absolute;right:6px;top:6px;display:none;gap:3px;z-index:2}
+#bfPrev li:hover>.bctl,#bfPrev .bocard:hover>.bctl,#bfPrev .bmh:hover>.bctl,#bfPrev .bq:hover>.bctl,#bfPrev .bpk:hover>.bctl{display:inline-flex}
+.bctl button{width:22px;height:22px;border-radius:6px;border:1px solid #DDD6F5;background:#fff;color:#5E5480;font-size:13px;line-height:1;padding:0}
+.bctl button:hover{color:#5B3BDB;border-color:#5B3BDB}
+#bfPrev .bimg{border:1.5px solid #DDD6F5;border-radius:10px;padding:8px 10px;font:inherit;font-size:12.5px;width:100%;box-sizing:border-box;margin-top:10px}
+#bfPrev .bvrow input{width:100%;border:1.5px solid #DDD6F5;border-radius:10px;padding:9px 12px;font:inherit;font-size:13px;margin-top:10px;box-sizing:border-box}
 /* ---- TOR Otomatis ---- */
 .torbar{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:14px;padding:16px 18px;margin-bottom:18px}
 .torbar select{width:100%}
@@ -643,6 +654,7 @@ body.sheetmax{overflow:hidden}
       <a href="#topik" data-v="topik">Topik</a>
       <a href="#jadwal" data-v="jadwal">Jadwal</a>
       <a href="#tor" data-v="tor">TOR</a>
+      <a href="#brief" data-v="brief">Brief LP</a>
       <a href="#segera" data-v="segera">Segera</a>
     </nav>
     <div class="right">
@@ -819,6 +831,23 @@ body.sheetmax{overflow:hidden}
   </div>
 </section>
 
+<!-- ======================== BRIEF LANDING PAGE ======================== -->
+<section id="v-brief" data-view="brief" class="view view-band" hidden>
+  <div class="wrap">
+    <div class="vhead bf-edit">
+      <div><h1>Brief <em>Landing Page</em></h1><p>Brief halaman E-course atau Halaman Kelas untuk tim web &amp; desain. Daftar materi diambil dari modul TOR, narasumber dari Jadwal Kelas &amp; Database Narasumber. Semua teks di preview bisa diedit.</p></div>
+      <div class="acts"><button class="btn sec" id="bfPromptBtn">Salin prompt ChatGPT</button><button class="btn sec" id="bfPasteBtn">Tempel hasil</button><button class="btn soft" id="bfSaveBtn">Simpan</button><button class="btn sec" id="bfShareBtn">Link untuk tim</button><button class="btn pri" id="bfDlBtn">Unduh HTML</button></div>
+    </div>
+    <div class="vhead bf-ro" hidden><div><div class="eyebrow">Brief untuk tim · hanya baca</div><h1 id="bfRoTitle" style="font-size:clamp(22px,3vw,30px)">Brief Landing Page</h1></div><div class="acts"><button class="btn pri" id="bfDlBtn2">Unduh HTML</button></div></div>
+    <div class="torbar card bf-edit">
+      <div class="fld"><label for="bfCls">Brief untuk kelas</label><select id="bfCls"></select></div>
+      <div class="fld"><span class="l">Jenis halaman</span><div class="seg" id="bfType"><button data-bt2="ecourse" aria-pressed="true">E-course</button><button data-bt2="kelas" aria-pressed="false">Halaman Kelas</button></div></div>
+      <div class="torst" id="bfSt"></div>
+    </div>
+    <div id="bfPrev"></div>
+  </div>
+</section>
+
 <!-- ======================== SEGERA ======================== -->
 <section id="v-segera" data-view="segera" class="view view-band" hidden>
   <div class="wrap">
@@ -904,7 +933,7 @@ const TABS = {
   db: {sheet:'Database Narasumber', cols:{nama:'Nama Lengkap Narasumber', perusahaan:'Perusahaan / Afiliasi Pekerjaan', kontak:'Kontak Narasumber', reachout:'Reachout', keterangan:'Keterangan', id:'ID', jabatan:'Jabatan', level:'Level', tipe:'Tipe', linkedin:'LinkedIn', bidang:'Bidang', rekom:'Rekomendasi Kelas', pks:'Link PKS', dokumen:'Link Dokumen', folder:'Folder Drive'}},
   types: {sheet:'Tipe Narasumber', cols:{id:'ID', nama:'Tipe', kunci:'Kata Kunci'}},
   topics: {sheet:'Riset Topik', cols:{id:'ID', judul:'Judul', tool:'Tool', alternatif:'Alternatif Berbayar', kategori:'Kategori', pembeli:'Target Pembeli', targetAds:'Target Ads', output:'Output Peserta', skor:'Skor (JSON)', total:'Skor Total', status:'Status', pilih:'Dipilih', terbaik:'Terbaik', alasan:'Alasan Laku', risiko:'Risiko Tidak Laku', kompetitor:'Kompetitor', lanjutan:'Kelas Lanjutan', momen:'Momen', masukKelas:'Masuk Database Kelas', batch:'Batch', dibuat:'Dibuat'}},
-  classes: {sheet:'Jadwal Kelas', cols:{judul:'Judul Kelas', kategori:'Category', pic:'PIC', pembicara:'Pembicara', sesi:'Jumlah Sesi', tanggalTeks:'Tanggal Kelas FIX', progress:'Progress', peserta:'Jml Peserta Aktual', propose:'Link Propose', tor:'Link TOR', brief:'Brief LP & Poster', feedback:'Feedback Kelas', review:'Review Kelas', id:'ID', mulai:'Tanggal Mulai', urutan:'Urutan', fase:'Fase Custom', torData:'TOR Data',
+  classes: {sheet:'Jadwal Kelas', cols:{judul:'Judul Kelas', kategori:'Category', pic:'PIC', pembicara:'Pembicara', sesi:'Jumlah Sesi', tanggalTeks:'Tanggal Kelas FIX', progress:'Progress', peserta:'Jml Peserta Aktual', propose:'Link Propose', tor:'Link TOR', brief:'Brief LP & Poster', feedback:'Feedback Kelas', review:'Review Kelas', id:'ID', mulai:'Tanggal Mulai', urutan:'Urutan', fase:'Fase Custom', torData:'TOR Data', briefData:'Brief Data',
     // URL dari smart chip / hyperlink, dikirim Code.gs (hanya dibaca)
     proposeUrl:'_url_Link Propose', torUrl:'_url_Link TOR', briefUrl:'_url_Brief LP & Poster', feedbackUrl:'_url_Feedback Kelas'}},
 };
@@ -1810,6 +1839,265 @@ document.addEventListener('input', e => {
   if (e.target.id === 'torFokus') { TOR.d.fokus = e.target.value; torDraft(); }
 });
 
+/* ---------- Brief Landing Page (E-course / Halaman Kelas) ---------- */
+// gaya halaman brief; dipakai di preview dan di file HTML unduhan
+const BRIEF_CSS = `.bpage{max-width:1100px;margin:0 auto;background:#fff;border-radius:22px;box-shadow:0 10px 30px rgba(42,10,107,.08);overflow:hidden;font-family:Poppins,sans-serif;color:#2A0A6B}
+.bhead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 28px;background:#F4F2FB;font-size:12px;color:#6B5E99;border-bottom:1px solid #E6E1F7}
+.bsec{padding:40px 48px;border-top:1px solid #EFEBFA}.bsec h2{font-size:30px;font-weight:800;margin:0 0 6px;letter-spacing:-.01em}.bsub{font-size:13px;color:#7A6FA3;margin:0 0 20px}
+.bhero{display:grid;grid-template-columns:1.35fr 1fr;gap:36px;padding:44px 48px}.bchips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.bbadge{background:#FDF0C7;border-radius:999px;padding:8px 16px;font-size:14px}.bchip{background:#EEEAFD;color:#5B3BDB;border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600}
+.bhero h1{font-size:44px;line-height:1.08;font-weight:800;margin:0 0 16px;letter-spacing:-.02em}.blead{font-size:19px;font-weight:700;line-height:1.45;margin:0 0 10px}.bdesc{font-size:15px;color:#5E5480;line-height:1.6;margin:0}
+.bprice{border:2.5px solid #5B3BDB;border-radius:22px;padding:22px;align-self:start}.btag{background:#FCD34D;border-radius:10px;padding:10px 14px;font-weight:700;font-size:14px;margin-bottom:14px}
+.bp{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}.bp b{font-size:40px;font-weight:800}.bp s{color:#9A90BD;font-size:17px}.bnote{font-size:13px;color:#7A6FA3;margin:4px 0 12px;line-height:1.5}
+.bcheck{list-style:none;padding:0;margin:0 0 16px;display:grid;gap:8px;font-size:14.5px}.bcheck li{padding-left:22px}.bcheck li::before{content:'✓';position:absolute;left:0;color:#16A34A;font-weight:800}
+.bpage li{position:relative}.bbtn{display:block;text-align:center;background:#5B3BDB;color:#fff;border-radius:10px;padding:13px;font-weight:700}
+.bvid a{color:#5B3BDB;font-weight:600;word-break:break-all}details.bpr{margin-top:12px}details.bpr summary{cursor:pointer;font-weight:600;color:#5B3BDB;font-size:13.5px}details.bpr pre{white-space:pre-wrap;background:#F4F2FB;border-radius:12px;padding:14px;font-size:12px;line-height:1.55;color:#2A0A6B;max-height:360px;overflow:auto;font-family:ui-monospace,Menlo,monospace}
+.bout{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}.bocard{border:1px solid #E6E1F7;border-radius:16px;overflow:hidden;position:relative;background:#fff}
+.bocard img,.boimg{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}.boimg{display:grid;place-items:center;background:repeating-linear-gradient(135deg,#F4F2FB 0 10px,#EEEAFD 10px 20px);color:#9A90BD;font-weight:700;font-size:13px}
+.bobody{padding:14px 16px}.bobody b{font-size:15.5px;display:block;margin-bottom:4px}.bobody p{font-size:13.5px;color:#5E5480;margin:0 0 10px;line-height:1.5}
+.bvis{background:#FFFBEB;border:1px dashed #F5C542;border-radius:10px;padding:8px 10px;font-size:12.5px;color:#6B5A1E}.bvis i{display:block;font-style:normal;font-weight:700;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+.bfit{display:grid;grid-template-columns:1fr 1fr;gap:18px}.byes,.bno{border-radius:18px;padding:20px 22px}.byes{background:#ECFDF3}.bno{background:#FEF2F2}.bfit h3{font-size:16px;margin:0 0 10px}.bfit ul{margin:0;padding-left:18px;display:grid;gap:7px;font-size:14.5px;line-height:1.5}
+.bmat{display:grid;gap:12px}.bmod{border:1px solid #E6E1F7;border-radius:16px;overflow:hidden}.bmh{display:flex;gap:12px;align-items:baseline;background:#F4F2FB;padding:12px 18px;position:relative}
+.bmh>span:first-child{background:#5B3BDB;color:#fff;border-radius:999px;font-size:11.5px;font-weight:700;padding:3px 10px;white-space:nowrap}.bmh b{font-size:15.5px}
+.bmod ol{margin:0;padding:10px 18px 12px 38px;display:grid;gap:6px;font-size:14px}.bmod li em{font-style:normal;color:#9A90BD;font-size:12.5px;margin-left:8px}
+.bns{display:grid;grid-template-columns:180px 1fr;gap:28px}.bns img,.bnsph{width:180px;height:180px;border-radius:18px;object-fit:cover}.bnsph{background:linear-gradient(160deg,#5B3BDB,#2A0A6B)}
+.bns h3{font-size:24px;font-weight:800;margin:0 0 4px}.bjab{font-size:16px;color:#5E5480;margin:0 0 12px}.bns ul{margin:0 0 12px;padding-left:18px;display:grid;gap:6px;font-size:14.5px;color:#4A4170}
+.bprof{font-size:14px;color:#5E5480;line-height:1.6;background:#FAF9FE;border:1px solid #EFEBFA;border-radius:12px;padding:12px 14px;margin:0}
+.bnext,.bpaket{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}.bnc,.bpk{border:1px solid #E6E1F7;border-radius:20px;padding:22px;position:relative;background:#fff}.bnc.hi,.bpk:first-child{border:2.5px solid #5B3BDB}
+.bnc .lb{display:inline-block;background:#EEEAFD;color:#5B3BDB;border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:600;margin-bottom:10px}.bnc h3,.bpk h3{font-size:18px;margin:0 0 6px}.bnc p{font-size:14px;color:#5E5480;margin:0 0 12px;line-height:1.5}
+.bnc .bp b,.bpk .bp b{font-size:28px}.bghost{display:block;text-align:center;border:2px solid #5B3BDB;color:#5B3BDB;border-radius:10px;padding:11px;font-weight:600;margin-top:12px}
+.bfaq{display:grid;gap:10px}.bq{border:1px solid #E6E1F7;border-radius:14px;padding:14px 18px;position:relative}.bq b{display:block;font-size:15px;margin-bottom:4px}.bq p{margin:0;font-size:14px;color:#5E5480;line-height:1.55}
+.bmuted{color:#9A90BD;font-size:14px}
+@media (max-width:820px){.bhero,.bfit,.bns{grid-template-columns:1fr}.bhero h1{font-size:32px}.bsec,.bhero{padding:28px 20px}}`;
+document.head.insertAdjacentHTML('beforeend', '<style>' + BRIEF_CSS + '</style>');
+const FAQ_EC = [
+  {q:'Setelah bayar, kapan bisa mulai nonton?', a:'Akses materi langsung dikirim setelah pembayaran terkonfirmasi, jadi kamu bisa mulai belajar hari itu juga.'},
+  {q:'Berapa lama aksesnya?', a:'Video, slide, dan dataset latihan bisa kamu buka ulang kapan saja selama masa akses berlaku.'},
+  {q:'Perlu laptop seperti apa?', a:'Cukup laptop atau PC yang bisa menjalankan software di materi. Panduan instalasi ada di video pertama.'},
+  {q:'Kalau bingung saat praktik, tanya ke mana?', a:'Kamu bisa tanya di grup diskusi WhatsApp peserta dan menonton video QnA bersama narasumber.'},
+  {q:'Apakah dapat sertifikat?', a:'Ya, e-certificate dikirim setelah kamu mengumpulkan tugas akhir.'},
+];
+const FAQ_KL = [
+  {q:'Kelasnya live atau rekaman?', a:'Live via Zoom, 19.00–21.00 WIB. Rekaman dibagikan setelah kelas supaya kamu bisa mengulang praktiknya.'},
+  {q:'Pemula bisa ikut?', a:'Bisa. Materi dimulai dari dasar dan dipraktikkan langkah demi langkah bersama narasumber.'},
+  {q:'Software apa yang perlu disiapkan?', a:'Panduan instalasi dan dataset latihan dikirim lewat grup WhatsApp peserta sebelum kelas dimulai.'},
+  {q:'Apakah dapat sertifikat?', a:'Ya, e-certificate dikirim setelah kelas selesai.'},
+  {q:'Bagaimana cara daftarnya?', a:'Pilih paket, isi formulir pendaftaran, lalu ikuti instruksi pembayaran. Konfirmasi dikirim ke WhatsApp kamu.'},
+];
+let BF = null;   // {cid, type, all:{ecourse, kelas}, d, edit, fromDraft, judul}
+const bfC = () => BF && S.classes.find(x => x.id === BF.cid);
+const torOfClass = c => { try { return c && c.torData ? JSON.parse(c.torData) : null; } catch (_) { return null; } };
+const narsumOf = c => S.db.find(n => classesOf(n).some(k => k.id === c.id)) || null;
+const r5 = m => Math.max(5, Math.round(m / 5) * 5);
+function seeded(s) { let h = 2166136261; for (const ch of String(s)) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); } let x = h >>> 0 || 1; return () => { x ^= x << 13; x ^= x >>> 17; x ^= x << 5; return ((x >>> 0) % 1000) / 1000; }; }
+// daftar materi dari modul TOR: e-course ±1 jam per modul (durasi sub-topik diacak wajar), kelas dibagi per malam
+function materiFrom(c, type) {
+  const mods = (torOfClass(c) || {}).modul || []; if (!mods.length) return [];
+  const R = seeded(c.id + type), n = Math.max(1, +c.sesi || 1);
+  const out = mods.map(m => {
+    const subs = (m.sub || []).length ? m.sub : [{judul:m.judul}];
+    if (type === 'kelas') return {judul:m.judul, menit:'', sub:subs.map(s => ({judul:s.judul, menit:''}))};
+    let left = r5(50 + R() * 20);
+    const items = subs.map((s, j) => { const v = j === subs.length - 1 ? Math.max(5, left) : r5(left / (subs.length - j) * (0.8 + R() * 0.4)); left -= v; return {judul:s.judul, menit:v + ' menit'}; });
+    return {judul:m.judul, menit:items.reduce((s, x) => s + parseInt(x.menit), 0) + ' menit', sub:items};
+  });
+  if (type === 'kelas') { const per = Math.ceil(out.length / n), d0 = startOf(c); out.forEach((m, i) => { const k = Math.floor(i / per), d = d0 ? addDays(d0, k) : null; m.menit = `Malam ${k + 1}${d ? ' · ' + HARI[d.getDay()] + ', ' + d.getDate() + ' ' + BLN[d.getMonth()] : ''}`; }); }
+  return out;
+}
+function cardFrom(c) {
+  const t = torOfClass(c), live = ACTIVE(c), p = t && t.pendahuluan && t.pendahuluan[t.pendahuluan.length - 1];
+  let ds = p ? p.split(/\.\s/)[0].replace(/^Melalui (kelas|masterclass) ini,?\s*/i, '') : ''; if (ds) ds = ds[0].toUpperCase() + ds.slice(1) + '.';
+  return {cid:c.id, label:live ? 'Kelas live' : 'E-course', judul:c.judul.replace(/^Masterclass\s*/i, ''), deskripsi:ds, harga:'', coret:'', catatan:live ? torTanggal(c) : '', cta:live ? 'Lihat jadwal' : 'Lihat isi'};
+}
+function bfBase(c, type) {
+  const n = narsumOf(c), t = torOfClass(c), mat = materiFrom(c, type), nSub = mat.reduce((x, m) => x + m.sub.length, 0), ec = type === 'ecourse';
+  const kat = catToType(c.kategori) || c.kategori || 'Pakarify';
+  const b = {badge:ec ? `E-course · Track ${kat}` : `Kelas live · ${Math.max(1, +c.sesi || 1)} malam via Zoom`, chip:'', judul:c.judul.replace(/^Masterclass\s*/i, ''), subjudul:'',
+    deskripsi:(t && t.pendahuluan && t.pendahuluan[t.pendahuluan.length - 1]) || '',
+    priceTag:ec ? 'Langsung tonton setelah bayar' : 'Early bird sampai H-7', harga:ec ? 'Rp89rb' : 'Rp149rb', coret:ec ? 'Rp129rb' : 'Rp199rb',
+    catatanHarga:ec ? `Jadi potongan Rp89rb kalau ikut kelas live Track ${kat} dalam 60 hari` : `${torTanggal(c)} · 19.00–21.00 WIB · kuota terbatas`,
+    benefit:ec ? [`${nSub || 5} topik video + video QnA`, 'Dataset latihan & template', 'Slide & notulensi narasumber', 'Grup diskusi WhatsApp', 'E-certificate setelah tugas akhir'] : [`Live ${Math.max(1, +c.sesi || 1)} malam via Zoom`, 'Rekaman kelas', 'Dataset latihan & slide', 'Grup diskusi WhatsApp', 'E-certificate'],
+    cta:ec ? 'Beli e-course' : 'Daftar sekarang', videoLink:'',
+    outputs:Array.from({length:5}, (_, k) => ({judul:'Output ' + (k + 1), deskripsi:'', visual:'', img:''})), cocok:['', '', '', ''], kurang:['', '', ''], materi:mat,
+    narsum:{nama:n ? n.nama : (c.pembicara || ''), jabatan:n ? [n.jabatan, n.perusahaan && !/lengkapi/.test(n.perusahaan) ? n.perusahaan : ''].filter(Boolean).join(', ') : '', bullets:n && n.bidang ? ['Praktisi ' + n.bidang] : [''], profil:'', foto:''},
+    faq:(ec ? FAQ_EC : FAQ_KL).map(x => ({...x}))};
+  if (ec) b.setelah = {mode:'soon', soon:{judul:'Materi lanjutan segera hadir', deskripsi:'Kami sedang menyiapkan kelas lanjutan dari topik ini. Gabung waitlist supaya kamu dikabari duluan.', cta:'Gabung waitlist'}, kartu:[]};
+  else b.paket = [{nama:'Individual', harga:'Rp149rb', coret:'Rp199rb', fitur:[`Live ${Math.max(1, +c.sesi || 1)} malam via Zoom`, 'Rekaman kelas', 'Dataset & slide', 'E-certificate'], cta:'Pilih paket'}, {nama:'Kelas + E-course', harga:'Rp199rb', coret:'Rp278rb', fitur:['Semua isi paket Individual', 'Akses e-course terkait', 'Grup diskusi WhatsApp'], cta:'Pilih paket'}];
+  return b;
+}
+function bfOpen(cid, type, edit = true, raw = null, judul = '') {
+  const c = S.classes.find(x => x.id === cid);
+  let saved = {}; try { saved = JSON.parse(raw ?? (c && c.briefData) ?? '{}') || {}; } catch (_) {}
+  const draft = edit ? store.get('pkt-brief-' + cid, null) : null;
+  BF = {cid, type:type === 'kelas' ? 'kelas' : 'ecourse', all:{...saved, ...(draft || {})}, edit, fromDraft:!!draft, judul:judul || (c ? c.judul : '')};
+  bfEnsure(); renderBrief();
+}
+function bfEnsure() { const c = bfC(); if (!BF.all[BF.type] && c && BF.edit) BF.all[BF.type] = bfBase(c, BF.type); BF.d = BF.all[BF.type] || null; }
+function bfDraft() { if (BF && BF.edit) { store.set('pkt-brief-' + BF.cid, BF.all); BF.fromDraft = true; bfStatus(); } }
+function bfStatus() { if (!BF || !$('#bfSt')) return; const c = bfC(); $('#bfSt').textContent = BF.fromDraft ? 'Ada perubahan yang baru tersimpan di browser ini. Tekan "Simpan" supaya tersimpan ke Database Kelas dan link tim ikut ter-update.' : c && c.briefData ? 'Brief tersimpan di Database Kelas (kolom Brief Data).' : 'Brief baru: salin prompt ke ChatGPT lalu tempel hasilnya.'; }
+const bEd = (p, v, tag = 'span', cls = '') => `<${tag} class="${cls}"${BF.edit ? ` contenteditable="plaintext-only" spellcheck="false" data-bp="${p}"` : ''}>${esc(v ?? '')}</${tag}>`;
+const bCtl = (add, del) => BF.edit ? `<span class="bctl">${add ? `<button data-bfadd="${add}" title="Tambah">+</button>` : ''}${del ? `<button data-bfdel="${del}" title="Hapus">×</button>` : ''}</span>` : '';
+const bList = (key, arr, tag = 'li') => arr.map((x, i) => `<${tag}>${bEd(key + '.' + i, x)}${bCtl(key + '.' + i, arr.length > 1 ? key + '.' + i : '')}</${tag}>`).join('');
+const bSec = (t, sub, body) => `<section class="bsec"><h2>${t}</h2>${sub ? `<p class="bsub">${sub}</p>` : ''}${body}</section>`;
+function bfVideoPrompt(d) {
+  const ec = BF.type === 'ecourse', mods = (d.materi || []).map(m => m.judul).filter(Boolean).slice(0, 4), outs = d.outputs.map(o => o.judul).filter(Boolean).slice(0, 3);
+  return `Buatkan video promosi 30 detik dengan Remotion (React + TypeScript) untuk ${ec ? 'e-course' : 'kelas live'} Pakarify.
+
+SPESIFIKASI
+- Komposisi utama 1080×1920 (Reels/Story), 30 fps, 900 frame. Tambahkan komposisi 1920×1080 untuk website dengan scene yang sama.
+- Warna brand: ungu tua #2A0A6B (teks), ungu #5B3BDB (aksen & tombol), kuning #FCD34D (highlight), latar putih / lavender #F4F2FB. Font Poppins (700–800 judul, 500 isi).
+- Gaya: bersih dan modern, motion tipografi (spring/interpolate), transisi slide/scale halus. Siapkan slot audio tanpa musik berlisensi.
+
+ALUR SCENE
+1. 0–4 dtk · Opening: logo Pakarify, label "${d.badge}", judul "${d.judul}".
+2. 4–11 dtk · Isi ${ec ? 'e-course' : 'kelas'}: poin muncul bergantian — ${mods.length ? mods.join('; ') : '(ambil dari daftar materi)'}.
+3. 11–17 dtk · Narasumber: ${d.narsum.nama}${d.narsum.jabatan ? ' — ' + d.narsum.jabatan : ''}. Slot foto bulat (placeholder bila belum ada).
+4. 17–25 dtk · Hasil: 3 kartu output seperti mockup layar/peta/laporan — ${outs.length ? outs.join('; ') : '(ambil dari output)'}.
+5. 25–30 dtk · CTA: "${d.cta}" · ${d.harga}${d.coret ? ' (coret ' + d.coret + ')' : ''} · ${d.catatanHarga} · pakarify.com.
+
+TEKNIS
+- Struktur: src/Root.tsx (Composition), src/scenes/*.tsx, semua teks di satu objek props supaya mudah diganti.
+- Maksimal 2 baris teks per layar, ukuran minimal 48px di 1080×1920.
+- Render: npx remotion render <id> out/video.mp4`;
+}
+function renderBrief() {
+  const host = $('#bfPrev'); if (!host || $('#v-brief').hidden) return;
+  $$('.bf-edit').forEach(e => e.hidden = !(BF ? BF.edit : true)); $$('.bf-ro').forEach(e => e.hidden = !(BF && !BF.edit));
+  if (!BF || BF.edit) $('#bfCls').innerHTML = '<option value="">Pilih kelas dari Database Kelas…</option>' + ordered().map((c, i) => `<option value="${c.id}" ${BF && BF.cid === c.id ? 'selected' : ''}>${i + 1}. ${esc(c.judul.replace(/^Masterclass\s*/i, ''))}${c.briefData ? '  ✓ Brief' : ''}</option>`).join('');
+  $$('#bfType button').forEach(b => b.setAttribute('aria-pressed', b.dataset.bt2 === (BF ? BF.type : 'ecourse')));
+  if (!BF) { host.innerHTML = `<div class="card empty"><h4>Pilih kelas dulu</h4><p>Brief tersimpan per kelas di Database Kelas dan bisa dibagikan ke tim lewat link.</p></div>`; $('#bfSt').textContent = ''; return; }
+  if (!BF.edit) $('#bfRoTitle').textContent = `Brief ${BF.type === 'ecourse' ? 'E-course' : 'Halaman Kelas'} · ${BF.judul.replace(/^Masterclass\s*/i, '')}`;
+  const d = BF.d;
+  if (!d) { host.innerHTML = `<div class="card empty"><h4>Brief ${BF.type === 'ecourse' ? 'E-course' : 'Halaman Kelas'} belum dibuat</h4><p>Minta Product Owner membuat dan menyimpan brief ini dulu.</p></div>`; return; }
+  const ec = BF.type === 'ecourse', nMalam = Math.max(1, ...d.materi.map(m => +(String(m.menit).match(/Malam (\d+)/) || [0, 1])[1]));
+  let h = `<div class="bpage" id="bfPage"><div class="bhead"><span>Brief ${ec ? 'Landing Page E-course' : 'Halaman Kelas'} · Pakarify</span><span>${esc(BF.judul)}</span></div>
+    <div class="bhero"><div><div class="bchips"><span class="bbadge">${bEd('badge', d.badge)}</span>${d.chip || BF.edit ? `<span class="bchip">${bEd('chip', d.chip)}</span>` : ''}</div>${bEd('judul', d.judul, 'h1')}${bEd('subjudul', d.subjudul, 'p', 'blead')}${bEd('deskripsi', d.deskripsi, 'p', 'bdesc')}</div>
+      <div class="bprice"><div class="btag">${bEd('priceTag', d.priceTag)}</div><div class="bp"><b>${bEd('harga', d.harga)}</b><s>${bEd('coret', d.coret)}</s></div>${bEd('catatanHarga', d.catatanHarga, 'p', 'bnote')}<ul class="bcheck">${bList('benefit', d.benefit)}</ul><span class="bbtn">${bEd('cta', d.cta)}</span></div></div>`;
+  h += bSec('Video perkenalan · 30 detik', 'Untuk editor: tempel link video yang sudah jadi, lalu pasang di section video website.', `<div class="bvid">${d.videoLink ? `<a href="${esc(d.videoLink)}" target="_blank" rel="noopener">▶ ${esc(d.videoLink)}</a>` : '<span class="bmuted">Belum ada link video.</span>'}${BF.edit ? `<div class="bvrow"><input id="bfVid" type="url" placeholder="Tempel link video (Drive / YouTube)" value="${esc(d.videoLink)}"></div>` : ''}<details class="bpr"><summary>Prompt pembuatan video (Remotion)</summary><pre>${esc(bfVideoPrompt(d))}</pre></details></div>`);
+  h += bSec(ec ? 'Yang bisa kamu buat' : 'Yang kamu bawa pulang', '5 output bergambar. Kotak kuning = arahan gambar untuk desainer.', `<div class="bout">${d.outputs.map((o, i) => `<div class="bocard">${o.img ? `<img src="${esc(o.img)}" alt="">` : `<div class="boimg">Gambar ${i + 1}</div>`}<div class="bobody">${bEd(`outputs.${i}.judul`, o.judul, 'b')}${bEd(`outputs.${i}.deskripsi`, o.deskripsi, 'p')}<div class="bvis"><i>Brief visual</i>${bEd(`outputs.${i}.visual`, o.visual)}</div>${BF.edit ? `<input class="bimg" data-bimg="${i}" placeholder="Link gambar (opsional)" value="${esc(o.img)}">` : ''}</div>${bCtl('outputs.' + i, d.outputs.length > 1 ? 'outputs.' + i : '')}</div>`).join('')}</div>`);
+  h += bSec(ec ? 'E-course ini cocok untuk siapa' : 'Kelas ini cocok untuk siapa', '', `<div class="bfit"><div class="byes"><h3>Cocok jika kamu</h3><ul>${bList('cocok', d.cocok)}</ul></div><div class="bno"><h3>Kurang cocok jika kamu</h3><ul>${bList('kurang', d.kurang)}</ul></div></div>`);
+  h += bSec(ec ? 'Daftar materi' : `Kurikulum ${nMalam} malam`, `Diambil dari modul TOR${BF.edit ? ' · <button class="btn soft xs" id="bfReMat">Ambil ulang dari TOR</button>' : ''}`, d.materi.length ? `<div class="bmat">${d.materi.map((m, i) => `<div class="bmod"><div class="bmh">${bEd(`materi.${i}.menit`, m.menit)}${bEd(`materi.${i}.judul`, m.judul, 'b')}${bCtl('materi.' + i, d.materi.length > 1 ? 'materi.' + i : '')}</div><ol>${m.sub.map((s, j) => `<li>${bEd(`materi.${i}.sub.${j}.judul`, s.judul)}${ec ? `<em>${bEd(`materi.${i}.sub.${j}.menit`, s.menit)}</em>` : ''}${bCtl(`materi.${i}.sub.${j}`, m.sub.length > 1 ? `materi.${i}.sub.${j}` : '')}</li>`).join('')}</ol></div>`).join('')}</div>` : '<p class="bmuted">Belum ada modul. Buat TOR kelas ini dulu di menu TOR, lalu klik "Ambil ulang dari TOR".</p>');
+  const ns = d.narsum;
+  h += bSec('Narasumber', '', `<div class="bns">${ns.foto ? `<img src="${esc(ns.foto)}" alt="">` : '<div class="bnsph"></div>'}<div>${bEd('narsum.nama', ns.nama, 'h3')}${bEd('narsum.jabatan', ns.jabatan, 'p', 'bjab')}<ul>${bList('narsum.bullets', ns.bullets)}</ul>${bEd('narsum.profil', ns.profil, 'p', 'bprof')}${BF.edit ? `<input class="bimg" data-bfoto placeholder="Link foto narasumber (opsional)" value="${esc(ns.foto)}">` : ''}</div></div>`);
+  if (ec) {
+    const st = d.setelah, need = st.mode === 'dua' ? 2 : st.mode === 'satu' ? 1 : 0;
+    const seg = BF.edit ? `<div class="seg bmodeseg" style="margin-bottom:16px">${[['soon', 'Coming soon'], ['satu', '1 kelas'], ['dua', '2 kelas']].map(([m, l]) => `<button data-bfmode="${m}" aria-pressed="${st.mode === m}">${l}</button>`).join('')}</div>` : '';
+    const cards = need ? st.kartu.slice(0, need).map((k, i) => `<div class="bnc${i === 0 ? ' hi' : ''}">${BF.edit ? `<select class="sel" data-bfpick="${i}" style="width:100%;margin-bottom:10px"><option value="">Pilih kelas…</option>${ordered().filter(c => c.id !== BF.cid).map(c => `<option value="${c.id}" ${k.cid === c.id ? 'selected' : ''}>${esc(c.judul.replace(/^Masterclass\s*/i, ''))}</option>`).join('')}</select>` : ''}<span class="lb">${bEd(`setelah.kartu.${i}.label`, k.label)}</span>${bEd(`setelah.kartu.${i}.judul`, k.judul, 'h3')}${bEd(`setelah.kartu.${i}.deskripsi`, k.deskripsi, 'p')}<div class="bp"><b>${bEd(`setelah.kartu.${i}.harga`, k.harga)}</b><s>${bEd(`setelah.kartu.${i}.coret`, k.coret)}</s></div>${bEd(`setelah.kartu.${i}.catatan`, k.catatan, 'p', 'bnote')}<span class="${i === 0 ? 'bbtn' : 'bghost'}">${bEd(`setelah.kartu.${i}.cta`, k.cta)}</span></div>`).join('')
+      : `<div class="bnc hi"><span class="lb">Coming soon</span>${bEd('setelah.soon.judul', st.soon.judul, 'h3')}${bEd('setelah.soon.deskripsi', st.soon.deskripsi, 'p')}<span class="bghost">${bEd('setelah.soon.cta', st.soon.cta)}</span></div>`;
+    h += bSec('Setelah e-course ini', '', seg + `<div class="bnext">${cards}</div>`);
+  } else {
+    h += bSec('Pilih paket', '', `<div class="bpaket">${d.paket.map((p, i) => `<div class="bpk">${bEd(`paket.${i}.nama`, p.nama, 'h3')}<div class="bp"><b>${bEd(`paket.${i}.harga`, p.harga)}</b><s>${bEd(`paket.${i}.coret`, p.coret)}</s></div><ul class="bcheck">${bList(`paket.${i}.fitur`, p.fitur)}</ul><span class="bbtn">${bEd(`paket.${i}.cta`, p.cta)}</span>${bCtl('paket.' + i, d.paket.length > 1 ? 'paket.' + i : '')}</div>`).join('')}</div>`);
+  }
+  h += bSec(ec ? 'Sebelum membeli' : 'Sebelum mendaftar', 'Pertanyaan umum, berlaku untuk semua ' + (ec ? 'e-course' : 'kelas live') + '.', `<div class="bfaq">${d.faq.map((f, i) => `<div class="bq">${bEd(`faq.${i}.q`, f.q, 'b')}${bEd(`faq.${i}.a`, f.a, 'p')}${bCtl('faq.' + i, d.faq.length > 1 ? 'faq.' + i : '')}</div>`).join('')}</div>`);
+  host.innerHTML = h + '</div>';
+  bfStatus();
+}
+function bfPath(path) { const ks = path.split('.'), last = ks.pop(); let o = BF.d; ks.forEach(k => o = o[k]); return [o, last]; }
+function bfBlank(v) { return typeof v === 'string' ? '' : Array.isArray(v) ? [bfBlank(v[0] ?? '')] : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, bfBlank(x)])) : v; }
+function promptBrief(c) {
+  const t = torOfClass(c), n = narsumOf(c), ec = BF.type === 'ecourse';
+  return `Kamu copywriter landing page Pakarify (platform upskilling di ekosistem Hcelerate). Tulis isi halaman ${ec ? 'E-COURSE (rekaman kelas yang sudah berjalan, ditonton mandiri)' : 'KELAS LIVE (via Zoom, malam hari)'} untuk kelas di bawah. Pakai web search seperlunya untuk memastikan istilah/tool akurat dan data narasumber benar.
+
+DATA KELAS
+- Judul: ${c.judul}
+- Kategori: ${c.kategori || '-'} · Jumlah sesi: ${c.sesi || '-'} · Tanggal: ${torTanggal(c)}
+${t ? `- Ringkasan TOR: ${(t.pendahuluan || []).join(' ').slice(0, 900)}\n- Modul: ${(t.modul || []).map((m, i) => `${i + 1}) ${m.judul}: ${(m.sub || []).map(s => s.judul).join(', ')}`).join(' | ')}` : '- TOR belum ada; simpulkan dari judul kelas.'}
+- Narasumber: ${n ? `${n.nama} — ${[n.jabatan, n.perusahaan].filter(Boolean).join(', ')}. Bidang: ${n.bidang || '-'}. Catatan: ${n.keterangan || '-'}. LinkedIn: ${n.linkedin || '-'}` : (c.pembicara || '-')}
+
+GAYA BAHASA
+- Bahasa Indonesia santai tapi tetap profesional, sapa pembaca dengan "kamu". Kalimat pendek dan konkret, seperti ngobrol. Hindari kata klise ala AI (mis. "era digital", "memberdayakan", "secara komprehensif", "tingkatkan potensimu", "revolusioner", "siap bersaing"). Tanpa emoji.
+- Fokus ke hasil kerja nyata yang bisa dibuat peserta, bukan janji abstrak.
+- Data narasumber: tulis hanya fakta yang ada di data atau terverifikasi lewat web search. Jangan mengarang angka atau jabatan.
+
+ISI YANG DIBUTUHKAN
+- chip: label pendek maks 5 kata (mis. "Lanjutan dari QGIS Essentials" atau "Cocok untuk pemula").
+- subjudul: 1 kalimat hasil, maks 18 kata (mis. "Ubah data pelanggan dari Excel jadi rekomendasi lokasi, lengkap dengan peta dan laporan PDF.").
+- deskripsi: 1 kalimat maks 25 kata berisi 3–4 skill/teknik konkret.
+- outputs: TEPAT 5 hasil kerja. judul maks 6 kata, deskripsi maks 22 kata, visual = arahan gambar untuk desainer maks 25 kata (apa yang tampil, mis. "screenshot heatmap pelanggan di QGIS lengkap dengan legenda").
+- cocok: 4 poin, lanjutan dari kalimat "Cocok jika kamu ..." (maks 14 kata, tanpa mengulang frasa itu).
+- kurang: 3 poin, lanjutan dari kalimat "Kurang cocok jika kamu ..." (maks 14 kata).
+- narsum: bullets = 4 kredensial singkat (maks 14 kata), profil = 2–3 kalimat (maks 60 kata).${ec ? '\n- lanjutan: usulan materi lanjutan yang logis setelah e-course ini (judul maks 8 kata, deskripsi maks 22 kata).' : ''}
+
+FORMAT JAWABAN
+Balas HANYA dengan satu blok kode berlabel pakarify-brief berisi JSON valid:
+\`\`\`pakarify-brief
+{"chip":"","subjudul":"","deskripsi":"","outputs":[{"judul":"","deskripsi":"","visual":""}],"cocok":[""],"kurang":[""],"narsum":{"bullets":[""],"profil":""}${ec ? ',"lanjutan":{"judul":"","deskripsi":""}' : ''}}
+\`\`\``;
+}
+function openBriefPrompt() {
+  const c = bfC(); if (!c) return toast('Pilih kelas dulu', 'err');
+  openModal(`<div class="mh"><div><h3>Prompt ChatGPT · Brief ${BF.type === 'ecourse' ? 'E-course' : 'Halaman Kelas'}</h3><p>Salin, lalu tempel di ChatGPT dengan web search aktif. ${torOfClass(c) ? 'Modul TOR ikut dikirim.' : 'Kelas ini belum punya TOR, jadi daftar materi masih kosong.'}</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
+    <div class="mb"><div class="promptbox" id="pBox">${esc(promptBrief(c))}</div></div>
+    <div class="mf"><button class="btn sec" data-mclose>Tutup</button><button class="btn sec" id="bpPaste">Sudah, tempel hasil</button><button class="btn pri" id="pCopy">Salin prompt</button></div>`);
+  $('#bpPaste').onclick = () => { closeModal(); setTimeout(openBriefPaste, 10); };
+  $('#pCopy').onclick = async () => { try { await navigator.clipboard.writeText($('#pBox').textContent); toast('Prompt disalin. Tempel di ChatGPT.'); } catch (_) { const r = document.createRange(); r.selectNodeContents($('#pBox')); getSelection().removeAllRanges(); getSelection().addRange(r); toast('Teks sudah dipilih. Tekan Ctrl/Cmd + C.', 'info'); } };
+}
+function openBriefPaste() {
+  if (!bfC()) return toast('Pilih kelas dulu', 'err');
+  openModal(`<div class="mh"><div><h3>Tempel hasil ChatGPT · Brief</h3><p>Tempel seluruh jawaban (blok pakarify-brief). Harga, daftar materi, FAQ, dan link tidak ikut diganti.</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
+    <div class="mb"><div class="fld"><label for="pasteIn">Jawaban ChatGPT</label><textarea id="pasteIn" style="min-height:220px" placeholder="Tempel di sini…"></textarea></div><div class="parse wait" id="pasteOut">Menunggu teks…</div></div>
+    <div class="mf"><button class="btn sec" data-mclose>Batal</button><button class="btn pri" id="pasteSave" disabled>Masukkan ke brief</button></div>`);
+  let o = null;
+  $('#pasteIn').addEventListener('input', e => { o = parseTor(e.target.value); const out = $('#pasteOut');
+    if (!o) { out.className = 'parse bad'; out.textContent = 'Format belum terbaca. Salin seluruh blok kode dari ChatGPT, termasuk tanda { dan }.'; $('#pasteSave').disabled = true; return; }
+    out.className = 'parse ok'; out.textContent = `Terbaca: ${(o.outputs || []).length} output · ${(o.cocok || []).length} cocok · ${(o.kurang || []).length} kurang cocok · ${((o.narsum || {}).bullets || []).length} poin narasumber.`; $('#pasteSave').disabled = false; });
+  $('#pasteSave').onclick = () => {
+    const d = BF.d, S2 = v => String(v ?? ''), A = v => Array.isArray(v) ? v.map(S2) : [];
+    ['chip', 'subjudul', 'deskripsi'].forEach(k => { if (o[k]) d[k] = S2(o[k]); });
+    if (Array.isArray(o.outputs) && o.outputs.length) d.outputs = o.outputs.map((x, i) => ({judul:S2(x.judul), deskripsi:S2(x.deskripsi), visual:S2(x.visual), img:(d.outputs[i] || {}).img || ''}));
+    if (o.cocok) d.cocok = A(o.cocok); if (o.kurang) d.kurang = A(o.kurang);
+    if (o.narsum) { if (o.narsum.bullets) d.narsum.bullets = A(o.narsum.bullets); if (o.narsum.profil) d.narsum.profil = S2(o.narsum.profil); }
+    if (o.lanjutan && d.setelah) { d.setelah.soon.judul = S2(o.lanjutan.judul) || d.setelah.soon.judul; d.setelah.soon.deskripsi = S2(o.lanjutan.deskripsi) || d.setelah.soon.deskripsi; }
+    closeModal(); bfDraft(); renderBrief(); toast('Hasil ChatGPT masuk ke brief. Cek & edit di preview.');
+  };
+}
+async function bfSave() {
+  const c = bfC(); if (!c) return toast('Pilih kelas dulu', 'err');
+  document.activeElement?.blur?.(); c.briefData = JSON.stringify(BF.all);
+  try { await api.save('classes', c); store.set('pkt-brief-' + BF.cid, null); BF.fromDraft = false; bfStatus(); renderBrief(); toast('Brief disimpan ke Database Kelas'); return true; }
+  catch (e) { toast('Gagal menyimpan brief: ' + e.message, 'err'); return false; }
+}
+function bfShare() {
+  if (!bfC()) return toast('Pilih kelas dulu', 'err');
+  const link = location.href.split('#')[0] + `#brief/${BF.cid}/${BF.type}`;
+  openModal(`<div class="mh"><div><h3>Link brief untuk tim</h3><p>Tanpa passcode: tim bisa membaca dan mengunduh HTML. Dengan passcode: tim juga bisa mengedit dan menyimpan. Pastikan brief sudah disimpan supaya isinya terbaru.</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div><div class="mb"><div class="promptbox" style="white-space:normal;user-select:all">${esc(link)}</div></div><div class="mf"><button class="btn pri" id="tlCopy">Salin link</button></div>`);
+  $('#tlCopy').onclick = async () => { try { await navigator.clipboard.writeText(link); toast('Link disalin'); } catch (_) { toast('Pilih teks link lalu salin manual', 'info'); } };
+}
+function bfDownload() {
+  if (!BF || !BF.d) return toast('Belum ada brief', 'err');
+  document.activeElement?.blur?.();
+  const node = $('#bfPage').cloneNode(true);
+  node.querySelectorAll('[contenteditable]').forEach(e => { e.removeAttribute('contenteditable'); e.removeAttribute('data-bp'); e.removeAttribute('spellcheck'); });
+  node.querySelectorAll('.bctl,.bimg,.bvrow,.bmodeseg,select,button').forEach(e => e.remove());
+  node.querySelectorAll('details').forEach(e => e.setAttribute('open', ''));
+  const title = `Brief ${BF.type === 'ecourse' ? 'LP E-course' : 'Halaman Kelas'} - ${BF.judul.replace(/^Masterclass\s*/i, '')}`.replace(/[\\/:*?"<>|]/g, ' ').replace(/\s+/g, ' ').trim();
+  const html = `<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>body{margin:0;background:#F4F2FB;padding:24px}${BRIEF_CSS}</style></head><body>${node.outerHTML}</body></html>`;
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([html], {type:'text/html'})); a.download = title + '.html'; document.body.appendChild(a); a.click(); a.remove();
+  toast('File HTML brief diunduh');
+}
+async function bfOpenShared(cid, type) {
+  $('#bfPrev').innerHTML = '<div class="card empty"><h4>Memuat brief…</h4></div>';
+  try {
+    const j = await fetch(settings.url, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify({action:'brief', id:cid})}).then(r => r.json());
+    if (!j.ok || !j.data) throw new Error(j.error || 'Brief tidak ditemukan');
+    bfOpen(cid, type, false, j.data['Brief Data'] || '{}', j.data['Judul Kelas'] || '');
+  } catch (e) { $('#bfPrev').innerHTML = `<div class="card empty"><h4>Brief belum bisa dibuka</h4><p>${esc(e.message)}</p></div>`; }
+}
+document.addEventListener('focusout', e => {
+  const t = e.target; if (!BF || !BF.edit || !t.dataset?.bp) return;
+  const [o, k] = bfPath(t.dataset.bp), v = t.textContent.trim(); if (String(o[k] ?? '') === v) return;
+  o[k] = v; bfDraft();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey && e.target.dataset?.bp && !['P', 'DIV'].includes(e.target.tagName)) { e.preventDefault(); e.target.blur(); } });
+document.addEventListener('change', e => {
+  const t = e.target; if (t.id === 'bfCls') { if (t.value) bfOpen(t.value, BF ? BF.type : 'ecourse'); else { BF = null; renderBrief(); } return; }
+  if (!BF || !BF.d) return;
+  if (t.id === 'bfVid') { BF.d.videoLink = t.value.trim(); bfDraft(); renderBrief(); }
+  if (t.dataset.bimg != null) { BF.d.outputs[+t.dataset.bimg].img = t.value.trim(); bfDraft(); renderBrief(); }
+  if ('bfoto' in t.dataset) { BF.d.narsum.foto = t.value.trim(); bfDraft(); renderBrief(); }
+  if (t.dataset.bfpick != null) { const c = S.classes.find(x => x.id === t.value); if (c) { BF.d.setelah.kartu[+t.dataset.bfpick] = cardFrom(c); bfDraft(); renderBrief(); } }
+});
+
 /* ---------- Database Kelas (tabel ala spreadsheet) ---------- */
 function linkCell(v, url) {
   const s = String(v ?? '').trim(); if (!s && !url) return '<span class="muted">–</span>';
@@ -2149,7 +2437,7 @@ function delKandidat(id) {
 }
 
 document.addEventListener('click', async e => {
-  const t = e.target.closest('[data-open],[data-close],[data-mclose],[data-st],[data-del],[data-todb],[data-tipe],[data-tn],[data-pick],[data-best],[data-unpick],[data-tokelas],[data-tdel],[data-cedit],[data-cdel],[data-dbdel],[data-ph],[data-go],[data-nt],[data-kl],[data-kt],#kReset,#bulkDB,#bulkTipe,#tGugur,#tAuto,#wReset,#addClassBtn,#addClassBtn2,#calPrev,#calNext,#calToday,#calDl,#teamLinkBtn,#setBtn,#statusBtn,[data-s],[data-w],[data-fase],[data-kf],[data-sz],[data-cs],[data-doclink],[data-toropen],[data-toradd],[data-tordel],#torPromptBtn,#torPasteBtn,#torSaveBtn,#torPdfBtn,#colorBtn,#orderReset');
+  const t = e.target.closest('[data-open],[data-close],[data-mclose],[data-st],[data-del],[data-todb],[data-tipe],[data-tn],[data-pick],[data-best],[data-unpick],[data-tokelas],[data-tdel],[data-cedit],[data-cdel],[data-dbdel],[data-ph],[data-go],[data-nt],[data-kl],[data-kt],#kReset,#bulkDB,#bulkTipe,#tGugur,#tAuto,#wReset,#addClassBtn,#addClassBtn2,#calPrev,#calNext,#calToday,#calDl,#teamLinkBtn,#setBtn,#statusBtn,[data-s],[data-w],[data-fase],[data-kf],[data-sz],[data-cs],[data-doclink],[data-toropen],[data-toradd],[data-tordel],[data-bt2],[data-bfadd],[data-bfdel],[data-bfmode],#bfPromptBtn,#bfPasteBtn,#bfSaveBtn,#bfShareBtn,#bfDlBtn,#bfDlBtn2,#bfReMat,#torPromptBtn,#torPasteBtn,#torSaveBtn,#torPdfBtn,#colorBtn,#orderReset');
   if (!t) { if (!e.target.closest('.pop')) closePop(); return; }
   const d = t.dataset;
   if (d.open) { const [a, b] = d.open.split('-'); closeModal(); setTimeout(() => a === 'prompt' ? openPrompt(b) : openPaste(b), 10); return; }
@@ -2178,6 +2466,16 @@ document.addEventListener('click', async e => {
   if (t.id === 'torPasteBtn') return openTorPaste();
   if (t.id === 'torSaveBtn') { document.activeElement?.blur?.(); return TOR ? torSave() : toast('Pilih kelas dulu', 'err'); }
   if (t.id === 'torPdfBtn') return torPdf();
+  if (d.bt2) { if (!BF) { $$('#bfType button').forEach(b => b.setAttribute('aria-pressed', b === t)); return; } document.activeElement?.blur?.(); BF.type = d.bt2; bfEnsure(); return renderBrief(); }
+  if (d.bfadd) { document.activeElement?.blur?.(); const [o, k] = bfPath(d.bfadd); o.splice(+k + 1, 0, bfBlank(o[k])); bfDraft(); return renderBrief(); }
+  if (d.bfdel) { const [o, k] = bfPath(d.bfdel); o.splice(+k, 1); bfDraft(); return renderBrief(); }
+  if (d.bfmode) { const st = BF.d.setelah, need = d.bfmode === 'dua' ? 2 : d.bfmode === 'satu' ? 1 : 0; st.mode = d.bfmode; while (st.kartu.length < need) st.kartu.push({cid:'', label:'Kelas live', judul:'Pilih kelas di atas', deskripsi:'', harga:'', coret:'', catatan:'', cta:'Lihat jadwal'}); bfDraft(); return renderBrief(); }
+  if (t.id === 'bfReMat') { const c = bfC(); if (!c) return; const m = materiFrom(c, BF.type); if (!m.length) return toast('Kelas ini belum punya modul di TOR', 'err'); BF.d.materi = m; bfDraft(); renderBrief(); return toast('Daftar materi diambil ulang dari TOR'); }
+  if (t.id === 'bfPromptBtn') return openBriefPrompt();
+  if (t.id === 'bfPasteBtn') return openBriefPaste();
+  if (t.id === 'bfSaveBtn') return bfSave();
+  if (t.id === 'bfShareBtn') return bfShare();
+  if (t.id === 'bfDlBtn' || t.id === 'bfDlBtn2') return bfDownload();
   if ('kf' in d) { const h = new Set(S.khide); h.has(d.kf) ? h.delete(d.kf) : h.add(d.kf); S.khide = [...h]; store.set('pkt-khide', S.khide); return renderKelasTable(); }
   if (d.sz) return setSheetSize(d.sz);
   if (d.cs) { S.cal.sort = d.cs; store.set('pkt-calsort', d.cs); $$('#calSort button').forEach(b => b.setAttribute('aria-pressed', b === t)); return renderJadwal(); }
@@ -2248,9 +2546,15 @@ $('#railNext').addEventListener('click', () => { const r = $('#rail'); r.scrollB
 /* =====================================================================
    ROUTER & BOOT
    ===================================================================== */
-const VIEWS = ['home','narasumber','topik','jadwal','tor','segera'];
+const VIEWS = ['home','narasumber','topik','jadwal','tor','brief','segera'];
 function route() {
   const h = location.hash.slice(1);
+  const bm = h.match(/^brief\/([^/]+)\/?(ecourse|kelas)?/);
+  if (bm) {   // link brief untuk tim: bisa edit kalau ada passcode, selain itu hanya baca
+    $$('[data-view]').forEach(s => s.hidden = s.dataset.view !== 'brief'); closePop(); scrollTo({top:0});
+    if (isLive()) { $('#pill').hidden = false; bfOpen(bm[1], bm[2] || 'ecourse'); } else { $('#pill').hidden = true; $('#setBtn').hidden = true; $('#statusBtn').hidden = true; $('#sheetBtn').hidden = true; bfOpenShared(bm[1], bm[2] || 'ecourse'); }
+    return;
+  }
   if (h === 'kalender-tim') { document.body.classList.add('teammode'); $$('[data-view]').forEach(s => s.hidden = s.dataset.view !== 'team'); $('#pill').hidden = true; $('#setBtn').hidden = true; $('#statusBtn').hidden = true; $('#sheetBtn').hidden = true; renderTeam(); scrollTo(0, 0); return; }
   const v = VIEWS.includes(h) ? h : 'home';
   $('#pill').hidden = false; $('#setBtn').hidden = false; $('#statusBtn').hidden = false; $('#sheetBtn').hidden = !CONFIG.SHEET_URL;
@@ -2258,6 +2562,7 @@ function route() {
   $$('#pill a').forEach(a => a.dataset.v === v ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
   closePop(); scrollTo({top:0});
   if (v === 'tor') renderTor();
+  if (v === 'brief') { if (BF && !BF.edit) BF = null; renderBrief(); }
 }
 async function renderTeam() {
   const slot = $('#teamSlot');
@@ -2269,7 +2574,7 @@ async function boot() {
   try { const d = await api.load(); Object.assign(S, d); if (!S.types.length) S.types = seed().types; syncFromClasses(); }
   catch (e) { toast('Gagal memuat dari Sheet: ' + e.message + '. Menampilkan mode contoh.', 'err'); settings.pass = ''; Object.assign(S, store.get('pkt-demo2', null) || seed()); }
   renderAll(); route();
-  if (settings.url && !settings.pass && location.hash !== '#kalender-tim' && !store.get('pkt-skip-pass', false)) askPass();
+  if (settings.url && !settings.pass && location.hash !== '#kalender-tim' && !location.hash.startsWith('#brief/') && !store.get('pkt-skip-pass', false)) askPass();
 }
 function askPass() {
   openModal(`<div class="mh"><div><h3>Masuk ke tools</h3><p>Masukkan passcode tim untuk membaca dan menyimpan data ke sheet Pakarify Product Milestone. Passcode cukup diisi sekali di browser ini.</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
