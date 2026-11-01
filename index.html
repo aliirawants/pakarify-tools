@@ -95,11 +95,20 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .pill a{text-decoration:none;color:var(--ink2);font-weight:700;font-size:13px;padding:8px 15px;border-radius:999px;white-space:nowrap;transition:background .15s,color .15s}
 .pill a:hover{color:var(--ink)}
 .pill a[aria-current="page"]{background:var(--blue);color:#fff}
+.pgrp{display:inline-flex;align-items:center;gap:4px;border:0;background:transparent;color:var(--ink2);font-weight:700;font-size:13px;padding:8px 12px 8px 15px;border-radius:999px;white-space:nowrap}
+.pgrp:hover{color:var(--ink)}
+.pgrp svg{width:13px;height:13px;transition:transform .25s}
+.pgrp[aria-expanded="true"] svg{transform:rotate(180deg)}
+.pgrp.cur{background:var(--blue-l);color:var(--blue-d)}
+.psub{display:flex;gap:2px;max-width:0;overflow:hidden;opacity:0;transition:max-width .35s cubic-bezier(.2,.8,.2,1),opacity .25s}
+.pill.prod-on .psub{max-width:380px;opacity:1;background:var(--bg3);border-radius:999px}
+.pill:not(.prod-on) .psub{visibility:hidden}
 .right{display:flex;gap:8px;align-items:center}
 .status{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:999px;padding:8px 13px;font-size:12px;font-weight:700;box-shadow:var(--shadow-s);border:0;color:var(--ink2)}
 .status i{width:8px;height:8px;border-radius:50%;background:var(--gold)}
 .status.live i{background:#16A34A;box-shadow:0 0 0 3px rgba(22,163,74,.18)}
 .nav .icon-btn{background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-radius:999px;box-shadow:var(--shadow-s);width:38px;height:38px}
+@media (max-width:1240px){.pill a,.pgrp{padding:8px 11px}}
 @media (max-width:900px){.pill a{padding:8px 10px;font-size:12.5px}.brand b{display:none}.status span{display:none}}
 @media (max-width:640px){.nav .wrap{flex-wrap:wrap}.pill{order:3;width:100%;overflow-x:auto;justify-content:flex-start}.right{margin-left:auto}}
 
@@ -542,6 +551,105 @@ body.sheetmax{overflow:hidden}
 .xt input:hover,.xt select:hover{border-color:var(--line2);background:#fff}
 .xt input:focus,.xt select:focus{outline:0;border-color:var(--blue);background:#fff}
 .xt .tt{font-size:11px;color:var(--ink2);white-space:pre-line;margin-top:2px;line-height:1.35}
+
+/* ---------- CORE HCE ---------- */
+.corehead{margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 20px;border-radius:24px;color:#fff;background:radial-gradient(120% 140% at 15% 0%,#3E86EE 0%,#2563EB 45%,#1747B8 100%);box-shadow:0 14px 34px rgba(23,71,184,.25)}
+.ch-l{display:flex;align-items:center;gap:14px}
+.ch-ic{width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,.18);display:grid;place-items:center}.ch-ic svg{width:22px;height:22px}
+.corehead h1{font-size:22px;font-weight:800}.corehead p{font-size:12.5px;opacity:.85;margin-top:2px}
+.ch-r{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ch-n{min-width:68px;text-align:center;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:6px 10px;line-height:1.15}
+.ch-n b{display:block;font-size:20px;font-weight:800}.ch-n span{font-size:11px;opacity:.85}
+.ch-n.warn b{color:#FFD27A}.ch-n.ok b{color:#9BF0B8}
+.ch-btn{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;border-radius:999px;padding:9px 15px;font-weight:700;font-size:13px;white-space:nowrap}
+.ch-btn:hover{background:rgba(255,255,255,.22)}.ch-btn.solid{background:#fff;color:var(--blue-d);border-color:#fff}
+.corewho{margin-top:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--gold-l);border-radius:16px;padding:10px 14px;font-size:13px;color:#7A4E00}
+.corebar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0}
+.corebar .seg button b{display:inline-grid;place-items:center;min-width:20px;height:18px;padding:0 5px;margin-left:5px;border-radius:999px;background:var(--line);font-size:11px;color:var(--ink2)}
+.corebar .seg button[aria-pressed="true"] b{background:var(--blue);color:#fff}
+.coreq{flex:1;min-width:200px;border:1.5px solid var(--line2);border-radius:999px;padding:8px 14px;font-size:13px}
+.coreq:focus{outline:0;border-color:var(--blue)}
+.coretbl{overflow:hidden}.coretbl .xscroll{max-height:70vh}
+.ct{border-collapse:separate;border-spacing:0;width:100%;min-width:1180px;font-size:12.5px}
+.ct th{position:sticky;top:0;z-index:2;background:var(--bg2);text-align:left;font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);padding:11px 12px;border-bottom:1px solid var(--line2);white-space:nowrap}
+.ct td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top;background:#fff}
+.ct tr.late td{background:#FFF7F7}
+.ct tr:hover td{background:#FAFCFF}.ct tr.late:hover td{background:#FFF1F1}
+.ct .tk b{display:block;font-size:13px;font-weight:700;color:var(--ink);cursor:pointer;line-height:1.35}
+.ct .tk b:hover{color:var(--blue-d)}
+.ct .tk p{color:var(--ink2);font-size:12px;margin-top:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-width:360px}
+.ct .tk small{display:block;color:var(--ink3);font-size:11px;margin-top:4px}
+.src{display:inline-block;font-size:11px;font-weight:800;border-radius:8px;padding:2px 8px}
+.src.mom{background:var(--gold-l);color:#8A5A00}.src.task{background:var(--blue-l);color:var(--blue-d)}
+.kode{display:block;font-family:ui-monospace,Menlo,monospace;font-size:10.5px;color:var(--ink3);margin-top:5px;white-space:nowrap}
+.role{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 9px;font-size:11.5px;font-weight:700;white-space:nowrap}
+.role.pic{background:#EFE7FF;color:#5B2DB8}.role.collab{background:var(--blue-l);color:var(--blue-d)}
+.ppl{display:flex;flex-wrap:wrap;gap:4px}
+.av{display:inline-flex;align-items:center;gap:5px;background:var(--bg2);border-radius:999px;padding:2px 8px 2px 2px;font-size:11.5px;font-weight:600;color:var(--ink2);white-space:nowrap}
+.av i{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:10.5px;font-weight:800;color:#fff;background:var(--blue)}
+.due{white-space:nowrap;font-weight:600}.due.late{color:var(--bad)}.due em{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.05em;margin-left:5px}
+.stsel{border-radius:10px;padding:6px 8px;font-weight:700;font-size:12px;border:1.5px solid var(--line2);background:#fff}
+.st-Open{color:var(--bad);border-color:#F2B8B8!important}.st-Ongoing{color:var(--blue-d);border-color:var(--blue-m)!important}.st-Menunggu{color:#8A5A00;border-color:#F3D58C!important}.st-Closed{color:var(--ok);border-color:#A8DDB9!important}
+.stchip{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:4px 10px;font-size:11.5px;font-weight:800;white-space:nowrap;border:1.5px solid}
+.reqc{display:block;margin-top:6px;font-size:11px;color:var(--ink3);text-decoration:underline;background:none;border:0;padding:0;font-weight:600}
+.reqc:hover{color:var(--blue-d)}
+.apv{display:flex;gap:4px;margin-top:6px}
+.ct .acts{display:flex;flex-direction:column;gap:5px;align-items:stretch}
+.tl{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.tl li{border-left:3px solid var(--blue-m);padding:2px 0 2px 12px;font-size:13px;color:var(--ink2)}
+.tl li.request{border-color:var(--gold)}.tl li.approve{border-color:var(--ok)}.tl li.tolak{border-color:var(--bad)}
+.tl li b{color:var(--ink)}.tl li small{display:block;color:var(--ink3);font-size:11px}
+.pchk{display:flex;flex-wrap:wrap;gap:6px}
+.pchk label{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--line2);border-radius:999px;padding:5px 11px;font-size:12.5px;font-weight:600;cursor:pointer}
+.pchk input{accent-color:var(--blue)}
+.pchk label:has(input:checked){border-color:var(--blue);background:var(--blue-l);color:var(--blue-d)}
+.momtask{border:1px solid var(--line);border-radius:16px;padding:12px;display:grid;gap:10px;position:relative;background:var(--bg2)}
+.momtask .rm{position:absolute;top:8px;right:8px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rmd{display:grid;gap:14px}
+.rmcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;font-size:13px}
+.rmcard h4{font-size:16px;font-weight:800;margin-bottom:2px}
+.rmcard .rp{margin-top:12px}.rmcard .rp b{display:block;font-size:13.5px;margin-bottom:4px}
+.rmcard ol{margin:0;padding-left:18px;display:grid;gap:3px;color:var(--ink2)}
+.rmcard .lt{color:var(--bad);font-weight:700}
+.teammode .admin-only{display:none!important}
+@media (max-width:700px){.g2{grid-template-columns:1fr}}
+
+/* ---------- Tools Operasional ---------- */
+.opsgrid{display:grid;grid-template-columns:280px 1fr;gap:18px;align-items:start}
+.opslist{max-height:76vh;overflow:auto;padding:8px}
+.opslist button{display:flex;width:100%;align-items:center;gap:8px;border:0;background:none;text-align:left;padding:9px 10px;border-radius:12px;font-size:12.5px;font-weight:600;color:var(--ink2)}
+.opslist button:hover{background:var(--bg2)}
+.opslist button[aria-current="true"]{background:var(--blue-l);color:var(--blue-d)}
+.opslist button span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.opslist .no{font-size:10.5px;font-weight:800;color:var(--ink3);width:20px}
+.okc{font-size:11px;font-weight:800;border-radius:999px;padding:1px 7px;white-space:nowrap}
+.okc.y{background:var(--ok-l);color:var(--ok)}.okc.n{background:var(--bad-l);color:var(--bad)}
+.opsmain{display:grid;gap:18px}
+.opsc{padding:18px 20px}
+.opsc h3{font-size:17px;font-weight:800}
+.opsc .sub{color:var(--ink2);font-size:12.5px;margin-top:2px}
+.agrp{margin-top:16px}.agrp h5{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px}
+.arow{display:grid;grid-template-columns:24px minmax(150px,220px) 1fr 140px 30px;gap:8px;align-items:center;padding:6px 0;border-bottom:1px dashed var(--line)}
+.arow .bang{font-weight:800;color:var(--bad);text-align:center}.arow .okk{color:var(--ok);text-align:center;font-weight:800}
+.arow .lbl{font-size:12.5px;font-weight:700}.arow .lbl small{display:block;font-weight:500;color:var(--ink3);font-family:ui-monospace,Menlo,monospace;font-size:10.5px}
+.arow input,.arow select{border:1.5px solid var(--line2);border-radius:10px;padding:7px 10px;font-size:12.5px;width:100%;background:#fff}
+.arow input:focus,.arow select:focus{outline:0;border-color:var(--blue)}
+.arow .inh{font-size:11px;color:var(--ok);grid-column:3/4;margin-top:-4px}
+.arow a.go{display:grid;place-items:center;color:var(--ink3)}.arow a.go svg{width:15px;height:15px}
+.bcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;margin-top:12px}
+.bcc{border:1px solid var(--line);border-radius:16px;display:flex;flex-direction:column;overflow:hidden;background:#fff}
+.bcc .bh{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--bg2)}
+.bcc .bh b{flex:1;font-size:13px}
+.bcc pre{margin:0;padding:12px 14px;white-space:pre-wrap;font-family:var(--f);font-size:12.5px;line-height:1.55;max-height:320px;overflow:auto;color:var(--ink)}
+.bcc pre mark{background:var(--bad-l);color:var(--bad);border-radius:4px;padding:0 3px;font-weight:700}
+.phs{display:flex;flex-wrap:wrap;gap:5px}
+.phs button{border:1px solid var(--line2);background:#fff;border-radius:8px;padding:3px 8px;font-family:ui-monospace,Menlo,monospace;font-size:11px}
+.phs button:hover{border-color:var(--blue);color:var(--blue-d)}
+.jt{border-collapse:separate;border-spacing:0;width:100%;font-size:12.5px}
+.jt th{text-align:left;font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);padding:9px 10px;border-bottom:1px solid var(--line2);background:var(--bg2)}
+.jt td{padding:8px 10px;border-bottom:1px solid var(--line)}
+@media (max-width:900px){.opsgrid{grid-template-columns:1fr}.opslist{max-height:240px}.arow{grid-template-columns:20px 1fr 110px 26px}.arow input.al{grid-column:2/-1;order:5}}
 .xt .lk{display:inline-flex;gap:5px;align-items:center;max-width:180px;padding:3px 8px;border-radius:999px;background:rgba(255,255,255,.75);color:var(--blue-d);font-weight:600;text-decoration:none;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .xt .lk svg{width:12px;height:12px;flex:none}
 .xt .ro{white-space:pre-wrap;font-size:12px;color:var(--ink2);max-width:280px;line-height:1.35}
@@ -650,11 +758,12 @@ body.sheetmax{overflow:hidden}
     </a>
     <nav class="pill" id="pill" aria-label="Menu utama">
       <a href="#home" data-v="home">Beranda</a>
-      <a href="#narasumber" data-v="narasumber">Narasumber</a>
-      <a href="#topik" data-v="topik">Topik</a>
+      <button type="button" class="pgrp" id="prodBtn" aria-expanded="false" aria-controls="prodSub">Product<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button>
+      <span class="psub" id="prodSub"><a href="#narasumber" data-v="narasumber">Narasumber</a><a href="#topik" data-v="topik">Topik</a><a href="#tor" data-v="tor">TOR</a></span>
       <a href="#jadwal" data-v="jadwal">Jadwal</a>
-      <a href="#tor" data-v="tor">TOR</a>
       <a href="#brief" data-v="brief">Brief LP</a>
+      <a href="#core" data-v="core">CORE HCE</a>
+      <a href="#ops" data-v="ops">Operasional</a>
       <a href="#segera" data-v="segera">Segera</a>
     </nav>
     <div class="right">
@@ -848,6 +957,41 @@ body.sheetmax{overflow:hidden}
   </div>
 </section>
 
+<!-- ======================== CORE HCE ======================== -->
+<section id="v-core" data-view="core" class="view view-band" hidden>
+  <div class="wrap">
+    <div class="corehead">
+      <div class="ch-l"><span class="ch-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 11l2 2 4-4M9 17h6"/></svg></span><div><h1>CORE HCE</h1><p id="coreSub">MoM &amp; task tim Hcelerate × Pakarify</p></div></div>
+      <div class="ch-r">
+        <div class="ch-n"><b id="cnA">0</b><span>Active</span></div><div class="ch-n warn"><b id="cnO">0</b><span>Overdue</span></div><div class="ch-n ok"><b id="cnC">0</b><span>Closed</span></div>
+        <button class="ch-btn" id="coreRemind">Reminder</button>
+        <button class="ch-btn admin-only" id="coreTeamLink">Link tim</button>
+        <button class="ch-btn admin-only" id="coreMomBtn">+ MoM</button>
+        <button class="ch-btn solid admin-only" id="coreAddBtn">+ Add Task</button>
+      </div>
+    </div>
+    <div class="corewho" id="coreWho" hidden></div>
+    <div class="corebar">
+      <div class="seg" id="coreSt"></div>
+      <div class="seg" id="coreSrc"></div>
+      <select class="sel" id="corePerson"></select>
+      <input class="coreq" id="coreQ" type="search" placeholder="Cari task…">
+    </div>
+    <div class="card coretbl"><div class="xscroll"><table class="ct" id="coreTable"></table></div></div>
+  </div>
+</section>
+
+<!-- ======================== TOOLS OPERASIONAL ======================== -->
+<section id="v-ops" data-view="ops" class="view view-band" hidden>
+  <div class="wrap">
+    <div class="vhead">
+      <div><h1>Tools <em>Operasional</em></h1><p>Satu tempat untuk link aset tiap kelas (presensi, QnA, rekaman, materi, modul, e-book, voucher) dan template broadcast. Link cukup diisi sekali, semua BC kelas itu otomatis memakainya. Yang belum ada diberi tanda ❗.</p></div>
+      <div class="acts"><div class="seg" id="opsMode"><button data-opsm="kelas" aria-pressed="true">Per kelas</button><button data-opsm="jenis" aria-pressed="false">Per jenis aset</button><button data-opsm="umum" aria-pressed="false">Link umum</button></div></div>
+    </div>
+    <div id="opsBody"></div>
+  </div>
+</section>
+
 <!-- ======================== SEGERA ======================== -->
 <section id="v-segera" data-view="segera" class="view view-band" hidden>
   <div class="wrap">
@@ -936,6 +1080,12 @@ const TABS = {
   classes: {sheet:'Jadwal Kelas', cols:{judul:'Judul Kelas', kategori:'Category', pic:'PIC', pembicara:'Pembicara', sesi:'Jumlah Sesi', tanggalTeks:'Tanggal Kelas FIX', progress:'Progress', peserta:'Jml Peserta Aktual', propose:'Link Propose', tor:'Link TOR', brief:'Brief LP & Poster', feedback:'Feedback Kelas', review:'Review Kelas', id:'ID', mulai:'Tanggal Mulai', urutan:'Urutan', fase:'Fase Custom', torData:'TOR Data', briefData:'Brief Data',
     // URL dari smart chip / hyperlink, dikirim Code.gs (hanya dibaca)
     proposeUrl:'_url_Link Propose', torUrl:'_url_Link TOR', briefUrl:'_url_Brief LP & Poster', feedbackUrl:'_url_Feedback Kelas'}},
+  // CORE HCE (MoM & task tim) — tim tanpa passcode membaca/mengisi lewat aksi coreload/coreupdate
+  coreMom: {sheet:'Core MoM', cols:{id:'ID', kode:'Kode', judul:'Judul Rapat', tanggal:'Tanggal', peserta:'Peserta', catatan:'Catatan', dibuat:'Dibuat'}},
+  coreTask: {sheet:'Core Tasks', cols:{id:'ID', kode:'Kode', sumber:'Sumber', momId:'MoM ID', judul:'Task', deskripsi:'Deskripsi', pic:'PIC', collab:'Collab', due:'Due Date', status:'Status', closing:'Closing Date', updates:'Updates', dibuat:'Dibuat', oleh:'Dibuat Oleh'}},
+  // Tools Operasional: link aset per kelas ('*' = berlaku semua kelas) + template BC
+  opsAset: {sheet:'Ops Aset', cols:{id:'ID', kelas:'Kelas ID', jenis:'Jenis', label:'Label', link:'Link', status:'Status', catatan:'Catatan', dibuat:'Dibuat'}},
+  opsTpl: {sheet:'Ops Template', cols:{id:'ID', nama:'Nama', fase:'Fase', isi:'Isi', urutan:'Urutan'}},
 };
 const ARR = new Set(['tipe','sumber']);
 const BOOL = new Set(['dosen','pembicara','profilJelas','magang','masukKelas']);
@@ -997,12 +1147,12 @@ const api = {
     return call('upload', {base64: b64, fileName: file.name, mime: file.type || 'application/octet-stream', ...meta});
   },
 };
-function persistDemo() { store.set('pkt-demo2', {kandidat:S.kandidat, db:S.db, types:S.types, topics:S.topics, classes:S.classes}); }
+function persistDemo() { store.set('pkt-demo2', {kandidat:S.kandidat, db:S.db, types:S.types, topics:S.topics, classes:S.classes, coreMom:S.coreMom, coreTask:S.coreTask, opsAset:S.opsAset, opsTpl:S.opsTpl}); }
 async function saveRec(tab, rec, msg) { try { await api.save(tab, rec); if (msg) toast(msg); } catch (e) { toast('Gagal menyimpan: ' + e.message, 'err'); } }
 
 /* ---------------- state ---------------- */
 const DEF_COLORS = [{nama:'Done', warna:'#DDF0E2'}, {nama:'Fix', warna:'#DCE8FF'}, {nama:'Sementara', warna:'#FFF1CC'}, {nama:'Ide Kelas', warna:'#F1F3F7'}, {nama:'Cancelled', warna:'#F6D3D3'}];
-const S = { kandidat:[], db:[], types:[], topics:[], classes:[],
+const S = { kandidat:[], db:[], types:[], topics:[], classes:[], coreMom:[], coreTask:[], opsAset:[], opsTpl:[],
   order: store.get('pkt-order', []),      // urutan manual Database Kelas (id kelas)
   fase: store.get('pkt-fase', {}),        // jadwal aktual custom per kelas: offset hari dari H
   colors: store.get('pkt-colors', null) || DEF_COLORS,
@@ -1277,7 +1427,7 @@ const ACTIVE = c => ['Fix','Sementara'].includes(c.progress);
 /* =====================================================================
    RENDER
    ===================================================================== */
-function renderAll() { renderHome(); renderKandidat(); renderDB(); renderTopik(); renderKelasTable(); renderJadwal(); $('#cntK').textContent = S.kandidat.filter(k => k.status !== 'db').length; $('#cntD').textContent = S.db.length; }
+function renderAll() { renderHome(); renderKandidat(); renderDB(); renderTopik(); renderKelasTable(); renderJadwal(); renderCore(); renderOps(); $('#cntK').textContent = S.kandidat.filter(k => k.status !== 'db').length; $('#cntD').textContent = S.db.length; }
 
 /* ---------- home ---------- */
 function renderHome() {
@@ -1927,7 +2077,14 @@ const BRIEF_CSS = `.bpage{max-width:1100px;margin:0 auto;background:#fff;border-
 .cvt td{padding:10px;border-bottom:1px solid #EFEBFA;vertical-align:top;line-height:1.45}.cvt td:first-child{color:#16A34A;font-weight:700;white-space:nowrap}
 .cvg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.cvg>div{border-radius:14px;padding:14px 16px}.cvg .ok{background:#ECFDF3}.cvg .no{background:#FEF2F2}.cvg h3{font-size:14px;margin:0 0 8px}.cvg ul{margin:0;padding-left:16px;font-size:13px;display:grid;gap:5px}
 .cvscroll{overflow-x:auto}
-@media (max-width:820px){.bhero,.bfit,.bns{grid-template-columns:1fr}.bhero h1{font-size:32px}.bsec,.bhero{padding:28px 20px}.iggrid{grid-template-columns:repeat(2,1fr)}.igrow,.cv,.cvg{grid-template-columns:1fr}}`;
+.igd>div>.igrow{border-radius:16px 16px 0 0}
+.igfull{border:1px solid #E6E1F7;border-top:1px dashed #D9D1F3;border-radius:0 0 16px 16px;padding:14px 18px 16px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr);gap:18px;background:#FCFBFF}
+.igfull h5{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#5B2DB8;margin:0 0 8px}
+.igsg{display:grid;gap:8px;font-size:13px}.igsg>div{background:#fff;border:1px solid #EFEBFA;border-radius:12px;padding:8px 10px}.igsg i{display:block;font-style:normal;font-size:10.5px;font-weight:700;color:#9A90BD;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+.igcar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.igcs{background:#fff;border:1px solid #EFEBFA;border-radius:12px;padding:8px 10px;font-size:12.5px;display:grid;gap:6px;align-content:start}.igcs b{font-size:11px;color:#5B2DB8}.igcs.cta{border-color:#F5C542;background:#FFFDF3}
+.igcs .bvis{font-size:11.5px}
+@media (max-width:820px){.bhero,.bfit,.bns{grid-template-columns:1fr}.bhero h1{font-size:32px}.bsec,.bhero{padding:28px 20px}.iggrid{grid-template-columns:repeat(2,1fr)}.igrow,.cv,.cvg,.igfull{grid-template-columns:1fr}.igcar{grid-template-columns:1fr 1fr}}`;
 const TYPE_LBL = {ecourse:'E-course', kelas:'Halaman Kelas', ig:'Instagram'};
 // 6 postingan mengikuti funnel CAVAC: Reach → Problem → Education → Proof → Trust → Conversion
 const IG_FUNNEL = [['Reach', 'Edukasi', 'putih'], ['Problem', 'Edukasi', 'putih'], ['Education', 'Edukasi', 'putih'], ['Proof', 'Bukti', 'ungu'], ['Trust', 'Bukti', 'ungu'], ['Conversion', 'Penawaran', 'kuning']];
@@ -1937,10 +2094,24 @@ function igBase(c) {
   const tgl = d ? (+e === +d ? `${d.getDate()} ${BLN[d.getMonth()]}` : d.getMonth() === e.getMonth() ? `${d.getDate()}–${e.getDate()} ${BLN[d.getMonth()]}` : `${d.getDate()} ${BLN[d.getMonth()]} – ${e.getDate()} ${BLN[e.getMonth()]}`).toUpperCase() : 'SEGERA';
   const tag = ({Geospasial:'GIS', 'Carbon & ESG':'Carbon', 'Kreatif & Media':'Kreatif', 'Data & Analitik':'Data', 'AI & No-code':'AI', 'Karier & Profesional':'Karier'})[catToType(c.kategori)] || c.kategori || 'Pakarify';
   return {tag, tanggal:tgl, judulKelas:c.judul.replace(/^Masterclass\s*/i, ''),
-    posts:IG_FUNNEL.map(([tahap, tipe, warna], i) => ({tahap, tipe, warna, judul:tipe === 'Penawaran' ? c.judul.replace(/^Masterclass\s*/i, '').split(':')[0] : 'Headline postingan ' + (i + 1), visual:'', img:'', cep:'', value:'', angle:'', slides:[''], cta:tipe === 'Penawaran' ? 'Early bird s.d. H-7' : '', caption:''})),
+    posts:IG_FUNNEL.map(([tahap, tipe, warna], i) => igFix({tahap, tipe, warna, judul:tipe === 'Penawaran' ? c.judul.replace(/^Masterclass\s*/i, '').split(':')[0] : 'Headline postingan ' + (i + 1), visual:'', img:'', cep:'', value:'', angle:'', cta:tipe === 'Penawaran' ? 'Early bird s.d. H-7' : '', caption:''})),
     cavac:{arah:'', cep:[''], value:[''], angle:[''], lakukan:[''], hindari:['']}};
 }
+// Brief lengkap per angle (masukan tim sosmed): Single Image (Post & Story) + Carousel 4 slide, slide 4 = CTA.
+const IG_SLIDE = ['Slide 1 · Hook', 'Slide 2 · Isi', 'Slide 3 · Isi', 'Slide 4 · CTA'];
+function igFix(p) {
+  p.single = Object.assign({headline:'', teks:'', visual:'', story:''}, p.single || {});
+  const old = Array.isArray(p.slides) ? p.slides.filter(Boolean) : [];   // brief lama: slides = poin carousel
+  p.carousel = Array.from({length:4}, (_, j) => Object.assign({teks:j === 0 ? '' : (old[j - 1] || ''), visual:''}, (p.carousel || [])[j] || {}));
+  if (!p.carousel[3].teks && p.cta) p.carousel[3].teks = p.cta;
+  delete p.slides;
+  return p;
+}
 function renderIg(d) {
+  d.posts.forEach(igFix);
+  const full = (p, i) => `<div class="igfull">
+      <div><h5>Single Image · Post 1:1 &amp; Story 9:16</h5><div class="igsg"><div><i>Headline</i>${bEd(`posts.${i}.single.headline`, p.single.headline)}</div><div><i>Teks pendukung</i>${bEd(`posts.${i}.single.teks`, p.single.teks)}</div><div class="bvis"><i>Arahan visual</i>${bEd(`posts.${i}.single.visual`, p.single.visual)}</div><div><i>Versi Story (teks + stiker/CTA)</i>${bEd(`posts.${i}.single.story`, p.single.story)}</div></div></div>
+      <div><h5>Carousel · 4 slide (slide 4 = CTA)</h5><div class="igcar">${p.carousel.map((s, j) => `<div class="igcs${j === 3 ? ' cta' : ''}"><b>${IG_SLIDE[j]}</b>${bEd(`posts.${i}.carousel.${j}.teks`, s.teks, 'div')}<div class="bvis"><i>Visual</i>${bEd(`posts.${i}.carousel.${j}.visual`, s.visual)}</div></div>`).join('')}</div></div></div>`;
   const ed = BF.edit, card = (p, i) => {
     const lab = `<div class="lab">${esc(p.tipe)} · ${bEd('tag', d.tag)}</div>`;
     const body = p.tipe === 'Penawaran' ? `${bEd('tanggal', d.tanggal, 'div', 'big')}${bEd(`posts.${i}.judul`, p.judul, 'h3')}<span class="pill">${bEd(`posts.${i}.cta`, p.cta)}</span>`
@@ -1949,10 +2120,10 @@ function renderIg(d) {
   };
   let h = `<div class="bpage" id="bfPage"><div class="bhead"><span>Brief Instagram · 6 postingan + CAVAC · Pakarify</span><span>${esc(BF.judul)}</span></div>`;
   h += bSec('Grid feed (mockup)', 'Arahan tampilan untuk desainer. Nomor = urutan posting; di feed, postingan terakhir tampil paling atas.', `<div class="iggrid">${d.posts.map(card).join('')}</div>`);
-  h += bSec('Detail per postingan', 'Isi tiap slide carousel, CTA, dan caption. Semua bisa diedit.', `<div class="igd">${d.posts.map((p, i) => `<div class="igrow">
+  h += bSec('Detail per postingan', 'Angle tiap postingan + brief lengkap versi Single Image (Post &amp; Story) dan Carousel 4 slide. Semua bisa diedit; difilter lagi oleh tim sosmed.', `<div class="igd">${d.posts.map((p, i) => `<div><div class="igrow">
       <div><div class="igk">Postingan ${i + 1}</div>${bEd(`posts.${i}.judul`, p.judul, 'h4')}<div class="igmeta"><span>Tahap: <b>${bEd(`posts.${i}.tahap`, p.tahap)}</b></span><span>Jenis: <b>${bEd(`posts.${i}.tipe`, p.tipe)}</b></span>${ed ? `<select class="sel" data-igwarna="${i}" style="margin-top:6px">${['kuning', 'putih', 'ungu'].map(w => `<option ${(p.warna || IG_WARNA[p.tipe]) === w ? 'selected' : ''}>${w}</option>`).join('')}</select><input class="bimg" data-igimg="${i}" placeholder="Link gambar (opsional)" value="${esc(p.img)}">` : ''}</div></div>
-      <div><div class="igk">Arahan visual</div><div class="bvis" style="margin-bottom:12px">${bEd(`posts.${i}.visual`, p.visual)}</div><div class="igk">Isi slide carousel</div><ol>${bList(`posts.${i}.slides`, p.slides)}</ol>${p.tipe !== 'Penawaran' ? `<div class="igk" style="margin-top:10px">CTA</div>${bEd(`posts.${i}.cta`, p.cta, 'p', 'bnote')}` : ''}</div>
-      <div><div class="igk">Caption</div>${bEd(`posts.${i}.caption`, p.caption, 'div', 'igcap')}</div></div>`).join('')}</div>`);
+      <div><div class="igk">Angle konten</div><p style="font-size:13.5px;margin:0 0 10px">${bEd(`posts.${i}.angle`, p.angle)}</p><div class="igk">Arahan visual (grid)</div><div class="bvis" style="margin-bottom:12px">${bEd(`posts.${i}.visual`, p.visual)}</div>${p.tipe !== 'Penawaran' ? `<div class="igk">CTA</div>${bEd(`posts.${i}.cta`, p.cta, 'p', 'bnote')}` : ''}</div>
+      <div><div class="igk">Caption</div>${bEd(`posts.${i}.caption`, p.caption, 'div', 'igcap')}</div></div>${full(p, i)}</div>`).join('')}</div>`);
   const cv = d.cavac, box = (t, s, key, end) => `<div class="cvb${end ? ' end' : ''}"><b>${t}</b><small>${s}</small><ul>${bList('cavac.' + key, cv[key])}</ul></div>`;
   h += bSec('CAVAC simplified', 'Versi ringkas untuk desainer: dari arah brand ke isi tiap postingan.', `<div class="cv"><div class="cvb"><b>Arah Brand</b><small>Kesan yang mau dibangun</small>${bEd('cavac.arah', cv.arah, 'p')}</div>${box('CEP', 'Kapan skill ini dicari?', 'cep')}${box('Advertised Value', 'Nilai yang dijanjikan', 'value')}${box('Angle → Konten', 'Sudut cerita yang dipakai', 'angle', 1)}</div>
     <div class="cvscroll"><table class="cvt"><thead><tr><th>Tahap</th><th>CEP (situasi)</th><th>Value</th><th>Angle</th><th>Headline</th><th>CTA</th></tr></thead><tbody>${d.posts.map((p, i) => `<tr><td>${i + 1} · ${esc(p.tahap)}</td><td>${bEd(`posts.${i}.cep`, p.cep)}</td><td>${bEd(`posts.${i}.value`, p.value)}</td><td>${bEd(`posts.${i}.angle`, p.angle)}</td><td><b>${esc(p.judul)}</b></td><td>${esc(p.cta)}</td></tr>`).join('')}</tbody></table></div>
@@ -1992,11 +2163,16 @@ Balas HANYA dengan satu blok kode berlabel pakarify-ig berisi JSON valid:
 {
   "cavac": {"arah": "1 kalimat arah brand", "cep": ["3 situasi kapan skill ini dicari"], "value": ["3 nilai yang dijanjikan"], "angle": ["4 sudut cerita"], "lakukan": ["3 aturan konten"], "hindari": ["3 hal yang dihindari"]},
   "posts": [
-    {"tahap": "Reach", "tipe": "Edukasi", "cep": "", "value": "", "angle": "", "judul": "headline di gambar", "visual": "arahan gambar untuk desainer, maks 30 kata", "slides": ["isi slide 2", "isi slide 3", "isi slide 4"], "cta": "", "caption": ""}
+    {"tahap": "Reach", "tipe": "Edukasi", "cep": "", "value": "", "angle": "sudut cerita postingan ini", "judul": "headline di gambar grid", "visual": "arahan gambar grid untuk desainer, maks 30 kata", "cta": "", "caption": "",
+     "single": {"headline": "headline single image, maks 9 kata", "teks": "teks pendukung di gambar, maks 25 kata", "visual": "arahan visual 1:1, maks 30 kata", "story": "versi Story 9:16: teks singkat + stiker/CTA (mis. link, polling)"},
+     "carousel": [{"teks": "slide 1 hook", "visual": "arahan visual"}, {"teks": "slide 2 isi", "visual": ""}, {"teks": "slide 3 isi", "visual": ""}, {"teks": "slide 4 CTA", "visual": ""}]}
   ]
 }
 \`\`\`
-posts berisi TEPAT 6 objek sesuai urutan funnel. slides 3–5 poin, masing-masing maks 20 kata. tipe hanya "Edukasi", "Bukti", atau "Penawaran".`;
+posts berisi TEPAT 6 objek sesuai urutan funnel. Setiap postingan WAJIB punya brief lengkap dari angle-nya dalam 2 versi:
+- "single": satu gambar untuk Post (1:1) dan Story (9:16).
+- "carousel": TEPAT 4 slide. Slide 1 hook, slide 2–3 isi, slide 4 KHUSUS CTA (ajakan jelas + info kelas). Teks tiap slide maks 25 kata, visual maks 20 kata.
+tipe hanya "Edukasi", "Bukti", atau "Penawaran". Brief ini gambaran besar untuk tim sosmed, nanti mereka filter lagi.`;
 }document.head.insertAdjacentHTML('beforeend', '<style>' + BRIEF_CSS + '</style>');
 const FAQ_EC = [
   {q:'Setelah bayar, kapan bisa mulai nonton?', a:'Akses materi langsung dikirim setelah pembayaran terkonfirmasi, jadi kamu bisa mulai belajar hari itu juga.'},
@@ -2190,8 +2366,11 @@ function openBriefPaste() {
       const cv = o.cavac || {};
       d.cavac = {arah:S2(cv.arah) || d.cavac.arah, cep:A(cv.cep).length ? A(cv.cep) : d.cavac.cep, value:A(cv.value).length ? A(cv.value) : d.cavac.value, angle:A(cv.angle).length ? A(cv.angle) : d.cavac.angle, lakukan:A(cv.lakukan).length ? A(cv.lakukan) : d.cavac.lakukan, hindari:A(cv.hindari).length ? A(cv.hindari) : d.cavac.hindari};
       d.posts = o.posts.slice(0, 6).map((p, i) => { const old = d.posts[i] || {}, tipe = ['Edukasi', 'Bukti', 'Penawaran'].includes(p.tipe) ? p.tipe : (old.tipe || 'Edukasi');
-        return {tahap:S2(p.tahap) || old.tahap || '', tipe, warna:tipe === old.tipe ? old.warna : IG_WARNA[tipe], judul:S2(p.judul), visual:S2(p.visual), img:old.img || '', cep:S2(p.cep), value:S2(p.value), angle:S2(p.angle), slides:A(p.slides).length ? A(p.slides) : [''], cta:S2(p.cta), caption:S2(p.caption)}; });
-      closeModal(); bfDraft(); renderBrief(); return toast('6 postingan + CAVAC masuk. Cek & edit di preview.');
+        const sg = p.single || {}, car = Array.isArray(p.carousel) ? p.carousel : [];
+        return igFix({tahap:S2(p.tahap) || old.tahap || '', tipe, warna:tipe === old.tipe ? old.warna : IG_WARNA[tipe], judul:S2(p.judul), visual:S2(p.visual), img:old.img || '', cep:S2(p.cep), value:S2(p.value), angle:S2(p.angle), cta:S2(p.cta), caption:S2(p.caption),
+          single:{headline:S2(sg.headline), teks:S2(sg.teks), visual:S2(sg.visual), story:S2(sg.story)},
+          carousel:car.length ? car.slice(0, 4).map(s => typeof s === 'string' ? {teks:s, visual:''} : {teks:S2(s.teks), visual:S2(s.visual)}) : null, slides:A(p.slides)}); });
+      closeModal(); bfDraft(); renderBrief(); return toast('6 postingan + brief Single Image & Carousel masuk. Cek & edit di preview.');
     }
     ['chip', 'subjudul', 'deskripsi'].forEach(k => { if (o[k]) d[k] = S2(o[k]); });
     if (Array.isArray(o.outputs) && o.outputs.length) d.outputs = o.outputs.map((x, i) => ({judul:S2(x.judul), deskripsi:S2(x.deskripsi), visual:S2(x.visual), img:(d.outputs[i] || {}).img || ''}));
@@ -2699,11 +2878,443 @@ $('#railPrev').addEventListener('click', () => { const r = $('#rail'); r.scrollB
 $('#railNext').addEventListener('click', () => { const r = $('#rail'); r.scrollBy({left:r.querySelector('.gcard').offsetWidth + 26}); });
 
 /* =====================================================================
+   CORE HCE — MoM & task tim (approval close hanya dari Ali)
+   ===================================================================== */
+const PEOPLE = [
+  {email:'aliirawant@gmail.com', nama:'Ali', peran:'Product', warna:'#2563EB'},
+  {email:'renaldi.stwn005@gmail.com', nama:'Renaldi', peran:'Designer Medsos', warna:'#7C3AED'},
+  {email:'aisyahastri12@gmail.com', nama:'Aisyah', peran:'Designer LP', warna:'#DB2777'},
+  {email:'muhammadiqbalpandega@gmail.com', nama:'Iqbal', peran:'CEO & Marketing', warna:'#D9930B'},
+  {email:'hcelerate@gmail.com', nama:'Hcelerate', peran:'Akun Perusahaan', warna:'#0B1A33'},
+];
+const APPROVER = 'aliirawant@gmail.com';
+const ST_LIST = ['Open', 'Ongoing', 'Menunggu Approval', 'Closed'];
+const CORE = {team:false, st:'all', src:'all', person:'', q:'', me:store.get('pkt-core-me', '')};
+const person = e => PEOPLE.find(p => p.email === String(e || '').toLowerCase()) || (e ? {email:e, nama:String(e).split('@')[0], peran:'', warna:'#8795AF'} : null);
+const pName = e => (person(e) || {}).nama || '–';
+const avatar = e => { const p = person(e); return p ? `<span class="av" title="${esc(p.email)}"><i style="background:${p.warna}">${esc(p.nama[0])}</i>${esc(p.nama)}</span>` : ''; };
+const dOf = v => { if (!v) return null; const s = String(v); if (/T\d/.test(s)) { const x = new Date(s); return isNaN(x) ? null : new Date(x.getFullYear(), x.getMonth(), x.getDate()); } return parseIso(s); };
+const fmtD = v => { const d = dOf(v); return d ? `${d.getDate()} ${BLN[d.getMonth()]} ${d.getFullYear()}` : '—'; };
+const tUpd = t => { try { return JSON.parse(t.updates || '[]') || []; } catch (_) { return []; } };
+const collabOf = t => listOf(t.collab).map(s => s.toLowerCase());
+const involved = (t, e) => t.pic === e || collabOf(t).includes(e);
+const isLate = t => t.status !== 'Closed' && !!dOf(t.due) && dOf(t.due) < today0();
+const momOf = t => S.coreMom.find(m => m.id === t.momId);
+const stCls = s => 'st-' + String(s || 'Open').split(' ')[0];
+const coreMe = () => CORE.team ? CORE.me : APPROVER;
+function nextKode(prefix, list) {
+  const now = new Date(), ym = String(now.getFullYear()).slice(2) + String(now.getMonth() + 1).padStart(2, '0'), re = new RegExp(`^${prefix}-${ym}-(\\d+)`);
+  return `${prefix}-${ym}-${String(Math.max(0, ...list.map(x => +((String(x.kode || '').match(re) || [])[1] || 0))) + 1).padStart(4, '0')}`;
+}
+async function coreLoadTeam() {
+  if (CORE.me && !CORE.person) CORE.person = CORE.me;
+  renderCore();
+  if (!settings.url) return;
+  try {
+    const j = await fetch(settings.url, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify({action:'coreload'})}).then(r => r.json());
+    if (!j.ok) throw new Error(j.error || 'Gagal');
+    S.coreTask = (j.data.tasks || []).map(r => fromSheet('coreTask', r)); S.coreMom = (j.data.mom || []).map(r => fromSheet('coreMom', r));
+    renderCore();
+  } catch (e) { toast('Gagal memuat task: ' + e.message, 'err'); }
+}
+function coreBase() {
+  const q = CORE.q.toLowerCase(), pe = CORE.person;
+  return S.coreTask.filter(t => (!pe || involved(t, pe)) && (CORE.src === 'all' || (t.sumber || 'Task') === CORE.src) && (!q || [t.judul, t.deskripsi, t.kode, (momOf(t) || {}).judul].join(' ').toLowerCase().includes(q)));
+}
+const coreStMatch = (t, st) => st === 'all' || (st === 'overdue' ? isLate(t) : t.status === st);
+function coreSort(a, b) {
+  const ca = a.status === 'Closed', cb = b.status === 'Closed'; if (ca !== cb) return ca - cb;
+  if (ca) return String(b.closing || '').localeCompare(String(a.closing || ''));
+  const la = isLate(a), lb = isLate(b); if (la !== lb) return lb - la;
+  return String(a.due || '9999').localeCompare(String(b.due || '9999'));
+}
+function renderCore() {
+  if ($('#v-core').hidden) return;
+  const team = CORE.team, me = coreMe();
+  $('#coreSub').textContent = team ? 'Task tim · update progres & request close (approval oleh Ali)' : 'MoM & task tim Hcelerate × Pakarify';
+  $('#coreWho').hidden = !team;
+  if (team) $('#coreWho').innerHTML = `<b>Kamu siapa?</b><select class="sel" id="coreMe"><option value="">Pilih nama…</option>${PEOPLE.map(p => `<option value="${p.email}" ${p.email === CORE.me ? 'selected' : ''}>${esc(p.nama)} · ${esc(p.peran)}</option>`).join('')}</select><span>Update &amp; request close tercatat atas nama ini. Close baru berlaku setelah di-approve Ali.</span>`;
+  const base = coreBase();
+  $('#cnA').textContent = base.filter(t => t.status !== 'Closed').length; $('#cnO').textContent = base.filter(isLate).length; $('#cnC').textContent = base.filter(t => t.status === 'Closed').length;
+  const sts = [['all', 'All'], ['Open', 'Open'], ['Ongoing', 'Ongoing'], ['Menunggu Approval', 'Menunggu Approval'], ['overdue', 'Overdue'], ['Closed', 'Closed']];
+  $('#coreSt').innerHTML = sts.map(([k, l]) => `<button data-cx="st:${k}" aria-pressed="${CORE.st === k}">${l}<b>${base.filter(t => coreStMatch(t, k)).length}</b></button>`).join('');
+  $('#coreSrc').innerHTML = [['all', 'All Sources'], ['MoM', 'MoM'], ['Task', 'Task']].map(([k, l]) => `<button data-cx="src:${k}" aria-pressed="${CORE.src === k}">${l}</button>`).join('');
+  $('#corePerson').innerHTML = `<option value="">Semua orang</option>${PEOPLE.map(p => `<option value="${p.email}" ${p.email === CORE.person ? 'selected' : ''}>${p.email === me ? 'My Tasks · ' : ''}${esc(p.nama)}</option>`).join('')}`;
+  if ($('#coreQ').value !== CORE.q) $('#coreQ').value = CORE.q;
+  const rows = base.filter(t => coreStMatch(t, CORE.st)).sort(coreSort), pe = CORE.person;
+  const cell = t => {
+    const late = isLate(t), m = momOf(t), src = t.sumber === 'MoM' ? 'MoM' : 'Task', ups = tUpd(t), last = ups[ups.length - 1];
+    const role = pe ? `<span class="role ${t.pic === pe ? 'pic' : 'collab'}">${t.pic === pe ? '👤 PIC' : '👥 Collab'}</span>` : avatar(t.pic);
+    const others = collabOf(t).filter(e => e !== pe);
+    let st;
+    if (!team) st = `<select class="stsel ${stCls(t.status)}" data-cst="${t.id}">${ST_LIST.map(s => `<option ${s === (t.status || 'Open') ? 'selected' : ''}>${s}</option>`).join('')}</select>${t.status === 'Menunggu Approval' ? `<div class="apv"><button class="btn pri xs" data-cx="ok:${t.id}">Approve</button><button class="btn sec xs" data-cx="no:${t.id}">Tolak</button></div>` : ''}`;
+    else st = `<span class="stchip ${stCls(t.status)}">${t.status === 'Menunggu Approval' ? '⏳ ' : ''}${esc(t.status || 'Open')}</span>${t.status === 'Menunggu Approval' ? `<small class="muted" style="display:block;margin-top:5px;font-size:11px">Approver: Ali</small>` : t.status !== 'Closed' && me && involved(t, me) ? `<button class="reqc" data-cx="req:${t.id}">Request close →</button>` : ''}`;
+    return `<tr class="${late ? 'late' : ''}">
+      <td><span class="src ${src.toLowerCase()}">${src}</span><span class="kode">${esc(t.kode || '')}</span></td>
+      <td class="tk"><b data-cx="open:${t.id}">${esc(t.judul || '(tanpa judul)')}</b>${t.deskripsi ? `<p>${esc(t.deskripsi)}</p>` : ''}<small>${m ? '📝 ' + esc(m.judul) + ' · ' : ''}${ups.length ? `${ups.length} update · terakhir ${esc(pName(last.oleh))}` : 'Belum ada update'}</small></td>
+      <td>${role}</td>
+      <td><div class="ppl">${others.length ? others.map(avatar).join('') : '<span class="muted">—</span>'}${pe && t.pic !== pe ? avatar(t.pic) : ''}</div></td>
+      <td><span class="due ${late ? 'late' : ''}">${fmtD(t.due)}${late ? '<em>LATE</em>' : ''}</span></td>
+      <td>${st}</td>
+      <td class="muted">${t.status === 'Closed' ? fmtD(t.closing) : '—'}</td>
+      <td><div class="acts">${t.status !== 'Closed' ? `<button class="btn pri xs" data-cx="upd:${t.id}">${ICON.up}Update</button>` : `<button class="btn soft xs" data-cx="open:${t.id}">Riwayat</button>`}${team ? '' : `<span style="display:flex;gap:4px"><button class="btn ghost xs" data-cx="edit:${t.id}">Edit</button><button class="icon-btn" style="width:28px;height:28px" data-cx="del:${t.id}" title="Hapus task">${ICON.trash}</button></span>`}</div></td>
+    </tr>`;
+  };
+  $('#coreTable').innerHTML = `<thead><tr><th>Source</th><th>Task</th><th>${pe ? 'Role' : 'PIC'}</th><th>Collab</th><th>Due date</th><th>Status</th><th>Closing date</th><th>Aksi</th></tr></thead><tbody>${rows.length ? rows.map(cell).join('') : `<tr><td colspan="8"><div class="empty"><h4>${S.coreTask.length ? 'Tidak ada task yang cocok' : 'Belum ada task'}</h4><p>${team ? 'Task dari MoM dan tugas baru akan muncul di sini.' : 'Buat MoM setelah rapat atau tambahkan task baru.'}</p></div></td></tr>`}</tbody>`;
+}
+async function coreSave(t) { await api.save('coreTask', t); }
+function coreLog(t, entry) { const ups = tUpd(t); ups.push({t:new Date().toISOString(), ...entry}); t.updates = JSON.stringify(ups); }
+function openCoreTask(id) {
+  const t = S.coreTask.find(x => x.id === id); if (!t) return;
+  const m = momOf(t), ups = tUpd(t), team = CORE.team, me = coreMe();
+  const lbl = {update:'Update', request:'Request close', approve:'Approved · Closed', tolak:'Ditolak', status:'Status diubah'};
+  openDrawer(`<div class="dr-h"><div style="flex:1"><span class="src ${t.sumber === 'MoM' ? 'mom' : 'task'}">${t.sumber === 'MoM' ? 'MoM' : 'Task'}</span> <span class="kode" style="display:inline">${esc(t.kode || '')}</span><h3 style="margin-top:6px">${esc(t.judul)}</h3>${m ? `<p>📝 ${esc(m.judul)} · ${fmtD(m.tanggal)}</p>` : ''}</div><button class="icon-btn" data-close aria-label="Tutup">${ICON.x}</button></div>
+    <div class="dr-b">
+      <div class="kv"><div>PIC<b>${esc(pName(t.pic))}</b></div><div>Collab<b>${collabOf(t).map(pName).join(', ') || '—'}</b></div><div>Due date<b>${fmtD(t.due)}${isLate(t) ? ' · LATE' : ''}</b></div><div>Status<b>${esc(t.status || 'Open')}${t.status === 'Closed' ? ' · ' + fmtD(t.closing) : ''}</b></div></div>
+      <div class="blk"><h5>Deskripsi task</h5><p style="white-space:pre-wrap">${esc(t.deskripsi || '—')}</p></div>
+      ${m && m.catatan ? `<div class="blk"><h5>Catatan MoM</h5><p style="white-space:pre-wrap">${esc(m.catatan)}</p></div>` : ''}
+      <div class="blk"><h5>Riwayat update (${ups.length})</h5>${ups.length ? `<ul class="tl">${ups.slice().reverse().map(u => `<li class="${esc(u.jenis)}"><small>${esc(lbl[u.jenis] || u.jenis)} · ${esc(pName(u.oleh))} · ${new Date(u.t).toLocaleString('id-ID', {dateStyle:'medium', timeStyle:'short'})}</small>${u.teks ? `<span style="white-space:pre-wrap">${esc(u.teks)}</span>` : ''}${u.bukti ? `<div>${/^https?:\/\//.test(u.bukti) ? `<a href="${esc(u.bukti)}" target="_blank" rel="noopener">🔗 Bukti</a>` : '🔗 ' + esc(u.bukti)}</div>` : ''}</li>`).join('')}</ul>` : '<p class="muted">Belum ada update.</p>'}</div>
+    </div>
+    <div class="dr-f">${t.status === 'Menunggu Approval' && !team ? `<button class="btn sec" data-cx="no:${t.id}">Tolak</button><button class="btn pri" data-cx="ok:${t.id}">Approve close</button>` : ''}${t.status !== 'Closed' && (!team || (me && involved(t, me))) && t.status !== 'Menunggu Approval' ? `<button class="btn sec" data-cx="req:${t.id}">Request close</button>` : ''}${t.status !== 'Closed' ? `<button class="btn pri" data-cx="upd:${t.id}">Update</button>` : ''}</div>`);
+}
+function openCoreUpdate(id, request) {
+  const t = S.coreTask.find(x => x.id === id); if (!t) return;
+  const me = coreMe(); if (!me) return toast('Pilih nama kamu dulu di bagian "Kamu siapa?"', 'err');
+  if (CORE.team && !involved(t, me) && !confirm(`Kamu bukan PIC/collab task ini. Tetap kirim update atas nama ${pName(me)}?`)) return;
+  closeDrawer();
+  openModal(`<div class="mh"><div><h3>${request ? 'Request close' : 'Update progres'}</h3><p>${esc(t.kode || '')} · ${esc(t.judul)}</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
+    <div class="mb"><div class="fld"><label for="cuT">Sudah melakukan apa?</label><textarea id="cuT" style="min-height:110px;font-family:var(--f);font-size:13.5px" placeholder="mis. Draft carousel slide 1–4 selesai, tinggal revisi warna CTA"></textarea></div>
+      <div class="fld"><label for="cuB">Link bukti</label><input id="cuB" type="url" placeholder="https://drive.google.com/… · link Canva · link postingan"><span class="hint">Simpan file di Drive/Canva, lalu tempel link-nya di sini.</span></div>
+      <label class="cuchk" style="display:flex;gap:8px;align-items:center;font-size:13px;font-weight:600"><input type="checkbox" id="cuR" ${request ? 'checked' : ''} style="accent-color:var(--blue)"> ${me === APPROVER ? 'Tandai selesai (langsung Closed)' : 'Task sudah selesai, ajukan close (perlu approval Ali)'}</label>
+      <div class="parse wait" id="cuOut" hidden></div></div>
+    <div class="mf"><button class="btn sec" data-mclose>Batal</button><button class="btn pri" id="cuGo">Kirim</button></div>`);
+  $('#cuGo').onclick = async () => {
+    const teks = $('#cuT').value.trim(), bukti = $('#cuB').value.trim(), req = $('#cuR').checked, o = $('#cuOut');
+    if (!teks && !bukti && !req) { o.hidden = false; o.className = 'parse bad'; o.textContent = 'Isi dulu apa yang sudah dikerjakan atau link buktinya.'; return; }
+    $('#cuGo').disabled = true; o.hidden = false; o.className = 'parse wait'; o.textContent = 'Menyimpan…';
+    try {
+      if (CORE.team && settings.url && !isLive()) {
+        const j = await fetch(settings.url, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify({action:'coreupdate', id:t.id, oleh:me, teks, bukti, request:req})}).then(r => r.json());
+        if (!j.ok) throw new Error(j.error || 'Gagal');
+        t.updates = JSON.stringify(j.updates); t.status = j.status;
+      } else {
+        coreLog(t, {oleh:me, jenis:req ? (me === APPROVER ? 'approve' : 'request') : 'update', teks, bukti});
+        if (req && me === APPROVER) { t.status = 'Closed'; t.closing = iso(today0()); }
+        else if (req) t.status = 'Menunggu Approval';
+        else if ((t.status || 'Open') === 'Open') t.status = 'Ongoing';
+        await coreSave(t);
+      }
+      closeModal(); renderCore(); toast(req ? (me === APPROVER ? 'Task ditutup' : 'Request close terkirim, menunggu approval Ali') : 'Update tersimpan');
+    } catch (e) { $('#cuGo').disabled = false; o.className = 'parse bad'; o.textContent = 'Gagal: ' + e.message; }
+  };
+}
+async function coreDecide(id, ok) {
+  const t = S.coreTask.find(x => x.id === id); if (!t || CORE.team) return;
+  let note = '';
+  if (!ok) { note = prompt('Alasan ditolak / apa yang perlu diperbaiki? (opsional)') ?? null; if (note === null) return; }
+  coreLog(t, {oleh:APPROVER, jenis:ok ? 'approve' : 'tolak', teks:note});
+  t.status = ok ? 'Closed' : 'Ongoing'; t.closing = ok ? iso(today0()) : '';
+  closeDrawer(); renderCore();
+  try { await coreSave(t); toast(ok ? 'Approved · task Closed' : 'Request close ditolak, task kembali Ongoing', ok ? 'ok' : 'info'); } catch (e) { toast('Gagal menyimpan: ' + e.message, 'err'); }
+}
+async function coreSetStatus(id, st) {
+  const t = S.coreTask.find(x => x.id === id); if (!t || t.status === st) return;
+  if (st === 'Closed') { coreLog(t, {oleh:APPROVER, jenis:'approve', teks:'Ditutup langsung oleh Ali'}); t.closing = iso(today0()); }
+  else { coreLog(t, {oleh:APPROVER, jenis:'status', teks:`${t.status || 'Open'} → ${st}`}); t.closing = ''; }
+  t.status = st; renderCore();
+  try { await coreSave(t); toast('Status: ' + st); } catch (e) { toast('Gagal menyimpan: ' + e.message, 'err'); }
+}
+const pplPick = (name, sel = [], skip = '') => `<div class="pchk">${PEOPLE.filter(p => p.email !== skip).map(p => `<label><input type="checkbox" name="${name}" value="${p.email}" ${sel.includes(p.email) ? 'checked' : ''}>${esc(p.nama)}</label>`).join('')}</div>`;
+const picSel = (id, v) => `<select id="${id}" class="picsel">${PEOPLE.map(p => `<option value="${p.email}" ${p.email === v ? 'selected' : ''}>${esc(p.nama)} · ${esc(p.peran)}</option>`).join('')}</select>`;
+const checked = (root, name) => $$(`input[name="${name}"]:checked`, root).map(i => i.value);
+function openCoreTaskForm(id) {
+  const t = id ? S.coreTask.find(x => x.id === id) : null;
+  openModal(`<div class="mh"><div><h3>${t ? 'Edit task' : 'Add task'}</h3><p>${t ? esc(t.kode || '') : 'Tugas baru di luar rapat. Bisa juga ditautkan ke MoM yang sudah ada.'}</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
+    <form class="mb" id="ctForm">
+      <div class="fld"><label for="ctJ">Task</label><input id="ctJ" required value="${esc(t ? t.judul : '')}" placeholder="mis. Desain carousel promo kelas QGIS"></div>
+      <div class="fld"><label for="ctD">Deskripsi (apa saja yang dikerjakan)</label><textarea id="ctD" style="min-height:100px;font-family:var(--f);font-size:13.5px">${esc(t ? t.deskripsi : '')}</textarea></div>
+      <div class="g2"><div class="fld"><label for="ctP">PIC</label>${picSel('ctP', t ? t.pic : APPROVER)}</div><div class="fld"><label for="ctDue">Due date</label><input id="ctDue" type="date" value="${t && dOf(t.due) ? iso(dOf(t.due)) : ''}"></div></div>
+      <div class="fld"><span class="l">Collab (ikut bertanggung jawab)</span>${pplPick('ctC', t ? collabOf(t) : [])}</div>
+      <div class="fld"><label for="ctM">Sumber</label><select id="ctM"><option value="">Task (di luar MoM)</option>${S.coreMom.slice().sort((a, b) => String(b.tanggal).localeCompare(String(a.tanggal))).map(m => `<option value="${m.id}" ${t && t.momId === m.id ? 'selected' : ''}>MoM · ${esc(m.judul)} (${fmtD(m.tanggal)})</option>`).join('')}</select></div>
+    </form>
+    <div class="mf"><button class="btn sec" data-mclose>Batal</button><button class="btn pri" id="ctGo">${t ? 'Simpan' : 'Tambah task'}</button></div>`);
+  $$('.picsel').forEach(s => s.style.cssText = 'border:1.5px solid var(--line2);border-radius:12px;padding:10px 12px;font-size:13.5px;background:#fff');
+  $('#ctGo').onclick = async () => {
+    const judul = $('#ctJ').value.trim(); if (!judul) return toast('Isi nama task dulu', 'err');
+    const momId = $('#ctM').value, pic = $('#ctP').value, m = S.coreMom.find(x => x.id === momId);
+    const rec = t || {id:uid('ct'), status:'Open', updates:'[]', dibuat:new Date().toISOString(), oleh:APPROVER};
+    Object.assign(rec, {judul, deskripsi:$('#ctD').value.trim(), pic, collab:checked($('#ctForm'), 'ctC').filter(e => e !== pic).join(', '), due:$('#ctDue').value, momId, sumber:momId ? 'MoM' : 'Task'});
+    if (!t || (t.sumber === 'MoM') !== !!momId || (m && rec.kode !== m.kode)) rec.kode = m ? m.kode : nextKode('TSK', S.coreTask.filter(x => x !== rec));
+    if (!t) S.coreTask.push(rec);
+    closeModal(); renderCore();
+    try { await coreSave(rec); toast(t ? 'Task disimpan' : 'Task ditambahkan'); } catch (e) { toast('Gagal menyimpan: ' + e.message, 'err'); }
+  };
+}
+function openMomForm(momId) {
+  const m = momId ? S.coreMom.find(x => x.id === momId) : null;
+  const old = m ? S.coreTask.filter(t => t.momId === m.id) : [];
+  const taskRow = i => `<div class="momtask" data-mt="${i}"><button type="button" class="icon-btn rm" data-mtdel title="Hapus baris">${ICON.x}</button>
+      <div class="fld"><label>Task ${i + 1}</label><input class="mtJ" placeholder="Judul task"></div>
+      <div class="fld"><label>Deskripsi</label><textarea class="mtD" style="min-height:64px;font-family:var(--f);font-size:13px" placeholder="Ngapain aja, output yang diharapkan"></textarea></div>
+      <div class="g2"><div class="fld"><label>PIC</label>${picSel('mtP' + i, APPROVER)}</div><div class="fld"><label>Due date</label><input class="mtDue" type="date"></div></div>
+      <div class="fld"><span class="l">Collab</span>${pplPick('mtC' + i)}</div></div>`;
+  let n = 0;
+  openModal(`<div class="mh"><div><h3>${m ? 'MoM · ' + esc(m.kode) : 'MoM baru'}</h3><p>Catat hasil rapat lalu pecah jadi task. Tiap task punya PIC, collab, dan due date.</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
+    <div class="mb" id="momForm">
+      <div class="g2"><div class="fld"><label for="mJ">Judul rapat</label><input id="mJ" value="${esc(m ? m.judul : '')}" placeholder="mis. Weekly Product Pakarify"></div><div class="fld"><label for="mT">Tanggal</label><input id="mT" type="date" value="${m && dOf(m.tanggal) ? iso(dOf(m.tanggal)) : iso(today0())}"></div></div>
+      <div class="fld"><span class="l">Peserta rapat</span>${pplPick('mP', m ? listOf(m.peserta) : PEOPLE.slice(0, 4).map(p => p.email))}</div>
+      <div class="fld"><label for="mC">Catatan / notulen</label><textarea id="mC" style="min-height:90px;font-family:var(--f);font-size:13px">${esc(m ? m.catatan : '')}</textarea></div>
+      ${old.length ? `<div class="fld"><span class="l">Task yang sudah ada (${old.length})</span><div class="ppl">${old.map(t => `<span class="av" style="padding:3px 10px">${esc(t.judul)} · ${esc(pName(t.pic))}</span>`).join('')}</div></div>` : ''}
+      <div id="mTasks" style="display:grid;gap:10px"></div>
+      <button type="button" class="btn soft sm" id="mAdd" style="justify-self:start">+ Tambah task</button>
+    </div>
+    <div class="mf"><button class="btn sec" data-mclose>Batal</button><button class="btn pri" id="mGo">Simpan MoM</button></div>`);
+  const add = () => { $('#mTasks').insertAdjacentHTML('beforeend', taskRow(n++)); $$('#mTasks .picsel').forEach(s => s.style.cssText = 'border:1.5px solid var(--line2);border-radius:12px;padding:10px 12px;font-size:13.5px;background:#fff'); };
+  if (!m) add();
+  $('#mAdd').onclick = add;
+  $('#mTasks').addEventListener('click', e => { if (e.target.closest('[data-mtdel]')) e.target.closest('.momtask').remove(); });
+  $('#mGo').onclick = async () => {
+    const judul = $('#mJ').value.trim(); if (!judul) return toast('Isi judul rapat dulu', 'err');
+    const rec = m || {id:uid('cm'), kode:nextKode('MOM', S.coreMom), dibuat:new Date().toISOString()};
+    Object.assign(rec, {judul, tanggal:$('#mT').value, peserta:checked($('#momForm'), 'mP').join(', '), catatan:$('#mC').value.trim()});
+    const tasks = $$('#mTasks .momtask').map(box => { const i = box.dataset.mt, pic = $('#mtP' + i).value;
+      return {id:uid('ct'), kode:rec.kode, sumber:'MoM', momId:rec.id, judul:$('.mtJ', box).value.trim(), deskripsi:$('.mtD', box).value.trim(), pic, collab:checked(box, 'mtC' + i).filter(e => e !== pic).join(', '), due:$('.mtDue', box).value, status:'Open', updates:'[]', dibuat:new Date().toISOString(), oleh:APPROVER}; }).filter(t => t.judul);
+    if (!m) S.coreMom.push(rec); S.coreTask.push(...tasks);
+    closeModal(); renderCore();
+    try { await api.save('coreMom', rec); if (tasks.length) await api.bulk('coreTask', tasks); toast(`MoM disimpan · ${tasks.length} task baru`); } catch (e) { toast('Gagal menyimpan: ' + e.message, 'err'); }
+  };
+}
+async function coreDelete(id) {
+  const i = S.coreTask.findIndex(x => x.id === id); if (i < 0 || !confirm(`Hapus task "${S.coreTask[i].judul}"?`)) return;
+  const [t] = S.coreTask.splice(i, 1); closeDrawer(); renderCore();
+  try { await api.remove('coreTask', t.id); toast('Task dihapus', 'info'); } catch (e) { S.coreTask.splice(i, 0, t); renderCore(); toast(e.message, 'err'); }
+}
+const coreTeamLink = () => location.href.split('#')[0] + '#core-tim';
+function reminderData() {
+  const open = S.coreTask.filter(t => t.status !== 'Closed' && t.status !== 'Menunggu Approval');
+  return PEOPLE.map(p => ({p, list:open.filter(t => involved(t, p.email)).sort(coreSort)})).filter(x => x.list.length);
+}
+function reminderText(data) {
+  const line = (t, e) => `${isLate(t) ? '🔴 [LATE] ' : ''}${t.judul} · due ${fmtD(t.due)}${t.pic === e ? ' (PIC)' : ' (collab)'}`;
+  return `*Reminder Task CORE HCE* · ${fmtL(today0())}\n\nHalo tim, ini task yang belum selesai. Tolong update progres + link bukti, dan klik "Request close" kalau sudah beres ya 🙏\n\n` +
+    data.map(({p, list}) => `*${p.nama}* (${list.length})\n${list.map((t, i) => `${i + 1}. ${line(t, p.email)}`).join('\n')}`).join('\n\n') +
+    `\n\nUpdate di sini: ${coreTeamLink()}`;
+}
+function reminderPrompt(data) {
+  return `Kamu admin tim Hcelerate × Pakarify. Tulis pesan reminder untuk grup WhatsApp tim (dan versi email singkat dengan subjek) berdasarkan daftar task belum selesai di bawah.
+
+Aturan:
+- Bahasa Indonesia santai tapi sopan, sebut nama tiap orang, task yang LATE disebut paling atas dan diberi penekanan.
+- Minta tiap orang update progres + link bukti di link CORE HCE, dan request close kalau sudah selesai (approval oleh Ali).
+- Maks 180 kata untuk versi WhatsApp. Jangan menambah task yang tidak ada di daftar.
+
+Tanggal hari ini: ${fmtL(today0())}
+Link update: ${coreTeamLink()}
+
+DAFTAR TASK
+${data.map(({p, list}) => `${p.nama} (${p.email}, ${p.peran}):\n${list.map(t => `- ${t.judul}${t.deskripsi ? ' — ' + t.deskripsi.slice(0, 140) : ''} | due ${fmtD(t.due)}${isLate(t) ? ' | LATE' : ''} | ${t.pic === p.email ? 'PIC' : 'collab'} | status ${t.status || 'Open'}`).join('\n')}`).join('\n\n')}`;
+}
+function openReminder() {
+  const data = reminderData(), wait = S.coreTask.filter(t => t.status === 'Menunggu Approval');
+  if (!data.length && !wait.length) return toast('Semua task sudah selesai 🎉');
+  openModal(`<div class="mh"><div><h3>Reminder task belum selesai</h3><p>Salin pesan atau prompt ChatGPT, lalu unduh gambar lampiran untuk dikirim ke grup.</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
+    <div class="mb rmd">
+      <div class="rmcard" id="rmImg"><h4>Reminder Task · CORE HCE</h4><div class="muted" style="font-size:12px">${fmtL(today0())} · ${data.reduce((n, x) => n + x.list.length, 0)} task per orang belum selesai</div>
+        ${data.map(({p, list}) => `<div class="rp"><b><span class="av" style="background:none;padding:0"><i style="background:${p.warna}">${esc(p.nama[0])}</i></span> ${esc(p.nama)} <span class="muted" style="font-weight:500">· ${list.length} task</span></b><ol>${list.map(t => `<li>${isLate(t) ? '<span class="lt">LATE · </span>' : ''}${esc(t.judul)} <span class="muted">· ${fmtD(t.due)} · ${t.pic === p.email ? 'PIC' : 'collab'}</span></li>`).join('')}</ol></div>`).join('')}
+        ${wait.length ? `<div class="rp"><b>⏳ Menunggu approval Ali</b><ol>${wait.map(t => `<li>${esc(t.judul)} <span class="muted">· ${esc(pName(t.pic))}</span></li>`).join('')}</ol></div>` : ''}
+      </div>
+      <details><summary class="btn ghost sm" style="display:inline-flex">Lihat teks pesan</summary><div class="promptbox" style="margin-top:8px">${esc(reminderText(data))}</div></details>
+    </div>
+    <div class="mf"><button class="btn sec" id="rmPrompt">Salin prompt ChatGPT</button><button class="btn sec" id="rmText">Salin pesan</button><button class="btn pri" id="rmPng">Unduh gambar</button></div>`);
+  const copy = async (s, msg) => { try { await navigator.clipboard.writeText(s); toast(msg); } catch (_) { toast('Gagal menyalin, salin manual dari kotak teks', 'err'); } };
+  $('#rmText').onclick = () => copy(reminderText(data), 'Pesan reminder disalin');
+  $('#rmPrompt').onclick = () => copy(reminderPrompt(data), 'Prompt disalin, tempel ke ChatGPT');
+  $('#rmPng').onclick = async () => {
+    if (!window.html2canvas) await new Promise((ok, no) => { const s = document.createElement('script'); s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'; s.onload = ok; s.onerror = no; document.head.appendChild(s); }).catch(() => null);
+    if (!window.html2canvas) return toast('Gagal memuat pengunduh gambar', 'err');
+    const canvas = await html2canvas($('#rmImg'), {backgroundColor:'#ffffff', scale:2});
+    canvas.toBlob(b => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `Reminder-CORE-HCE-${iso(today0())}.png`; document.body.appendChild(a); a.click(); a.remove(); toast('Gambar reminder diunduh'); });
+  };
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-cx]'); if (!t) return;
+  const [a, id] = t.dataset.cx.split(/:(.*)/s);
+  if (a === 'st') { CORE.st = id; return renderCore(); }
+  if (a === 'src') { CORE.src = id; return renderCore(); }
+  if (a === 'open') return openCoreTask(id);
+  if (a === 'upd') return openCoreUpdate(id, false);
+  if (a === 'req') return openCoreUpdate(id, true);
+  if (a === 'ok') return coreDecide(id, true);
+  if (a === 'no') return coreDecide(id, false);
+  if (a === 'edit') { closeDrawer(); return openCoreTaskForm(id); }
+  if (a === 'del') return coreDelete(id);
+});
+$('#coreAddBtn').addEventListener('click', () => openCoreTaskForm());
+$('#coreMomBtn').addEventListener('click', () => openMomForm());
+$('#coreRemind').addEventListener('click', openReminder);
+$('#coreTeamLink').addEventListener('click', () => { const link = coreTeamLink(); openModal(`<div class="mh"><div><h3>Link CORE HCE untuk tim</h3><p>Tanpa passcode. Tim memilih namanya, lalu bisa kirim update + link bukti dan request close. Membuat task, mengubah, dan approve close tetap hanya dari tools ini (passcode).</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div><div class="mb"><div class="promptbox" style="white-space:normal;user-select:all">${esc(link)}</div></div><div class="mf"><button class="btn pri" id="ctlCopy">Salin link</button></div>`); $('#ctlCopy').onclick = async () => { try { await navigator.clipboard.writeText(link); toast('Link disalin'); } catch (_) { toast('Pilih teks link lalu salin manual', 'info'); } }; });
+$('#coreQ').addEventListener('input', e => { CORE.q = e.target.value; clearTimeout(timers.coreq); timers.coreq = setTimeout(renderCore, 200); });
+$('#corePerson').addEventListener('change', e => { CORE.person = e.target.value; renderCore(); });
+document.addEventListener('change', e => {
+  if (e.target.id === 'coreMe') { CORE.me = e.target.value; store.set('pkt-core-me', CORE.me); CORE.person = CORE.me; renderCore(); }
+  if (e.target.dataset.cst) coreSetStatus(e.target.dataset.cst, e.target.value);
+});
+
+/* =====================================================================
+   TOOLS OPERASIONAL — aset per kelas + template broadcast
+   ===================================================================== */
+const ASET_JENIS = [
+  {k:'presensi', l:'Link Presensi & Feedback', g:'Pasca kelas'},
+  {k:'qna', l:'QnA Sepekan', g:'Pasca kelas'},
+  {k:'benefit', l:'Benefit Materi, Notulensi & E-Certificate', g:'Pasca kelas'},
+  {k:'youtube', l:'Recording Kelas (YouTube)', g:'Recording & materi'},
+  {k:'zoom', l:'Rekaman Zoom', g:'Recording & materi'},
+  {k:'materi', l:'Materi Narasumber', g:'Recording & materi'},
+  {k:'modul', l:'Modul', g:'Recording & materi'},
+  {k:'ebook', l:'E-book', g:'Benefit tambahan'},
+  {k:'voucher', l:'Voucher Kelas Berikutnya', g:'Benefit tambahan'},
+  {k:'feedback', l:'Rekap Feedback Peserta', g:'Recap kelas'},
+  {k:'ecourse', l:'Link E-course (untuk yang minat rekaman)', g:'Recap kelas'},
+];
+const OPS_BUILTIN = {kelas:'Judul kelas', narasumber:'Nama narasumber', tanggal:'Tanggal kelas', nama_peserta:'Nama peserta (diisi manual)'};
+const DEFAULT_TPL = [
+  {id:'tpl-presensi', nama:'BC Presensi', fase:'Pasca kelas', urutan:1, isi:`Selamat dan terima kasih atas partisipasi \nBapak, Ibu dan kakak-kakak semua dalam kelas {kelas}✨\n\nBerikut link presensi sekaligus feedback untuk mendapatkan \nnotulensi kelas dan keperluan sertifikat☺️🙏\n\n{presensi}\n\nJangan ragu untuk memberikan kritik dan saran agar \nkami bisa berusaha untuk berkontribusi lebih luas lagi \nbagi dunia kerja di Indonesia✨\n\nTerkait benefit paket professional dan exclusive \nakan kami bagikan secara berkala setelah kelas.\n\nSemoga informasi ini dapat membantu, \nsemoga ilmu yang telah disampaikan dan fasilitas \nyang kami berikan dapat bermanfaat untuk bapak ibu kakak semua.\n\nTerima kasih,\nTim Pakarify`},
+  {id:'tpl-profesional', nama:'BC Benefit Pasca · Profesional', fase:'Pasca kelas', urutan:2, isi:`Selamat malam, Bapak/Ibu {nama_peserta}✨\n\nTerima kasih telah berpartisipasi dalam kelas {kelas}\nbersama {narasumber}\nSesuai poster, peserta Profesional akan mendapatkan beberapa benefit tambahan, meliputi:\n\n📚 Benefit Materi, Notulensi dan E-Certificate\n{benefit}\n\n❓QNA SEPEKAN\n{qna}\n\n⚠ TAUTAN TIDAK UNTUK DISEBARLUASKAN ⚠\n\nKami mengharap feedback dari Bapak/Ibu dengan mengisi tautan berikut:\n{presensi}\n\nSekali lagi, terima kasih atas partisipasi aktif Bapak/Ibu. Sampai jumpa di kesempatan berikutnya.\n\nSalam,\nTim Pakarify`},
+  {id:'tpl-exclusive', nama:'BC Benefit Pasca · Exclusive', fase:'Pasca kelas', urutan:3, isi:`Selamat malam, Bapak/Ibu {nama_peserta}✨\n\nTerima kasih telah berpartisipasi dalam kelas {kelas}\nbersama {narasumber}\nSesuai poster, peserta Exclusive akan mendapatkan beberapa benefit tambahan, meliputi:\n\n🎥 Playlist Rekaman Kelas\n{youtube}\n\n📚 Benefit Materi, Notulensi dan E-Certificate\n{benefit}\n\n❓QNA SEPEKAN\n{qna}\n\n📂 Free E-Book\n{ebook}\n\n💳 Voucher 10% Pakar kelas (dapat digunakan untuk kelas Pakar berikutnya)\n{voucher}\n\nCara pakai: masukkan kode "KUPON10" di kode discount saat mengisi formulir kelas selanjutnya.\n\n⚠ TAUTAN TIDAK UNTUK DISEBARLUASKAN ⚠\n\nKami mengharap feedback dari Bapak/Ibu dengan mengisi tautan berikut:\n{presensi}\n\nSekali lagi, terima kasih atas partisipasi aktif Bapak/Ibu. Sampai jumpa di kesempatan berikutnya.\n\nSalam,\nTim Pakarify`},
+];
+const OPS = {mode:'kelas', cid:store.get('pkt-ops-cid', ''), jenis:'youtube', semua:false};
+const slug = s => String(s || '').toLowerCase().normalize('NFKD').replace(/[^\w]+/g, '_').replace(/^_|_$/g, '').slice(0, 30);
+const asetRow = (cid, k) => S.opsAset.find(r => r.kelas === cid && r.jenis === k);
+function jenisFor(cid) {   // jenis bawaan + jenis tambahan milik kelas ini / link umum
+  const extra = S.opsAset.filter(r => (r.kelas === cid || r.kelas === '*') && !ASET_JENIS.some(j => j.k === r.jenis));
+  return [...ASET_JENIS, ...[...new Map(extra.map(r => [r.jenis, {k:r.jenis, l:r.label || r.jenis, g:'Tambahan'}])).values()]];
+}
+function asetVal(cid, k) {
+  const r = asetRow(cid, k), g = asetRow('*', k);
+  if (r && r.status === 'Tidak dipakai') return {state:'skip', r};
+  if (r && r.link) return {state:'ok', link:r.link, src:'kelas', r};
+  if (g && g.link && !(r && r.status === 'Belum ada')) return {state:'ok', link:g.link, src:'umum', r};
+  return {state:'missing', r};
+}
+const opsMissing = c => jenisFor(c.id).filter(j => asetVal(c.id, j.k).state === 'missing');
+function opsTemplates() {
+  const saved = new Map(S.opsTpl.map(t => [t.id, t]));
+  return [...DEFAULT_TPL.map(t => ({...t, ...(saved.get(t.id) || {})})), ...S.opsTpl.filter(t => !DEFAULT_TPL.some(d => d.id === t.id))].sort((a, b) => (+a.urutan || 99) - (+b.urutan || 99));
+}
+function bcFill(tpl, c) {
+  const miss = [];
+  const out = tpl.isi.replace(/\{([\w]+)\}/g, (all, key) => {
+    if (key === 'kelas') return c.judul;
+    if (key === 'narasumber') return c.pembicara || (miss.push('Narasumber'), '❗[BELUM ADA: Narasumber]');
+    if (key === 'tanggal') return torTanggal(c);
+    if (key === 'nama_peserta') return 'Nama Peserta';
+    const j = jenisFor(c.id).find(x => x.k === key); if (!j) return all;
+    const v = asetVal(c.id, key);
+    if (v.state === 'ok') return v.link;
+    if (v.state === 'skip') return '';
+    miss.push(j.l); return `❗[BELUM ADA: ${j.l}]`;
+  });
+  return {text:out.replace(/\n{3,}/g, '\n\n'), miss};
+}
+function opsClasses() { return ordered().filter(c => OPS.semua || !/^(ide kelas|cancelled)$/i.test(c.progress || '')); }
+function renderOps() {
+  const host = $('#opsBody'); if (!host || $('#v-ops').hidden) return;
+  $$('#opsMode button').forEach(b => b.setAttribute('aria-pressed', b.dataset.opsm === OPS.mode));
+  if (OPS.mode === 'umum') return renderOpsUmum(host);
+  if (OPS.mode === 'jenis') return renderOpsJenis(host);
+  const list = opsClasses(), nos = noMap();
+  if (!list.find(c => c.id === OPS.cid)) OPS.cid = (list[0] || {}).id || '';
+  const c = S.classes.find(x => x.id === OPS.cid);
+  host.innerHTML = `<div class="opsgrid"><div class="card opslist"><label style="display:flex;gap:6px;align-items:center;font-size:12px;color:var(--ink3);padding:4px 10px 8px"><input type="checkbox" id="opsSemua" ${OPS.semua ? 'checked' : ''}> Tampilkan Ide Kelas &amp; Cancelled</label>${list.map(k => { const m = opsMissing(k).length; return `<button data-opsc="${k.id}" aria-current="${k.id === OPS.cid}"><span class="no">${nos.get(k.id)}</span><span>${esc(k.judul.replace(/^Masterclass\s*/i, ''))}</span><span class="okc ${m ? 'n' : 'y'}">${m ? '❗ ' + m : '✓'}</span></button>`; }).join('') || '<p class="muted" style="padding:10px">Belum ada kelas di Jadwal.</p>'}</div>
+    <div class="opsmain">${c ? opsKelasCard(c) + opsBcCard(c) : '<div class="card empty"><h4>Pilih kelas</h4></div>'}</div></div>`;
+}
+function asetInput(cid, j) {
+  const r = asetRow(cid, j.k), v = asetVal(cid, j.k), g = cid !== '*' && asetRow('*', j.k);
+  const ic = v.state === 'ok' ? '<span class="okk">✓</span>' : v.state === 'skip' ? '<span class="muted" style="text-align:center">–</span>' : '<span class="bang" title="Belum ada, harus dilengkapi">❗</span>';
+  return `<div class="arow">${ic}<div class="lbl">${esc(j.l)}<small>{${esc(j.k)}}</small></div>
+    <input class="al" type="url" data-aset="${cid}|${j.k}" value="${esc(r ? r.link : '')}" placeholder="${g && g.link ? 'Pakai link umum · ' + esc(g.link) : 'Tempel link (YouTube, Drive, s.id…)'}">
+    <select data-asst="${cid}|${j.k}">${(cid === '*' ? ['Ada', 'Belum ada'] : ['Ada', 'Belum ada', 'Tidak dipakai']).map(s => `<option ${s === {ok:'Ada', skip:'Tidak dipakai', missing:'Belum ada'}[v.state] ? 'selected' : ''}>${s}</option>`).join('')}</select>
+    ${v.state === 'ok' ? `<a class="go" href="${esc(v.link)}" target="_blank" rel="noopener" title="Buka">${ICON.ext}</a>` : '<span></span>'}</div>`;
+}
+function opsKelasCard(c) {
+  const js = jenisFor(c.id), groups = [...new Set(js.map(j => j.g))], miss = opsMissing(c);
+  return `<div class="card opsc"><div style="display:flex;gap:10px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap"><div><h3>${esc(c.judul)}</h3><p class="sub">${esc(c.pembicara || 'Narasumber belum diisi')} · ${esc(torTanggal(c))} · ${esc(c.progress || '')}</p></div>${miss.length ? `<span class="chip bad">❗ Belum lengkap · ${miss.length} link</span>` : '<span class="chip ok">✓ Lengkap</span>'}</div>
+    ${groups.map(g => `<div class="agrp"><h5>${esc(g)}</h5>${js.filter(j => j.g === g).map(j => asetInput(c.id, j)).join('')}</div>`).join('')}
+    <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"><button class="btn soft sm" data-opsadd="${c.id}">+ Jenis aset untuk kelas ini</button><span class="muted" style="font-size:12px;align-self:center">Kosong tapi ada link umum = otomatis memakai link umum. Pilih "Tidak dipakai" kalau kelas ini memang tidak punya aset tsb.</span></div></div>`;
+}
+function opsBcCard(c) {
+  return `<div class="card opsc"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><div><h3>Broadcast kelas ini</h3><p class="sub">Isi otomatis dari link di atas. Tanda ❗ = link belum ada.</p></div><button class="btn sec sm" data-tpledit="">+ Template</button></div>
+    <div class="bcgrid">${opsTemplates().map(t => { const f = bcFill(t, c); return `<div class="bcc"><div class="bh"><b>${esc(t.nama)}</b>${f.miss.length ? `<span class="okc n">❗ ${f.miss.length}</span>` : '<span class="okc y">✓</span>'}<button class="btn ghost xs" data-tpledit="${t.id}">Edit</button><button class="btn pri xs" data-bccopy="${t.id}">Salin</button></div><pre>${esc(f.text).replace(/❗\[BELUM ADA: ([^\]]+)\]/g, '<mark>❗ belum ada: $1</mark>')}</pre></div>`; }).join('')}</div></div>`;
+}
+function renderOpsJenis(host) {
+  const all = [...new Map(S.classes.flatMap(c => jenisFor(c.id)).map(j => [j.k, j])).values()];
+  if (!all.find(j => j.k === OPS.jenis)) OPS.jenis = 'youtube';
+  const j = all.find(x => x.k === OPS.jenis), list = opsClasses(), nos = noMap();
+  host.innerHTML = `<div class="card opsc"><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><h3>Segmen aset</h3><select class="sel" id="opsJenis">${all.map(x => `<option value="${x.k}" ${x.k === OPS.jenis ? 'selected' : ''}>${esc(x.l)}</option>`).join('')}</select><span class="muted" style="font-size:12.5px">${list.filter(c => asetVal(c.id, j.k).state === 'ok').length}/${list.length} kelas sudah ada link</span></div>
+    <div style="overflow:auto;margin-top:12px"><table class="jt"><thead><tr><th style="width:40px">No</th><th>Kelas</th><th style="min-width:320px">${esc(j.l)}</th><th>Status</th><th></th></tr></thead><tbody>${list.map(c => { const v = asetVal(c.id, j.k), r = asetRow(c.id, j.k);
+      return `<tr><td class="muted">${nos.get(c.id)}</td><td><b style="font-weight:700">${esc(c.judul.replace(/^Masterclass\s*/i, ''))}</b><div class="muted" style="font-size:11.5px">${esc(c.pembicara || '')}</div></td><td><div class="arow" style="grid-template-columns:24px 1fr;border:0;padding:0">${v.state === 'ok' ? '<span class="okk">✓</span>' : v.state === 'skip' ? '<span class="muted">–</span>' : '<span class="bang">❗</span>'}<input type="url" data-aset="${c.id}|${j.k}" value="${esc(r ? r.link : '')}" placeholder="${v.src === 'umum' ? 'Pakai link umum' : 'Tempel link…'}"></div></td><td><select class="sel" data-asst="${c.id}|${j.k}">${['Ada', 'Belum ada', 'Tidak dipakai'].map(s => `<option ${(v.state === 'ok' && s === 'Ada') || (v.state === 'skip' && s === 'Tidak dipakai') || (v.state === 'missing' && s === 'Belum ada') ? 'selected' : ''}>${s}</option>`).join('')}</select></td><td>${v.state === 'ok' ? `<a href="${esc(v.link)}" target="_blank" rel="noopener">${ICON.ext.replace('<svg', '<svg width="15" height="15"')}</a>` : ''}</td></tr>`; }).join('')}</tbody></table></div></div>`;
+}
+function renderOpsUmum(host) {
+  const js = jenisFor('*'), groups = [...new Set(js.map(j => j.g))];
+  host.innerHTML = `<div class="card opsc"><h3>Link umum (berlaku semua kelas)</h3><p class="sub">Contoh: voucher, e-book umum, grup alumni. Kelas yang kolomnya kosong otomatis memakai link ini; isi di kelas tertentu kalau linknya beda.</p>${groups.map(g => `<div class="agrp"><h5>${esc(g)}</h5>${js.filter(j => j.g === g).map(j => asetInput('*', j)).join('')}</div>`).join('')}<button class="btn soft sm" style="margin-top:14px" data-opsadd="*">+ Jenis aset umum</button></div>`;
+}
+async function saveAset(cid, k, patch) {
+  let r = asetRow(cid, k);
+  if (!r) { const j = jenisFor(cid).find(x => x.k === k) || {l:k}; r = {id:uid('a'), kelas:cid, jenis:k, label:j.l, link:'', status:'Belum ada', catatan:'', dibuat:new Date().toISOString()}; S.opsAset.push(r); }
+  Object.assign(r, patch);
+  try { await api.save('opsAset', r); } catch (e) { toast('Gagal menyimpan: ' + e.message, 'err'); }
+  renderOps();
+}
+function openTplForm(id) {
+  const t = id ? opsTemplates().find(x => x.id === id) : null, c = S.classes.find(x => x.id === OPS.cid);
+  const keys = [...Object.entries(OPS_BUILTIN), ...jenisFor(OPS.cid || '*').map(j => [j.k, j.l])];
+  openModal(`<div class="mh"><div><h3>${t ? 'Edit template · ' + esc(t.nama) : 'Template broadcast baru'}</h3><p>Tulis seperti biasa. Klik isian di bawah untuk menyisipkan link otomatis.</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
+    <div class="mb"><div class="g2"><div class="fld"><label for="tpN">Nama</label><input id="tpN" value="${esc(t ? t.nama : '')}" placeholder="mis. BC Pengingat H-1"></div><div class="fld"><label for="tpF">Fase</label><select id="tpF">${['Sebelum kelas', 'Hari H', 'Pasca kelas'].map(f => `<option ${t && t.fase === f ? 'selected' : ''}>${f}</option>`).join('')}</select></div></div>
+      <div class="fld"><span class="l">Isian otomatis</span><div class="phs">${keys.map(([k, l]) => `<button type="button" data-ph="{${k}}" title="${esc(l)}">{${esc(k)}}</button>`).join('')}</div></div>
+      <div class="fld"><label for="tpI">Isi pesan</label><textarea id="tpI" style="min-height:260px;font-family:var(--f);font-size:13px">${esc(t ? t.isi : '')}</textarea></div></div>
+    <div class="mf">${t && !DEFAULT_TPL.some(d => d.id === t.id) ? '<button class="btn ghost" id="tpDel" style="margin-right:auto;color:var(--bad)">Hapus</button>' : t && S.opsTpl.some(x => x.id === t.id) ? '<button class="btn ghost" id="tpReset" style="margin-right:auto">Kembalikan ke versi awal</button>' : ''}<button class="btn sec" data-mclose>Batal</button><button class="btn pri" id="tpGo">Simpan template</button></div>`);
+  $$('.phs [data-ph]').forEach(b => b.onclick = () => { const ta = $('#tpI'), s = ta.selectionStart, v = b.dataset.ph; ta.value = ta.value.slice(0, s) + v + ta.value.slice(ta.selectionEnd); ta.focus(); ta.setSelectionRange(s + v.length, s + v.length); });
+  $('#tpGo').onclick = async () => {
+    const nama = $('#tpN').value.trim(), isi = $('#tpI').value; if (!nama || !isi.trim()) return toast('Isi nama dan isi template', 'err');
+    let rec = S.opsTpl.find(x => x.id === (t && t.id));
+    if (!rec) { rec = {id:t ? t.id : uid('tpl'), urutan:t ? t.urutan : opsTemplates().length + 1}; S.opsTpl.push(rec); }
+    Object.assign(rec, {nama, fase:$('#tpF').value, isi});
+    closeModal(); renderOps();
+    try { await api.save('opsTpl', rec); toast('Template disimpan'); } catch (e) { toast('Gagal menyimpan: ' + e.message, 'err'); }
+  };
+  const drop = async msg => { const i = S.opsTpl.findIndex(x => x.id === t.id); if (i >= 0) S.opsTpl.splice(i, 1); closeModal(); renderOps(); try { await api.remove('opsTpl', t.id); toast(msg, 'info'); } catch (e) { toast(e.message, 'err'); } };
+  if ($('#tpDel')) $('#tpDel').onclick = () => confirm('Hapus template ini?') && drop('Template dihapus');
+  if ($('#tpReset')) $('#tpReset').onclick = () => drop('Template kembali ke versi awal');
+}
+document.addEventListener('click', async e => {
+  const t = e.target.closest('[data-opsm],[data-opsc],[data-opsadd],[data-tpledit],[data-bccopy]'); if (!t) return;
+  const d = t.dataset;
+  if (d.opsm) { OPS.mode = d.opsm; return renderOps(); }
+  if (d.opsc) { OPS.cid = d.opsc; store.set('pkt-ops-cid', OPS.cid); return renderOps(); }
+  if ('opsadd' in d) { const l = prompt(d.opsadd === '*' ? 'Nama jenis aset umum (mis. Grup Alumni)' : 'Nama jenis aset untuk kelas ini (mis. Dataset Latihan)'); if (!l || !l.trim()) return; const k = slug(l); if (!k) return; if (jenisFor(d.opsadd).some(j => j.k === k)) return toast('Jenis aset itu sudah ada', 'err'); S.opsAset.push({id:uid('a'), kelas:d.opsadd, jenis:k, label:l.trim(), link:'', status:'Belum ada', catatan:'', dibuat:new Date().toISOString()}); await saveAset(d.opsadd, k, {}); return toast(`Ditambahkan · pakai {${k}} di template`); }
+  if ('tpledit' in d) return openTplForm(d.tpledit);
+  if (d.bccopy) { const c = S.classes.find(x => x.id === OPS.cid), tp = opsTemplates().find(x => x.id === d.bccopy); if (!c || !tp) return; const f = bcFill(tp, c); try { await navigator.clipboard.writeText(f.text); toast(f.miss.length ? `Disalin, tapi ${f.miss.length} link masih belum ada: ${f.miss.join(', ')}` : 'Broadcast disalin', f.miss.length ? 'info' : 'ok'); } catch (_) { toast('Gagal menyalin', 'err'); } }
+});
+document.addEventListener('change', e => {
+  const t = e.target;
+  if (t.id === 'opsSemua') { OPS.semua = t.checked; return renderOps(); }
+  if (t.id === 'opsJenis') { OPS.jenis = t.value; return renderOps(); }
+  if (t.dataset.aset) { const [cid, k] = t.dataset.aset.split('|'), link = t.value.trim(); return saveAset(cid, k, {link, status:link ? 'Ada' : 'Belum ada'}); }
+  if (t.dataset.asst) { const [cid, k] = t.dataset.asst.split('|'), r = asetRow(cid, k), st = t.value; if (st === 'Ada' && !(r && r.link)) { toast('Tempel link-nya dulu, status otomatis jadi "Ada"', 'info'); return renderOps(); } return saveAset(cid, k, st === 'Ada' ? {status:'Ada'} : {status:st, link:''}); }
+});
+
+/* =====================================================================
    ROUTER & BOOT
    ===================================================================== */
-const VIEWS = ['home','narasumber','topik','jadwal','tor','brief','segera'];
+const VIEWS = ['home','narasumber','topik','jadwal','tor','brief','core','ops','segera'];
+const PROD_VIEWS = ['narasumber','topik','tor'];
+function setProd(on) { $('#pill').classList.toggle('prod-on', on); $('#prodBtn').setAttribute('aria-expanded', on); }
+$('#prodBtn').addEventListener('click', () => setProd(!$('#pill').classList.contains('prod-on')));
+function teamChrome(on) { document.body.classList.toggle('teammode', on); $('#pill').hidden = on; $('#setBtn').hidden = on; $('#statusBtn').hidden = on; $('#sheetBtn').hidden = on || !CONFIG.SHEET_URL; }
 function route() {
   const h = location.hash.slice(1);
+  if (h === 'core-tim') { teamChrome(true); $$('[data-view]').forEach(s => s.hidden = s.dataset.view !== 'core'); CORE.team = true; coreLoadTeam(); scrollTo(0, 0); return; }
+  CORE.team = false; if (h !== 'kalender-tim') document.body.classList.remove('teammode');
   const bm = h.match(/^brief\/([^/]+)\/?(ecourse|kelas|ig)?/);
   if (bm) {   // link brief untuk tim: bisa edit kalau ada passcode, selain itu hanya baca
     $$('[data-view]').forEach(s => s.hidden = s.dataset.view !== 'brief'); closePop(); scrollTo({top:0});
@@ -2715,7 +3326,10 @@ function route() {
   $('#pill').hidden = false; $('#setBtn').hidden = false; $('#statusBtn').hidden = false; $('#sheetBtn').hidden = !CONFIG.SHEET_URL;
   $$('[data-view]').forEach(s => s.hidden = s.dataset.view !== v);
   $$('#pill a').forEach(a => a.dataset.v === v ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
+  $('#prodBtn').classList.toggle('cur', PROD_VIEWS.includes(v)); if (PROD_VIEWS.includes(v)) setProd(true);
   closePop(); scrollTo({top:0});
+  if (v === 'core') renderCore();
+  if (v === 'ops') renderOps();
   if (v === 'tor') renderTor();
   if (v === 'brief') { if (BF && !BF.edit) BF = null; renderBrief(); }
 }
@@ -2729,7 +3343,7 @@ async function boot() {
   try { const d = await api.load(); Object.assign(S, d); if (!S.types.length) S.types = seed().types; syncFromClasses(); }
   catch (e) { toast('Gagal memuat dari Sheet: ' + e.message + '. Menampilkan mode contoh.', 'err'); settings.pass = ''; Object.assign(S, store.get('pkt-demo2', null) || seed()); }
   renderAll(); route();
-  if (settings.url && !settings.pass && location.hash !== '#kalender-tim' && !location.hash.startsWith('#brief/') && !store.get('pkt-skip-pass', false)) askPass();
+  if (settings.url && !settings.pass && location.hash !== '#kalender-tim' && location.hash !== '#core-tim' && !location.hash.startsWith('#brief/') && !store.get('pkt-skip-pass', false)) askPass();
 }
 function askPass() {
   openModal(`<div class="mh"><div><h3>Masuk ke tools</h3><p>Masukkan passcode tim untuk membaca dan menyimpan data ke sheet Pakarify Product Milestone. Passcode cukup diisi sekali di browser ini.</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
