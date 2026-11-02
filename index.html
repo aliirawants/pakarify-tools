@@ -747,6 +747,89 @@ body.sheetmax{overflow:hidden}
 }
 [hidden]{display:none!important}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+
+/* ---------- CPR tools ---------- */
+.cpr-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:16px;align-items:start}
+@media (max-width:1060px){.cpr-grid{grid-template-columns:1fr}}
+.cpr-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:18px 20px;display:grid;gap:14px;align-content:start}
+.cpr-card h3{font-size:16px;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.cpr-card h3 small{font-size:12px;font-weight:500;color:var(--ink3)}
+.drop{border:2px dashed var(--line2);border-radius:18px;padding:18px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s;display:grid;gap:6px;place-items:center;color:var(--ink2);font-size:13px}
+.drop:hover,.drop.drag{border-color:var(--blue);background:var(--blue-l)}
+.drop b{color:var(--ink);font-size:14px}
+.drop svg{width:28px;height:28px;color:var(--blue)}
+.shot{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--bg2)}
+.shot canvas{display:block;width:100%;height:auto}
+.readnote{font-size:12px;color:var(--ink2);background:var(--bg2);border-radius:12px;padding:8px 12px;display:grid;gap:2px}
+.readnote.busy{color:var(--blue-d);background:var(--blue-l)}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+#v-cpr .grid3>*,#v-cpr .grid2>*{min-width:0}
+#v-cpr .fld input,#v-cpr .fld textarea{width:100%;min-width:0}
+.daily input[type=date]{min-width:0}
+@media (max-width:560px){.grid3{grid-template-columns:1fr 1fr}}
+.fld .rp{position:relative}
+.fld .rp span{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:13px;color:var(--ink3);pointer-events:none}
+.fld .rp input{padding-left:34px;width:100%}
+.daily{width:100%;border-collapse:collapse;font-size:13px}
+.daily th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);text-align:left;padding:6px 6px}
+.daily td{padding:3px 4px;border-top:1px solid var(--line)}
+.daily input{width:100%;border:1px solid transparent;background:var(--bg2);border-radius:8px;padding:6px 8px;font-size:13px}
+.daily input:focus{outline:0;border-color:var(--blue);background:#fff}
+.daily .x{border:0;background:none;color:var(--ink3);width:28px;height:28px;border-radius:8px}
+.daily .x:hover{background:var(--bad-l);color:var(--bad)}
+.verdict{border-radius:20px;padding:16px 18px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center;color:#fff}
+.verdict .ic{grid-row:span 2;width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.2);display:grid;place-items:center;font-size:24px}
+.verdict b{font-size:20px;font-weight:700;line-height:1.2}
+.verdict span{font-size:13px;opacity:.9}
+.cat-1{background:linear-gradient(135deg,#16A34A,#15803D)}.cat-2{background:linear-gradient(135deg,#2563EB,#1747B8)}.cat-3{background:linear-gradient(135deg,#F59E0B,#D97706)}.cat-4{background:linear-gradient(135deg,#EA580C,#C2410C)}.cat-5{background:linear-gradient(135deg,#DC2626,#991B1B)}
+.ccat{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:600;white-space:nowrap}
+.ccat.c1{background:#E3F5EA;color:#15803D}.ccat.c2{background:#EAF1FE;color:#1747B8}.ccat.c3{background:#FEF3C7;color:#92400E}.ccat.c4{background:#FFEDD5;color:#9A3412}.ccat.c5{background:#FCE8E8;color:#B91C1C}
+.mets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+@media (max-width:640px){.mets{grid-template-columns:1fr 1fr}}
+.met{background:var(--bg2);border-radius:14px;padding:10px 12px}
+.met .k{font-size:11.5px;color:var(--ink3)}
+.met .v{font-size:18px;font-weight:700;letter-spacing:-.01em;margin-top:2px}
+.met .s{font-size:11.5px;margin-top:2px}
+.cprchart{width:100%;height:auto;display:block}
+.finds{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.finds li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:13.5px;color:var(--ink2);line-height:1.5}
+.finds li i{font-style:normal;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:700}
+.finds li.good i{background:var(--ok-l);color:var(--ok)}.finds li.warn i{background:var(--warn-l);color:var(--warn)}.finds li.bad i{background:var(--bad-l);color:var(--bad)}.finds li.info i{background:var(--blue-l);color:var(--blue-d)}
+.croles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+@media (max-width:900px){.croles{grid-template-columns:1fr}}
+.crole{border:1px solid var(--line);border-radius:18px;padding:12px;display:grid;gap:8px;align-content:start}
+.crole h4{font-size:13.5px;font-weight:700;display:flex;gap:8px;align-items:center}
+.crole h4 em{font-style:normal;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:13px}
+.crole.mk h4 em{background:#EAF1FE;color:#1747B8}.crole.ds h4 em{background:#FCE7F3;color:#BE185D}.crole.pd h4 em{background:#E3F5EA;color:#15803D}
+.rec{display:grid;grid-template-columns:18px 1fr;gap:8px;font-size:12.5px;color:var(--ink2);line-height:1.45;cursor:pointer;padding:6px;border-radius:10px}
+.rec:hover{background:var(--bg2)}
+.rec input{margin:2px 0 0;accent-color:var(--blue)}
+.rec b{color:var(--ink);font-weight:600}
+.rec small{display:block;color:var(--ink3);font-size:11.5px;margin-top:2px}
+.logs{display:grid;gap:10px}
+.logi{border:1px solid var(--line);border-radius:18px;padding:14px 16px;display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:14px;align-items:start;background:#fff}
+@media (max-width:760px){.logi{grid-template-columns:1fr}}
+.logi .when b{display:block;font-size:14px;font-weight:700}
+.logi .when span{font-size:12px;color:var(--ink3)}
+.logi .what{display:grid;gap:6px;min-width:0}
+.logi .what .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:12.5px;color:var(--ink2)}
+.logi .what p{font-size:13px;color:var(--ink2);white-space:pre-wrap}
+.acts-list{display:grid;gap:4px;margin-top:2px}
+.act-i{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--ink2)}
+.act-i button{border:0;border-radius:999px;padding:2px 9px;font-size:11px;font-weight:700;flex:none;cursor:pointer}
+.act-i button.s0{background:var(--bg3);color:var(--ink2)}.act-i button.s1{background:var(--warn-l);color:var(--warn)}.act-i button.s2{background:var(--ok-l);color:var(--ok)}
+.act-i.done span{text-decoration:line-through;opacity:.6}
+.spark{width:120px;height:34px}
+.cprset{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 14px}
+@media (max-width:760px){.cprset{grid-template-columns:1fr 1fr}}
+.legend2{display:flex;gap:12px;flex-wrap:wrap;font-size:11.5px;color:var(--ink2)}
+.legend2 i{display:inline-block;width:14px;height:3px;border-radius:2px;vertical-align:middle;margin-right:5px}
+.g-sky{--c:#38BDF8;--c2:#0284C7;--tag:#0B1A33}
+.g-sky .meta{color:rgba(11,26,51,.75)}.g-sky h3{color:#0B1A33;text-shadow:none}
+.cprart{position:absolute;left:50%;bottom:98px;transform:translateX(-50%);width:236px;z-index:1;filter:drop-shadow(0 16px 18px rgba(0,0,0,.25));transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.gcard:hover .cprart{transform:translateX(-50%) translateY(-14px) scale(1.04)}
+
 </style>
 </head>
 <body>
@@ -764,6 +847,7 @@ body.sheetmax{overflow:hidden}
       <a href="#jadwal" data-v="jadwal">Jadwal</a>
       <a href="#brief" data-v="brief">Brief LP</a>
       <a href="#core" data-v="core">CORE HCE</a>
+      <a href="#cpr" data-v="cpr">CPR</a>
       <a href="#ops" data-v="ops">Operasional</a>
     </nav>
     <div class="right">
@@ -793,6 +877,7 @@ body.sheetmax{overflow:hidden}
       <a class="gcard g-blue" href="#narasumber"><span class="panel"></span><img class="char" src="assets/char-narasumber.webp" alt=""><span class="body"><h3>Cek Narasumber</h3><span class="meta"><span>Level · Fee · PKS</span><b id="gm-narsum">Aktif</b></span></span></a>
       <a class="gcard g-amber" href="#topik"><span class="panel"></span><img class="char" src="assets/char-topik.webp" alt=""><span class="body"><h3>Riset Topik & Rank</h3><span class="meta"><span>3 rekomendasi + 1 terbaik</span><b id="gm-topik">Aktif</b></span></span></a>
       <a class="gcard g-teal" href="#jadwal"><span class="panel"></span><img class="char" src="assets/char-jadwal.webp" alt=""><span class="body"><h3>Jadwal & Kalender</h3><span class="meta"><span>Siklus 1 bulan</span><b id="gm-jadwal">Aktif</b></span></span></a>
+      <a class="gcard g-sky" href="#cpr"><span class="panel"></span><svg class="cprart" viewBox="0 0 240 200" aria-hidden="true"><defs><linearGradient id="cpb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#E8F1FF"/></linearGradient><linearGradient id="cpl" x1="0" x2="1"><stop offset="0" stop-color="#22C55E"/><stop offset=".6" stop-color="#F59E0B"/><stop offset="1" stop-color="#EF4444"/></linearGradient></defs><rect x="14" y="16" width="212" height="150" rx="22" fill="url(#cpb)"/><rect x="14" y="16" width="212" height="150" rx="22" fill="none" stroke="#C9DCF9" stroke-width="2"/><path d="M36 60h168M36 92h168M36 124h168" stroke="#DCE7F7" stroke-width="2"/><path d="M36 140 L70 128 L104 132 L138 120 L170 74 L204 86" fill="none" stroke="url(#cpl)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="170" cy="74" r="9" fill="#EF4444" stroke="#fff" stroke-width="4"/><rect x="40" y="28" width="70" height="20" rx="10" fill="#0B1A33"/><text x="75" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="Poppins,sans-serif">CPR</text><g transform="translate(150 140)"><circle r="30" fill="#2563EB"/><circle r="30" fill="none" stroke="#fff" stroke-width="4"/><path d="M-12 -2 L-3 8 L13 -10" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g></svg><span class="body"><h3>CPR Tools</h3><span class="meta"><span>Iklan Meta · log update</span><b id="gm-cpr">Aktif</b></span></span></a>
       <a class="gcard g-navy" href="#tor"><span class="panel"></span><img class="char" src="assets/char-tor.webp" alt=""><span class="body"><h3>TOR Otomatis</h3><span class="meta"><span>Prompt → PDF TOR</span><b>Aktif</b></span></span></a>
       <a class="gcard g-pink" href="#brief"><span class="panel"></span><img class="char wide" src="assets/char-canvas.webp" alt=""><span class="body"><h3>Brief LP & Instagram</h3><span class="meta"><span>E-course · Kelas · IG</span><b>Aktif</b></span></span></a>
       <a class="gcard g-violet" href="#ops"><span class="panel"></span><svg class="books" viewBox="0 0 240 230" aria-hidden="true"><defs><linearGradient id="bk1" x1="0" x2="1"><stop offset="0" stop-color="#2563EB"/><stop offset="1" stop-color="#1747B8"/></linearGradient><linearGradient id="bk2" x1="0" x2="1"><stop offset="0" stop-color="#FDBA3B"/><stop offset="1" stop-color="#E8890C"/></linearGradient><linearGradient id="bk3" x1="0" x2="1"><stop offset="0" stop-color="#2DD4BF"/><stop offset="1" stop-color="#0F9488"/></linearGradient><linearGradient id="pg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#E3E9F3"/></linearGradient></defs>
@@ -993,6 +1078,68 @@ body.sheetmax{overflow:hidden}
 </section>
 
 <!-- ======================== TEAM CALENDAR (read-only) ======================== -->
+<section id="v-cpr" data-view="cpr" class="view view-band" hidden>
+  <div class="wrap">
+    <div class="vhead">
+      <div><h1>CPR <em>Tools</em></h1><p>Upload screenshot laporan CPR Meta Ads atau isi manual. Status, tren, dan action plan untuk tim Product, Design, dan Marketing dihitung otomatis dengan aturan yang bisa diatur. Setiap update tersimpan sebagai log per kelas.</p></div>
+      <div class="acts"><button class="btn sec" id="cprNew"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Update baru</button><button class="btn pri" id="cprPick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"/></svg>Upload screenshot</button></div>
+    </div>
+    <div class="tabs2" role="tablist">
+      <button role="tab" data-ct="analisis" aria-selected="true">Analisis update</button>
+      <button role="tab" data-ct="log" aria-selected="false">Log update <span class="cnt" id="cntCpr">0</span></button>
+      <button role="tab" data-ct="atur" aria-selected="false">Pengaturan & kategori</button>
+    </div>
+
+    <div id="ct-analisis">
+      <div class="cpr-grid">
+        <div class="cpr-card" id="cprIn">
+          <h3>Data update <small id="cprEditing"></small></h3>
+          <label class="drop" id="cprDrop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="16" cy="9" r="1.6"/></svg><b>Tarik screenshot ke sini, klik, atau tempel (Ctrl+V)</b><span>Grafik "Per purchase" Meta Ads dan/atau teks laporan WA. Angka dibaca otomatis, lalu bisa dikoreksi.</span><input type="file" accept="image/*" class="sr" id="cprFile"></label>
+          <div class="shot" id="cprShot" hidden><canvas id="cprCanvas"></canvas></div>
+          <div class="readnote" id="cprNote" hidden></div>
+          <div class="grid2">
+            <div class="fld"><label for="cKelas">Kelas</label><input id="cKelas" list="cKelasL" placeholder="mis. Carbon GEE 2"><datalist id="cKelasL"></datalist></div>
+            <div class="fld"><label for="cTgl">Tanggal update</label><input id="cTgl" type="date"></div>
+          </div>
+          <div class="grid3">
+            <div class="fld"><label for="cTarget">Target CPR</label><div class="rp"><span>Rp</span><input id="cTarget" inputmode="numeric"></div></div>
+            <div class="fld"><label for="cAvg">Avg CPR</label><div class="rp"><span>Rp</span><input id="cAvg" inputmode="numeric" placeholder="otomatis"></div></div>
+            <div class="fld"><label for="cLast">CPR terkini</label><div class="rp"><span>Rp</span><input id="cLast" inputmode="numeric" placeholder="otomatis"></div></div>
+            <div class="fld"><label for="cPes">Peserta (bayar)</label><input id="cPes" inputmode="numeric"></div>
+            <div class="fld"><label for="cDaf">Pendaftar</label><input id="cDaf" inputmode="numeric"></div>
+            <div class="fld"><label for="cClose">Target closing</label><div class="rp"><span>%</span><input id="cClose" inputmode="numeric"></div></div>
+            <div class="fld"><label for="cSpend">Spend total (opsional)</label><div class="rp"><span>Rp</span><input id="cSpend" inputmode="numeric"></div></div>
+            <div class="fld"><label for="cKls">Tanggal kelas</label><input id="cKls" type="date"></div>
+            <div class="fld"><label for="cTargetP">Target peserta</label><input id="cTargetP" inputmode="numeric" placeholder="opsional"></div>
+          </div>
+          <div class="fld"><span class="l">CPR harian</span>
+            <table class="daily"><thead><tr><th style="width:46%">Tanggal</th><th>CPR (Rp)</th><th style="width:34px"></th></tr></thead><tbody id="cDaily"></tbody></table>
+            <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn soft xs" id="cAddDay">+ Tambah hari</button><button class="btn ghost xs" id="cReread" hidden>Baca ulang grafik dengan angka di atas</button></div>
+          </div>
+          <div class="fld"><label for="cText">Teks laporan (opsional)</label><textarea id="cText" style="font-family:var(--f);min-height:70px" placeholder="Tempel teks laporan dari WA, mis. 'Target (ideal CPR): < Rp40.000 · avg CPR: Rp45.755 · eksisting CPR: Rp128.755 · jumlah peserta: 9'"></textarea></div>
+        </div>
+
+        <div class="cpr-card" id="cprOut"></div>
+      </div>
+    </div>
+
+    <div id="ct-log" hidden>
+      <div class="filters"><span class="lbl">Kelas</span><select class="sel" id="cLogKelas"><option value="">Semua kelas</option></select><span class="muted" style="font-size:12.5px;margin-left:auto">Klik "Buka" untuk memuat ulang update ke analisis</span></div>
+      <div class="logs" id="cLogs"></div>
+    </div>
+
+    <div id="ct-atur" hidden>
+      <div class="cpr-card">
+        <h3>Ambang kategori <small>dibandingkan dengan Target CPR</small></h3>
+        <div class="cprset" id="cprSet"></div>
+        <div class="legend2" id="cprLegend"></div>
+        <p class="muted" style="font-size:12.5px">Status keseluruhan memakai gabungan berbobot: <b id="wLastTxt">60%</b> CPR terkini + sisanya avg CPR. Pengaturan tersimpan di browser ini. Default: target Rp40.000, batas impas Rp75.000.</p>
+        <div><button class="btn ghost sm" id="cprSetReset">Kembalikan default</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="v-team" data-view="team" class="view view-band" hidden>
   <div class="wrap">
     <div class="teamhead"><div><div class="eyebrow">Kalender tim · hanya baca</div><h1 style="font-size:clamp(24px,3vw,32px);font-weight:800;margin-top:4px">Jadwal Kelas Pakarify</h1></div></div>
@@ -1069,6 +1216,7 @@ const TABS = {
     // URL dari smart chip / hyperlink, dikirim Code.gs (hanya dibaca)
     proposeUrl:'_url_Link Propose', torUrl:'_url_Link TOR', briefUrl:'_url_Brief LP & Poster', feedbackUrl:'_url_Feedback Kelas'}},
   // CORE HCE (MoM & task tim) — tim tanpa passcode membaca/mengisi lewat aksi coreload/coreupdate
+  cpr: {sheet:'CPR Log', cols:{id:'ID', kelas:'Kelas', tanggal:'Tanggal Update', target:'Target CPR', avg:'Avg CPR', last:'CPR Terkini', peserta:'Peserta', pendaftar:'Pendaftar', closing:'Target Closing (%)', spend:'Spend', impas:'Batas Impas', tanggalKelas:'Tanggal Kelas', targetPeserta:'Target Peserta', harian:'Data Harian (JSON)', status:'Status', tren:'Tren', ringkasan:'Ringkasan', catatan:'Catatan', actions:'Action Plan (JSON)', oleh:'Dibuat Oleh', dibuat:'Dibuat'}},
   coreMom: {sheet:'Core MoM', cols:{id:'ID', kode:'Kode', judul:'Judul Rapat', tanggal:'Tanggal', peserta:'Peserta', catatan:'Catatan', dibuat:'Dibuat'}},
   coreTask: {sheet:'Core Tasks', cols:{id:'ID', kode:'Kode', sumber:'Sumber', momId:'MoM ID', judul:'Task', deskripsi:'Deskripsi', pic:'PIC', collab:'Collab', due:'Due Date', status:'Status', closing:'Closing Date', updates:'Updates', dibuat:'Dibuat', oleh:'Dibuat Oleh'}},
   // Tools Operasional: link aset per kelas ('*' = berlaku semua kelas) + template BC
@@ -1086,6 +1234,7 @@ function toSheet(tab, r) {
     if (isArr(tab, k)) v = listOf(v).join(', ');
     else if (BOOL.has(k) && tab !== 'classes') v = v === true ? 'Ya' : v === false ? 'Tidak' : '';
     else if (k === 'skor') v = JSON.stringify(v || {});
+    else if (tab === 'cpr' && (k === 'harian' || k === 'actions')) v = JSON.stringify(v || []);
     else if (k === 'pilih') v = v === true ? 'Ya' : v === false ? 'Tidak' : 'Otomatis';
     else if (k === 'terbaik') v = v ? 'Ya' : '';
     o[cols[k]] = v ?? ''; }
@@ -1097,6 +1246,8 @@ function fromSheet(tab, row) {
     if (isArr(tab, k)) v = listOf(v);
     else if (BOOL.has(k) && tab !== 'classes') v = v === '' ? null : yes(v);  // 'pembicara' di Jadwal Kelas = nama, bukan Ya/Tidak
     else if (k === 'skor') { try { v = JSON.parse(v || '{}'); } catch (_) { v = {}; } }
+    else if (tab === 'cpr' && (k === 'harian' || k === 'actions')) { try { v = JSON.parse(v || '[]'); } catch (_) { v = []; } }
+    else if (tab === 'cpr' && ['target','avg','last','pendaftar','closing','spend','impas','targetPeserta','peserta'].includes(k)) v = numOr(v, v === '' ? null : v);
     else if (k === 'pilih') v = /otomatis/i.test(v) || v === '' ? null : yes(v);
     else if (k === 'terbaik') v = yes(v);
     else if (['tahun','tahunPerusahaan','sesi','peserta','level','total','urutan'].includes(k)) v = numOr(v, v === '' ? null : v);
@@ -1137,12 +1288,12 @@ const api = {
     return call('upload', {base64: b64, fileName: file.name, mime: file.type || 'application/octet-stream', ...meta});
   },
 };
-function persistDemo() { store.set('pkt-demo2', {kandidat:S.kandidat, db:S.db, types:S.types, topics:S.topics, classes:S.classes, coreMom:S.coreMom, coreTask:S.coreTask, opsAset:S.opsAset, opsTpl:S.opsTpl}); }
+function persistDemo() { store.set('pkt-demo2', {kandidat:S.kandidat, db:S.db, types:S.types, topics:S.topics, classes:S.classes, coreMom:S.coreMom, coreTask:S.coreTask, opsAset:S.opsAset, opsTpl:S.opsTpl, cpr:S.cpr}); }
 async function saveRec(tab, rec, msg) { try { await api.save(tab, rec); if (msg) toast(msg); } catch (e) { toast('Gagal menyimpan: ' + e.message, 'err'); } }
 
 /* ---------------- state ---------------- */
 const DEF_COLORS = [{nama:'Done', warna:'#DDF0E2'}, {nama:'Fix', warna:'#DCE8FF'}, {nama:'Sementara', warna:'#FFF1CC'}, {nama:'Ide Kelas', warna:'#F1F3F7'}, {nama:'Cancelled', warna:'#F6D3D3'}];
-const S = { kandidat:[], db:[], types:[], topics:[], classes:[], coreMom:[], coreTask:[], opsAset:[], opsTpl:[],
+const S = { kandidat:[], db:[], types:[], topics:[], classes:[], cpr:[], coreMom:[], coreTask:[], opsAset:[], opsTpl:[],
   order: store.get('pkt-order', []),      // urutan manual Database Kelas (id kelas)
   fase: store.get('pkt-fase', {}),        // jadwal aktual custom per kelas: offset hari dari H
   colors: store.get('pkt-colors', null) || DEF_COLORS,
@@ -1227,7 +1378,8 @@ function seed() {
   const rKand = REAL.kandidat.map(r => fromSheet('kandidat', r));
   const rDb = REAL.db.map(r => ({...fromSheet('db', r), id:uid('d'), kontak:'', pks:'', dokumen:'', folder:''}));
   S.types = S0;
-  const d = {kandidat:[...rKand, ...kandidat], db:rDb, types, topics:rTopics, classes}; store.set('pkt-demo2', d); return d;
+  const cpr = [{id:'r-contoh-gee2', kelas:'Carbon GEE 2', tanggal:'2026-11-02', target:40000, avg:45755, last:128755, peserta:9, pendaftar:19, closing:60, impas:75000, harian:[{tgl:'2026-10-26', v:31500}, {tgl:'2026-10-27', v:37200}, {tgl:'2026-10-28', v:34300}, {tgl:'2026-10-29', v:25800}, {tgl:'2026-10-30', v:45800}, {tgl:'2026-10-31', v:140200}, {tgl:'2026-11-01', v:128755}], status:'Buruk', tren:'Lonjakan', ringkasan:'', catatan:'Awal2 cukup bagus, skrng lagi naik cprnya. Follow up yang awal2 launch, total ada 19 pendaftar. Semoga bisa closing 60% dari pendaftar.', actions:[{id:'pd-follow', role:'pd', text:'Follow up 3 pendaftar yang belum bayar lewat WA hari ini', status:1}], oleh:'Muhammad Iqbal (CEO)', dibuat:'2026-11-02'}];
+  const d = {kandidat:[...rKand, ...kandidat], db:rDb, types, topics:rTopics, classes, cpr}; store.set('pkt-demo2', d); return d;
 }
 
 /* ---------------- narasumber scoring ---------------- */
@@ -1417,7 +1569,7 @@ const ACTIVE = c => ['Fix','Sementara'].includes(c.progress);
 /* =====================================================================
    RENDER
    ===================================================================== */
-function renderAll() { renderHome(); renderKandidat(); renderDB(); renderTopik(); renderKelasTable(); renderJadwal(); renderCore(); renderOps(); $('#cntK').textContent = S.kandidat.filter(k => k.status !== 'db').length; $('#cntD').textContent = S.db.length; }
+function renderAll() { cprInit(); renderHome(); renderKandidat(); renderDB(); renderTopik(); renderKelasTable(); renderJadwal(); renderCore(); renderOps(); $('#cntK').textContent = S.kandidat.filter(k => k.status !== 'db').length; $('#cntD').textContent = S.db.length; }
 
 /* ---------- home ---------- */
 function renderHome() {
@@ -1428,6 +1580,8 @@ function renderHome() {
   $('#gm-narsum').textContent = ks.length ? `${ks.length} kandidat · ${gems} permata` : 'Aktif';
   $('#gm-topik').textContent = best ? `Terbaik: skor ${scoreT(best).total}` : 'Aktif';
   $('#gm-jadwal').textContent = up ? `Berikutnya ${fmt(up.p.H)}` : 'Aktif';
+  const lc = [...(S.cpr || [])].sort((a, b) => String(b.tanggal).localeCompare(String(a.tanggal)))[0];
+  $('#gm-cpr').textContent = lc ? `${lc.status} · ${fmtDate(lc.tanggal)}` : 'Aktif';
   const ql = []; if (CONFIG.SHEET_URL) ql.push(`<a href="${CONFIG.SHEET_URL}" target="_blank" rel="noopener">Google Sheet</a>`); if (CONFIG.DRIVE_URL) ql.push(`<a href="${CONFIG.DRIVE_URL}" target="_blank" rel="noopener">Folder Drive</a>`);
   $('#quickLinks').innerHTML = ql.join('') + '<a href="#jadwal">Kalender kelas</a><a href="#kalender-tim">Link tim</a>';
   railNav();
@@ -3293,10 +3447,525 @@ document.addEventListener('change', e => {
   if (t.dataset.asst) { const [cid, k] = t.dataset.asst.split('|'), r = asetRow(cid, k), st = t.value; if (st === 'Ada' && !(r && r.link)) { toast('Tempel link-nya dulu, status otomatis jadi "Ada"', 'info'); return renderOps(); } return saveAset(cid, k, st === 'Ada' ? {status:'Ada'} : {status:st, link:''}); }
 });
 
+/* CPR reader — membaca screenshot laporan CPR Meta Ads tanpa AI.
+   - parseReport(teks): ambil target, avg, CPR terkini, peserta, pendaftar, closing %, kelas, tanggal dari teks laporan (hasil OCR atau tempel).
+   - read(img, words, opt): deteksi kartu grafik, gridline, garis berwarna, posisi tanggal; kalibrasi nilai dari label sumbu (OCR) atau dari CPR terkini. */
+const CPR_READER = (() => {
+  const MONTHS = {jan:0, feb:1, mar:2, apr:3, may:4, mei:4, jun:5, jul:6, aug:7, agu:7, agt:7, ags:7, sep:8, oct:9, okt:9, nov:10, dec:11, des:11};
+  const fixDigits = s => String(s).replace(/(?<=[\d.,])[Ss](?=[\d.,])|(?<=Rp\s?)[Ss]|[Ss](?=\d{2}[.,]\d{3})/g, '5').replace(/(?<=[\d.,])[Oo]|[Oo](?=[\d.,]\d)/g, '0').replace(/(?<=\d)[lI|]|[lI|](?=\d)/g, '1');
+  const num = t => { if (t == null) return null; const m = fixDigits(t).match(/\d[\d.,]*/); if (!m) return null; let s = m[0].replace(/[.,]$/, ''); s = s.replace(/[.,](?=\d{3}(?!\d))/g, ''); s = s.replace(/[.,]\d{1,2}$/, ''); s = s.replace(/[.,]/g, ''); const n = +s; return isFinite(n) ? n : null; };
+  const rgb2hsv = (r, g, b) => { r /= 255; g /= 255; b /= 255; const mx = Math.max(r, g, b), mn = Math.min(r, g, b), d = mx - mn; let h = 0; if (d) { if (mx === r) h = ((g - b) / d) % 6; else if (mx === g) h = (b - r) / d + 2; else h = (r - g) / d + 4; h *= 60; if (h < 0) h += 360; } return [h, mx ? d / mx : 0, mx]; };
+
+  function parseReport(text, today) {
+    const t = fixDigits(String(text || '')).replace(/\r/g, '');
+    const out = {};
+    const rp = re => { const m = t.match(re); return m ? num(m[1]) : null; };
+    out.target = rp(/target[^\n:]*:?\s*[<≤]?\s*(?:rp\.?\s*)?([\d.,]+)/i);
+    out.avg = rp(/(?:avg|rata[- ]?rata)\s*(?:cpr)?\s*:?\s*(?:rp\.?\s*)?([\d.,]+)/i);
+    out.last = rp(/(?:eksisting|existing|terkini|current|hari ini|today)\s*(?:cpr)?\s*:?\s*(?:rp\.?\s*)?([\d.,]+)/i);
+    let m = t.match(/(?:jumlah\s*)?peserta\s*:?\s*(\d{1,4})/i); if (m) out.peserta = +m[1];
+    m = t.match(/(\d{1,4})\s*pendaftar/i) || t.match(/pendaftar\s*:?\s*(\d{1,4})/i); if (m) out.pendaftar = +m[1];
+    m = t.match(/closing[^\d\n]{0,25}(\d{1,3})\s*%/i); if (m) out.closing = +m[1];
+    m = t.match(/(?:report|laporan)\s+(?:kelas\s+)?(.+?)\s*[:\-–]\s*update/i) || t.match(/kelas\s*:\s*(.+)/i); if (m) out.kelas = m[1].trim();
+    m = t.match(/update\s+(\d{1,2})\s+([a-z]{3,})\w*\s+(\d{4})/i);
+    if (m && MONTHS[m[2].toLowerCase().slice(0, 3)] != null) out.tanggal = `${m[3]}-${String(MONTHS[m[2].toLowerCase().slice(0, 3)] + 1).padStart(2, '0')}-${String(+m[1]).padStart(2, '0')}`;
+    m = t.match(/per\s*purchase[^\n]*\n?\s*(?:rp\.?\s*)?([\d.,]{4,})/i); if (m && out.avg == null) out.avg = num(m[1]);
+    Object.keys(out).forEach(k => (out[k] == null || out[k] === '') && delete out[k]);
+    return out;
+  }
+
+  function brightBox(img) {
+    const {width:W, height:H, data} = img;
+    const bright = (x, y) => { const i = (y * W + x) * 4; return data[i] > 225 && data[i + 1] > 225 && data[i + 2] > 225; };
+    const rowF = []; for (let y = 0; y < H; y++) { let c = 0; for (let x = 0; x < W; x += 2) if (bright(x, y)) c++; rowF.push(c / (W / 2)); }
+    const runs = []; let cur = null;
+    for (let y = 0; y <= H; y++) { const ok = y < H && rowF[y] > .15; if (ok && cur == null) cur = y; if (!ok && cur != null) { runs.push([cur, y - 1]); cur = null; } }
+    const merged = []; for (const r of runs) { const L = merged[merged.length - 1]; if (L && r[0] - L[1] <= 3) L[1] = r[1]; else merged.push([...r]); }
+    let best = merged.sort((a, b) => (b[1] - b[0]) - (a[1] - a[0]))[0] || [0, H - 1];
+    const [y0, y1] = best;
+    const colF = []; for (let x = 0; x < W; x++) { let c = 0; for (let y = y0; y <= y1; y += 2) if (bright(x, y)) c++; colF.push(c / ((y1 - y0) / 2 + 1)); }
+    const cr = []; let cx = null;
+    for (let x = 0; x <= W; x++) { const ok = x < W && colF[x] > .45; if (ok && cx == null) cx = x; if (!ok && cx != null) { cr.push([cx, x - 1]); cx = null; } }
+    const cm = []; for (const r of cr) { const L = cm[cm.length - 1]; if (L && r[0] - L[1] <= 4) L[1] = r[1]; else cm.push([...r]); }
+    const bx = cm.sort((a, b) => (b[1] - b[0]) - (a[1] - a[0]))[0] || [0, W - 1];
+    return {x0:bx[0], x1:bx[1], y0, y1};
+  }
+
+  function gridlines(img, box, yr) {
+    const {width:W, height:H, data} = img;
+    const frac = {};
+    const fr = y => { if (y < 0 || y >= H) return 0; if (frac[y] != null) return frac[y]; let c = 0, n = 0; for (let x = box.x0; x <= box.x1; x += 2) { const i = (y * W + x) * 4; const [, s, v] = rgb2hsv(data[i], data[i + 1], data[i + 2]); n++; if (s < .12 && v > .45 && v < .965) c++; } return frac[y] = c / n; };
+    const thin = y => fr(y - 4) < .5 && fr(y + 4) < .5;
+    const strong = []; for (let y = Math.max(box.y0, yr[0]); y <= Math.min(box.y1, yr[1]); y++) if (fr(y) > .45 && thin(y)) { const L = strong[strong.length - 1]; if (L != null && y - L <= 1) continue; strong.push(y); }
+    if (strong.length < 2) return strong;
+    const diffs = []; for (let i = 1; i < strong.length; i++) diffs.push(strong[i] - strong[i - 1]);
+    const dmin = Math.min(...diffs.filter(d => d >= 6));
+    let best = null;
+    for (let k = 1; k <= 4; k++) { const d = dmin / k; if (d < 6) break; const ok = diffs.every(x => Math.abs(x / d - Math.round(x / d)) < .12); if (ok) best = d; }
+    const d = best || dmin;
+    const has = y => { const r = Math.round(y); return Math.max(fr(r - 1), fr(r), fr(r + 1)) > .08 && thin(r); };
+    const out = [...strong];
+    for (let y = strong[strong.length - 1] + d; y <= box.y1 - 2 && has(y); y += d) out.push(y);
+    for (let y = strong[0] - d; y >= box.y0 + 2 && has(y); y -= d) out.unshift(y);
+    // isi celah di tengah
+    const full = []; for (let i = 0; i < out.length; i++) { full.push(out[i]); if (i < out.length - 1) { const n = Math.round((out[i + 1] - out[i]) / d); for (let j = 1; j < n; j++) full.push(out[i] + j * d); } }
+    return full;
+  }
+
+  function lines(words) {
+    const ws = words.filter(w => w.text && w.text.trim()).map(w => ({...w, cx:(w.bbox.x0 + w.bbox.x1) / 2, cy:(w.bbox.y0 + w.bbox.y1) / 2, h:w.bbox.y1 - w.bbox.y0}));
+    ws.sort((a, b) => a.cy - b.cy);
+    const out = [];
+    for (const w of ws) { const L = out.find(l => Math.abs(l.cy - w.cy) < Math.max(4, w.h * .6)); if (L) { L.ws.push(w); L.cy = (L.cy * (L.ws.length - 1) + w.cy) / L.ws.length; } else out.push({cy:w.cy, ws:[w]}); }
+    out.forEach(l => l.ws.sort((a, b) => a.bbox.x0 - b.bbox.x0));
+    return {ws, out};
+  }
+
+  function axisY(words, box) {
+    const cand = [];
+    for (const L of lines(words).out) {
+      if (L.cy < box.y0 || L.cy > box.y1) continue;
+      const left = L.ws.filter(w => w.bbox.x0 < box.x0 + (box.x1 - box.x0) * .3);
+      if (!left.length) continue;
+      const txt = left.map(w => w.text).join(' ');
+      if (/per\s*purchase|target|avg|cpr|eksist/i.test(txt)) continue;
+      if (!/rp/i.test(txt) && !/^\s*[\d.,]+\s*$/.test(txt)) continue;
+      const v = num(txt.replace(/rp/i, '')); if (v == null) continue;
+      cand.push({v, y:L.cy, x1:left[left.length - 1].bbox.x1});
+    }
+    let best = null;
+    for (let i = 0; i < cand.length; i++) for (let j = i + 1; j < cand.length; j++) {
+      const a = cand[i], b = cand[j]; if (a.v === b.v || Math.abs(a.y - b.y) < 6) continue;
+      const k = (b.v - a.v) / (b.y - a.y); if (k >= 0) continue;
+      const fit = cand.filter(c => Math.abs(a.v + k * (c.y - a.y) - c.v) <= Math.max(500, Math.abs(c.v) * .03 + Math.abs(k) * 3));
+      if (!best || fit.length > best.fit.length) best = {fit};
+    }
+    if (!best || best.fit.length < 3) return null;
+    const f = best.fit, n = f.length, my = f.reduce((s, c) => s + c.y, 0) / n, mv = f.reduce((s, c) => s + c.v, 0) / n;
+    const k = f.reduce((s, c) => s + (c.y - my) * (c.v - mv), 0) / f.reduce((s, c) => s + (c.y - my) ** 2, 0);
+    return {toV:y => mv + k * (y - my), left:Math.max(...f.map(c => c.x1)), labels:f.map(c => c.v)};
+  }
+
+  function axisXWords(words, baseline, year) {
+    const res = [];
+    for (const L of lines(words).out) {
+      if (L.cy < baseline) continue;
+      const t = L.ws;
+      for (let i = 0; i < t.length; i++) {
+        const mo = MONTHS[String(t[i].text).toLowerCase().replace(/[^a-z]/g, '').slice(0, 3)];
+        if (mo == null) continue;
+        const p = t[i - 1], q = t[i + 1]; let d = null, x = null;
+        if (p && /^\d{1,2}$/.test(p.text.replace(/\D/g, ''))) { d = +p.text.replace(/\D/g, ''); x = (p.bbox.x0 + t[i].bbox.x1) / 2; }
+        else if (q && /^\d{1,2}$/.test(q.text.replace(/\D/g, ''))) { d = +q.text.replace(/\D/g, ''); x = (t[i].bbox.x0 + q.bbox.x1) / 2; }
+        if (d && d <= 31) res.push({d, m:mo, x});
+      }
+      if (res.length >= 2) break;
+    }
+    if (res.length < 2) return null;
+    const now = new Date(year || Date.now());
+    return res.sort((a, b) => a.x - b.x).map(r => { let yy = now.getFullYear(); if (r.m > now.getMonth() + 1) yy--; return {x:r.x, iso:`${yy}-${String(r.m + 1).padStart(2, '0')}-${String(r.d).padStart(2, '0')}`}; });
+  }
+
+  function traceLine(img, region) {
+    const {width:W, data} = img;
+    const px = (x, y) => { const i = (y * W + x) * 4; return rgb2hsv(data[i], data[i + 1], data[i + 2]); };
+    const hist = new Array(36).fill(0);
+    for (let y = region.y0; y < region.y1; y++) for (let x = region.x0; x < region.x1; x++) { const [h, s, v] = px(x, y); if (s > .3 && v > .35) hist[Math.floor(h / 10) % 36]++; }
+    let hb = 0; hist.forEach((c, i) => { if (c > hist[hb]) hb = i; });
+    if (hist[hb] < 15) return null;
+    const hc = hb * 10 + 5, near = h => Math.min(Math.abs(h - hc), 360 - Math.abs(h - hc)) <= 18;
+    const col = {};
+    for (let x = region.x0; x < region.x1; x++) {
+      const ys = []; for (let y = region.y0; y < region.y1; y++) { const [h, s, v] = px(x, y); if (s > .25 && v > .3 && near(h)) ys.push(y); }
+      if (ys.length && ys.length < (region.y1 - region.y0) * .5) col[x] = ys[Math.floor(ys.length / 2)];
+    }
+    let xs = Object.keys(col).map(Number).sort((a, b) => a - b);
+    // ambil rentang kontinu terpanjang (buang legenda/ikon kecil)
+    let runs = [], s = null, prev = null;
+    for (const x of xs) { if (s == null) s = x; else if (x - prev > 6) { runs.push([s, prev]); s = x; } prev = x; }
+    if (s != null) runs.push([s, prev]);
+    runs.sort((a, b) => (b[1] - b[0]) - (a[1] - a[0]));
+    if (!runs.length || runs[0][1] - runs[0][0] < 20) return null;
+    const [a, b] = runs[0]; xs = xs.filter(x => x >= a && x <= b);
+    return {col, xs, x0:a, x1:b, hue:hc};
+  }
+
+  function tickBlobs(img, box, baseline, gap, x0, x1) {
+    // blob gelap (label tanggal) tepat di bawah baseline → posisi x tiap tanggal
+    const {width:W, data} = img;
+    const yA = Math.round(baseline + 2), yB = Math.round(Math.min(box.y1, baseline + Math.max(10, gap * .9)));
+    const colDark = [];
+    for (let x = box.x0; x <= box.x1; x++) { let c = 0; for (let y = yA; y <= yB; y++) { const i = (y * W + x) * 4; if (data[i] + data[i + 1] + data[i + 2] < 3 * 150) c++; } colDark.push(c > 0); }
+    const blobs = []; let s = null;
+    for (let i = 0; i <= colDark.length; i++) { if (colDark[i] && s == null) s = i; if (!colDark[i] && s != null) { blobs.push([s + box.x0, i - 1 + box.x0]); s = null; } }
+    // gabungkan blob yang berdekatan (satu label = beberapa huruf)
+    const merged = []; for (const b of blobs) { const L = merged[merged.length - 1]; if (L && b[0] - L[1] < 6) L[1] = b[1]; else merged.push([...b]); }
+    const cs = merged.filter(b => b[1] - b[0] >= 3).map(b => (b[0] + b[1]) / 2).filter(c => c >= x0 - 25 && c <= x1 + 25);
+    return cs;
+  }
+
+  function sampleAt(tr, x) { for (let d = 0; d <= 8; d++) { for (const s of [1, -1]) { const y = tr.col[Math.round(x + s * d)]; if (y != null) return y; } } return null; }
+
+  /** img: ImageData; words: OCR [{text,bbox}] (boleh kosong); opt: {anchorLast, endDate, today} */
+  function read(img, words = [], opt = {}) {
+    const notes = [];
+    const box = brightBox(img);
+    const yA = axisY(words, box);
+    const tr = traceLine(img, {x0:Math.max(box.x0 + 2, yA ? Math.round(yA.left + 3) : box.x0 + 2), x1:box.x1 - 2, y0:box.y0 + 2, y1:box.y1 - 2});
+    let grid = [];
+    if (tr) { const ys = tr.xs.map(x => tr.col[x]); const span = Math.max(30, (Math.max(...ys) - Math.min(...ys))); grid = gridlines(img, box, [Math.min(...ys) - span, Math.max(...ys) + span * .8]); }
+    if (!tr) { notes.push('Garis grafik tidak terdeteksi. Isi nilai harian secara manual.'); return {notes, points:[], box, grid}; }
+    const baseline = grid.length >= 2 ? grid[grid.length - 1] : null;
+    const gap = grid.length >= 2 ? (grid[grid.length - 1] - grid[0]) / (grid.length - 1) : 20;
+    // posisi tanggal
+    let ticks = baseline != null ? axisXWords(words, baseline, opt.today) : null;
+    let xsPos = ticks ? ticks.map(t => t.x) : null;
+    if (!xsPos && baseline != null) { const b = tickBlobs(img, box, baseline, gap, tr.x0, tr.x1); if (b.length >= 2) xsPos = b; }
+    if (!xsPos) { const n = opt.days || 7; xsPos = Array.from({length:n}, (_, i) => tr.x0 + (tr.x1 - tr.x0) * i / (n - 1)); notes.push(`Posisi tanggal ditebak (${n} titik merata).`); }
+    // tanggal
+    let dates;
+    if (ticks) dates = ticks.map(t => t.iso);
+    else { const end = opt.endDate ? new Date(opt.endDate) : new Date(Date.now() - 864e5); dates = xsPos.map((_, i) => { const d = new Date(end.getFullYear(), end.getMonth(), end.getDate() - (xsPos.length - 1 - i)); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; }); notes.push('Tanggal dihitung mundur dari tanggal terakhir; cek kolom tanggal.'); }
+    const ys = xsPos.map(x => sampleAt(tr, x));
+    // kalibrasi
+    let toV = null, how = '';
+    if (yA) { toV = yA.toV; how = 'label sumbu Y'; }
+    else if (baseline != null && opt.anchorLast && ys[ys.length - 1] != null && baseline - ys[ys.length - 1] > 3) { const k = opt.anchorLast / (baseline - ys[ys.length - 1]); toV = y => (baseline - y) * k; how = 'CPR terkini sebagai acuan'; }
+    else if (baseline != null && opt.anchorAvg) { const valid = ys.filter(y => y != null); const m = valid.reduce((s, y) => s + (baseline - y), 0) / valid.length; const k = opt.anchorAvg / m; toV = y => (baseline - y) * k; how = 'rata-rata sebagai acuan (perkiraan)'; }
+    if (!toV) notes.push('Skala nilai tidak bisa dipastikan; isi minimal CPR terkini lalu baca ulang.');
+    else notes.push(`Skala dari ${how}.`);
+    const points = xsPos.map((x, i) => ({tgl:dates[i] || '', x, y:ys[i], v:(toV && ys[i] != null) ? Math.max(0, Math.round(toV(ys[i]) / 100) * 100) : null}));
+    if (toV && opt.anchorLast && points.length) points[points.length - 1].v = opt.anchorLast;
+    return {points, notes, box, grid, trace:tr, calib:how};
+  }
+  return {read, parseReport, num};
+})();
+
+
+
+/* =====================================================================
+   CPR TOOLS
+   ===================================================================== */
+const CPR_DEF = {target:40000, impas:75000, closing:60, c1:.8, c2:1, c3:1.5, c4:2.5, spike:2, wLast:.6, naik:25, turun:20, hariMepet:5};
+const CPR_CFG = () => ({...CPR_DEF, ...store.get('pkt-cprcfg', {})});
+const CATS = [
+  {n:1, l:'Sangat bagus', e:'🚀', d:'Jauh di bawah target. Aman untuk scale.'},
+  {n:2, l:'Bagus', e:'✅', d:'Sesuai target. Pertahankan dan uji varian.'},
+  {n:3, l:'Perlu perhatian', e:'⚠️', d:'Sedikit di atas target. Optimasi sebelum memburuk.'},
+  {n:4, l:'Buruk', e:'🔻', d:'Jauh di atas target. Perlu tindakan hari ini.'},
+  {n:5, l:'Kritis', e:'🛑', d:'Berkali lipat target. Hentikan yang boros, perbaiki dulu.'},
+];
+const catOf = (r, c) => r == null ? null : r <= c.c1 ? CATS[0] : r <= c.c2 ? CATS[1] : r <= c.c3 ? CATS[2] : r <= c.c4 ? CATS[3] : CATS[4];
+const rupiah = n => n == null || isNaN(n) ? '–' : 'Rp' + Math.round(n).toLocaleString('id-ID');
+const cprPct = n => (n >= 0 ? '+' : '') + Math.round(n) + '%';
+const numIn = id => { const v = $(id).value; if (v === '' || v == null) return null; const n = CPR_READER.num(v); return n; };
+const fmtDate = s => { const d = parseIso(s); return d ? `${d.getDate()} ${BLN[d.getMonth()]}` : s || '–'; };
+
+let CPR = {draft:null, editId:null, img:null, read:null};
+function blankDraft() { const c = CPR_CFG(); return {kelas:'', tanggal:iso(new Date()), target:c.target, avg:null, last:null, peserta:null, pendaftar:null, closing:c.closing, spend:null, tanggalKelas:'', targetPeserta:null, harian:[], text:''}; }
+
+function readForm() {
+  const d = CPR.draft;
+  Object.assign(d, {kelas:$('#cKelas').value.trim(), tanggal:$('#cTgl').value, target:numIn('#cTarget'), avg:numIn('#cAvg'), last:numIn('#cLast'), peserta:numIn('#cPes'), pendaftar:numIn('#cDaf'), closing:numIn('#cClose'), spend:numIn('#cSpend'), tanggalKelas:$('#cKls').value, targetPeserta:numIn('#cTargetP'), text:$('#cText').value});
+  d.harian = $$('#cDaily tr').map(tr => ({tgl:tr.querySelector('[data-k="tgl"]').value, v:CPR_READER.num(tr.querySelector('[data-k="v"]').value)})).filter(r => r.tgl || r.v != null);
+  return d;
+}
+function fillForm(d) {
+  const set = (id, v) => { $(id).value = v == null ? '' : (typeof v === 'number' ? v.toLocaleString('id-ID') : v); };
+  $('#cKelas').value = d.kelas || ''; $('#cTgl').value = d.tanggal || ''; set('#cTarget', d.target); set('#cAvg', d.avg); set('#cLast', d.last); set('#cPes', d.peserta); set('#cDaf', d.pendaftar); set('#cClose', d.closing); set('#cSpend', d.spend); $('#cKls').value = d.tanggalKelas || ''; set('#cTargetP', d.targetPeserta); $('#cText').value = d.text || '';
+  renderDaily(d.harian || []);
+}
+function renderDaily(rows) {
+  $('#cDaily').innerHTML = (rows.length ? rows : [{tgl:'', v:null}]).map(r => `<tr><td><input type="date" data-k="tgl" value="${esc(r.tgl || '')}"></td><td><input inputmode="numeric" data-k="v" value="${r.v == null ? '' : Math.round(r.v).toLocaleString('id-ID')}" placeholder="0"></td><td><button class="x" data-cdrow title="Hapus baris">${ICON.x.replace('<svg', '<svg width="14" height="14"')}</button></td></tr>`).join('');
+}
+
+/* ---------- analisis (aturan, tanpa AI) ---------- */
+function analyzeCPR(d0, c = CPR_CFG()) {
+  const d = {...d0};
+  const s = (d.harian || []).filter(r => r.v != null && r.v > 0).sort((a, b) => String(a.tgl).localeCompare(String(b.tgl)));
+  const vals = s.map(r => r.v);
+  if (d.last == null && vals.length) d.last = vals[vals.length - 1];
+  if (d.avg == null && vals.length) d.avg = d.spend && d.peserta ? d.spend / d.peserta : vals.reduce((a, b) => a + b, 0) / vals.length;
+  const T = d.target || c.target;
+  const out = {d, T, finds:[], recs:{mk:[], ds:[], pd:[]}, vals, s};
+  if (d.avg == null && d.last == null) { out.empty = true; return out; }
+  const rAvg = d.avg != null ? d.avg / T : null, rLast = d.last != null ? d.last / T : null;
+  const r = rAvg != null && rLast != null ? c.wLast * rLast + (1 - c.wLast) * rAvg : (rLast ?? rAvg);
+  out.catAvg = catOf(rAvg, c); out.catLast = catOf(rLast, c); out.cat = catOf(r, c); out.r = r;
+  // tren
+  const prev = vals.slice(0, -1), base = prev.slice(-3);
+  const med = a => { const b = [...a].sort((x, y) => x - y); return b.length ? (b.length % 2 ? b[(b.length - 1) / 2] : (b[b.length / 2 - 1] + b[b.length / 2]) / 2) : null; };
+  const mBase = base.length ? base.reduce((a, b) => a + b, 0) / base.length : null, mdPrev = med(prev);
+  const chg = mBase && d.last != null ? (d.last - mBase) / mBase * 100 : null;
+  let naikBeruntun = 0; for (let i = vals.length - 1; i > 0 && vals[i] > vals[i - 1]; i--) naikBeruntun++;
+  const peakIdx = vals.length ? vals.indexOf(Math.max(...vals)) : -1;
+  if (vals.length >= 3 && mdPrev && (d.last >= c.spike * mdPrev || Math.max(...vals.slice(-2)) >= c.spike * mdPrev)) out.tren = {k:'lonjakan', l:'Lonjakan', e:'📈'};
+  else if (chg != null && chg >= c.naik) out.tren = {k:'naik', l:'Memburuk', e:'↗'};
+  else if (chg != null && chg <= -c.turun) out.tren = {k:'turun', l:'Membaik', e:'↘'};
+  else out.tren = {k:'stabil', l:vals.length >= 3 ? 'Stabil' : 'Data harian kurang', e:'→'};
+  out.chg = chg;
+  // awal vs akhir
+  const firstHalf = vals.slice(0, Math.max(1, Math.floor(vals.length / 2))), fh = firstHalf.length ? firstHalf.reduce((a, b) => a + b, 0) / firstHalf.length : null;
+  const awalBagus = vals.length >= 4 && fh != null && fh <= T;
+  // funnel & waktu
+  const conv = d.pendaftar ? (d.peserta || 0) / d.pendaftar : null;
+  const needClose = d.pendaftar && d.closing ? Math.max(0, Math.ceil(d.pendaftar * d.closing / 100) - (d.peserta || 0)) : null;
+  const dKelas = parseIso(d.tanggalKelas), today = parseIso(d.tanggal) || today0();
+  const hari = dKelas ? Math.round((dKelas - today) / DAY) : null;
+  const sisaPeserta = d.targetPeserta ? Math.max(0, d.targetPeserta - (d.peserta || 0)) : null;
+  const impas = c.impas;
+  Object.assign(out, {rAvg, rLast, conv, needClose, hari, sisaPeserta, awalBagus, fh, naikBeruntun, mdPrev, impas, peak:peakIdx >= 0 ? s[peakIdx] : null});
+
+  /* temuan */
+  const F = (cls, t) => out.finds.push({cls, t});
+  if (d.avg != null) F(rAvg <= c.c2 ? 'good' : rAvg <= c.c3 ? 'warn' : 'bad', `CPR rata-rata <b>${rupiah(d.avg)}</b> = ${(rAvg * 100).toFixed(0)}% dari target ${rupiah(T)} → <b>${out.catAvg.l}</b>.`);
+  if (d.last != null) F(rLast <= c.c2 ? 'good' : rLast <= c.c3 ? 'warn' : 'bad', `CPR terkini <b>${rupiah(d.last)}</b> = ${rLast.toFixed(1).replace('.', ',')}× target → <b>${out.catLast.l}</b>.`);
+  if (out.tren.k === 'lonjakan') F('bad', `Lonjakan: CPR terakhir ${mdPrev ? (d.last / mdPrev).toFixed(1).replace('.', ',') + '×' : 'jauh di atas'} median hari-hari sebelumnya (${rupiah(mdPrev)})${out.peak ? `, puncak ${rupiah(out.peak.v)} pada ${fmtDate(out.peak.tgl)}` : ''}.`);
+  else if (out.tren.k === 'naik') F('warn', `CPR naik ${cprPct(chg)} dibanding rata-rata 3 hari sebelumnya.`);
+  else if (out.tren.k === 'turun') F('good', `CPR turun ${cprPct(chg)} dibanding rata-rata 3 hari sebelumnya.`);
+  if (awalBagus && (out.tren.k === 'lonjakan' || out.tren.k === 'naik')) F('info', `Awal campaign bagus (rata-rata paruh awal ${rupiah(fh)}, di bawah target), lalu memburuk. Pola umum: audiens awal (paling tertarik) sudah habis atau creative mulai jenuh.`);
+  if (naikBeruntun >= 3) F('warn', `CPR naik ${naikBeruntun} hari berturut-turut.`);
+  if (d.last != null && d.last > impas) F('bad', `CPR terkini di atas batas impas ${rupiah(impas)}: penjualan dari iklan saat ini kemungkinan rugi.`);
+  else if (d.avg != null && d.avg > impas) F('bad', `Avg CPR di atas batas impas ${rupiah(impas)}.`);
+  if (conv != null) F(conv * 100 >= (d.closing || 0) ? 'good' : 'warn', `Konversi pendaftar → peserta ${Math.round(conv * 100)}% (${d.peserta || 0} dari ${d.pendaftar})${d.closing ? `; target ${d.closing}%${needClose ? ` → butuh <b>${needClose} peserta lagi</b> dari pendaftar yang ada` : ' tercapai'}` : ''}.`);
+  if (sisaPeserta != null) F(sisaPeserta ? 'info' : 'good', sisaPeserta ? `Masih butuh ${sisaPeserta} peserta untuk target ${d.targetPeserta}. Dengan CPR terkini, estimasi biaya iklan ≈ ${rupiah(sisaPeserta * (d.last || d.avg))}.` : `Target peserta ${d.targetPeserta} tercapai.`);
+  if (hari != null) F(hari <= c.hariMepet ? 'warn' : 'info', hari < 0 ? 'Kelas sudah lewat.' : `Kelas ${hari === 0 ? 'hari ini' : `${hari} hari lagi`}${hari <= c.hariMepet ? ': fokus closing dan retargeting, bukan audiens dingin.' : '.'}`);
+
+  /* rekomendasi (aturan) */
+  const bad = out.cat.n >= 3, spike = out.tren.k === 'lonjakan', worse = spike || out.tren.k === 'naik', good = out.cat.n <= 2 && !worse, mepet = hari != null && hari >= 0 && hari <= c.hariMepet, rugi = (d.last ?? d.avg) > impas;
+  const R = (role, id, when, t, w) => { if (when) out.recs[role].push({id, t, w}); };
+  // Marketing / Meta Ads
+  R('mk', 'mk-freq', worse, 'Cek Frequency, CPM, dan CTR 2–3 hari terakhir per iklan', 'Frequency > 2,5 atau CTR turun = audiens jenuh; CPM naik tajam = lelang lebih mahal.');
+  R('mk', 'mk-cut', worse || bad, `Matikan iklan/ad set dengan CPR > ${(c.c4).toString().replace('.', ',')}× target selama 2 hari`, 'Pindahkan budgetnya ke iklan dengan CPR terendah.');
+  R('mk', 'mk-budget', worse, 'Jangan ubah budget lebih dari 20% per hari', 'Perubahan besar mereset learning phase dan sering menaikkan CPR sementara.');
+  R('mk', 'mk-new', worse || bad, 'Duplikat ad set terbaik ke audiens baru (Lookalike 1% pembeli / minat terkait) dengan budget kecil', 'Mencari audiens segar tanpa mengganggu ad set yang masih jalan.');
+  R('mk', 'mk-retarget', mepet || (needClose && needClose > 0), 'Geser 30–50% budget ke retargeting: pengunjung LP & interaksi IG 14 hari', mepet ? `Kelas tinggal ${hari} hari: audiens hangat lebih cepat closing.` : 'Pendaftar & pengunjung yang belum bayar lebih murah dikonversi.');
+  R('mk', 'mk-hold', rugi, 'Tahan kenaikan spend sampai CPR kembali di bawah batas impas', `CPR saat ini di atas ${rupiah(impas)}.`);
+  R('mk', 'mk-scale', good, 'Scale bertahap: +20% budget setiap 48 jam selama CPR ≤ target', 'Ad set sehat, naikkan pelan agar tetap stabil.');
+  R('mk', 'mk-test', good, 'Uji 1 audiens baru dengan budget kecil sebagai cadangan', 'Supaya tidak bergantung pada satu audiens.');
+  // Design
+  R('ds', 'ds-fresh', worse, 'Buat 2–3 creative baru dengan hook berbeda: masalah, output peta/hasil peserta, testimoni alumni', 'Lonjakan setelah awal bagus biasanya tanda creative fatigue.');
+  R('ds', 'ds-thumb', worse || bad, 'Ganti 3 detik pertama / visual utama dan headline iklan', 'Perubahan kecil di pembuka sering cukup menurunkan CPR.');
+  R('ds', 'ds-proof', bad, 'Tambahkan bukti sosial: jumlah alumni, rating, cuplikan hasil kelas sebelumnya', 'Membantu calon pembeli yang ragu.');
+  R('ds', 'ds-urgent', mepet, 'Siapkan creative urgensi: "Tinggal X hari", kuota tersisa, countdown', `Kelas ${hari} hari lagi.`);
+  R('ds', 'ds-var', good, 'Buat 2 varian dari creative pemenang (warna/hook berbeda) sebagai cadangan', 'Siap dipakai saat creative utama mulai jenuh.');
+  // Product
+  R('pd', 'pd-follow', needClose > 0, `Follow up ${needClose} pendaftar yang belum bayar lewat WA hari ini`, `Target closing ${d.closing}%: ingatkan jadwal, jawab keberatan, kirim link bayar langsung.`);
+  R('pd', 'pd-incentive', (needClose > 0) || mepet, 'Beri insentif penutup: batas early bird atau bonus (rekaman/e-book) untuk yang bayar ≤ 48 jam', 'Mendorong pendaftar yang menunda.');
+  R('pd', 'pd-lp', spike, 'Cek landing page & alur bayar (link, form, harga, kecepatan muat)', 'Lonjakan CPR juga bisa karena konversi LP turun, bukan karena iklan.');
+  R('pd', 'pd-offer', bad || rugi, 'Review offer: judul, tool yang disebut, output kelas, dan harga di LP', 'Kalau iklan sudah diperbaiki tapi CPR tetap tinggi, masalahnya di penawaran.');
+  R('pd', 'pd-play', good, 'Catat angle, judul, dan audiens yang berhasil ke playbook kelas berikutnya', 'Agar kelas berikut bisa mulai dari yang sudah terbukti.');
+  return out;
+}
+
+/* ---------- render analisis ---------- */
+function cprChart(a) {
+  const pts = a.s; if (pts.length < 2) return '<p class="muted" style="font-size:12.5px">Isi minimal 2 hari CPR harian untuk melihat grafik.</p>';
+  const W = 560, H = 210, P = {l:56, r:16, t:16, b:30};
+  const mx = Math.max(...pts.map(p => p.v), a.T * 1.2, a.impas * 1.05);
+  const X = i => P.l + (W - P.l - P.r) * i / (pts.length - 1), Y = v => P.t + (H - P.t - P.b) * (1 - v / mx);
+  const ticks = [0, .25, .5, .75, 1].map(f => mx * f);
+  const c = CPR_CFG();
+  const col = v => { const k = catOf(v / a.T, c).n; return ['#16A34A', '#2563EB', '#F59E0B', '#EA580C', '#DC2626'][k - 1]; };
+  return `<svg class="cprchart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Grafik CPR harian">
+    ${ticks.map(v => `<line x1="${P.l}" x2="${W - P.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="#E3E9F3"/><text x="${P.l - 8}" y="${Y(v) + 4}" text-anchor="end" font-size="10.5" fill="#8795AF">${v >= 1000 ? Math.round(v / 1000) + 'rb' : 0}</text>`).join('')}
+    <rect x="${P.l}" y="${Y(a.T)}" width="${W - P.l - P.r}" height="${H - P.b - Y(a.T)}" fill="#16A34A" opacity=".06"/>
+    <line x1="${P.l}" x2="${W - P.r}" y1="${Y(a.T)}" y2="${Y(a.T)}" stroke="#16A34A" stroke-width="1.6" stroke-dasharray="5 4"/>
+    <line x1="${P.l}" x2="${W - P.r}" y1="${Y(a.impas)}" y2="${Y(a.impas)}" stroke="#DC2626" stroke-width="1.4" stroke-dasharray="2 4"/>
+    <polyline points="${pts.map((p, i) => `${X(i)},${Y(p.v)}`).join(' ')}" fill="none" stroke="#0B1A33" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+    ${pts.map((p, i) => `<circle cx="${X(i)}" cy="${Y(p.v)}" r="5" fill="${col(p.v)}" stroke="#fff" stroke-width="2"><title>${fmtDate(p.tgl)}: ${rupiah(p.v)}</title></circle><text x="${X(i)}" y="${H - 10}" text-anchor="middle" font-size="10.5" fill="#47587A">${fmtDate(p.tgl)}</text>`).join('')}
+    <text x="${X(pts.length - 1)}" y="${Y(pts[pts.length - 1].v) - 10}" text-anchor="end" font-size="11" font-weight="700" fill="#0B1A33">${rupiah(pts[pts.length - 1].v)}</text>
+  </svg><div class="legend2"><span><i style="background:#16A34A"></i>Target ${rupiah(a.T)}</span><span><i style="background:#DC2626"></i>Batas impas ${rupiah(a.impas)}</span><span>Titik berwarna = kategori per hari</span></div>`;
+}
+function renderCprOut() {
+  const d = readForm(); const a = analyzeCPR(d); CPR.last = a;
+  const box = $('#cprOut');
+  if (a.empty) { box.innerHTML = `<h3>Hasil analisis</h3><div class="empty" style="padding:30px 10px"><h4>Belum ada angka</h4><p>Upload screenshot atau isi Avg CPR / CPR terkini / CPR harian.</p></div>`; return; }
+  const sel = new Set((CPR.draft.actions || []).map(x => x.id));
+  const roleBox = (k, name, em) => `<div class="crole ${k}"><h4><em>${em}</em>${name}</h4>${a.recs[k].length ? a.recs[k].map(r => `<label class="rec"><input type="checkbox" data-rec="${r.id}" data-role="${k}" ${sel.has(r.id) ? 'checked' : ''}><span><b>${esc(r.t)}</b><small>${esc(r.w)}</small></span></label>`).join('') : '<span class="muted" style="font-size:12.5px">Tidak ada tindakan khusus.</span>'}</div>`;
+  box.innerHTML = `<h3>Hasil analisis <small>${esc(d.kelas || 'Tanpa nama kelas')} · ${fmtDate(d.tanggal)}</small></h3>
+    <div class="verdict cat-${a.cat.n}"><div class="ic">${a.cat.e}</div><b>${a.cat.l}</b><span>${a.cat.d} Tren: ${a.tren.e} ${a.tren.l}.</span></div>
+    <div class="mets">
+      <div class="met"><div class="k">Avg CPR</div><div class="v num">${rupiah(a.d.avg)}</div><div class="s"><span class="ccat c${a.catAvg?.n}">${a.catAvg?.l || '–'}</span></div></div>
+      <div class="met"><div class="k">CPR terkini</div><div class="v num">${rupiah(a.d.last)}</div><div class="s"><span class="ccat c${a.catLast?.n}">${a.catLast?.l || '–'}</span></div></div>
+      <div class="met"><div class="k">vs target</div><div class="v num">${a.rLast != null ? a.rLast.toFixed(1).replace('.', ',') + '×' : '–'}</div><div class="s muted">target ${rupiah(a.T)}</div></div>
+      <div class="met"><div class="k">Closing</div><div class="v num">${a.conv != null ? Math.round(a.conv * 100) + '%' : '–'}</div><div class="s muted">${a.d.peserta ?? '–'} / ${a.d.pendaftar ?? '–'} pendaftar</div></div>
+    </div>
+    ${cprChart(a)}
+    <div><h3 style="margin-bottom:8px">Grafik menunjukkan</h3><ul class="finds">${a.finds.map(f => `<li class="${f.cls}"><i>${f.cls === 'good' ? '✓' : f.cls === 'bad' ? '!' : f.cls === 'warn' ? '•' : 'i'}</i><span>${f.t}</span></li>`).join('')}</ul></div>
+    <div><h3 style="margin-bottom:8px">Rekomendasi action plan <small>centang yang akan dikerjakan</small></h3>
+      <div class="croles">${roleBox('mk', 'Marketing / Meta Ads', 'M')}${roleBox('ds', 'Design', 'D')}${roleBox('pd', 'Product', 'P')}</div></div>
+    <div class="fld"><label for="cNote">Catatan update</label><textarea id="cNote" style="font-family:var(--f);min-height:70px" placeholder="mis. Awal cukup bagus, sekarang CPR naik. Follow up 19 pendaftar awal.">${esc(CPR.draft.catatan || '')}</textarea></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end"><button class="btn sec" id="cprWa">Salin laporan WA</button><button class="btn pri" id="cprSave">${CPR.editId ? 'Simpan perubahan log' : 'Simpan ke log update'}</button></div>`;
+  $('#cNote').addEventListener('input', e => CPR.draft.catatan = e.target.value);
+}
+function waReport(a) {
+  const d = a.d, acts = (CPR.draft.actions || []);
+  const L = [`Report Kelas ${d.kelas || '-'}: Update ${d.tanggal ? (() => { const x = parseIso(d.tanggal); return `${x.getDate()} ${BULAN[x.getMonth()].toUpperCase()} ${x.getFullYear()}`; })() : ''}`,
+    `Target (ideal CPR): < ${rupiah(a.T).replace('Rp', 'Rp')}`, `avg CPR: ${rupiah(d.avg)}`, `eksisting CPR: ${rupiah(d.last)}`, `Status: ${a.cat.l} · Tren: ${a.tren.l}`];
+  if (d.peserta != null) L.push(`jumlah peserta: ${d.peserta} orang${d.pendaftar ? ` dari ${d.pendaftar} pendaftar (${Math.round(a.conv * 100)}%)` : ''}`);
+  if (CPR.draft.catatan) L.push('', CPR.draft.catatan);
+  if (acts.length) { L.push('', 'Action plan:'); const nm = {mk:'Marketing', ds:'Design', pd:'Product'}; acts.forEach(x => L.push(`- [${nm[x.role]}] ${x.text}`)); }
+  return L.join('\n');
+}
+
+/* ---------- baca screenshot ---------- */
+let tessLoading = null;
+function loadTess() { if (window.Tesseract) return Promise.resolve(); if (!tessLoading) tessLoading = new Promise((ok, no) => { const s = document.createElement('script'); s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js'; s.onload = ok; s.onerror = no; document.head.appendChild(s); }); return tessLoading; }
+function note(lines, busy) { const n = $('#cprNote'); n.hidden = false; n.className = 'readnote' + (busy ? ' busy' : ''); n.innerHTML = lines.map(l => `<span>${l}</span>`).join(''); }
+async function handleShot(file) {
+  if (!file || !/^image\//.test(file.type)) return toast('File harus gambar (PNG/JPG)', 'err');
+  const url = URL.createObjectURL(file);
+  const img = await new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = url; });
+  const cv = $('#cprCanvas'); cv.width = img.naturalWidth; cv.height = img.naturalHeight; const ctx = cv.getContext('2d'); ctx.drawImage(img, 0, 0);
+  $('#cprShot').hidden = false;
+  CPR.img = ctx.getImageData(0, 0, cv.width, cv.height); CPR.imgEl = img;
+  note(['Membaca teks dan angka di gambar… (pertama kali ±10 detik)'], true);
+  let words = [], text = '';
+  try {
+    await loadTess();
+    const sc = Math.min(4, Math.max(1, 1600 / img.naturalWidth));
+    const up = document.createElement('canvas'); up.width = Math.round(img.naturalWidth * sc); up.height = Math.round(img.naturalHeight * sc);
+    const u = up.getContext('2d'); u.imageSmoothingQuality = 'high'; u.drawImage(img, 0, 0, up.width, up.height);
+    const r = await Tesseract.recognize(up, 'eng');
+    text = r.data.text || ''; words = (r.data.words || []).map(w => ({text:w.text, bbox:{x0:w.bbox.x0 / sc, y0:w.bbox.y0 / sc, x1:w.bbox.x1 / sc, y1:w.bbox.y1 / sc}}));
+  } catch (e) { note(['Pembaca teks tidak bisa dimuat (cek koneksi). Garis grafik tetap dibaca; isi angka utama manual.']); }
+  const rep = CPR_READER.parseReport(text);
+  const d = readForm();
+  // isi field dari teks laporan (hanya yang kosong / masih default)
+  if (rep.kelas && !d.kelas) d.kelas = matchKelas(rep.kelas);
+  if (rep.tanggal) d.tanggal = rep.tanggal;
+  ['target', 'avg', 'last', 'peserta', 'pendaftar', 'closing'].forEach(k => { if (rep[k] != null) d[k] = rep[k]; });
+  CPR.rep = rep; CPR.words = words; CPR.text = text;
+  if (text && !d.text) d.text = text.trim().slice(0, 1200);
+  doRead(d);
+}
+function matchKelas(name) { const n = name.toLowerCase(); const hit = S.classes.find(c => c.judul.toLowerCase().includes(n) || n.split(/\s+/).filter(w => w.length > 2).every(w => c.judul.toLowerCase().includes(w))); return hit ? hit.judul : name.replace(/\b\w/g, m => m.toUpperCase()); }
+function doRead(d) {
+  d = d || readForm();
+  if (!CPR.img) return;
+  const end = d.tanggal ? addDays(parseIso(d.tanggal), -1) : null;
+  const r = CPR_READER.read(CPR.img, CPR.words || [], {anchorLast:d.last, anchorAvg:d.avg, endDate:end, today:d.tanggal});
+  CPR.read = r;
+  const got = [];
+  if (CPR.rep) { const nm = {target:'target', avg:'avg CPR', last:'CPR terkini', peserta:'peserta', pendaftar:'pendaftar', closing:'closing %', kelas:'kelas', tanggal:'tanggal'}; const k = Object.keys(CPR.rep); if (k.length) got.push('Terbaca dari teks: ' + k.map(x => nm[x] || x).join(', ') + '.'); }
+  if (r.points.length) { d.harian = r.points.filter(p => p.v != null).map(p => ({tgl:p.tgl, v:p.v})); got.push(`Grafik: ${r.points.length} titik harian terbaca.`); }
+  CPR.draft = {...CPR.draft, ...d};
+  fillForm(CPR.draft);
+  drawOverlay(r);
+  note([...got, ...r.notes, 'Cek angka di form; semua bisa dikoreksi.']);
+  $('#cReread').hidden = !(r.points.length);
+  renderCprOut();
+}
+function drawOverlay(r) {
+  const cv = $('#cprCanvas'), ctx = cv.getContext('2d');
+  ctx.putImageData(CPR.img, 0, 0);
+  if (r.grid && r.grid.length) { ctx.strokeStyle = 'rgba(37,99,235,.35)'; ctx.setLineDash([4, 4]); r.grid.forEach(y => { ctx.beginPath(); ctx.moveTo(r.box.x0, y); ctx.lineTo(r.box.x1, y); ctx.stroke(); }); ctx.setLineDash([]); }
+  const rad = Math.max(3, cv.width / 220);
+  r.points.forEach(p => { if (p.y == null) return; ctx.beginPath(); ctx.arc(p.x, p.y, rad, 0, Math.PI * 2); ctx.fillStyle = '#E11D48'; ctx.fill(); ctx.lineWidth = rad / 2; ctx.strokeStyle = '#fff'; ctx.stroke(); });
+}
+
+/* ---------- log ---------- */
+function cprActionsFromChecks() {
+  const prev = new Map((CPR.draft.actions || []).map(x => [x.id, x]));
+  const a = CPR.last; const acts = [];
+  $$('#cprOut [data-rec]').forEach(cb => { if (!cb.checked) return; const r = a.recs[cb.dataset.role].find(x => x.id === cb.dataset.rec); acts.push(prev.get(cb.dataset.rec) || {id:r.id, role:cb.dataset.role, text:r.t, status:0}); });
+  return acts;
+}
+async function saveCpr() {
+  const d = readForm(); const a = analyzeCPR(d);
+  if (a.empty) return toast('Isi minimal Avg CPR atau CPR terkini', 'err');
+  if (!d.kelas) { $('#cKelas').focus(); return toast('Isi nama kelas dulu', 'err'); }
+  CPR.draft.actions = cprActionsFromChecks();
+  const rec = {id:CPR.editId || uid('r'), kelas:d.kelas, tanggal:d.tanggal, target:a.T, avg:Math.round(a.d.avg), last:Math.round(a.d.last), peserta:d.peserta, pendaftar:d.pendaftar, closing:d.closing, spend:d.spend, impas:CPR_CFG().impas, tanggalKelas:d.tanggalKelas, targetPeserta:d.targetPeserta, harian:d.harian, status:a.cat.l, tren:a.tren.l, ringkasan:a.finds.map(f => f.t.replace(/<[^>]+>/g, '')).join(' | '), catatan:CPR.draft.catatan || '', actions:CPR.draft.actions, oleh:'Ali', dibuat:iso(new Date())};
+  const i = S.cpr.findIndex(x => x.id === rec.id); if (i >= 0) S.cpr[i] = rec; else S.cpr.push(rec);
+  CPR.editId = rec.id; $('#cprEditing').textContent = 'membuka log tersimpan';
+  renderCprLog(); renderHome(); renderCprOut();
+  await saveRec('cpr', rec, 'Update CPR tersimpan ke log');
+}
+function sparkline(h) {
+  const v = (h || []).filter(r => r.v != null).map(r => r.v); if (v.length < 2) return '';
+  const mx = Math.max(...v), mn = Math.min(...v), W = 120, H = 34; const X = i => 3 + (W - 6) * i / (v.length - 1), Y = x => 3 + (H - 6) * (1 - (x - mn) / ((mx - mn) || 1));
+  return `<svg class="spark" viewBox="0 0 ${W} ${H}"><polyline points="${v.map((x, i) => `${X(i)},${Y(x)}`).join(' ')}" fill="none" stroke="#2563EB" stroke-width="2" stroke-linejoin="round"/><circle cx="${X(v.length - 1)}" cy="${Y(v[v.length - 1])}" r="3" fill="#E11D48"/></svg>`;
+}
+function renderCprLog() {
+  const ks = [...new Set(S.cpr.map(x => x.kelas).filter(Boolean))];
+  const f = $('#cLogKelas'); const cur = f.value; f.innerHTML = '<option value="">Semua kelas</option>' + ks.map(k => `<option ${k === cur ? 'selected' : ''}>${esc(k)}</option>`).join('');
+  const rows = S.cpr.filter(x => !f.value || x.kelas === f.value).sort((a, b) => String(b.tanggal).localeCompare(String(a.tanggal)) || String(b.dibuat).localeCompare(String(a.dibuat)));
+  $('#cntCpr').textContent = S.cpr.length;
+  const nm = {mk:'Marketing', ds:'Design', pd:'Product'}, st = ['Belum', 'Proses', 'Selesai'];
+  $('#cLogs').innerHTML = rows.length ? rows.map(x => { const c = CATS.find(k => k.l === x.status) || CATS[2]; return `<div class="logi">
+      <div class="when"><b>${fmtDate(x.tanggal)}</b><span>${parseIso(x.tanggal) ? parseIso(x.tanggal).getFullYear() : ''}</span>${sparkline(x.harian)}</div>
+      <div class="what"><div class="row"><b style="color:var(--ink);font-size:14px">${esc(x.kelas)}</b><span class="ccat c${c.n}">${c.e} ${esc(x.status)}</span><span class="chip">${esc(x.tren || '')}</span></div>
+        <div class="row">avg <b class="num">${rupiah(x.avg)}</b> · terkini <b class="num">${rupiah(x.last)}</b> · target ${rupiah(x.target)}${x.peserta != null ? ` · peserta ${x.peserta}${x.pendaftar ? '/' + x.pendaftar : ''}` : ''}</div>
+        ${x.catatan ? `<p>${esc(x.catatan)}</p>` : ''}
+        ${(x.actions || []).length ? `<div class="acts-list">${x.actions.map((ac, j) => `<div class="act-i ${ac.status === 2 ? 'done' : ''}"><button class="s${ac.status || 0}" data-ast="${x.id}|${j}">${st[ac.status || 0]}</button><span><b>${nm[ac.role]}:</b> ${esc(ac.text)}</span></div>`).join('')}</div>` : ''}
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn sec xs" data-copen="${x.id}">Buka</button><button class="btn ghost xs" data-cwa="${x.id}">Salin WA</button><button class="icon-btn" data-crm="${x.id}" title="Hapus">${ICON.trash}</button></div></div>`; }).join('') : `<div class="empty"><h4>Belum ada log CPR</h4><p>Upload screenshot atau isi data, lalu "Simpan ke log update".</p></div>`;
+}
+function openCpr(id) {
+  const x = S.cpr.find(r => r.id === id); if (!x) return;
+  CPR.editId = id; CPR.draft = {...blankDraft(), ...x, harian:[...(x.harian || [])], actions:[...(x.actions || [])]};
+  CPR.img = null; $('#cprShot').hidden = true; $('#cprNote').hidden = true;
+  fillForm(CPR.draft); $('#cprEditing').textContent = 'membuka log ' + fmtDate(x.tanggal);
+  cprTab('analisis'); renderCprOut();
+}
+function newCpr(keepKelas) {
+  const k = keepKelas ? $('#cKelas').value : ''; CPR = {draft:blankDraft(), editId:null, img:null};
+  CPR.draft.kelas = k; $('#cprShot').hidden = true; $('#cprNote').hidden = true; $('#cReread').hidden = true; $('#cprEditing').textContent = '';
+  fillForm(CPR.draft); renderCprOut();
+}
+function cprTab(t) { $$('[data-ct]').forEach(b => b.setAttribute('aria-selected', b.dataset.ct === t)); ['analisis', 'log', 'atur'].forEach(k => $('#ct-' + k).hidden = k !== t); if (t === 'log') renderCprLog(); if (t === 'atur') renderCprSet(); }
+function renderCprSet() {
+  const c = CPR_CFG();
+  const F = (k, l, h, step = 'any') => `<div class="fld"><label for="cs-${k}">${l}</label><input id="cs-${k}" data-cprset="${k}" type="number" step="${step}" value="${c[k]}"><span class="hint">${h}</span></div>`;
+  $('#cprSet').innerHTML = F('target', 'Target CPR default (Rp)', 'Dipakai jika kolom target kosong', '1000') + F('impas', 'Batas impas (Rp)', 'CPR maksimal sebelum rugi', '1000') + F('closing', 'Target closing default (%)', 'Pendaftar → peserta', '1') + F('hariMepet', 'Kelas dianggap mepet (hari)', 'Fokus retargeting', '1') +
+    F('c1', 'Sangat bagus ≤ (× target)', 'mis. 0,8', '.05') + F('c2', 'Bagus ≤ (× target)', 'mis. 1,0', '.05') + F('c3', 'Perlu perhatian ≤ (× target)', 'mis. 1,5', '.05') + F('c4', 'Buruk ≤ (× target)', 'di atasnya = Kritis', '.05') +
+    F('spike', 'Lonjakan jika ≥ (× median)', 'CPR hari terakhir vs median sebelumnya', '.1') + F('naik', 'Memburuk jika naik ≥ (%)', 'vs rata-rata 3 hari sebelumnya', '1') + F('turun', 'Membaik jika turun ≥ (%)', 'vs rata-rata 3 hari sebelumnya', '1') + F('wLast', 'Bobot CPR terkini (0–1)', 'Sisanya bobot avg CPR', '.05');
+  const T = c.target; $('#cprLegend').innerHTML = CATS.map((k, i) => `<span class="ccat c${k.n}">${k.e} ${k.l}: ${i === 0 ? '≤ ' + rupiah(T * c.c1) : i === 4 ? '> ' + rupiah(T * c.c4) : '≤ ' + rupiah(T * [c.c1, c.c2, c.c3, c.c4][i])}</span>`).join('');
+  $('#wLastTxt').textContent = Math.round(c.wLast * 100) + '%';
+}
+function cprInit() {
+  $('#cKelasL').innerHTML = S.classes.filter(c => c.progress !== 'Ide Kelas').map(c => `<option>${esc(c.judul)}</option>`).join('');
+  if (!CPR.draft) { CPR.draft = blankDraft(); const latest = [...S.cpr].sort((a, b) => String(b.tanggal).localeCompare(String(a.tanggal)))[0]; if (latest) { openCpr(latest.id); return; } fillForm(CPR.draft); }
+  renderCprOut(); renderCprLog();
+}
+/* events */
+$('#cprPick').onclick = () => { cprTab('analisis'); $('#cprFile').click(); };
+$('#cprNew').onclick = () => { cprTab('analisis'); newCpr(true); };
+$('#cprFile').onchange = e => { handleShot(e.target.files[0]); e.target.value = ''; };
+const dz = $('#cprDrop');
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('drag'));
+dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('drag'); handleShot(e.dataTransfer.files[0]); });
+document.addEventListener('paste', e => { if ($('#v-cpr').hidden) return; const it = [...(e.clipboardData?.items || [])].find(i => i.type.startsWith('image/')); if (it) { e.preventDefault(); handleShot(it.getAsFile()); } });
+$('#cprIn').addEventListener('input', e => { if (e.target.id === 'cText') return; clearTimeout(timers.cpr); timers.cpr = setTimeout(renderCprOut, 250); });
+$('#cText').addEventListener('change', () => { const rep = CPR_READER.parseReport($('#cText').value); const d = readForm(); ['target', 'avg', 'last', 'peserta', 'pendaftar', 'closing'].forEach(k => { if (rep[k] != null) d[k] = rep[k]; }); if (rep.kelas && !d.kelas) d.kelas = matchKelas(rep.kelas); if (rep.tanggal) d.tanggal = rep.tanggal; CPR.draft = {...CPR.draft, ...d}; fillForm(CPR.draft); renderCprOut(); if (Object.keys(rep).length) toast(`${Object.keys(rep).length} angka terbaca dari teks`); });
+$('#cAddDay').onclick = () => { const d = readForm(); const last = d.harian[d.harian.length - 1]; d.harian.push({tgl:last && last.tgl ? iso(addDays(parseIso(last.tgl), 1)) : d.tanggal, v:null}); renderDaily(d.harian); };
+$('#cReread').onclick = () => doRead();
+$('#cDaily').addEventListener('click', e => { const b = e.target.closest('[data-cdrow]'); if (!b) return; b.closest('tr').remove(); renderCprOut(); });
+$('#cprOut').addEventListener('change', e => { if (e.target.dataset.rec) CPR.draft.actions = cprActionsFromChecks(); });
+$('#cprOut').addEventListener('click', async e => {
+  if (e.target.closest('#cprSave')) return saveCpr();
+  if (e.target.closest('#cprWa')) { CPR.draft.actions = cprActionsFromChecks(); const t = waReport(CPR.last); try { await navigator.clipboard.writeText(t); toast('Laporan disalin, tinggal tempel di WA'); } catch (_) { openModal(`<div class="mh"><div><h3>Laporan WA</h3><p>Pilih semua lalu salin.</p></div><button class="icon-btn" data-mclose>${ICON.x}</button></div><div class="mb"><div class="promptbox" style="user-select:all">${esc(t)}</div></div>`); } }
+});
+$$('[data-ct]').forEach(b => b.onclick = () => cprTab(b.dataset.ct));
+$('#cLogKelas').onchange = renderCprLog;
+$('#cLogs').addEventListener('click', async e => {
+  const t = e.target.closest('[data-copen],[data-cwa],[data-crm],[data-ast]'); if (!t) return;
+  if (t.dataset.copen) return openCpr(t.dataset.copen);
+  if (t.dataset.cwa) { const x = S.cpr.find(r => r.id === t.dataset.cwa); const keep = {...CPR}; CPR.draft = {...x}; const txt = waReport(analyzeCPR({...x})); CPR = keep; try { await navigator.clipboard.writeText(txt); toast('Laporan disalin'); } catch (_) { toast('Gagal menyalin', 'err'); } return; }
+  if (t.dataset.crm) { const i = S.cpr.findIndex(r => r.id === t.dataset.crm); const [x] = S.cpr.splice(i, 1); renderCprLog(); renderHome(); try { await api.remove('cpr', x.id); toast('Log dihapus', 'info'); } catch (er) { S.cpr.splice(i, 0, x); renderCprLog(); toast(er.message, 'err'); } return; }
+  if (t.dataset.ast) { const [id, j] = t.dataset.ast.split('|'); const x = S.cpr.find(r => r.id === id); const ac = x.actions[+j]; ac.status = ((ac.status || 0) + 1) % 3; renderCprLog(); await saveRec('cpr', x); }
+});
+$('#cprSet').addEventListener('input', e => { const k = e.target.dataset.cprset; if (!k) return; const c = store.get('pkt-cprcfg', {}); c[k] = +e.target.value; store.set('pkt-cprcfg', c); clearTimeout(timers.cs); timers.cs = setTimeout(() => { renderCprSet(); }, 300); });
+$('#cprSetReset').onclick = () => { store.set('pkt-cprcfg', {}); renderCprSet(); toast('Pengaturan CPR dikembalikan'); };
+
+
 /* =====================================================================
    ROUTER & BOOT
    ===================================================================== */
-const VIEWS = ['home','narasumber','topik','jadwal','tor','brief','core','ops'];
+const VIEWS = ['home','narasumber','topik','jadwal','cpr','tor','brief','core','ops'];
 const PROD_VIEWS = ['narasumber','topik','tor'];
 function setProd(on) { $('#pill').classList.toggle('prod-on', on); $('#prodBtn').setAttribute('aria-expanded', on); }
 $('#prodBtn').addEventListener('click', () => setProd(!$('#pill').classList.contains('prod-on')));
@@ -3330,7 +3999,7 @@ async function renderTeam() {
   S.cal.show = 'aktif'; renderJadwal($('#teamGantt'));
 }
 async function boot() {
-  try { const d = await api.load(); Object.assign(S, d); if (!S.types.length) S.types = seed().types; syncFromClasses(); }
+  try { const d = await api.load(); Object.assign(S, d); S.cpr = S.cpr || []; if (!S.types.length) S.types = seed().types; syncFromClasses(); }
   catch (e) { toast('Gagal memuat dari Sheet: ' + e.message + '. Menampilkan mode contoh.', 'err'); settings.pass = ''; Object.assign(S, store.get('pkt-demo2', null) || seed()); }
   renderAll(); route();
   if (settings.url && !settings.pass && location.hash !== '#kalender-tim' && location.hash !== '#core-tim' && !location.hash.startsWith('#brief/') && !store.get('pkt-skip-pass', false)) askPass();
