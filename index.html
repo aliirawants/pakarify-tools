@@ -101,8 +101,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .pgrp[aria-expanded="true"] svg{transform:rotate(180deg)}
 .pgrp.cur{background:var(--blue-l);color:var(--blue-d)}
 .psub{display:flex;gap:2px;max-width:0;overflow:hidden;opacity:0;transition:max-width .35s cubic-bezier(.2,.8,.2,1),opacity .25s}
-.pill.prod-on .psub{max-width:380px;opacity:1;background:var(--bg3);border-radius:999px}
-.pill:not(.prod-on) .psub{visibility:hidden}
+.pill.prod-on #prodSub{max-width:380px;opacity:1;background:var(--bg3);border-radius:999px}
+.pill:not(.prod-on) #prodSub{visibility:hidden}
 .right{display:flex;gap:8px;align-items:center}
 .status{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:999px;padding:8px 13px;font-size:12px;font-weight:700;box-shadow:var(--shadow-s);border:0;color:var(--ink2)}
 .status i{width:8px;height:8px;border-radius:50%;background:var(--gold)}
@@ -883,6 +883,57 @@ body.sheetmax{overflow:hidden}
 .dft-map{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 14px;font-size:12px;color:var(--ink3);background:var(--bg2);border-radius:12px;padding:8px 12px}
 .dft-map b{color:var(--ink);font-weight:600}
 #v-daftar .fld input,#v-daftar .fld textarea{width:100%;min-width:0}
+/* ---------- Marketing group + Finance ---------- */
+.pill.mkt-on #mktSub{max-width:380px;opacity:1;background:var(--bg3);border-radius:999px}
+.pill:not(.mkt-on) #mktSub{visibility:hidden}
+.g-gold{--c:#FACC15;--c2:#CA8A04;--tag:#0B1A33}
+.g-gold .meta{color:rgba(11,26,51,.78)}.g-gold h3{color:#0B1A33;text-shadow:none}
+#v-finance .grid2>*,#v-finance .grid3>*,#v-finance .cpr-card>*,#v-finance .cpr-grid>*,.fsec>*,.frow>*{min-width:0}
+#v-finance .fld input,#v-finance .fld select,#v-finance .fld textarea{width:100%;min-width:0}
+.ladder-wrap{overflow-x:auto}
+.fsec{display:grid;gap:6px}
+.fsec h4{font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:800;display:flex;align-items:center;gap:8px;justify-content:space-between}
+.fsec.in h4{color:#15803D}.fsec.out h4{color:#B91C1C}
+.fsec h4 small{font-size:11.5px;letter-spacing:0;text-transform:none;font-weight:600;color:var(--ink3)}
+.fhead,.frow{display:grid;grid-template-columns:minmax(0,2.3fr) minmax(0,1fr) 12px 60px 12px minmax(84px,.9fr) 26px;gap:6px;align-items:center}
+.fhead{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);font-weight:700;padding:0 2px}
+.frow{background:var(--bg2);border-radius:14px;padding:6px}
+.frow select,.frow input{width:100%;min-width:0;border:1.5px solid transparent;background:#fff;border-radius:10px;padding:7px 8px;font-size:12.5px;font-family:inherit}
+.frow select:focus,.frow input:focus{outline:0;border-color:var(--blue)}
+.frow .rp{position:relative}.frow .rp span{position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:11.5px;color:var(--ink3);pointer-events:none}.frow .rp input{padding-left:26px}
+.frow .op{text-align:center;color:var(--ink3);font-weight:700;font-size:13px}
+.frow .jml{font-size:13px;font-weight:700;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.frow .x{border:0;background:none;color:var(--ink3);width:28px;height:28px;border-radius:8px;font-size:14px;cursor:pointer}
+.frow .x:hover{background:var(--bad-l);color:var(--bad)}
+.frow .tag{grid-column:1/-1;font-size:11px;color:var(--ink3);padding:0 4px;display:flex;gap:6px;flex-wrap:wrap}
+.frow .tag i{font-style:normal;background:#fff;border-radius:999px;padding:1px 8px}
+.frow .tag i.auto{background:var(--blue-l);color:var(--blue-d)}
+.frow input.autoin::placeholder{color:var(--blue-d);opacity:.85}
+.fsub{display:flex;justify-content:space-between;font-size:13px;font-weight:700;padding:4px 8px}
+.fsec.in .fsub b{color:#15803D}.fsec.out .fsub b{color:#B91C1C}
+.ftot{border-radius:16px;background:var(--ink,#0B1A33);color:#fff;padding:12px 16px;display:grid;gap:4px}
+.ftot div{display:flex;justify-content:space-between;font-size:13px;opacity:.85}
+.ftot div.big{font-size:17px;font-weight:800;opacity:1}
+.fnote{font-size:12px;color:var(--ink2);background:var(--warn-l);border-radius:10px;padding:6px 10px}
+.fctx{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:12px}
+.ladder{width:100%;border-collapse:collapse;font-size:13px}
+.ladder th{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);text-align:left;padding:6px 8px;font-weight:700}
+.ladder td{padding:9px 8px;border-top:1px solid var(--line);vertical-align:middle}
+.ladder td.n{font-weight:800;font-size:16px;white-space:nowrap}
+.ladder tr.now td{background:var(--blue-l)}
+.ladder td small{display:block;color:var(--ink3);font-size:11.5px}
+.finchart{width:100%;height:auto;display:block;max-height:240px}
+.jtab{width:100%;border-collapse:collapse;font-size:13px}
+.jtab th{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);text-align:left;padding:6px 8px}
+.jtab td{padding:8px;border-top:1px solid var(--line);vertical-align:middle}
+.jtab-wrap{overflow-x:auto}
+.finset{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 14px}
+@media (max-width:760px){.finset{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){
+  .fhead{display:none}
+  .frow{grid-template-columns:minmax(0,1fr) 14px 64px 28px;grid-template-areas:"sel sel sel del" "rp op mu ." "jml jml jml jml" "tag tag tag tag"}
+  .frow>select{grid-area:sel}.frow>.rp{grid-area:rp}.frow>.op.x1{grid-area:op}.frow>.mu{grid-area:mu}.frow>.op.eq{display:none}.frow>.jml{grid-area:jml;text-align:left;padding-left:4px}.frow>.x{grid-area:del}.frow>.tag{grid-area:tag}
+}
 </style>
 </head>
 <body>
@@ -900,8 +951,8 @@ body.sheetmax{overflow:hidden}
       <a href="#jadwal" data-v="jadwal">Jadwal</a>
       <a href="#brief" data-v="brief">Brief LP</a>
       <a href="#core" data-v="core">CORE HCE</a>
-      <a href="#cpr" data-v="cpr">CPR</a>
-      <a href="#daftar" data-v="daftar">Pendaftar</a>
+      <button type="button" class="pgrp" id="mktBtn" aria-expanded="false" aria-controls="mktSub">Marketing<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button>
+      <span class="psub" id="mktSub"><a href="#cpr" data-v="cpr">CPR</a><a href="#daftar" data-v="daftar">Pendaftar</a><a href="#finance" data-v="finance">Finance</a></span>
       <a href="#ops" data-v="ops">Operasional</a>
     </nav>
     <div class="right">
@@ -933,6 +984,7 @@ body.sheetmax{overflow:hidden}
       <a class="gcard g-teal" href="#jadwal"><span class="panel"></span><img class="char" src="assets/char-jadwal.webp" alt=""><span class="body"><h3>Jadwal & Kalender</h3><span class="meta"><span>Siklus 1 bulan</span><b id="gm-jadwal">Aktif</b></span></span></a>
       <a class="gcard g-sky" href="#cpr"><span class="panel"></span><svg class="cprart" viewBox="0 0 240 200" aria-hidden="true"><defs><linearGradient id="cpb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#E8F1FF"/></linearGradient><linearGradient id="cpl" x1="0" x2="1"><stop offset="0" stop-color="#22C55E"/><stop offset=".6" stop-color="#F59E0B"/><stop offset="1" stop-color="#EF4444"/></linearGradient></defs><rect x="14" y="16" width="212" height="150" rx="22" fill="url(#cpb)"/><rect x="14" y="16" width="212" height="150" rx="22" fill="none" stroke="#C9DCF9" stroke-width="2"/><path d="M36 60h168M36 92h168M36 124h168" stroke="#DCE7F7" stroke-width="2"/><path d="M36 140 L70 128 L104 132 L138 120 L170 74 L204 86" fill="none" stroke="url(#cpl)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="170" cy="74" r="9" fill="#EF4444" stroke="#fff" stroke-width="4"/><rect x="40" y="28" width="70" height="20" rx="10" fill="#0B1A33"/><text x="75" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="Poppins,sans-serif">CPR</text><g transform="translate(150 140)"><circle r="30" fill="#2563EB"/><circle r="30" fill="none" stroke="#fff" stroke-width="4"/><path d="M-12 -2 L-3 8 L13 -10" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g></svg><span class="body"><h3>CPR Tools</h3><span class="meta"><span>Iklan Meta · log update</span><b id="gm-cpr">Aktif</b></span></span></a>
       <a class="gcard g-lime" href="#daftar"><span class="panel"></span><svg class="cprart" viewBox="0 0 240 200" aria-hidden="true"><rect x="22" y="14" width="196" height="156" rx="22" fill="#fff"/><rect x="22" y="14" width="196" height="156" rx="22" fill="none" stroke="#BBF7D0" stroke-width="2"/><rect x="40" y="30" width="90" height="18" rx="9" fill="#0B1A33"/><text x="85" y="43" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fff" font-family="Poppins,sans-serif">PENDAFTAR</text><g font-family="Poppins,sans-serif" font-size="10" fill="#334155"><circle cx="50" cy="70" r="9" fill="#DCFCE7"/><rect x="66" y="64" width="80" height="6" rx="3" fill="#CBD5E1"/><rect x="66" y="74" width="50" height="5" rx="2.5" fill="#E2E8F0"/><rect x="166" y="63" width="36" height="16" rx="8" fill="#DCFCE7"/><circle cx="50" cy="102" r="9" fill="#FEF3C7"/><rect x="66" y="96" width="70" height="6" rx="3" fill="#CBD5E1"/><rect x="66" y="106" width="44" height="5" rx="2.5" fill="#E2E8F0"/><rect x="166" y="95" width="36" height="16" rx="8" fill="#FEF3C7"/><circle cx="50" cy="134" r="9" fill="#FEE2E2"/><rect x="66" y="128" width="76" height="6" rx="3" fill="#CBD5E1"/><rect x="66" y="138" width="40" height="5" rx="2.5" fill="#E2E8F0"/></g><g transform="translate(184 134)"><circle r="24" fill="#EF4444"/><circle r="24" fill="none" stroke="#fff" stroke-width="4"/><rect x="-3.5" y="-13" width="7" height="16" rx="3.5" fill="#fff"/><circle cy="9" r="4" fill="#fff"/></g></svg><span class="body"><h3>Data Pendaftar</h3><span class="meta"><span>Form pendaftaran · follow-up</span><b id="gm-dft">Upload</b></span></span></a>
+      <a class="gcard g-gold" href="#finance"><span class="panel"></span><svg class="cprart" viewBox="0 0 240 200" aria-hidden="true"><rect x="22" y="14" width="196" height="156" rx="22" fill="#fff"/><rect x="22" y="14" width="196" height="156" rx="22" fill="none" stroke="#FDE68A" stroke-width="2"/><rect x="40" y="30" width="78" height="18" rx="9" fill="#0B1A33"/><text x="79" y="43" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fff" font-family="Poppins,sans-serif">FINANCE</text><g font-family="Poppins,sans-serif" font-size="11" font-weight="700"><text x="40" y="74" fill="#15803D">+ Paket</text><rect x="140" y="64" width="62" height="12" rx="6" fill="#DCFCE7"/><text x="40" y="98" fill="#B91C1C">− Narsum</text><rect x="150" y="88" width="52" height="12" rx="6" fill="#FEE2E2"/><text x="40" y="122" fill="#B91C1C">− CPR</text><rect x="160" y="112" width="42" height="12" rx="6" fill="#FEE2E2"/><line x1="40" y1="134" x2="202" y2="134" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="4 4"/><text x="40" y="156" fill="#0B1A33">BEP</text></g><g transform="translate(184 150)"><circle r="24" fill="#F59E0B"/><circle r="24" fill="none" stroke="#fff" stroke-width="4"/><text y="7" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" font-family="Poppins,sans-serif">Rp</text></g></svg><span class="body"><h3>Finance Kelas</h3><span class="meta"><span>Simulasi harga · BEP · log</span><b id="gm-fin">Simulasi</b></span></span></a>
       <a class="gcard g-navy" href="#tor"><span class="panel"></span><img class="char" src="assets/char-tor.webp" alt=""><span class="body"><h3>TOR Otomatis</h3><span class="meta"><span>Prompt → PDF TOR</span><b>Aktif</b></span></span></a>
       <a class="gcard g-pink" href="#brief"><span class="panel"></span><img class="char wide" src="assets/char-canvas.webp" alt=""><span class="body"><h3>Brief LP & Instagram</h3><span class="meta"><span>E-course · Kelas · IG</span><b>Aktif</b></span></span></a>
       <a class="gcard g-violet" href="#ops"><span class="panel"></span><svg class="books" viewBox="0 0 240 230" aria-hidden="true"><defs><linearGradient id="bk1" x1="0" x2="1"><stop offset="0" stop-color="#2563EB"/><stop offset="1" stop-color="#1747B8"/></linearGradient><linearGradient id="bk2" x1="0" x2="1"><stop offset="0" stop-color="#FDBA3B"/><stop offset="1" stop-color="#E8890C"/></linearGradient><linearGradient id="bk3" x1="0" x2="1"><stop offset="0" stop-color="#2DD4BF"/><stop offset="1" stop-color="#0F9488"/></linearGradient><linearGradient id="pg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#E3E9F3"/></linearGradient></defs>
@@ -1214,6 +1266,66 @@ body.sheetmax{overflow:hidden}
     <div id="dt-atur" hidden></div>
   </div>
 </section>
+<section id="v-finance" data-view="finance" class="view view-band" hidden>
+  <div class="wrap">
+    <div class="vhead">
+      <div><h1>Finance · <em>Simulasi Harga Kelas</em></h1><p>Pilih kelas, isi pemasukan dan pengeluaran (harga × multiplier), lalu lihat laba, minimal peserta untuk balik modal (BEP), dan berapa peserta agar kelas masuk kategori untung biasa sampai Winning. Setiap simulasi bisa disimpan ke log.</p></div>
+      <div class="acts"><button class="btn sec" id="finNew"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Simulasi baru</button><button class="btn pri" id="finSaveTop">Simpan ke log</button></div>
+    </div>
+    <div class="tabs2" role="tablist">
+      <button role="tab" data-ft="sim" aria-selected="true">Simulasi</button>
+      <button role="tab" data-ft="log" aria-selected="false">Log simulasi <span class="cnt" id="cntFin">0</span></button>
+      <button role="tab" data-ft="jenis" aria-selected="false">Jenis & pengaturan</button>
+    </div>
+
+    <div id="ft-sim">
+      <div class="cpr-grid">
+        <div class="cpr-card" id="finIn">
+          <h3>Data simulasi <small id="finEditing"></small></h3>
+          <div class="grid2">
+            <div class="fld"><label for="fKelas">Kelas yang dihitung</label><select id="fKelas"></select><input id="fKelasTxt" placeholder="Ketik nama kelas" hidden style="margin-top:6px"></div>
+            <div class="fld"><label for="fNama">Nama skenario</label><input id="fNama" placeholder="mis. Skenario normal"></div>
+          </div>
+          <div class="fctx" id="fCtx"></div>
+          <div class="fsec in"><h4>Pemasukan <small>harga × multiplier (jumlah pembeli)</small></h4>
+            <div class="fhead"><span>Deskripsi (pilih jenis)</span><span>Harga</span><span></span><span>Multiplier</span><span></span><span style="text-align:right">Jumlah</span><span></span></div>
+            <div id="fIn"></div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn soft xs" data-fadd="Pemasukan">+ Tambah pemasukan</button></div>
+            <div class="fsub"><span>Total pemasukan</span><b id="fInTot">Rp0</b></div>
+          </div>
+          <div class="fsec out"><h4>Pengeluaran <small>harga × multiplier (jumlah)</small></h4>
+            <div class="fhead"><span>Deskripsi (pilih jenis)</span><span>Harga</span><span></span><span>Multiplier</span><span></span><span style="text-align:right">Jumlah</span><span></span></div>
+            <div id="fOut"></div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn soft xs" data-fadd="Pengeluaran">+ Tambah pengeluaran</button></div>
+            <div class="fsub"><span>Total pengeluaran</span><b id="fOutTot">Rp0</b></div>
+          </div>
+          <div class="ftot" id="fTot"></div>
+          <div class="fld"><label for="fCat">Catatan (opsional)</label><textarea id="fCat" style="font-family:var(--f);min-height:60px" placeholder="mis. Fee narasumber sudah nego, bonus Rp10rb per peserta di atas 30 orang"></textarea></div>
+        </div>
+        <div class="cpr-card" id="finOut"></div>
+      </div>
+    </div>
+
+    <div id="ft-log" hidden>
+      <div class="filters"><span class="lbl">Kelas</span><select class="sel" id="fLogKelas"><option value="">Semua kelas</option></select><span class="muted" style="font-size:12.5px;margin-left:auto">Klik "Buka" untuk memuat ulang simulasi</span></div>
+      <div class="logs" id="fLogs"></div>
+    </div>
+
+    <div id="ft-jenis" hidden>
+      <div class="cpr-card" style="margin-bottom:14px">
+        <h3>Jenis pemasukan & pengeluaran <button class="btn pri sm" id="fJNew">+ Jenis baru</button></h3>
+        <p class="muted" style="font-size:12.5px;margin-top:-6px">Daftar ini muncul di pilihan "Deskripsi". Harga & multiplier di sini hanya nilai awal, tetap bisa diubah di tiap simulasi. Tersimpan di tab sheet "Finance Jenis" sehingga sama untuk semua anggota tim.</p>
+        <div class="jtab-wrap"><table class="jtab"><thead><tr><th>Deskripsi</th><th>Jenis</th><th>Harga awal</th><th>Multiplier awal</th><th>Sifat</th><th></th></tr></thead><tbody id="fJList"></tbody></table></div>
+      </div>
+      <div class="cpr-card">
+        <h3>Klasifikasi untung <small>margin = laba ÷ pemasukan</small></h3>
+        <div class="finset" id="finSet"></div>
+        <div class="legend2" id="finLegend"></div>
+        <div><button class="btn ghost sm" id="finSetReset">Kembalikan default</button></div>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="v-team" data-view="team" class="view view-band" hidden>
   <div class="wrap">
     <div class="teamhead"><div><div class="eyebrow">Kalender tim · hanya baca</div><h1 style="font-size:clamp(24px,3vw,32px);font-weight:800;margin-top:4px">Jadwal Kelas Pakarify</h1></div></div>
@@ -1291,6 +1403,8 @@ const TABS = {
     proposeUrl:'_url_Link Propose', torUrl:'_url_Link TOR', briefUrl:'_url_Brief LP & Poster', feedbackUrl:'_url_Feedback Kelas'}},
   // CORE HCE (MoM & task tim) — tim tanpa passcode membaca/mengisi lewat aksi coreload/coreupdate
   daftar: {sheet:'Pendaftar Kelas', cols:{id:'ID', kelas:'Kelas', kelasId:'Kelas ID', nama:'Nama', instansi:'Instansi', pekerjaan:'Pekerjaan', segmen:'Segmen', email:'Email', wa:'WhatsApp', sumber:'Sumber Info', motivasi:'Motivasi', voucher:'Voucher', paket:'Paket', harga:'Harga', entryId:'Entry ID', tglDaftar:'Tanggal Daftar', status:'Status Bayar', tglBayar:'Tanggal Bayar', catatan:'Catatan', duplikat:'Duplikat', batch:'Batch Upload', diupdate:'Diupdate'}},
+  fin: {sheet:'Finance Log', cols:{id:'ID', kelas:'Kelas', kelasId:'Kelas ID', nama:'Nama Skenario', tanggal:'Tanggal', items:'Rincian (JSON)', pemasukan:'Total Pemasukan', pengeluaran:'Total Pengeluaran', laba:'Laba', margin:'Margin (%)', peserta:'Peserta', bep:'Peserta BEP', tiers:'Minimal Peserta (JSON)', status:'Status', ringkasan:'Ringkasan', catatan:'Catatan', oleh:'Dibuat Oleh', dibuat:'Dibuat'}},
+  finJenis: {sheet:'Finance Jenis', cols:{id:'ID', nama:'Deskripsi', tipe:'Jenis', harga:'Harga Awal', mult:'Multiplier Awal', satuan:'Satuan', basis:'Sifat', hitung:'Dihitung Peserta', grup:'Grup Paket', urutan:'Urutan', catatan:'Keterangan'}},
   cpr: {sheet:'CPR Log', cols:{id:'ID', kelas:'Kelas', tanggal:'Tanggal Update', target:'Target CPR', avg:'Avg CPR', last:'CPR Terkini', peserta:'Peserta', pendaftar:'Pendaftar', closing:'Target Closing (%)', spend:'Spend', impas:'Batas Impas', tanggalKelas:'Tanggal Kelas', targetPeserta:'Target Peserta', harian:'Data Harian (JSON)', status:'Status', tren:'Tren', ringkasan:'Ringkasan', catatan:'Catatan', actions:'Action Plan (JSON)', oleh:'Dibuat Oleh', dibuat:'Dibuat'}},
   coreMom: {sheet:'Core MoM', cols:{id:'ID', kode:'Kode', judul:'Judul Rapat', tanggal:'Tanggal', peserta:'Peserta', catatan:'Catatan', dibuat:'Dibuat'}},
   coreTask: {sheet:'Core Tasks', cols:{id:'ID', kode:'Kode', sumber:'Sumber', momId:'MoM ID', judul:'Task', deskripsi:'Deskripsi', pic:'PIC', collab:'Collab', due:'Due Date', status:'Status', closing:'Closing Date', updates:'Updates', dibuat:'Dibuat', oleh:'Dibuat Oleh'}},
@@ -1310,6 +1424,7 @@ function toSheet(tab, r) {
     else if (BOOL.has(k) && tab !== 'classes') v = v === true ? 'Ya' : v === false ? 'Tidak' : '';
     else if (k === 'skor') v = JSON.stringify(v || {});
     else if (tab === 'cpr' && (k === 'harian' || k === 'actions')) v = JSON.stringify(v || []);
+    else if (tab === 'fin' && (k === 'items' || k === 'tiers')) v = JSON.stringify(v || (k === 'items' ? [] : {}));
     else if (k === 'pilih') v = v === true ? 'Ya' : v === false ? 'Tidak' : 'Otomatis';
     else if (k === 'terbaik') v = v ? 'Ya' : '';
     o[cols[k]] = v ?? ''; }
@@ -1363,12 +1478,12 @@ const api = {
     return call('upload', {base64: b64, fileName: file.name, mime: file.type || 'application/octet-stream', ...meta});
   },
 };
-function persistDemo() { store.set('pkt-demo2', {kandidat:S.kandidat, db:S.db, types:S.types, topics:S.topics, classes:S.classes, coreMom:S.coreMom, coreTask:S.coreTask, opsAset:S.opsAset, opsTpl:S.opsTpl, cpr:S.cpr, daftar:S.daftar}); }
+function persistDemo() { store.set('pkt-demo2', {kandidat:S.kandidat, db:S.db, types:S.types, topics:S.topics, classes:S.classes, coreMom:S.coreMom, coreTask:S.coreTask, opsAset:S.opsAset, opsTpl:S.opsTpl, cpr:S.cpr, daftar:S.daftar, fin:S.fin, finJenis:S.finJenis}); }
 async function saveRec(tab, rec, msg) { try { await api.save(tab, rec); if (msg) toast(msg); } catch (e) { toast('Gagal menyimpan: ' + e.message, 'err'); } }
 
 /* ---------------- state ---------------- */
 const DEF_COLORS = [{nama:'Done', warna:'#DDF0E2'}, {nama:'Fix', warna:'#DCE8FF'}, {nama:'Sementara', warna:'#FFF1CC'}, {nama:'Ide Kelas', warna:'#F1F3F7'}, {nama:'Cancelled', warna:'#F6D3D3'}];
-const S = { kandidat:[], db:[], types:[], topics:[], classes:[], cpr:[], daftar:[], coreMom:[], coreTask:[], opsAset:[], opsTpl:[],
+const S = { kandidat:[], db:[], types:[], topics:[], classes:[], cpr:[], daftar:[], fin:[], finJenis:[], coreMom:[], coreTask:[], opsAset:[], opsTpl:[],
   order: store.get('pkt-order', []),      // urutan manual Database Kelas (id kelas)
   fase: store.get('pkt-fase', {}),        // jadwal aktual custom per kelas: offset hari dari H
   colors: store.get('pkt-colors', null) || DEF_COLORS,
@@ -1463,7 +1578,11 @@ function seed() {
     return {id:'g-contoh-' + i, kelas:'Contoh: Carbon QGIS', kelasId:'', nama:nm + ' (contoh)', instansi:ins, pekerjaan:pk, segmen:segOf(pk, ins), email:'contoh' + i + '@example.com', wa:'6281200000' + String(100 + i), sumber:DS[i % DS.length], motivasi:DM[i % DM.length], voucher:'', paket:paketOf(pkt), harga:hargaOf(pkt), entryId:String(900 + i), tglDaftar:dtStr(d), status:i % 3 === 0 ? 'Sudah bayar' : 'Belum bayar', tglBayar:'', catatan:'', duplikat:'', batch:'Contoh', diupdate:''}; });
   daftar.push({...daftar[4], id:'g-contoh-d1', entryId:'990', tglDaftar:'2026-10-03 10:00', status:'Dobel', duplikat:'Dobel: ' + daftar[4].nama + ' daftar 2× (email sama)'});
   daftar.push({...daftar[0], id:'g-contoh-t1', nama:'tes', email:'tes@example.com', wa:'', entryId:'991', motivasi:'1234', status:'Tes', duplikat:'Kemungkinan data tes (isian tidak wajar)'});
-  const d = {kandidat:[...rKand, ...kandidat], db:rDb, types, topics:rTopics, classes, cpr, daftar}; store.set('pkt-demo2', d); return d;
+  const finJenisS = FIN_JENIS_DEF.map(j => ({...j}));
+  const finRows = [['e-paket-starter', 6], ['e-paket-pro', 5], ['e-paket-exc', 9], ['e-addon-rec', 4], ['e-narsum-fee', 1], ['e-narsum-bonus', 1], ['e-cpr', ''], ['e-voucher', 5]].map(([id, m]) => { const j = fixFinJenis(finJenisS.find(x => x.id === id)); const r = finRowFrom(j); r.mult = m; if (id === 'e-narsum-bonus') r.harga = 250000; if (id === 'e-voucher') r.harga = 25000; if (id === 'e-cpr') r.harga = 45000; return r; });
+  const fc = finCalc(finRows);
+  const fin = [{id:'f-contoh-1', kelas:'Contoh: Carbon QGIS', kelasId:'', nama:'Skenario normal (contoh)', tanggal:'2026-11-10', items:finRows, pemasukan:fc.inc, pengeluaran:fc.out, laba:fc.laba, margin:Math.round(fc.margin * 1000) / 10, peserta:fc.N, bep:fc.tiers.impas, tiers:{...fc.tiers, closing:60}, status:fc.tier.l, ringkasan:'', catatan:'Contoh: fee narasumber Rp750rb + bonus Rp250rb, CPR Rp45rb.', oleh:'', dibuat:'2026-11-10'}];
+  const d = {kandidat:[...rKand, ...kandidat], db:rDb, types, topics:rTopics, classes, cpr, daftar, fin, finJenis:finJenisS}; store.set('pkt-demo2', d); return d;
 }
 
 /* ---------------- narasumber scoring ---------------- */
@@ -1653,7 +1772,7 @@ const ACTIVE = c => ['Fix','Sementara'].includes(c.progress);
 /* =====================================================================
    RENDER
    ===================================================================== */
-function renderAll() { cprInit(); renderDaftar(); renderHome(); renderKandidat(); renderDB(); renderTopik(); renderKelasTable(); renderJadwal(); renderCore(); renderOps(); $('#cntK').textContent = S.kandidat.filter(k => k.status !== 'db').length; $('#cntD').textContent = S.db.length; }
+function renderAll() { cprInit(); renderDaftar(); renderFinance(); renderHome(); renderKandidat(); renderDB(); renderTopik(); renderKelasTable(); renderJadwal(); renderCore(); renderOps(); $('#cntK').textContent = S.kandidat.filter(k => k.status !== 'db').length; $('#cntD').textContent = S.db.length; }
 
 /* ---------- home ---------- */
 function renderHome() {
@@ -4420,9 +4539,365 @@ vD.addEventListener('click', async e => {
   }
 });
 /* =====================================================================
+   FINANCE · SIMULASI HARGA KELAS
+   ===================================================================== */
+const FIN_JENIS_DEF = [
+  {id:'e-paket-total', nama:'Pembelian Kelas Paket Total', tipe:'Pemasukan', harga:0, mult:'', satuan:'peserta', basis:'peserta', hitung:'Ya', grup:'total', urutan:1, catatan:'Semua paket digabung (harga rata-rata). Tidak bisa dipakai bersama paket satuan.'},
+  {id:'e-paket-starter', nama:'Pembelian Kelas Paket Starter', tipe:'Pemasukan', harga:149000, mult:'', satuan:'peserta', basis:'peserta', hitung:'Ya', grup:'satuan', urutan:2, catatan:''},
+  {id:'e-paket-pro', nama:'Pembelian Kelas Paket Professional', tipe:'Pemasukan', harga:179000, mult:'', satuan:'peserta', basis:'peserta', hitung:'Ya', grup:'satuan', urutan:3, catatan:''},
+  {id:'e-paket-exc', nama:'Pembelian Kelas Paket Exclusive', tipe:'Pemasukan', harga:229000, mult:'', satuan:'peserta', basis:'peserta', hitung:'Ya', grup:'satuan', urutan:4, catatan:''},
+  {id:'e-addon-rec', nama:'Penambahan Add On Kelas Recording', tipe:'Pemasukan', harga:50000, mult:'', satuan:'pembeli', basis:'peserta', hitung:'Tidak', grup:'', urutan:5, catatan:'Pembeli add-on tidak dihitung sebagai peserta baru.'},
+  {id:'e-narsum-fee', nama:'Biaya Narasumber Feebase', tipe:'Pengeluaran', harga:750000, mult:1, satuan:'narasumber', basis:'tetap', hitung:'Tidak', grup:'', urutan:6, catatan:''},
+  {id:'e-narsum-bonus', nama:'Biaya Narasumber Bonus', tipe:'Pengeluaran', harga:0, mult:1, satuan:'narasumber', basis:'tetap', hitung:'Tidak', grup:'', urutan:7, catatan:''},
+  {id:'e-cpr', nama:'Biaya CPR (iklan per peserta)', tipe:'Pengeluaran', harga:40000, mult:'', satuan:'peserta', basis:'peserta', hitung:'Tidak', grup:'', urutan:8, catatan:'Multiplier kosong = otomatis ikut jumlah peserta.'},
+  {id:'e-ops', nama:'Biaya Operasional', tipe:'Pengeluaran', harga:0, mult:1, satuan:'paket', basis:'tetap', hitung:'Tidak', grup:'', urutan:9, catatan:''},
+  {id:'e-voucher', nama:'Voucher Kelas', tipe:'Pengeluaran', harga:0, mult:'', satuan:'voucher', basis:'tetap', hitung:'Tidak', grup:'', urutan:10, catatan:'Multiplier = jumlah voucher yang disebar/dipakai.'},
+];
+const FIN_DEF = {biasa:10, sehat:25, win:40, closing:null};
+const FIN_CFG = () => { const c = {...FIN_DEF, ...store.get('pkt-fincfg', {})}; if (c.closing == null) c.closing = CPR_CFG().closing; return c; };
+const FIN_TIERS = [
+  {k:'rugi', l:'Rugi', e:'🔴', n:5},
+  {k:'impas', l:'Impas (BEP)', e:'⚪', n:4},
+  {k:'biasa', l:'Untung biasa', e:'🟡', n:3},
+  {k:'sehat', l:'Untung sehat', e:'🔵', n:2},
+  {k:'win', l:'Winning', e:'🏆', n:1},
+];
+let FIN = {draft:null, editId:null};
+const finNum = v => { if (v === '' || v == null) return null; const n = parseFloat(String(v).replace(/\./g, '').replace(',', '.').replace(/[^\d.-]/g, '')); return isFinite(n) ? n : null; };
+const finFmt = n => n == null || n === '' ? '' : Math.round(+n).toLocaleString('id-ID');
+const finYes = v => v === true || /^(ya|y|true|1)$/i.test(String(v || '').trim());
+function fixFinJenis(j) { return {...j, harga:finNum(j.harga) || 0, mult:j.mult === '' || j.mult == null ? '' : finNum(j.mult), urutan:numOr(j.urutan, 99), basis:j.basis === 'peserta' || /peserta/i.test(j.basis) ? 'peserta' : 'tetap', hitung:finYes(j.hitung) ? 'Ya' : 'Tidak', grup:/total/i.test(j.grup || '') ? 'total' : /satuan/i.test(j.grup || '') ? 'satuan' : '', tipe:/pengeluaran|keluar|biaya|out/i.test(j.tipe || '') ? 'Pengeluaran' : 'Pemasukan'}; }
+function fixFin(x) {
+  let items = x.items; if (typeof items === 'string') { try { items = JSON.parse(items || '[]'); } catch (_) { items = []; } }
+  let tiers = x.tiers; if (typeof tiers === 'string') { try { tiers = JSON.parse(tiers || '{}'); } catch (_) { tiers = {}; } }
+  return {...x, items:items || [], tiers:tiers || {}, pemasukan:numOr(x.pemasukan, 0), pengeluaran:numOr(x.pengeluaran, 0), laba:numOr(x.laba, 0), margin:numOr(x.margin, null), peserta:numOr(x.peserta, 0), bep:x.bep === '' || x.bep == null ? null : numOr(x.bep, null)};
+}
+function finJenis() { const L = (S.finJenis && S.finJenis.length ? S.finJenis : FIN_JENIS_DEF).map(fixFinJenis); return L.sort((a, b) => a.urutan - b.urutan || a.nama.localeCompare(b.nama)); }
+function finRowFrom(j) { return {jid:j.id, nama:j.nama, tipe:j.tipe, harga:j.harga || 0, mult:j.mult === '' ? '' : j.mult, basis:j.basis, hitung:j.hitung === 'Ya', grup:j.grup, satuan:j.satuan || ''}; }
+function finBlank() {
+  const J = finJenis(); const pick = id => J.find(j => j.id === id);
+  const rows = ['e-paket-starter', 'e-paket-pro', 'e-paket-exc', 'e-narsum-fee', 'e-cpr'].map(pick).filter(Boolean).map(finRowFrom);
+  if (!rows.length) J.slice(0, 3).forEach(j => rows.push(finRowFrom(j)));
+  return {kelas:'', kelasId:'', nama:'Skenario 1', tanggal:iso(today0()), catatan:'', rows};
+}
+
+/* ---- hitungan ---- */
+function finCalc(rows) {
+  const cfg = FIN_CFG();
+  const R = rows.map(r => ({...r, h:+r.harga || 0}));
+  const N = R.filter(r => r.tipe === 'Pemasukan' && r.hitung).reduce((s, r) => s + (finNum(r.mult) || 0), 0);
+  R.forEach(r => { r.auto = r.tipe === 'Pengeluaran' && r.basis === 'peserta' && (r.mult === '' || r.mult == null); r.m = r.auto ? N : (finNum(r.mult) || 0); r.jml = r.h * r.m; });
+  const sum = f => R.filter(f).reduce((s, r) => s + r.jml, 0);
+  const inc = sum(r => r.tipe === 'Pemasukan'), out = sum(r => r.tipe === 'Pengeluaran'), laba = inc - out;
+  const margin = inc > 0 ? laba / inc : null;
+  const paket = R.filter(r => r.tipe === 'Pemasukan' && r.hitung);
+  let rp, vp;   // pemasukan & biaya variabel per peserta
+  if (N > 0) { rp = sum(r => r.tipe === 'Pemasukan' && r.basis === 'peserta') / N; vp = sum(r => r.tipe === 'Pengeluaran' && r.basis === 'peserta') / N; }
+  else { const ps = paket.filter(r => r.h > 0); rp = ps.length ? ps.reduce((s, r) => s + r.h, 0) / ps.length : 0; vp = R.filter(r => r.tipe === 'Pengeluaran' && r.basis === 'peserta').reduce((s, r) => s + r.h * (r.auto ? 1 : 0), 0); }
+  const F = sum(r => r.tipe === 'Pengeluaran' && r.basis !== 'peserta'), Rf = sum(r => r.tipe === 'Pemasukan' && r.basis !== 'peserta');
+  const need = m => { const den = rp * (1 - m) - vp, num = F - Rf * (1 - m); if (den <= 0) return num <= 0 ? 0 : Infinity; return num <= 0 ? 0 : Math.ceil(num / den - 1e-9); };
+  const labaAt = n => n * (rp - vp) + Rf - F;
+  const tiers = {impas:need(0), biasa:need(cfg.biasa / 100), sehat:need(cfg.sehat / 100), win:need(cfg.win / 100)};
+  let tier = null;
+  if (inc > 0 || out > 0) { if (laba < 0) tier = FIN_TIERS[0]; else if (margin == null || margin < cfg.biasa / 100) tier = FIN_TIERS[1]; else if (margin < cfg.sehat / 100) tier = FIN_TIERS[2]; else if (margin < cfg.win / 100) tier = FIN_TIERS[3]; else tier = FIN_TIERS[4]; }
+  const cprRows = R.filter(r => r.tipe === 'Pengeluaran' && (r.jid === 'e-cpr' || /cpr|iklan|ads/i.test(r.nama || '')));
+  return {R, N, inc, out, laba, margin, rp, vp, F, Rf, need, labaAt, tiers, tier, cfg, cprRows, paket};
+}
+
+/* ---- render ---- */
+function finKelasOpts() {
+  const cls = (S.classes || []).filter(c => c.judul && !/cancel/i.test(c.progress || '')).sort((a, b) => String(b.mulai || '').localeCompare(String(a.mulai || '')));
+  const titles = new Set(cls.map(c => c.judul));
+  const extra = [...new Set([...(typeof dftKelasList === 'function' ? dftKelasList() : []), ...S.cpr.map(x => x.kelas), ...(S.fin || []).map(x => x.kelas)].filter(k => k && !titles.has(k)))];
+  return {cls, extra};
+}
+function renderFinKelas() {
+  const d = FIN.draft, {cls, extra} = finKelasOpts(); const sel = $('#fKelas');
+  const known = cls.some(c => c.judul === d.kelas) || extra.includes(d.kelas);
+  sel.innerHTML = `<option value="">— Pilih kelas —</option>` + (cls.length ? `<optgroup label="Jadwal Kelas">${cls.map(c => `<option value="${esc(c.judul)}" ${c.judul === d.kelas ? 'selected' : ''}>${esc(c.judul)}${c.mulai ? ' · ' + esc(fmtDate(c.mulai)) : ''}</option>`).join('')}</optgroup>` : '') +
+    (extra.length ? `<optgroup label="Dari Pendaftar / CPR / log">${extra.map(k => `<option value="${esc(k)}" ${k === d.kelas ? 'selected' : ''}>${esc(k)}</option>`).join('')}</optgroup>` : '') +
+    `<option value="__lain" ${d.kelas && !known ? 'selected' : ''}>Lainnya (ketik nama)…</option>`;
+  $('#fKelasTxt').hidden = !(d.kelas && !known) && sel.value !== '__lain'; if (!$('#fKelasTxt').hidden) $('#fKelasTxt').value = d.kelas;
+  renderFinCtx();
+}
+function finDftRows(kelas) { return (S.daftar || []).filter(r => r.kelas === kelas && typeof dftAktif === 'function' && dftAktif(r)); }
+function finCprLast(kelas) { const k = String(kelas || '').toLowerCase(); if (!k) return null; return S.cpr.filter(x => String(x.kelas || '').toLowerCase() === k).sort((a, b) => String(b.tanggal).localeCompare(String(a.tanggal)))[0] || null; }
+function renderFinCtx() {
+  const d = FIN.draft, k = d.kelas, box = $('#fCtx'); if (!k) { box.innerHTML = '<span class="muted">Pilih kelas untuk menarik data peserta & CPR otomatis.</span>'; return; }
+  const c = (S.classes || []).find(x => x.judul === k); const dr = finDftRows(k), paid = dr.filter(r => r.status === 'Sudah bayar'); const cp = finCprLast(k);
+  box.innerHTML = [c && c.pembicara ? `<span class="chip">🎤 ${esc(c.pembicara)}</span>` : '', c && c.mulai ? `<span class="chip">📅 ${esc(fmtDate(c.mulai))}</span>` : '', c && c.peserta ? `<span class="chip">Peserta aktual ${c.peserta}</span>` : '',
+    dr.length ? `<span class="chip blue">${dr.length} pendaftar · ${paid.length} bayar</span><button class="btn soft xs" data-ffill="paid" ${paid.length ? '' : 'disabled title="Belum ada yang ditandai sudah bayar"'}>Isi paket dari yang sudah bayar</button><button class="btn ghost xs" data-ffill="proj">Proyeksi pendaftar × closing ${FIN_CFG().closing}%</button>` : '',
+    cp ? `<button class="btn ghost xs" data-ffill="cpr">Isi CPR dari log (${rupiah(cp.avg || cp.last)})</button>` : ''].join('') || '<span class="muted">Belum ada data pendaftar/CPR untuk kelas ini. Isi manual.</span>';
+}
+function finOpt(j, row, rows) {
+  const others = rows.filter(r => r !== row);
+  const hasTot = others.some(r => r.grup === 'total'), hasSat = others.some(r => r.grup === 'satuan');
+  const dis = (j.grup === 'satuan' && hasTot) || (j.grup === 'total' && hasSat);
+  return `<option value="${esc(j.id)}" ${row.jid === j.id ? 'selected' : ''} ${dis ? 'disabled' : ''}>${esc(j.nama)}${dis ? (j.grup === 'satuan' ? ' — terkunci (sudah pakai Paket Total)' : ' — terkunci (sudah pakai paket satuan)') : ''}</option>`;
+}
+function finRowHtml(r, i, rows, calc) {
+  const J = finJenis().filter(j => j.tipe === r.tipe); const inCat = J.some(j => j.id === r.jid); const c = calc.R[i];
+  const tags = [r.hitung ? '<i>dihitung sebagai peserta</i>' : '', r.basis === 'peserta' ? (c.auto ? `<i class="auto">otomatis × ${calc.N} peserta</i>` : '<i>ikut jumlah peserta</i>') : '<i>biaya/pemasukan tetap</i>', r.satuan ? `<i>multiplier: ${esc(r.satuan)}</i>` : ''].filter(Boolean).join('');
+  return `<div class="frow" data-fi="${i}">
+    <select data-ff="jid" aria-label="Deskripsi">${inCat ? '' : `<option value="${esc(r.jid || '__custom')}" selected>${esc(r.nama)}</option>`}${J.map(j => finOpt(j, r, rows)).join('')}<option value="__new">＋ Jenis baru…</option></select>
+    <div class="rp"><span>Rp</span><input data-ff="harga" inputmode="numeric" value="${finFmt(r.harga)}" aria-label="Harga"></div>
+    <span class="op x1">×</span>
+    <input class="mu ${c.auto ? 'autoin' : ''}" data-ff="mult" inputmode="decimal" value="${r.mult === '' || r.mult == null ? '' : r.mult}" placeholder="${c.auto ? 'auto ' + calc.N : '0'}" aria-label="Multiplier">
+    <span class="op eq">=</span>
+    <b class="jml" data-fj="${i}">${rupiah(c.jml)}</b>
+    <button class="x" data-fdel="${i}" title="Hapus baris" aria-label="Hapus baris">✕</button>
+    <div class="tag">${tags}</div></div>`;
+}
+function renderFinRows() {
+  const d = FIN.draft, calc = finCalc(d.rows);
+  const html = t => d.rows.map((r, i) => r.tipe === t ? finRowHtml(r, i, d.rows, calc) : '').join('');
+  const inH = html('Pemasukan'), outH = html('Pengeluaran');
+  const lock = d.rows.some(r => r.grup === 'total') ? '<div class="fnote">Paket Total dipakai, jadi paket satuan (Starter/Professional/Exclusive) dikunci. Hapus baris Paket Total untuk memilih paket satu per satu.</div>' : '';
+  $('#fIn').innerHTML = (inH || '<p class="muted" style="font-size:12.5px;padding:4px">Belum ada pemasukan.</p>') + lock;
+  $('#fOut').innerHTML = outH || '<p class="muted" style="font-size:12.5px;padding:4px">Belum ada pengeluaran.</p>';
+  finRefresh(calc);
+}
+function finRefresh(calc) {
+  calc = calc || finCalc(FIN.draft.rows); FIN.calc = calc;
+  calc.R.forEach((c, i) => { const el = $(`[data-fj="${i}"]`); if (el) el.textContent = rupiah(c.jml); const mi = $(`[data-fi="${i}"] [data-ff="mult"]`); if (mi && c.auto) mi.placeholder = 'auto ' + calc.N; const tg = $(`[data-fi="${i}"] .tag .auto`); if (tg) tg.textContent = `otomatis × ${calc.N} peserta`; });
+  $('#fInTot').textContent = rupiah(calc.inc); $('#fOutTot').textContent = rupiah(calc.out);
+  $('#fTot').innerHTML = `<div><span>Pemasukan</span><span>${rupiah(calc.inc)}</span></div><div><span>Pengeluaran</span><span>− ${rupiah(calc.out)}</span></div><div class="big"><span>${calc.laba >= 0 ? 'Laba' : 'Rugi'}</span><span>${calc.laba < 0 ? '− ' : ''}${rupiah(Math.abs(calc.laba))}${calc.margin != null ? ` · ${(calc.margin * 100).toFixed(1).replace('.', ',')}%` : ''}</span></div>`;
+  renderFinOut(calc);
+}
+const finPct = m => (m * 100).toFixed(1).replace('.', ',').replace(',0', '') + '%';
+const finN = n => n === Infinity ? '∞' : String(n);
+function finTierRows(calc) {
+  const c = calc.cfg; return [
+    {t:FIN_TIERS[1], m:0, lbl:'laba ≥ Rp0', n:calc.tiers.impas},
+    {t:FIN_TIERS[2], m:c.biasa / 100, lbl:'margin ≥ ' + c.biasa + '%', n:calc.tiers.biasa},
+    {t:FIN_TIERS[3], m:c.sehat / 100, lbl:'margin ≥ ' + c.sehat + '%', n:calc.tiers.sehat},
+    {t:FIN_TIERS[4], m:c.win / 100, lbl:'margin ≥ ' + c.win + '%', n:calc.tiers.win}];
+}
+function finFinds(calc) {
+  const F = [], c = calc.cfg, cl = Math.max(1, c.closing) / 100, d = FIN.draft; const unit = calc.rp - calc.vp;
+  if (!calc.paket.length) F.push({c:'bad', t:'Belum ada baris <b>Pembelian Kelas Paket</b>. Tambahkan minimal satu paket supaya BEP bisa dihitung.'});
+  else if (calc.rp <= 0) F.push({c:'warn', t:'Harga paket masih Rp0. Isi harga paket dulu.'});
+  if (calc.paket.length && calc.rp > 0) {
+    if (unit <= 0) F.push({c:'bad', t:`Pemasukan per peserta (${rupiah(calc.rp)}) <b>tidak menutup biaya per peserta</b> (${rupiah(calc.vp)}, mis. CPR). Kelas tidak akan pernah untung berapa pun pesertanya: naikkan harga atau turunkan CPR.`});
+    else F.push({c:'info', t:`Setiap peserta menyumbang <b>${rupiah(unit)}</b> (rata-rata ${rupiah(calc.rp)} − biaya per peserta ${rupiah(calc.vp)}) untuk menutup biaya tetap ${rupiah(calc.F - calc.Rf)}.`});
+    const b = calc.tiers.impas; if (isFinite(b)) F.push({c:b <= Math.max(calc.N, 1) && calc.N > 0 ? 'good' : 'warn', t:`Minimal <b>${b} peserta</b> untuk balik modal. Dengan closing ${c.closing}% butuh ±<b>${Math.ceil(b / cl)} pendaftar</b>.`});
+  }
+  if (calc.N > 0 && calc.tier) {
+    const nx = finTierRows(calc).find(x => x.n > calc.N && isFinite(x.n));
+    F.push({c:calc.laba < 0 ? 'bad' : calc.tier.k === 'win' ? 'good' : 'info', t:`Dengan <b>${calc.N} peserta</b>: ${calc.laba >= 0 ? 'laba' : 'rugi'} <b>${rupiah(Math.abs(calc.laba))}</b>${calc.margin != null ? ` (margin ${finPct(calc.margin)})` : ''} → <b>${calc.tier.e} ${calc.tier.l}</b>.${nx ? ` Tambah <b>${nx.n - calc.N} peserta</b> lagi untuk naik ke ${nx.t.l}.` : ''}`});
+  }
+  if (calc.cprRows.length && calc.N > 0) {
+    const cprSum = calc.cprRows.reduce((s, r) => s + r.jml, 0), base = calc.out - cprSum;
+    const maxB = (calc.inc - base) / calc.N, maxS = (calc.inc * (1 - c.sehat / 100) - base) / calc.N, cur = calc.cprRows[0].h;
+    F.push({c:cur > maxB ? 'bad' : cur > maxS ? 'warn' : 'good', t:`CPR maksimal agar tetap impas: <b>${rupiah(Math.max(0, maxB))}</b>; agar untung sehat: <b>${rupiah(Math.max(0, maxS))}</b>. CPR di simulasi: ${rupiah(cur)}.`});
+  }
+  const fee = calc.R.filter(r => r.tipe === 'Pengeluaran' && /narasumber|narsum|fee/i.test(r.nama || '')).reduce((s, r) => s + r.jml, 0);
+  if (fee > 0 && calc.out > 0) F.push({c:fee / calc.out > .6 ? 'warn' : 'info', t:`Biaya narasumber = <b>${Math.round(fee / calc.out * 100)}%</b> dari total pengeluaran${calc.rp > 0 ? `, setara ${Math.ceil(fee / Math.max(1, unit > 0 ? unit : calc.rp))} peserta pertama` : ''}.`});
+  const vc = calc.R.filter(r => r.tipe === 'Pengeluaran' && /voucher|diskon/i.test(r.nama || '')).reduce((s, r) => s + r.jml, 0);
+  if (vc > 0 && calc.inc > 0) F.push({c:vc / calc.inc > .1 ? 'warn' : 'info', t:`Voucher memotong <b>${Math.round(vc / calc.inc * 100)}%</b> pemasukan${vc / calc.inc > .1 ? ' — pertimbangkan batasi jumlah voucher atau nominalnya' : ''}.`});
+  const hist = (S.classes || []).map(x => numOr(x.peserta, 0)).filter(n => n > 0);
+  if (hist.length && isFinite(calc.tiers.win)) { const avg = Math.round(hist.reduce((a, b) => a + b, 0) / hist.length); F.push({c:calc.tiers.win > avg * 1.3 ? 'warn' : 'good', t:`Rata-rata peserta kelas sebelumnya ±<b>${avg} orang</b> (${hist.length} kelas). Target Winning ${calc.tiers.win} peserta ${calc.tiers.win > avg * 1.3 ? '<b>terlalu tinggi</b> dibanding histori — naikkan harga/bundling atau tekan biaya tetap' : 'masih realistis'}.`}); }
+  return F;
+}
+function finChart(calc) {
+  if (!(calc.rp > 0)) return '';
+  const fin = [calc.tiers.impas, calc.tiers.win, calc.N].filter(n => isFinite(n));
+  const X = Math.max(10, Math.ceil(Math.max(...fin, 1) * 1.3)); const W = 640, H = 220, pl = 64, pr = 14, pt = 18, pb = 30;
+  const ys = [0, X].map(calc.labaAt).concat([0]); const ymin = Math.min(...ys), ymax = Math.max(...ys); const pad = (ymax - ymin) * .08 || 1;
+  const x = n => pl + (W - pl - pr) * n / X, y = v => pt + (H - pt - pb) * (1 - (v - (ymin - pad)) / ((ymax + pad) - (ymin - pad)));
+  const kfmt = v => (Math.abs(v) >= 1e6 ? (v / 1e6).toFixed(1).replace('.', ',') + 'jt' : Math.round(v / 1e3) + 'rb');
+  const marks = finTierRows(calc).filter(t => isFinite(t.n) && t.n <= X && t.t.k !== 'biasa').map(t => { const col = {impas:'#64748B', sehat:'#2563EB', win:'#16A34A'}[t.t.k]; return `<line x1="${x(t.n)}" x2="${x(t.n)}" y1="${pt}" y2="${H - pb}" stroke="${col}" stroke-dasharray="4 4"/><text x="${x(t.n) + 4}" y="${pt + 10}" font-size="11" fill="${col}" font-weight="700">${t.t.k === 'impas' ? 'BEP' : t.t.l} · ${t.n}</text>`; }).join('');
+  const now = calc.N > 0 && calc.N <= X ? `<circle cx="${x(calc.N)}" cy="${y(calc.labaAt(calc.N))}" r="5.5" fill="#E11D48" stroke="#fff" stroke-width="2"/><text x="${x(calc.N)}" y="${y(calc.labaAt(calc.N)) + 20}" font-size="11" text-anchor="middle" fill="#E11D48" font-weight="700">sekarang ${calc.N}</text>` : '';
+  const ticks = [ymin, 0, ymax].filter((v, i, a) => a.indexOf(v) === i).map(v => `<text x="${pl - 6}" y="${y(v) + 4}" font-size="10.5" text-anchor="end" fill="#64748B">${kfmt(v)}</text>`).join('');
+  const xt = [0, Math.round(X / 2), X].map(n => `<text x="${x(n)}" y="${H - 10}" font-size="10.5" text-anchor="middle" fill="#64748B">${n}</text>`).join('');
+  return `<svg class="finchart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Grafik laba terhadap jumlah peserta"><rect x="${pl}" y="${y(0)}" width="${W - pl - pr}" height="${Math.max(0, H - pb - y(0))}" fill="#FEF2F2"/><line x1="${pl}" x2="${W - pr}" y1="${y(0)}" y2="${y(0)}" stroke="#94A3B8"/>${marks}<line x1="${x(0)}" y1="${y(calc.labaAt(0))}" x2="${x(X)}" y2="${y(calc.labaAt(X))}" stroke="#0B1A33" stroke-width="2.5"/>${now}${ticks}${xt}<text x="${W - pr}" y="${H - 10}" font-size="10.5" text-anchor="end" fill="#94A3B8">peserta →</text></svg>`;
+}
+function renderFinOut(calc) {
+  const d = FIN.draft, c = calc.cfg, cl = Math.max(1, c.closing) / 100; const t = calc.tier;
+  const verdict = t ? `<div class="verdict cat-${t.n}"><div class="ic">${t.e}</div><b>${t.l}${calc.N ? ` · ${calc.N} peserta` : ''}</b><span>${calc.laba >= 0 ? 'Laba' : 'Rugi'} ${rupiah(Math.abs(calc.laba))}${calc.margin != null ? ' · margin ' + finPct(calc.margin) : ''}${d.kelas ? ' · ' + esc(d.kelas) : ''}</span></div>` : `<div class="verdict cat-2"><div class="ic">🧮</div><b>Isi simulasi</b><span>Isi harga & jumlah pembeli tiap paket untuk melihat status.</span></div>`;
+  const mets = `<div class="mets">
+    <div class="met"><div class="k">Pemasukan</div><div class="v num">${rupiah(calc.inc)}</div></div>
+    <div class="met"><div class="k">Pengeluaran</div><div class="v num">${rupiah(calc.out)}</div></div>
+    <div class="met"><div class="k">Harga rata-rata / peserta</div><div class="v num">${rupiah(calc.rp)}</div><div class="s muted">${calc.N ? 'dari campuran paket' : 'asumsi rata-rata paket'}</div></div>
+    <div class="met"><div class="k">Biaya tetap</div><div class="v num">${rupiah(calc.F)}</div><div class="s muted">+ ${rupiah(calc.vp)} / peserta</div></div></div>`;
+  const ladder = calc.rp > 0 ? `<div><h3 style="font-size:15px;margin-bottom:6px">Rekomendasi minimal peserta <small>closing ${c.closing}%</small></h3><div class="ladder-wrap"><table class="ladder"><thead><tr><th>Kategori</th><th>Min. peserta</th><th>± Pendaftar</th><th>Laba di titik itu</th></tr></thead><tbody>
+      ${finTierRows(calc).map(x => `<tr class="${t && t.k === x.t.k ? 'now' : ''}"><td><span class="ccat c${x.t.n}">${x.t.e} ${x.t.l}</span><small>${x.lbl}</small></td><td class="n">${finN(x.n)}</td><td>${isFinite(x.n) ? Math.ceil(x.n / cl) : '–'}</td><td class="num">${isFinite(x.n) ? rupiah(calc.labaAt(x.n)) : 'tidak tercapai'}</td></tr>`).join('')}
+      </tbody></table></div><p class="muted" style="font-size:11.5px;margin-top:6px">Di bawah ${finN(calc.tiers.impas)} peserta = 🔴 Rugi. Proyeksi memakai campuran paket & biaya per peserta yang sama dengan simulasi ini.</p></div>` : '';
+  const finds = finFinds(calc);
+  $('#finOut').innerHTML = `${verdict}${mets}${ladder}${finChart(calc)}
+    <div><h3 style="font-size:15px;margin-bottom:8px">Temuan & rekomendasi</h3><ul class="finds">${finds.map(f => `<li class="${f.c}"><i>${{good:'✓', warn:'!', bad:'✕', info:'i'}[f.c]}</i><span>${f.t}</span></li>`).join('')}</ul></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">${FIN.editId ? '<button class="btn ghost" id="finSaveNew">Simpan sebagai skenario baru</button>' : ''}<button class="btn sec" id="finWa">Salin ringkasan WA</button><button class="btn pri" id="finSave">${FIN.editId ? 'Simpan perubahan log' : 'Simpan ke log'}</button></div>`;
+}
+function finWaText(d, calc) {
+  const L = [], c = calc.cfg, cl = Math.max(1, c.closing) / 100;
+  L.push(`*Simulasi Harga Kelas – ${d.kelas || '(kelas belum dipilih)'}*`, `${d.nama || 'Skenario'} · ${fmtDate(d.tanggal)}`, '');
+  ['Pemasukan', 'Pengeluaran'].forEach(tp => { L.push(`*${tp}*`); calc.R.forEach(r => { if (r.tipe === tp) L.push(`• ${r.nama}: ${rupiah(r.h)} × ${r.m} = ${rupiah(r.jml)}`); }); L.push(`Total ${tp.toLowerCase()}: ${rupiah(tp === 'Pemasukan' ? calc.inc : calc.out)}`, ''); });
+  L.push(`*${calc.laba >= 0 ? 'Laba' : 'Rugi'}: ${rupiah(Math.abs(calc.laba))}${calc.margin != null ? ' (margin ' + finPct(calc.margin) + ')' : ''}${calc.tier ? ' → ' + calc.tier.e + ' ' + calc.tier.l : ''}*`, '');
+  if (calc.rp > 0) { L.push(`*Minimal peserta* (closing ${c.closing}%)`); finTierRows(calc).forEach(x => L.push(`• ${x.t.e} ${x.t.l} (${x.lbl}): ${finN(x.n)} peserta${isFinite(x.n) ? ` (±${Math.ceil(x.n / cl)} pendaftar)` : ''}`)); }
+  if (d.catatan) L.push('', 'Catatan: ' + d.catatan);
+  return L.join('\n');
+}
+function renderFinance() {
+  if (!FIN.draft) FIN.draft = finBlank();
+  const d = FIN.draft; $('#fNama').value = d.nama || ''; $('#fCat').value = d.catatan || '';
+  renderFinKelas(); renderFinRows(); renderFinLogCount();
+}
+function renderFinLogCount() { $('#cntFin').textContent = (S.fin || []).length; const gm = $('#gm-fin'); if (gm) gm.textContent = (S.fin || []).length ? `${(S.fin || []).length} simulasi` : 'Simulasi'; }
+function finTab(t) { $$('[data-ft]').forEach(b => b.setAttribute('aria-selected', b.dataset.ft === t)); ['sim', 'log', 'jenis'].forEach(k => $('#ft-' + k).hidden = k !== t); if (t === 'log') renderFinLog(); if (t === 'jenis') { renderFinJenis(); renderFinSet(); } }
+function renderFinLog() {
+  const L = S.fin || []; const ks = [...new Set(L.map(x => x.kelas).filter(Boolean))];
+  const f = $('#fLogKelas'); const cur = f.value; f.innerHTML = '<option value="">Semua kelas</option>' + ks.map(k => `<option ${k === cur ? 'selected' : ''}>${esc(k)}</option>`).join('');
+  const rows = L.filter(x => !f.value || x.kelas === f.value).sort((a, b) => String(b.tanggal).localeCompare(String(a.tanggal)) || String(b.dibuat).localeCompare(String(a.dibuat)));
+  renderFinLogCount();
+  $('#fLogs').innerHTML = rows.length ? rows.map(x => { const t = FIN_TIERS.find(k => k.l === x.status) || FIN_TIERS[1]; const tr = x.tiers || {}; return `<div class="logi">
+      <div class="when"><b>${fmtDate(x.tanggal)}</b><span>${parseIso(x.tanggal) ? parseIso(x.tanggal).getFullYear() : ''}</span></div>
+      <div class="what"><div class="row"><b style="color:var(--ink);font-size:14px">${esc(x.kelas || '(tanpa kelas)')}</b><span class="chip">${esc(x.nama || 'Skenario')}</span><span class="ccat c${t.n}">${t.e} ${esc(x.status || '')}</span></div>
+        <div class="row">pemasukan <b class="num">${rupiah(x.pemasukan)}</b> · pengeluaran <b class="num">${rupiah(x.pengeluaran)}</b> · ${x.laba >= 0 ? 'laba' : 'rugi'} <b class="num">${rupiah(Math.abs(x.laba))}</b>${x.margin != null ? ` (${String(x.margin).replace('.', ',')}%)` : ''} · ${x.peserta || 0} peserta</div>
+        <div class="row">BEP <b>${tr.impas ?? x.bep ?? '–'}</b> · untung biasa ${tr.biasa ?? '–'} · untung sehat ${tr.sehat ?? '–'} · Winning <b>${tr.win ?? '–'}</b> peserta</div>
+        ${x.catatan ? `<p>${esc(x.catatan)}</p>` : ''}
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn sec xs" data-fopen="${x.id}">Buka</button><button class="btn ghost xs" data-fcopy="${x.id}">Duplikat</button><button class="btn ghost xs" data-fwa="${x.id}">Salin WA</button><button class="icon-btn" data-frm="${x.id}" title="Hapus">${ICON.trash}</button></div></div>`; }).join('') : `<div class="empty"><h4>Belum ada log simulasi</h4><p>Buat simulasi di tab Simulasi, lalu "Simpan ke log".</p></div>`;
+}
+function finDraftFromLog(x) { return {kelas:x.kelas || '', kelasId:x.kelasId || '', nama:x.nama || '', tanggal:x.tanggal || iso(today0()), catatan:x.catatan || '', rows:(x.items || []).map(r => ({...r, hitung:r.hitung === true || finYes(r.hitung)}))}; }
+function openFin(id, copy) {
+  const x = (S.fin || []).find(r => r.id === id); if (!x) return;
+  FIN.draft = finDraftFromLog(x); FIN.editId = copy ? null : id;
+  if (copy) { FIN.draft.nama = (x.nama || 'Skenario') + ' (salinan)'; FIN.draft.tanggal = iso(today0()); }
+  $('#finEditing').textContent = copy ? 'salinan, belum disimpan' : 'membuka log ' + fmtDate(x.tanggal);
+  finTab('sim'); renderFinance();
+}
+function newFin() { FIN = {draft:finBlank(), editId:null}; const k = $('#fKelas').value; if (k && k !== '__lain') FIN.draft.kelas = k; $('#finEditing').textContent = ''; finTab('sim'); renderFinance(); }
+async function saveFin(asNew) {
+  const d = FIN.draft, calc = finCalc(d.rows);
+  if (!d.kelas) { $('#fKelas').focus(); return toast('Pilih kelas dulu', 'err'); }
+  if (!d.rows.length) return toast('Isi minimal satu baris', 'err');
+  const c = (S.classes || []).find(x => x.judul === d.kelas);
+  const fixN = n => isFinite(n) ? n : '';
+  const rec = {id:(!asNew && FIN.editId) || uid('f'), kelas:d.kelas, kelasId:c ? c.id || '' : '', nama:d.nama || 'Skenario', tanggal:d.tanggal || iso(today0()),
+    items:d.rows.map(r => ({jid:r.jid, nama:r.nama, tipe:r.tipe, harga:+r.harga || 0, mult:r.mult === '' || r.mult == null ? '' : finNum(r.mult), basis:r.basis, hitung:!!r.hitung, grup:r.grup || '', satuan:r.satuan || ''})),
+    pemasukan:Math.round(calc.inc), pengeluaran:Math.round(calc.out), laba:Math.round(calc.laba), margin:calc.margin == null ? '' : Math.round(calc.margin * 1000) / 10, peserta:calc.N, bep:fixN(calc.tiers.impas),
+    tiers:{impas:fixN(calc.tiers.impas), biasa:fixN(calc.tiers.biasa), sehat:fixN(calc.tiers.sehat), win:fixN(calc.tiers.win), closing:calc.cfg.closing}, status:calc.tier ? calc.tier.l : '', ringkasan:finWaText(d, calc).replace(/\*/g, ''), catatan:d.catatan || '', oleh:'', dibuat:iso(today0())};
+  S.fin = S.fin || []; const i = S.fin.findIndex(x => x.id === rec.id); if (i >= 0) S.fin[i] = rec; else S.fin.push(rec);
+  FIN.editId = rec.id; $('#finEditing').textContent = 'membuka log tersimpan';
+  renderFinLogCount(); renderFinOut(calc);
+  await saveRec('fin', rec, asNew ? 'Disimpan sebagai skenario baru' : 'Simulasi tersimpan ke log');
+}
+function finFill(mode) {
+  const d = FIN.draft, k = d.kelas;
+  if (mode === 'cpr') { const cp = finCprLast(k); if (!cp) return; const v = Math.round(cp.avg || cp.last); let r = d.rows.find(x => x.jid === 'e-cpr' || /cpr/i.test(x.nama)); if (!r) { const j = finJenis().find(x => x.id === 'e-cpr'); r = j ? finRowFrom(j) : {jid:'e-cpr', nama:'Biaya CPR (iklan per peserta)', tipe:'Pengeluaran', harga:0, mult:'', basis:'peserta', hitung:false, grup:'', satuan:'peserta'}; d.rows.push(r); } r.harga = v; r.mult = ''; renderFinRows(); return toast(`CPR diisi ${rupiah(v)} dari log ${fmtDate(cp.tanggal)}`); }
+  const all = finDftRows(k), src = mode === 'paid' ? all.filter(r => r.status === 'Sudah bayar') : all; if (!src.length) return toast('Tidak ada data pendaftar', 'err');
+  const cl = mode === 'proj' ? Math.max(1, FIN_CFG().closing) / 100 : 1;
+  const grp = new Map(); src.forEach(r => { const h = numOr(r.harga, 0); const key = h + '|' + (r.paket || ''); const g = grp.get(key) || {h, paket:r.paket || '', n:0}; g.n++; grp.set(key, g); });
+  const J = finJenis().filter(j => j.tipe === 'Pemasukan' && j.grup === 'satuan');
+  const rows = [...grp.values()].sort((a, b) => a.h - b.h).map(g => { const j = J.find(x => x.harga === g.h) || J.find(x => g.paket && x.nama.toLowerCase().includes(g.paket.split(/[ +]/)[0].toLowerCase()));
+    const r = j ? finRowFrom(j) : {jid:'', nama:'Pembelian Kelas Paket ' + (g.paket || rupiah(g.h)), tipe:'Pemasukan', harga:g.h, mult:'', basis:'peserta', hitung:true, grup:'satuan', satuan:'peserta'}; r.harga = g.h || r.harga; r.mult = Math.round(g.n * cl); return r; });
+  d.rows = [...rows, ...d.rows.filter(r => !(r.tipe === 'Pemasukan' && r.hitung))];
+  renderFinRows(); toast(mode === 'paid' ? `Paket diisi dari ${src.length} peserta yang sudah bayar` : `Proyeksi: ${src.length} pendaftar × ${FIN_CFG().closing}%`);
+}
+function renderFinJenis() {
+  const J = finJenis(); const bs = j => [j.basis === 'peserta' ? 'ikut jumlah peserta' : 'tetap', j.hitung === 'Ya' ? 'dihitung peserta' : '', j.grup === 'total' ? 'grup Paket Total' : j.grup === 'satuan' ? 'grup paket satuan' : ''].filter(Boolean).join(' · ');
+  $('#fJList').innerHTML = J.map(j => `<tr><td><b>${esc(j.nama)}</b>${j.catatan ? `<div class="muted" style="font-size:11.5px">${esc(j.catatan)}</div>` : ''}</td><td><span class="chip ${j.tipe === 'Pemasukan' ? 'ok' : 'bad'}">${j.tipe}</span></td><td class="num">${rupiah(j.harga)}</td><td>${j.mult === '' ? (j.basis === 'peserta' && j.tipe === 'Pengeluaran' ? 'auto (peserta)' : '–') : j.mult} ${esc(j.satuan || '')}</td><td style="font-size:12px;color:var(--ink2)">${bs(j)}</td><td style="white-space:nowrap"><button class="btn ghost xs" data-fjed="${j.id}">Ubah</button><button class="icon-btn" data-fjrm="${j.id}" title="Hapus">${ICON.trash}</button></td></tr>`).join('');
+}
+async function finEnsureJenis() {   // sheet masih kosong → simpan daftar default sekali, supaya bisa diubah
+  if (S.finJenis && S.finJenis.length) return; S.finJenis = FIN_JENIS_DEF.map(j => ({...j}));
+  try { await api.bulk('finJenis', S.finJenis); } catch (e) { toast('Gagal menyimpan jenis: ' + e.message, 'err'); }
+}
+function openFinJenis(id, rowIdx, tipe) {
+  const j = id ? finJenis().find(x => x.id === id) : {id:'', nama:'', tipe:tipe || 'Pengeluaran', harga:0, mult:'', satuan:'', basis:'tetap', hitung:'Tidak', grup:'', urutan:finJenis().length + 1, catatan:''};
+  openModal(`<div class="mh"><div><h3>${id ? 'Ubah jenis' : 'Jenis baru'}</h3><p>Muncul di pilihan "Deskripsi" simulasi. Nilai di sini hanya nilai awal.</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
+    <form class="mb" id="fjForm" style="display:grid;gap:12px">
+      <div class="fld"><label for="fjNama">Deskripsi</label><input id="fjNama" value="${esc(j.nama)}" placeholder="mis. Biaya Payment Gateway" required></div>
+      <div class="grid2"><div class="fld"><label for="fjTipe">Jenis</label><select id="fjTipe"><option ${j.tipe === 'Pemasukan' ? 'selected' : ''}>Pemasukan</option><option ${j.tipe === 'Pengeluaran' ? 'selected' : ''}>Pengeluaran</option></select></div>
+        <div class="fld"><label for="fjBasis">Sifat</label><select id="fjBasis"><option value="tetap" ${j.basis !== 'peserta' ? 'selected' : ''}>Tetap (tidak ikut jumlah peserta)</option><option value="peserta" ${j.basis === 'peserta' ? 'selected' : ''}>Ikut jumlah peserta</option></select></div></div>
+      <div class="grid3"><div class="fld"><label for="fjHarga">Harga awal (Rp)</label><input id="fjHarga" inputmode="numeric" value="${finFmt(j.harga)}"></div>
+        <div class="fld"><label for="fjMult">Multiplier awal</label><input id="fjMult" inputmode="decimal" value="${j.mult === '' ? '' : j.mult}" placeholder="kosong = isi nanti"></div>
+        <div class="fld"><label for="fjSat">Satuan multiplier</label><input id="fjSat" value="${esc(j.satuan || '')}" placeholder="peserta / voucher / kali"></div></div>
+      <div class="grid2" id="fjInOnly"><label class="rec" style="cursor:pointer"><input type="checkbox" id="fjHit" ${j.hitung === 'Ya' ? 'checked' : ''}><span><b>Dihitung sebagai peserta</b><small>Centang untuk pembelian paket kelas</small></span></label>
+        <div class="fld"><label for="fjGrup">Grup paket</label><select id="fjGrup"><option value="" ${!j.grup ? 'selected' : ''}>–</option><option value="total" ${j.grup === 'total' ? 'selected' : ''}>Paket Total (mengunci paket satuan)</option><option value="satuan" ${j.grup === 'satuan' ? 'selected' : ''}>Paket satuan</option></select></div></div>
+      <div class="fld"><label for="fjCat">Keterangan (opsional)</label><input id="fjCat" value="${esc(j.catatan || '')}"></div>
+    </form>
+    <div class="mf"><button class="btn ghost" data-mclose>Batal</button><button class="btn pri" id="fjGo">Simpan jenis</button></div>`);
+  const sync = () => { $('#fjInOnly').hidden = $('#fjTipe').value !== 'Pemasukan'; }; $('#fjTipe').onchange = sync; sync();
+  $('#fjGo').onclick = async e => { e.preventDefault(); const nama = $('#fjNama').value.trim(); if (!nama) return $('#fjNama').focus();
+    const isIn = $('#fjTipe').value === 'Pemasukan'; const m = $('#fjMult').value.trim();
+    const rec = {id:j.id || uid('e'), nama, tipe:$('#fjTipe').value, harga:finNum($('#fjHarga').value) || 0, mult:m === '' ? '' : finNum(m), satuan:$('#fjSat').value.trim(), basis:$('#fjBasis').value, hitung:isIn && $('#fjHit').checked ? 'Ya' : 'Tidak', grup:isIn ? $('#fjGrup').value : '', urutan:j.urutan || 99, catatan:$('#fjCat').value.trim()};
+    await finEnsureJenis(); S.finJenis = S.finJenis || []; const i = S.finJenis.findIndex(x => x.id === rec.id); if (i >= 0) S.finJenis[i] = rec; else S.finJenis.push(rec);
+    closeModal();
+    if (rowIdx != null && FIN.draft.rows[rowIdx]) { const r = FIN.draft.rows[rowIdx]; if (rec.tipe === r.tipe) FIN.draft.rows[rowIdx] = finRowFrom(fixFinJenis(rec)); }
+    else FIN.draft.rows.forEach((r, k) => { if (r.jid === rec.id) { const nr = finRowFrom(fixFinJenis(rec)); FIN.draft.rows[k] = {...nr, harga:r.harga, mult:r.mult}; } });
+    renderFinRows(); if (!$('#ft-jenis').hidden) renderFinJenis();
+    await saveRec('finJenis', rec, 'Jenis tersimpan'); };
+}
+function renderFinSet() {
+  const c = FIN_CFG();
+  const Fd = (k, l, h) => `<div class="fld"><label for="fs-${k}">${l}</label><input id="fs-${k}" data-finset="${k}" type="number" step="1" value="${c[k]}"><span class="hint">${h}</span></div>`;
+  $('#finSet').innerHTML = Fd('biasa', 'Untung biasa: margin ≥ (%)', 'Di bawahnya = Impas (BEP)') + Fd('sehat', 'Untung sehat: margin ≥ (%)', '') + Fd('win', 'Winning: margin ≥ (%)', 'Kelas pemenang') + Fd('closing', 'Closing pendaftar → peserta (%)', 'Untuk menghitung target pendaftar');
+  $('#finLegend').innerHTML = FIN_TIERS.map(t => `<span class="ccat c${t.n}">${t.e} ${t.l}: ${t.k === 'rugi' ? 'laba < 0' : t.k === 'impas' ? `0–${c.biasa}%` : t.k === 'biasa' ? `${c.biasa}–${c.sehat}%` : t.k === 'sehat' ? `${c.sehat}–${c.win}%` : `≥ ${c.win}%`}</span>`).join('');
+}
+
+/* ---- events ---- */
+$$('[data-ft]').forEach(b => b.onclick = () => finTab(b.dataset.ft));
+$('#finNew').onclick = () => newFin();
+$('#finSaveTop').onclick = () => { finTab('sim'); saveFin(false); };
+$('#fKelas').onchange = e => { const v = e.target.value; if (v === '__lain') { $('#fKelasTxt').hidden = false; $('#fKelasTxt').focus(); FIN.draft.kelas = $('#fKelasTxt').value.trim(); } else { $('#fKelasTxt').hidden = true; FIN.draft.kelas = v; } renderFinCtx(); renderFinOut(finCalc(FIN.draft.rows)); };
+$('#fKelasTxt').oninput = e => { FIN.draft.kelas = e.target.value.trim(); clearTimeout(timers.fk); timers.fk = setTimeout(renderFinCtx, 400); };
+$('#fNama').oninput = e => { FIN.draft.nama = e.target.value; };
+$('#fCat').oninput = e => { FIN.draft.catatan = e.target.value; };
+$('#fCtx').addEventListener('click', e => { const b = e.target.closest('[data-ffill]'); if (b) finFill(b.dataset.ffill); });
+$('#finIn').addEventListener('click', e => {
+  const a = e.target.closest('[data-fadd]'); if (a) { const tp = a.dataset.fadd, rows = FIN.draft.rows; const used = new Set(rows.map(r => r.jid)); const hasTot = rows.some(r => r.grup === 'total'), hasSat = rows.some(r => r.grup === 'satuan');
+    const j = finJenis().find(x => x.tipe === tp && !used.has(x.id) && !(x.grup === 'satuan' && hasTot) && !(x.grup === 'total' && hasSat));
+    if (!j) return openFinJenis(null, null, tp);
+    rows.push(finRowFrom(j)); renderFinRows(); return; }
+  const del = e.target.closest('[data-fdel]'); if (del) { FIN.draft.rows.splice(+del.dataset.fdel, 1); renderFinRows(); }
+});
+$('#finIn').addEventListener('change', e => {
+  const s = e.target.closest('select[data-ff="jid"]'); if (!s) return; const i = +s.closest('[data-fi]').dataset.fi, r = FIN.draft.rows[i];
+  if (s.value === '__new') { s.value = r.jid || '__custom'; return openFinJenis(null, i, r.tipe); }
+  const j = finJenis().find(x => x.id === s.value); if (!j) return;
+  const keep = r.harga && r.harga !== (finJenis().find(x => x.id === r.jid) || {}).harga;
+  FIN.draft.rows[i] = {...finRowFrom(j), harga:keep ? r.harga : j.harga, mult:r.mult !== '' && r.mult != null && j.mult === '' && j.hitung === 'Ya' ? r.mult : j.mult};
+  renderFinRows();
+});
+$('#finIn').addEventListener('input', e => {
+  const f = e.target.dataset.ff; if (f !== 'harga' && f !== 'mult') return; const i = +e.target.closest('[data-fi]').dataset.fi, r = FIN.draft.rows[i];
+  if (f === 'harga') r.harga = finNum(e.target.value) || 0; else r.mult = e.target.value.trim() === '' ? '' : finNum(e.target.value);
+  const wasAuto = e.target.classList.contains('autoin'); finRefresh();
+  if (f === 'mult') { const auto = r.tipe === 'Pengeluaran' && r.basis === 'peserta' && r.mult === ''; e.target.classList.toggle('autoin', auto); if (wasAuto !== auto) { const tg = e.target.closest('.frow').querySelector('.tag'); const calc = FIN.calc; tg.innerHTML = tg.innerHTML.replace(/<i class="auto">[^<]*<\/i>|<i>ikut jumlah peserta<\/i>/, auto ? `<i class="auto">otomatis × ${calc.N} peserta</i>` : '<i>ikut jumlah peserta</i>'); } }
+});
+$('#finIn').addEventListener('focusout', e => { if (e.target.dataset.ff === 'harga') e.target.value = finFmt(finNum(e.target.value) || 0); });
+$('#finOut').addEventListener('click', async e => {
+  if (e.target.closest('#finSave')) return saveFin(false);
+  if (e.target.closest('#finSaveNew')) return saveFin(true);
+  if (e.target.closest('#finWa')) { const t = finWaText(FIN.draft, finCalc(FIN.draft.rows)); try { await navigator.clipboard.writeText(t); toast('Ringkasan disalin, tinggal tempel di WA'); } catch (_) { openModal(`<div class="mh"><div><h3>Ringkasan WA</h3><p>Pilih semua lalu salin.</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div><div class="mb"><textarea style="width:100%;min-height:320px;font-family:var(--f)">${esc(t)}</textarea></div>`); } }
+});
+$('#fLogKelas').onchange = renderFinLog;
+$('#fLogs').addEventListener('click', async e => {
+  const t = e.target.closest('[data-fopen],[data-fcopy],[data-fwa],[data-frm]'); if (!t) return;
+  if (t.dataset.fopen) return openFin(t.dataset.fopen);
+  if (t.dataset.fcopy) return openFin(t.dataset.fcopy, true);
+  if (t.dataset.fwa) { const x = S.fin.find(r => r.id === t.dataset.fwa); const d = finDraftFromLog(x); try { await navigator.clipboard.writeText(finWaText(d, finCalc(d.rows))); toast('Ringkasan disalin'); } catch (_) { toast('Gagal menyalin', 'err'); } return; }
+  if (t.dataset.frm) { const i = S.fin.findIndex(r => r.id === t.dataset.frm); const [x] = S.fin.splice(i, 1); if (FIN.editId === x.id) FIN.editId = null; renderFinLog(); try { await api.remove('fin', x.id); toast('Log simulasi dihapus', 'info'); } catch (er) { S.fin.splice(i, 0, x); renderFinLog(); toast(er.message, 'err'); } }
+});
+$('#fJNew').onclick = () => openFinJenis(null);
+$('#fJList').addEventListener('click', async e => {
+  const ed = e.target.closest('[data-fjed]'); if (ed) return openFinJenis(ed.dataset.fjed);
+  const rm = e.target.closest('[data-fjrm]'); if (!rm) return;
+  await finEnsureJenis(); const i = S.finJenis.findIndex(x => x.id === rm.dataset.fjrm); if (i < 0) return; const [x] = S.finJenis.splice(i, 1); renderFinJenis(); renderFinRows();
+  try { await api.remove('finJenis', x.id); toast('Jenis dihapus', 'info'); } catch (er) { S.finJenis.splice(i, 0, x); renderFinJenis(); toast(er.message, 'err'); }
+});
+$('#finSet').addEventListener('input', e => { const k = e.target.dataset.finset; if (!k) return; const c = store.get('pkt-fincfg', {}); c[k] = +e.target.value; store.set('pkt-fincfg', c); clearTimeout(timers.fs); timers.fs = setTimeout(() => { renderFinSet(); finRefresh(); }, 300); });
+$('#finSetReset').onclick = () => { store.set('pkt-fincfg', {}); renderFinSet(); finRefresh(); toast('Pengaturan Finance dikembalikan'); };
+
+/* ---- grup menu Marketing ---- */
+const MKT_VIEWS = ['cpr', 'daftar', 'finance'];
+function setMkt(on) { $('#pill').classList.toggle('mkt-on', on); $('#mktBtn').setAttribute('aria-expanded', on); }
+$('#mktBtn').addEventListener('click', () => { const on = !$('#pill').classList.contains('mkt-on'); setMkt(on); if (on) setProd(false); });
+$('#prodBtn').addEventListener('click', () => { if (!$('#pill').classList.contains('prod-on')) setMkt(false); });
+/* =====================================================================
    ROUTER & BOOT
    ===================================================================== */
-const VIEWS = ['home','narasumber','topik','jadwal','cpr','daftar','tor','brief','core','ops'];
+const VIEWS = ['home','narasumber','topik','jadwal','cpr','daftar','finance','tor','brief','core','ops'];
 const PROD_VIEWS = ['narasumber','topik','tor'];
 function setProd(on) { $('#pill').classList.toggle('prod-on', on); $('#prodBtn').setAttribute('aria-expanded', on); }
 $('#prodBtn').addEventListener('click', () => setProd(!$('#pill').classList.contains('prod-on')));
@@ -4442,11 +4917,13 @@ function route() {
   $('#pill').hidden = false; $('#setBtn').hidden = false; $('#statusBtn').hidden = false; $('#sheetBtn').hidden = !CONFIG.SHEET_URL;
   $$('[data-view]').forEach(s => s.hidden = s.dataset.view !== v);
   $$('#pill a').forEach(a => a.dataset.v === v ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
-  $('#prodBtn').classList.toggle('cur', PROD_VIEWS.includes(v)); if (PROD_VIEWS.includes(v)) setProd(true);
+  $('#prodBtn').classList.toggle('cur', PROD_VIEWS.includes(v)); if (PROD_VIEWS.includes(v)) { setProd(true); setMkt(false); }
+  $('#mktBtn').classList.toggle('cur', MKT_VIEWS.includes(v)); if (MKT_VIEWS.includes(v)) { setMkt(true); setProd(false); }
   closePop(); scrollTo({top:0});
   if (v === 'core') renderCore();
   if (v === 'ops') renderOps();
   if (v === 'daftar') renderDaftar();
+  if (v === 'finance') renderFinance();
   if (v === 'tor') renderTor();
   if (v === 'brief') { if (BF && !BF.edit) BF = null; renderBrief(); }
 }
@@ -4457,8 +4934,8 @@ async function renderTeam() {
   S.cal.show = 'aktif'; renderJadwal($('#teamGantt'));
 }
 async function boot() {
-  try { const d = await api.load(); Object.assign(S, d); S.cpr = S.cpr || []; S.daftar = (S.daftar || []).map(fixDaftar); if (!S.types.length) S.types = seed().types; syncFromClasses(); }
-  catch (e) { toast('Gagal memuat dari Sheet: ' + e.message + '. Menampilkan mode contoh.', 'err'); settings.pass = ''; Object.assign(S, store.get('pkt-demo2', null) || seed()); S.daftar = (S.daftar || []).map(fixDaftar); }
+  try { const d = await api.load(); Object.assign(S, d); S.cpr = S.cpr || []; S.daftar = (S.daftar || []).map(fixDaftar); S.fin = (S.fin || []).map(fixFin); S.finJenis = (S.finJenis || []).map(fixFinJenis); if (!S.types.length) S.types = seed().types; syncFromClasses(); }
+  catch (e) { toast('Gagal memuat dari Sheet: ' + e.message + '. Menampilkan mode contoh.', 'err'); settings.pass = ''; Object.assign(S, store.get('pkt-demo2', null) || seed()); S.daftar = (S.daftar || []).map(fixDaftar); S.fin = (S.fin || []).map(fixFin); S.finJenis = (S.finJenis || []).map(fixFinJenis); }
   renderAll(); route();
   if (settings.url && !settings.pass && location.hash !== '#kalender-tim' && location.hash !== '#core-tim' && !location.hash.startsWith('#brief/') && !store.get('pkt-skip-pass', false)) askPass();
 }
