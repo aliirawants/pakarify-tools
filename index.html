@@ -934,6 +934,85 @@ body.sheetmax{overflow:hidden}
   .frow{grid-template-columns:minmax(0,1fr) 14px 64px 28px;grid-template-areas:"sel sel sel del" "rp op mu ." "jml jml jml jml" "tag tag tag tag"}
   .frow>select{grid-area:sel}.frow>.rp{grid-area:rp}.frow>.op.x1{grid-area:op}.frow>.mu{grid-area:mu}.frow>.op.eq{display:none}.frow>.jml{grid-area:jml;text-align:left;padding-left:4px}.frow>.x{grid-area:del}.frow>.tag{grid-area:tag}
 }
+/* ---------- Kalender bulanan & agenda tim ---------- */
+.calgrid{transition:grid-template-columns .25s ease}
+.calgrid.agc{grid-template-columns:minmax(0,1fr) 58px}
+.agenda .agh{display:flex;align-items:center;gap:8px}
+.agenda .agh h3{flex:1;min-width:0}
+.agenda .agtog{flex:none}
+.agenda .agrng{justify-self:start}
+.agenda .agrng button{padding:5px 11px;font-size:12px}
+.calgrid.agc .agenda{padding:10px 6px;justify-items:center;align-content:start;cursor:pointer}
+.calgrid.agc .agenda > :not(.agmini){display:none !important}
+.agenda .agmini{display:none}
+.calgrid.agc .agenda .agmini{display:grid;justify-items:center;gap:10px;color:var(--ink2)}
+.agmini .vt{writing-mode:vertical-rl;transform:rotate(180deg);font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.agmini .cnt{min-width:24px;height:24px;border-radius:999px;background:var(--blue);color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;padding:0 6px}
+.ag.cu .d{border-left:4px solid var(--agc,#7C3AED)}
+.ag .t .tm{display:inline-block;font-size:11px;font-weight:800;color:var(--ink3);margin-right:4px}
+.calbar .r .mshow{display:none}
+#calCard.mb-on .calbar .r .gshow{display:none}
+#calCard.mb-on .calbar .r .mshow{display:inline-flex}
+#calCard.mb-on .gscroll, #calCard.mb-on #calLegG{display:none}
+#calCard:not(.mb-on) #monthCal, #calCard:not(.mb-on) #calLegM{display:none}
+.mcal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--line);gap:1px;margin-top:4px}
+.mcal .dh{background:var(--bg2);padding:9px 10px;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.mcal .dh.we{color:#B45309}
+.mc{background:#fff;min-height:128px;padding:6px 6px 8px;display:flex;flex-direction:column;gap:3px;cursor:pointer;position:relative;min-width:0;transition:background .12s}
+.mc:hover{background:#FAFCFF}
+.mc.out{background:#FAFBFD}
+.mc.out .dn{color:var(--ink3);opacity:.6}
+.mc.we{background:#FFFDF8}
+.mc.drop{background:var(--blue-l);outline:2px dashed var(--blue);outline-offset:-3px}
+.mc .dn{display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:800;color:var(--ink);padding:2px 4px}
+.mc .dn b{display:inline-grid;place-items:center;min-width:26px;height:26px;border-radius:999px;padding:0 6px}
+.mc.tdy .dn b{background:var(--blue);color:#fff}
+.mc .dn .plus{opacity:0;border:0;background:var(--blue-l);color:var(--blue-d);width:22px;height:22px;border-radius:8px;font-size:15px;font-weight:800;line-height:1;display:grid;place-items:center;transition:opacity .12s}
+.mc:hover .dn .plus,.mc:focus-within .dn .plus{opacity:1}
+.ev{display:flex;align-items:center;gap:5px;border:0;width:100%;text-align:left;font:inherit;font-size:11.5px;font-weight:700;line-height:1.25;padding:3px 7px;border-radius:7px;background:var(--evb,#EEF2F8);color:var(--evc,var(--ink));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;min-width:0}
+.ev > span{overflow:hidden;text-overflow:ellipsis;min-width:0}
+.ev:hover{filter:brightness(.96)}
+.ev .tm{font-weight:800;opacity:.75;flex:none}
+.ev .ic{width:8px;height:8px;border-radius:3px;flex:none;background:var(--evd,currentColor)}
+.ev.run{--evb:#0B1A33;--evc:#fff;--evd:#FDBA3B}
+.ev.konf{--evb:var(--gold-l);--evc:#7A4E00;--evd:var(--gold)}
+.ev.konf .ic{transform:rotate(45deg)}
+.ev.reach{--evb:#EEF4FF;--evc:#1747B8;--evd:#BFD4FB}
+.ev.mkt{--evb:#E6EFFE;--evc:#1747B8;--evd:#5C93F0}
+.ev.prep{--evb:#DCE7FD;--evc:#123A99;--evd:#2563EB}
+.ev.cu{--evb:color-mix(in srgb,var(--agc) 13%,#fff);--evc:color-mix(in srgb,var(--agc) 78%,#000);--evd:var(--agc)}
+.ev.cu.done{opacity:.55;text-decoration:line-through}
+.ev[draggable="true"]{cursor:grab}
+.mc .more{border:0;background:transparent;font:inherit;font-size:11.5px;font-weight:800;color:var(--blue-d);text-align:left;padding:2px 7px;cursor:pointer}
+.mlegend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--ink2);align-items:center}
+.mlegend span{display:inline-flex;align-items:center;gap:6px}
+.mlegend i{width:12px;height:12px;border-radius:4px;display:inline-block}
+.mtitle{font-size:20px;font-weight:800;letter-spacing:-.01em}
+.dayl{display:grid;gap:8px}
+.dayl .it{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px 12px;border-radius:14px;background:var(--bg2)}
+.dayl .it .sw{width:10px;height:36px;border-radius:6px;background:var(--agc,#94A3B8)}
+.dayl .it b{display:block;font-size:13.5px}
+.dayl .it span{font-size:12.5px;color:var(--ink2)}
+.dayl .it .a{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.agjenis{display:flex;flex-wrap:wrap;gap:6px}
+.agjenis button{border:1.5px solid var(--line2);background:#fff;border-radius:999px;padding:6px 12px;font:inherit;font-size:12.5px;font-weight:700;color:var(--ink2);display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.agjenis button i{width:10px;height:10px;border-radius:4px;background:var(--agc)}
+.agjenis button[aria-pressed="true"]{border-color:var(--agc);background:color-mix(in srgb,var(--agc) 10%,#fff);color:var(--ink)}
+#agForm .grid2>*,#agForm .grid3k>*,#agForm .fld{min-width:0}
+#agForm input:not([type=checkbox]),#agForm select,#agForm textarea{width:100%;min-width:0;max-width:100%}
+#agForm .chk{display:flex!important;gap:8px;align-items:center;justify-content:flex-start;font-size:13px;font-weight:600}
+#agForm .chk input{width:18px;height:18px;flex:none;margin:0}
+.grid3k{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:12px}
+@media (max-width:560px){.grid3k{grid-template-columns:1fr 1fr}.grid3k>:first-child{grid-column:1/-1}}
+@media (max-width:760px){
+  .mc{min-height:74px;padding:4px 3px}
+  .mc .dn{font-size:12px;padding:0 2px}.mc .dn b{min-width:22px;height:22px}
+  .mc .dn .plus{display:none}
+  .ev{padding:0;height:6px;border-radius:3px;font-size:0;background:var(--evd,var(--evb))}
+  .ev > *{display:none}
+  .mc .more{font-size:10.5px;padding:0 2px}
+  .mcal .dh{padding:7px 4px;font-size:10px;text-align:center;letter-spacing:0}
+}
 </style>
 </head>
 <body>
@@ -1093,22 +1172,27 @@ body.sheetmax{overflow:hidden}
       <div class="shint">Klik sel untuk mengubah (tersimpan otomatis ke Sheet). Seret ⋮⋮ untuk mengubah urutan. Geser tabel dengan scroll / Shift+scroll atau tarik area kosong. Kolom 🔒 dilindungi Code.gs, ubah langsung di Sheet.</div>
     </div>
     <div class="stats" id="jStats"></div>
-    <div class="calgrid">
+    <div class="calgrid" id="calgrid">
       <div class="calwrap" id="calCard">
         <div class="calbar">
           <h3 id="calTitle">Kalender</h3>
           <div class="r">
+            <div class="seg" id="calMode"><button data-cm="bulan" aria-pressed="true">Bulan</button><button data-cm="timeline" aria-pressed="false">Timeline</button></div>
+            <button class="tog mshow" id="calFase" aria-pressed="true" title="Tampilkan tanggal mulai reachout, marketing, dan persiapan"><span class="dot"></span>Fase kelas</button>
             <div class="seg" id="calShow"><button data-s="aktif" aria-pressed="true">Aktif</button><button data-s="semua" aria-pressed="false">Semua</button></div>
-            <div class="seg" id="calSort"><button data-cs="tanggal" aria-pressed="true">Urut tanggal</button><button data-cs="tabel" aria-pressed="false">Urut tabel</button></div>
-            <div class="seg" id="calRange"><button data-w="8" aria-pressed="false">8 mgg</button><button data-w="13" aria-pressed="true">13 mgg</button></div>
+            <div class="seg gshow" id="calSort"><button data-cs="tanggal" aria-pressed="true">Urut tanggal</button><button data-cs="tabel" aria-pressed="false">Urut tabel</button></div>
+            <div class="seg gshow" id="calRange"><button data-w="8" aria-pressed="false">8 mgg</button><button data-w="13" aria-pressed="true">13 mgg</button></div>
             <button class="icon-btn" id="calPrev" aria-label="Mundur 4 minggu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 6-6 6 6 6"/></svg></button>
             <button class="btn sec sm" id="calToday">Hari ini</button>
             <button class="icon-btn" id="calNext" aria-label="Maju 4 minggu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg></button>
+            <button class="btn pri sm mshow" data-agnew="">+ Agenda</button>
             <button class="btn soft sm" id="calDl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Unduh PNG</button>
           </div>
         </div>
-        <div class="legend"><span><i style="background:#BFD4FB"></i>Reachout narasumber</span><span><i style="background:#5C93F0"></i>Visualisasi & marketing</span><span><i style="background:#2563EB"></i>Persiapan + marketing</span><span><i style="background:var(--gold);transform:rotate(45deg);width:10px"></i>Konfirmasi narasumber (H-7)</span><span><i style="background:#0B1A33"></i>Pelaksanaan</span><span style="color:var(--ink3)">Seret bar ke kiri/kanan untuk menggeser jadwal aktual · klik bar → "Atur jadwal" · garis putus-putus = jadwal custom</span></div>
+        <div class="legend" id="calLegG"><span><i style="background:#BFD4FB"></i>Reachout narasumber</span><span><i style="background:#5C93F0"></i>Visualisasi & marketing</span><span><i style="background:#2563EB"></i>Persiapan + marketing</span><span><i style="background:var(--gold);transform:rotate(45deg);width:10px"></i>Konfirmasi narasumber (H-7)</span><span><i style="background:#0B1A33"></i>Pelaksanaan</span><span style="color:var(--ink3)">Seret bar ke kiri/kanan untuk menggeser jadwal aktual · klik bar → "Atur jadwal" · garis putus-putus = jadwal custom</span></div>
+<div class="mlegend legend" id="calLegM"><span><i style="background:#0B1A33"></i>Pelaksanaan kelas</span><span><i style="background:var(--gold);transform:rotate(45deg);width:10px;height:10px"></i>Konfirmasi narsum (H-7)</span><span><i style="background:#5C93F0"></i>Mulai fase kelas</span><span style="color:var(--ink3)">Agenda tim:</span><span><i style="background:#7C3AED"></i>Rapat</span><span><i style="background:#0891B2"></i>Meet narsum</span><span><i style="background:#DC2626"></i>Deadline</span><span><i style="background:#DB2777"></i>Konten</span><span><i style="background:#EA580C"></i>Iklan</span><span><i style="background:#64748B"></i>Lainnya</span><span style="color:var(--ink3)">· klik tanggal untuk tambah agenda, seret agenda untuk pindah tanggal</span></div>
         <div class="gscroll"><div class="gantt" id="gantt"></div></div>
+        <div class="mcal" id="monthCal" role="grid" aria-label="Kalender bulanan"></div>
       </div>
       <aside class="agenda" id="agenda"></aside>
     </div>
@@ -1405,6 +1489,7 @@ const TABS = {
   daftar: {sheet:'Pendaftar Kelas', cols:{id:'ID', kelas:'Kelas', kelasId:'Kelas ID', nama:'Nama', instansi:'Instansi', pekerjaan:'Pekerjaan', segmen:'Segmen', email:'Email', wa:'WhatsApp', sumber:'Sumber Info', motivasi:'Motivasi', voucher:'Voucher', paket:'Paket', harga:'Harga', entryId:'Entry ID', tglDaftar:'Tanggal Daftar', status:'Status Bayar', tglBayar:'Tanggal Bayar', catatan:'Catatan', duplikat:'Duplikat', batch:'Batch Upload', diupdate:'Diupdate'}},
   fin: {sheet:'Finance Log', cols:{id:'ID', kelas:'Kelas', kelasId:'Kelas ID', nama:'Nama Skenario', tanggal:'Tanggal', items:'Rincian (JSON)', pemasukan:'Total Pemasukan', pengeluaran:'Total Pengeluaran', laba:'Laba', margin:'Margin (%)', peserta:'Peserta', bep:'Peserta BEP', tiers:'Minimal Peserta (JSON)', status:'Status', ringkasan:'Ringkasan', catatan:'Catatan', oleh:'Dibuat Oleh', dibuat:'Dibuat'}},
   finJenis: {sheet:'Finance Jenis', cols:{id:'ID', nama:'Deskripsi', tipe:'Jenis', harga:'Harga Awal', mult:'Multiplier Awal', satuan:'Satuan', basis:'Sifat', hitung:'Dihitung Peserta', grup:'Grup Paket', urutan:'Urutan', catatan:'Keterangan'}},
+  agenda: {sheet:'Agenda Tim', cols:{id:'ID', judul:'Judul', tanggal:'Tanggal', mulai:'Jam Mulai', selesai:'Jam Selesai', jenis:'Jenis', kelasId:'Kelas ID', kelas:'Kelas', lokasi:'Tempat / Link', catatan:'Catatan', ulang:'Ulangi', sampai:'Berulang Sampai', lewati:'Dilewati', status:'Status', oleh:'Dibuat Oleh', dibuat:'Dibuat'}},
   cpr: {sheet:'CPR Log', cols:{id:'ID', kelas:'Kelas', tanggal:'Tanggal Update', target:'Target CPR', avg:'Avg CPR', last:'CPR Terkini', peserta:'Peserta', pendaftar:'Pendaftar', closing:'Target Closing (%)', spend:'Spend', impas:'Batas Impas', tanggalKelas:'Tanggal Kelas', targetPeserta:'Target Peserta', harian:'Data Harian (JSON)', status:'Status', tren:'Tren', ringkasan:'Ringkasan', catatan:'Catatan', actions:'Action Plan (JSON)', oleh:'Dibuat Oleh', dibuat:'Dibuat'}},
   coreMom: {sheet:'Core MoM', cols:{id:'ID', kode:'Kode', judul:'Judul Rapat', tanggal:'Tanggal', peserta:'Peserta', catatan:'Catatan', dibuat:'Dibuat'}},
   coreTask: {sheet:'Core Tasks', cols:{id:'ID', kode:'Kode', sumber:'Sumber', momId:'MoM ID', judul:'Task', deskripsi:'Deskripsi', pic:'PIC', collab:'Collab', due:'Due Date', status:'Status', closing:'Closing Date', updates:'Updates', dibuat:'Dibuat', oleh:'Dibuat Oleh'}},
@@ -1478,12 +1563,12 @@ const api = {
     return call('upload', {base64: b64, fileName: file.name, mime: file.type || 'application/octet-stream', ...meta});
   },
 };
-function persistDemo() { store.set('pkt-demo2', {kandidat:S.kandidat, db:S.db, types:S.types, topics:S.topics, classes:S.classes, coreMom:S.coreMom, coreTask:S.coreTask, opsAset:S.opsAset, opsTpl:S.opsTpl, cpr:S.cpr, daftar:S.daftar, fin:S.fin, finJenis:S.finJenis}); }
+function persistDemo() { store.set('pkt-demo2', {kandidat:S.kandidat, db:S.db, types:S.types, topics:S.topics, classes:S.classes, coreMom:S.coreMom, coreTask:S.coreTask, opsAset:S.opsAset, opsTpl:S.opsTpl, cpr:S.cpr, daftar:S.daftar, fin:S.fin, finJenis:S.finJenis, agenda:S.agenda}); }
 async function saveRec(tab, rec, msg) { try { await api.save(tab, rec); if (msg) toast(msg); } catch (e) { toast('Gagal menyimpan: ' + e.message, 'err'); } }
 
 /* ---------------- state ---------------- */
 const DEF_COLORS = [{nama:'Done', warna:'#DDF0E2'}, {nama:'Fix', warna:'#DCE8FF'}, {nama:'Sementara', warna:'#FFF1CC'}, {nama:'Ide Kelas', warna:'#F1F3F7'}, {nama:'Cancelled', warna:'#F6D3D3'}];
-const S = { kandidat:[], db:[], types:[], topics:[], classes:[], cpr:[], daftar:[], fin:[], finJenis:[], coreMom:[], coreTask:[], opsAset:[], opsTpl:[],
+const S = { kandidat:[], db:[], types:[], topics:[], classes:[], cpr:[], daftar:[], fin:[], finJenis:[], agenda:[], coreMom:[], coreTask:[], opsAset:[], opsTpl:[],
   order: store.get('pkt-order', []),      // urutan manual Database Kelas (id kelas)
   fase: store.get('pkt-fase', {}),        // jadwal aktual custom per kelas: offset hari dari H
   colors: store.get('pkt-colors', null) || DEF_COLORS,
@@ -1582,7 +1667,12 @@ function seed() {
   const finRows = [['e-paket-starter', 6], ['e-paket-pro', 5], ['e-paket-exc', 9], ['e-addon-rec', 4], ['e-narsum-fee', 1], ['e-narsum-bonus', 1], ['e-cpr', ''], ['e-voucher', 5]].map(([id, m]) => { const j = fixFinJenis(finJenisS.find(x => x.id === id)); const r = finRowFrom(j); r.mult = m; if (id === 'e-narsum-bonus') r.harga = 250000; if (id === 'e-voucher') r.harga = 25000; if (id === 'e-cpr') r.harga = 45000; return r; });
   const fc = finCalc(finRows);
   const fin = [{id:'f-contoh-1', kelas:'Contoh: Carbon QGIS', kelasId:'', nama:'Skenario normal (contoh)', tanggal:'2026-11-10', items:finRows, pemasukan:fc.inc, pengeluaran:fc.out, laba:fc.laba, margin:Math.round(fc.margin * 1000) / 10, peserta:fc.N, bep:fc.tiers.impas, tiers:{...fc.tiers, closing:60}, status:fc.tier.l, ringkasan:'', catatan:'Contoh: fee narasumber Rp750rb + bonus Rp250rb, CPR Rp45rb.', oleh:'', dibuat:'2026-11-10'}];
-  const d = {kandidat:[...rKand, ...kandidat], db:rDb, types, topics:rTopics, classes, cpr, daftar, fin, finJenis:finJenisS}; store.set('pkt-demo2', d); return d;
+  const T0 = today0(), mon = addDays(T0, -((T0.getDay() + 6) % 7));
+  const agenda = [
+    {id:'a-contoh-1', judul:'Rapat mingguan Pakarify', tanggal:iso(mon), mulai:'19:30', selesai:'20:30', jenis:'Rapat Pakarify', kelasId:'', kelas:'', lokasi:'Google Meet', catatan:'Review CPR & pendaftar minggu ini', ulang:'mingguan', sampai:'', lewati:'', status:'', oleh:'Ali', dibuat:iso(T0)},
+    {id:'a-contoh-2', judul:'Meet narasumber: demo mengajar', tanggal:iso(addDays(mon, 8)), mulai:'20:00', selesai:'20:30', jenis:'Meet narasumber', kelasId:'', kelas:'', lokasi:'Zoom', catatan:'Demo 15 menit + bahas TOR', ulang:'', sampai:'', lewati:'', status:'', oleh:'Ali', dibuat:iso(T0)},
+    {id:'a-contoh-3', judul:'Deadline brief poster', tanggal:iso(addDays(mon, 3)), mulai:'', selesai:'', jenis:'Deadline', kelasId:'', kelas:'', lokasi:'', catatan:'', ulang:'', sampai:'', lewati:'', status:'', oleh:'Ali', dibuat:iso(T0)}];
+  const d = {kandidat:[...rKand, ...kandidat], db:rDb, types, topics:rTopics, classes, cpr, daftar, fin, finJenis:finJenisS, agenda}; store.set('pkt-demo2', d); return d;
 }
 
 /* ---------------- narasumber scoring ---------------- */
@@ -2097,7 +2187,7 @@ function renderJadwal(target) {
   const html = `<div class="ghead"><div style="padding:6px 4px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);align-self:end">Kelas</div><div class="gtrack"><div class="months">${months}</div><div class="weeks">${weeks}</div>${todayX}</div></div>${rows || `<div class="empty"><h4>Tidak ada kelas di rentang ini</h4><p>Geser kalender atau tambah kelas dengan tanggal.</p></div>`}`;
   const out = target || $('#gantt'); out.innerHTML = html;
   if (target) return;
-  $('#calTitle').textContent = `${fmt(st)} ${st.getFullYear()} – ${fmt(addDays(end, -1))} ${addDays(end, -1).getFullYear()}`;
+  calModeUI(); if (S.cal.mode === 'bulan') renderMonth(); else $('#calTitle').textContent = `${fmt(st)} ${st.getFullYear()} – ${fmt(addDays(end, -1))} ${addDays(end, -1).getFullYear()}`;
   // stats & agenda
   const act = S.classes.filter(ACTIVE).map(c => ({c, p:phases(c)}));
   const in14 = d => d >= T && d <= addDays(T, 14);
@@ -2111,7 +2201,7 @@ function renderJadwal(target) {
   act.forEach(({c, p}) => { if (!p) return; const n = c.judul.replace(/^Masterclass\s*/i, '');
     [[p.reach[0], 'Mulai reachout narasumber', ''], [p.mkt[0], 'Mulai visualisasi & marketing', ''], [p.konf, 'Konfirmasi jadi/tidak ke narasumber', 'k'], [p.prep[0], 'Mulai persiapan kelas', ''], [p.H, 'Hari pelaksanaan kelas', 'r']].forEach(([d, l, cls]) => { if (in14(d)) ev.push({d, l, cls, n, id:c.id}); }); });
   ev.sort((a, b) => a.d - b.d);
-  $('#agenda').innerHTML = `<h3>Agenda 14 hari</h3>${clashes.length ? `<div class="warnbox"><b>Tanggal bentrok</b>${clashes.map(([a, b]) => `<span>${esc(a.judul.replace(/^Masterclass\s*/i, '').slice(0, 30))} & ${esc(b.judul.replace(/^Masterclass\s*/i, '').slice(0, 30))}</span>`).join('')}</div>` : ''}${ev.length ? ev.map(e => `<div class="ag ${e.cls}" data-cedit="${e.id}"><div class="d"><b>${e.d.getDate()}</b><small>${BLN[e.d.getMonth()]}</small></div><div class="t"><b>${esc(e.l)}</b><span>${esc(e.n)}</span></div></div>`).join('') : '<p class="muted" style="font-size:13px">Tidak ada tenggat dalam 14 hari.</p>'}<button class="btn sec sm" id="addClassBtn2" style="justify-self:start">+ Tambah kelas</button>`;
+  renderAgendaPanel(clashes);
 }
 function phasePop(cid, phase, el) {
   const c = S.classes.find(x => x.id === cid); const p = phases(c); if (!p) return;
@@ -3226,9 +3316,9 @@ document.addEventListener('click', async e => {
     case 'tAuto': batchTopics().forEach(x => { x.pilih = null; x.terbaik = false; }); renderTopik(); renderHome(); for (const x of batchTopics()) api.save('topics', x).catch(() => {}); return toast('Pilihan kembali otomatis');
     case 'wReset': S.weights = null; store.set('pkt-w', null); renderTopik(); return renderHome();
     case 'addClassBtn': case 'addClassBtn2': return openClassForm();
-    case 'calPrev': S.cal.start = addDays(calStart(), -28); return renderJadwal();
-    case 'calNext': S.cal.start = addDays(calStart(), 28); return renderJadwal();
-    case 'calToday': S.cal.start = null; return renderJadwal();
+    case 'calPrev': if (S.cal.mode === 'bulan') S.cal.month = addMonths(monthStart(), -1); else S.cal.start = addDays(calStart(), -28); return renderJadwal();
+    case 'calNext': if (S.cal.mode === 'bulan') S.cal.month = addMonths(monthStart(), 1); else S.cal.start = addDays(calStart(), 28); return renderJadwal();
+    case 'calToday': S.cal.start = null; S.cal.month = null; return renderJadwal();
     case 'calDl': return downloadCal();
     case 'teamLinkBtn': { const base = location.href.split('#')[0]; const link = base + '#kalender-tim'; openModal(`<div class="mh"><div><h3>Link kalender untuk tim</h3><p>Tim Design dan ops bisa melihat kalender tanpa passcode dan tanpa bisa mengubah data. Link ini aktif setelah tools di-online-kan di GitHub Pages dan URL Apps Script diisi di <code>CONFIG</code>.</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div><div class="mb"><div class="promptbox" id="tl" style="white-space:normal;user-select:all">${esc(link)}</div></div><div class="mf"><button class="btn pri" id="tlCopy">Salin link</button></div>`); $('#tlCopy').onclick = async () => { try { await navigator.clipboard.writeText(link); toast('Link disalin'); } catch (_) { toast('Pilih teks link lalu salin manual', 'info'); } }; return; }
     case 'setBtn': case 'statusBtn': return openSettings();
@@ -4894,6 +4984,175 @@ const MKT_VIEWS = ['cpr', 'daftar', 'finance'];
 function setMkt(on) { $('#pill').classList.toggle('mkt-on', on); $('#mktBtn').setAttribute('aria-expanded', on); }
 $('#mktBtn').addEventListener('click', () => { const on = !$('#pill').classList.contains('mkt-on'); setMkt(on); if (on) setProd(false); });
 $('#prodBtn').addEventListener('click', () => { if (!$('#pill').classList.contains('prod-on')) setMkt(false); });
+/* ======================== KALENDER BULANAN & AGENDA TIM ======================== */
+const AG_JENIS = [['Rapat Pakarify', '#7C3AED'], ['Meet narasumber', '#0891B2'], ['Deadline', '#DC2626'], ['Konten & desain', '#DB2777'], ['Iklan & marketing', '#EA580C'], ['Lainnya', '#64748B']];
+const agColor = j => (AG_JENIS.find(x => x[0] === j) || AG_JENIS[AG_JENIS.length - 1])[1];
+const AG_ULANG = [['', 'Tidak berulang'], ['mingguan', 'Setiap minggu'], ['2mingguan', 'Setiap 2 minggu'], ['bulanan', 'Setiap bulan']];
+S.agenda = S.agenda || [];
+S.cal.mode = store.get('pkt-calmode', 'bulan');
+S.cal.month = null;
+S.cal.fase = store.get('pkt-calfase', true);
+S.cal.agDays = store.get('pkt-agdays', 14);
+S.cal.agCol = store.get('pkt-agcol', false);
+
+function fixAgenda(a) {
+  a = {...a};
+  const d = String(a.tanggal || ''); if (/T/.test(d)) a.tanggal = iso(new Date(d));
+  const s = String(a.sampai || ''); if (/T/.test(s)) a.sampai = iso(new Date(s));
+  const tm = v => { v = String(v ?? '').trim(); if (!v) return ''; if (/^1899-/.test(v) || /T/.test(v)) { const x = new Date(v); return isNaN(x) ? '' : `${String(x.getHours()).padStart(2, '0')}:${String(x.getMinutes()).padStart(2, '0')}`; } const m = v.match(/^(\d{1,2})[:.](\d{2})/); return m ? `${m[1].padStart(2, '0')}:${m[2]}` : ''; };
+  a.mulai = tm(a.mulai); a.selesai = tm(a.selesai);
+  a.jenis = a.jenis || 'Lainnya'; a.ulang = a.ulang || ''; a.lewati = String(a.lewati || '');
+  a.selesaiTandai = a.status === 'Selesai';
+  return a;
+}
+const monthStart = () => { if (!S.cal.month) { const t = today0(); S.cal.month = new Date(t.getFullYear(), t.getMonth(), 1); } return S.cal.month; };
+const addMonths = (d, n) => new Date(d.getFullYear(), d.getMonth() + n, 1);
+// semua kemunculan agenda (termasuk yang berulang) di rentang [from, to)
+function agOcc(a, from, to) {
+  const b = parseIso(a.tanggal); if (!b) return [];
+  const until = parseIso(a.sampai), skip = new Set(a.lewati.split(',').map(x => x.trim()).filter(Boolean)), out = [];
+  if (!a.ulang) { if (b >= from && b < to) out.push(b); return out; }
+  for (let i = 0, d = b; d < to && i < 400; i++) {
+    d = a.ulang === 'bulanan' ? new Date(b.getFullYear(), b.getMonth() + i, b.getDate()) : addDays(b, i * (a.ulang === '2mingguan' ? 14 : 7));
+    if (d >= to || (until && d > until)) break;
+    if (d >= from && !skip.has(iso(d))) out.push(d);
+  }
+  return out;
+}
+function classesForCal() {
+  return S.classes.map(c => ({c, p:phases(c)})).filter(x => x.p).filter(x => S.cal.show === 'semua' ? x.c.progress !== 'Ide Kelas' : ACTIVE(x.c));
+}
+// semua item kalender di rentang [from, to): kelas, fase, dan agenda tim
+function calItems(from, to, opt = {}) {
+  const out = [], short = c => c.judul.replace(/^Masterclass\s*/i, '');
+  classesForCal().forEach(({c, p}) => {
+    const n = Math.max(1, +c.sesi || 1);
+    for (let i = 0; i < n; i++) { const d = addDays(p.H, i); if (d >= from && d < to) out.push({d, k:'run', t:short(c), l:n > 1 ? `Kelas · sesi ${i + 1}/${n}` : 'Hari pelaksanaan kelas', cid:c.id, ord:0}); }
+    if (p.konf >= from && p.konf < to) out.push({d:p.konf, k:'konf', t:short(c), l:'Konfirmasi jadi/tidak ke narasumber', cid:c.id, ord:1});
+    if (S.cal.fase || opt.fase) [['reach', 'Mulai reachout narasumber'], ['mkt', 'Mulai visualisasi & marketing'], ['prep', 'Mulai persiapan kelas']].forEach(([k, l]) => { const d = p[k][0]; if (d >= from && d < to) out.push({d, k, t:short(c), l, cid:c.id, ord:3}); });
+  });
+  (S.agenda || []).forEach(a => agOcc(a, from, to).forEach(d => out.push({d, k:'cu', t:a.judul, l:a.jenis, a, ord:2, tm:a.mulai})));
+  return out.sort((x, y) => x.d - y.d || x.ord - y.ord || String(x.tm || '').localeCompare(String(y.tm || '')));
+}
+const evHtml = (e, drag) => {
+  const pre = {run:'', konf:'H-7 · ', reach:'Reachout · ', mkt:'Marketing · ', prep:'Persiapan · '}[e.k] || '';
+  if (e.k === 'cu') return `<button type="button" class="ev cu${e.a.selesaiTandai ? ' done' : ''}" style="--agc:${agColor(e.a.jenis)}" data-agedit="${e.a.id}" data-agd="${iso(e.d)}" ${drag && !e.a.ulang ? 'draggable="true"' : ''} title="${esc(`${e.a.mulai ? e.a.mulai + ' ' : ''}${e.a.judul} · ${e.a.jenis}${e.a.kelas ? ' · ' + e.a.kelas : ''}`)}"><i class="ic"></i>${e.a.mulai ? `<span class="tm">${e.a.mulai}</span>` : ''}<span>${esc(e.a.judul)}</span></button>`;
+  const attr = e.k === 'run' ? `data-cedit="${e.cid}"` : `data-fase="${e.cid}"`;
+  return `<button type="button" class="ev ${e.k}" ${attr} title="${esc(e.l + ': ' + e.t)}"><i class="ic"></i><span>${esc(pre + e.t)}</span></button>`;
+};
+function renderMonth() {
+  const m0 = monthStart(), first = addDays(m0, -((m0.getDay() + 6) % 7)), T = today0();
+  const mEnd = addMonths(m0, 1), weeks = Math.ceil((((m0.getDay() + 6) % 7) + Math.round((mEnd - m0) / DAY)) / 7), end = addDays(first, weeks * 7);
+  const items = calItems(first, end), byDay = new Map();
+  items.forEach(e => { const k = iso(e.d); if (!byDay.has(k)) byDay.set(k, []); byDay.get(k).push(e); });
+  const MAX = 4;
+  let h = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'].map((d, i) => `<div class="dh ${i > 4 ? 'we' : ''}">${d}</div>`).join('');
+  for (let d = new Date(first); d < end; d = addDays(d, 1)) {
+    const k = iso(d), L = byDay.get(k) || [], out = d.getMonth() !== m0.getMonth(), we = d.getDay() === 0 || d.getDay() === 6;
+    h += `<div class="mc${out ? ' out' : ''}${we ? ' we' : ''}${+d === +T ? ' tdy' : ''}" data-mday="${k}" role="gridcell" aria-label="${HARI[d.getDay()]} ${d.getDate()} ${BULAN[d.getMonth()]}${L.length ? ', ' + L.length + ' acara' : ''}">
+      <div class="dn"><b>${d.getDate()}</b><button type="button" class="plus" data-agnew="${k}" aria-label="Tambah agenda ${d.getDate()} ${BULAN[d.getMonth()]}">+</button></div>
+      ${L.slice(0, L.length > MAX ? MAX - 1 : MAX).map(e => evHtml(e, true)).join('')}${L.length > MAX ? `<button type="button" class="more" data-agday="${k}">+${L.length - MAX + 1} lainnya</button>` : ''}</div>`;
+  }
+  $('#monthCal').innerHTML = h;
+  $('#calTitle').innerHTML = `<span class="mtitle">${BULAN[m0.getMonth()]} ${m0.getFullYear()}</span>`;
+}
+function calModeUI() {
+  const on = S.cal.mode === 'bulan';
+  $('#calCard').classList.toggle('mb-on', on);
+  $$('#calMode button').forEach(b => b.setAttribute('aria-pressed', b.dataset.cm === S.cal.mode));
+  const f = $('#calFase'); if (f) f.setAttribute('aria-pressed', S.cal.fase);
+  $('#calPrev').setAttribute('aria-label', on ? 'Bulan sebelumnya' : 'Mundur 4 minggu');
+  $('#calNext').setAttribute('aria-label', on ? 'Bulan berikutnya' : 'Maju 4 minggu');
+}
+function renderAgendaPanel(clashes) {
+  const T = today0(), N = S.cal.agDays, to = addDays(T, N + 1);
+  const ev = calItems(T, to, {fase:true});
+  const sh = s => esc(String(s).slice(0, 30));
+  $('#calgrid').classList.toggle('agc', !!S.cal.agCol);
+  $('#agenda').innerHTML = `<div class="agmini" title="Buka agenda"><button class="icon-btn" id="agTog2" aria-label="Buka panel agenda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 6-6 6 6 6"/></svg></button><span class="cnt">${ev.length}</span><span class="vt">Agenda ${N} hari</span></div>
+    <div class="agh"><h3>Agenda terdekat</h3><button class="icon-btn agtog" id="agTog" aria-label="Sembunyikan panel agenda" title="Sembunyikan agar kalender lebih luas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 6 6 6-6 6"/></svg></button></div>
+    <div class="seg agrng" id="agRange">${[7, 14, 30].map(n => `<button data-agn="${n}" aria-pressed="${n === N}">${n} hari</button>`).join('')}</div>
+    ${clashes.length ? `<div class="warnbox"><b>Tanggal bentrok</b>${clashes.map(([a, b]) => `<span>${sh(a.judul.replace(/^Masterclass\s*/i, ''))} & ${sh(b.judul.replace(/^Masterclass\s*/i, ''))}</span>`).join('')}</div>` : ''}
+    ${ev.length ? ev.map(e => e.k === 'cu'
+      ? `<div class="ag cu" style="--agc:${agColor(e.a.jenis)}" data-agedit="${e.a.id}" data-agd="${iso(e.d)}"><div class="d"><b>${e.d.getDate()}</b><small>${BLN[e.d.getMonth()]}</small></div><div class="t"><b>${e.a.mulai ? `<span class="tm">${e.a.mulai}</span>` : ''}${esc(e.a.judul)}</b><span>${esc(e.a.jenis)}${e.a.kelas ? ' · ' + esc(e.a.kelas) : ''}${e.a.lokasi ? ' · ' + esc(e.a.lokasi) : ''}</span></div></div>`
+      : `<div class="ag ${e.k === 'konf' ? 'k' : e.k === 'run' ? 'r' : ''}" ${e.k === 'run' ? `data-cedit="${e.cid}"` : `data-fase="${e.cid}"`}><div class="d"><b>${e.d.getDate()}</b><small>${BLN[e.d.getMonth()]}</small></div><div class="t"><b>${esc(e.l)}</b><span>${esc(e.t)}</span></div></div>`).join('')
+      : `<p class="muted" style="font-size:13px">Tidak ada agenda dalam ${N} hari.</p>`}
+    <div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn pri sm" data-agnew="${iso(T)}">+ Agenda</button><button class="btn sec sm" id="addClassBtn2">+ Tambah kelas</button></div>`;
+}
+function setAgCol(v) { S.cal.agCol = v; store.set('pkt-agcol', v); $('#calgrid').classList.toggle('agc', v); }
+function openDay(k) {
+  const d = parseIso(k), L = calItems(d, addDays(d, 1), {fase:true});
+  openModal(`<div class="mh"><div><h3>${HARI[d.getDay()]}, ${d.getDate()} ${BULAN[d.getMonth()]} ${d.getFullYear()}</h3><p>${L.length ? L.length + ' acara di tanggal ini.' : 'Belum ada acara di tanggal ini.'}</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
+    <div class="mb"><div class="dayl">${L.map(e => e.k === 'cu'
+      ? `<div class="it" style="--agc:${agColor(e.a.jenis)}"><i class="sw"></i><div><b>${e.a.mulai ? e.a.mulai + (e.a.selesai ? '–' + e.a.selesai : '') + ' · ' : ''}${esc(e.a.judul)}</b><span>${esc(e.a.jenis)}${e.a.kelas ? ' · ' + esc(e.a.kelas) : ''}${e.a.lokasi ? ' · ' + esc(e.a.lokasi) : ''}${e.a.ulang ? ' · berulang' : ''}</span></div><div class="a"><button class="btn sec xs" data-agedit="${e.a.id}" data-agd="${k}">Edit</button></div></div>`
+      : `<div class="it" style="--agc:${{run:'#0B1A33', konf:'#D9930B', reach:'#BFD4FB', mkt:'#5C93F0', prep:'#2563EB'}[e.k]}"><i class="sw"></i><div><b>${esc(e.l)}</b><span>${esc(e.t)}</span></div><div class="a"><button class="btn sec xs" data-cedit="${e.cid}">Edit kelas</button><button class="btn sec xs" data-fase="${e.cid}">Atur fase</button></div></div>`).join('')}</div></div>
+    <div class="mf"><button class="btn sec" data-mclose>Tutup</button><button class="btn pri" data-agnew="${k}">+ Agenda di tanggal ini</button></div>`);
+}
+function openAgForm(id, dayK) {
+  const ex = id ? (S.agenda || []).find(x => x.id === id) : null;
+  const a = ex ? {...ex} : {id:'', judul:'', tanggal:dayK || iso(today0()), mulai:'', selesai:'', jenis:'Rapat Pakarify', kelasId:'', kelas:'', lokasi:'', catatan:'', ulang:'', sampai:'', lewati:''};
+  const cls = S.classes.filter(c => c.progress !== 'Cancelled').sort((x, y) => (startOf(y) || 0) - (startOf(x) || 0));
+  openModal(`<div class="mh"><div><h3>${ex ? 'Edit agenda' : 'Tambah agenda'}</h3><p>Agenda tim di luar fase kelas, misalnya rapat Pakarify atau meet dengan narasumber. Tersimpan ke tab Agenda Tim di Sheet.</p></div><button class="icon-btn" data-mclose aria-label="Tutup">${ICON.x}</button></div>
+    <form class="mb" id="agForm" autocomplete="off">
+      <div class="fld"><label for="agJ">Judul agenda</label><input id="agJ" required value="${esc(a.judul)}" placeholder="Rapat mingguan Pakarify"></div>
+      <div class="fld"><span class="l">Jenis</span><div class="agjenis" id="agJenis">${AG_JENIS.map(([n, c]) => `<button type="button" data-agj="${esc(n)}" style="--agc:${c}" aria-pressed="${a.jenis === n}"><i></i>${esc(n)}</button>`).join('')}</div></div>
+      <div class="grid3k"><div class="fld"><label for="agT">Tanggal</label><input type="date" id="agT" required value="${esc(a.tanggal)}"></div><div class="fld"><label for="agM">Jam mulai</label><input type="time" id="agM" value="${esc(a.mulai)}"></div><div class="fld"><label for="agS">Jam selesai</label><input type="time" id="agS" value="${esc(a.selesai)}"></div></div>
+      <div class="grid2"><div class="fld"><label for="agK">Terkait kelas (opsional)</label><select id="agK"><option value="">– Tidak terkait kelas –</option>${cls.map(c => `<option value="${c.id}" ${a.kelasId === c.id ? 'selected' : ''}>${esc(c.judul.replace(/^Masterclass\s*/i, '').slice(0, 70))}</option>`).join('')}</select></div><div class="fld"><label for="agL">Tempat / link meeting</label><input id="agL" value="${esc(a.lokasi)}" placeholder="Zoom / Google Meet / kantor"></div></div>
+      <div class="grid2"><div class="fld"><label for="agU">Ulangi</label><select id="agU">${AG_ULANG.map(([v, l]) => `<option value="${v}" ${a.ulang === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div><div class="fld"><label for="agSp">Berulang sampai (opsional)</label><input type="date" id="agSp" value="${esc(a.sampai)}"></div></div>
+      <div class="fld"><label for="agC">Catatan</label><textarea id="agC" rows="2" placeholder="Agenda rapat, hal yang perlu disiapkan, dll.">${esc(a.catatan)}</textarea></div>
+      ${ex ? `<label class="chk"><input type="checkbox" id="agDone" ${a.selesaiTandai ? 'checked' : ''}> Tandai sudah selesai</label>` : ''}
+    </form>
+    <div class="mf">${ex ? `<button class="btn ghost" id="agDel" style="color:var(--bad);margin-right:auto">Hapus</button>${a.ulang && dayK ? `<button class="btn ghost" id="agSkip">Lewati ${fmt(parseIso(dayK))} saja</button>` : ''}` : ''}<button class="btn sec" data-mclose>Batal</button><button class="btn pri" id="agSave">Simpan agenda</button></div>`);
+  let jenis = a.jenis;
+  $('#agJenis').onclick = e => { const b = e.target.closest('[data-agj]'); if (!b) return; jenis = b.dataset.agj; $$('#agJenis button').forEach(x => x.setAttribute('aria-pressed', x === b)); };
+  $('#agU').onchange = () => { $('#agSp').disabled = !$('#agU').value; }; $('#agSp').disabled = !a.ulang;
+  $('#agSave').onclick = async () => {
+    const j = $('#agJ').value.trim(), t = $('#agT').value;
+    if (!j) { $('#agJ').focus(); return toast('Isi judul agenda dulu', 'err'); }
+    if (!t) return toast('Pilih tanggal', 'err');
+    const kid = $('#agK').value, kc = S.classes.find(c => c.id === kid);
+    const rec = {...a, id:a.id || uid('a'), judul:j, tanggal:t, mulai:$('#agM').value, selesai:$('#agS').value, jenis, kelasId:kid, kelas:kc ? kc.judul : '', lokasi:$('#agL').value.trim(), catatan:$('#agC').value.trim(), ulang:$('#agU').value, sampai:$('#agU').value ? $('#agSp').value : '', status:$('#agDone')?.checked ? 'Selesai' : '', oleh:a.oleh || 'Ali', dibuat:a.dibuat || iso(new Date())};
+    const fx = fixAgenda(rec), i = S.agenda.findIndex(x => x.id === rec.id);
+    if (i >= 0) S.agenda[i] = fx; else S.agenda.push(fx);
+    closeModal(); renderJadwal();
+    await saveRec('agenda', rec, ex ? 'Agenda diperbarui' : 'Agenda ditambahkan ke kalender');
+  };
+  if (ex) $('#agDel').onclick = async e => {
+    const b = e.currentTarget; if (!b.dataset.sure) { b.dataset.sure = 1; b.textContent = a.ulang ? 'Yakin hapus semua ulangan?' : 'Yakin hapus?'; return; }
+    const i = S.agenda.findIndex(x => x.id === id); const [x] = S.agenda.splice(i, 1); closeModal(); renderJadwal();
+    try { await api.remove('agenda', id); toast('Agenda dihapus', 'info'); } catch (er) { S.agenda.splice(i, 0, x); renderJadwal(); toast('Gagal menghapus: ' + er.message, 'err'); }
+  };
+  if (ex && a.ulang && dayK) $('#agSkip').onclick = async () => {
+    const rec = S.agenda.find(x => x.id === id); rec.lewati = [...new Set([...rec.lewati.split(',').map(s => s.trim()).filter(Boolean), dayK])].join(', ');
+    closeModal(); renderJadwal(); await saveRec('agenda', rec, `Agenda ${fmt(parseIso(dayK))} dilewati`);
+  };
+}
+async function moveAgenda(id, dayK) {
+  const a = S.agenda.find(x => x.id === id); if (!a || a.ulang || a.tanggal === dayK) return;
+  const old = a.tanggal; a.tanggal = dayK; renderJadwal();
+  try { await api.save('agenda', a); toast(`${a.judul} dipindah ke ${fmt(parseIso(dayK))}`, 'ok', {label:'Urungkan', fn:() => moveAgenda(id, old)}); }
+  catch (e) { a.tanggal = old; renderJadwal(); toast('Gagal memindah: ' + e.message, 'err'); }
+}
+// klik di kalender bulan & panel agenda
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-agnew],[data-agedit],[data-agday],[data-agn],[data-cm],#calFase,#agTog,#agTog2,.calgrid.agc .agenda,[data-mday]');
+  if (!t || $('#v-jadwal').hidden) return;
+  const d = t.dataset;
+  if ('agnew' in d) { e.stopPropagation(); closeModal(); const k = d.agnew || iso(today0()); return setTimeout(() => openAgForm(null, k), 10); }
+  if (d.agedit) { e.stopPropagation(); closeModal(); return setTimeout(() => openAgForm(d.agedit, d.agd), 10); }
+  if (d.agday) { e.stopPropagation(); return openDay(d.agday); }
+  if (d.agn) { S.cal.agDays = +d.agn; store.set('pkt-agdays', S.cal.agDays); return renderJadwal(); }
+  if (d.cm) { S.cal.mode = d.cm; store.set('pkt-calmode', d.cm); return renderJadwal(); }
+  if (t.id === 'calFase') { S.cal.fase = !S.cal.fase; store.set('pkt-calfase', S.cal.fase); return renderJadwal(); }
+  if (t.id === 'agTog') return setAgCol(true);
+  if (t.id === 'agTog2' || t.matches('.calgrid.agc .agenda')) return setAgCol(false);
+  if (d.mday && !e.target.closest('.ev,.more,.plus')) return openDay(d.mday);
+});
+// seret agenda ke tanggal lain
+document.addEventListener('dragstart', e => { const b = e.target.closest?.('.ev.cu[draggable="true"]'); if (!b) return; e.dataTransfer.setData('text/agenda', b.dataset.agedit); e.dataTransfer.effectAllowed = 'move'; });
+document.addEventListener('dragover', e => { const c = e.target.closest?.('.mc'); if (!c || !e.dataTransfer.types.includes('text/agenda')) return; e.preventDefault(); $$('.mc.drop').forEach(x => x !== c && x.classList.remove('drop')); c.classList.add('drop'); });
+document.addEventListener('dragleave', e => { const c = e.target.closest?.('.mc'); if (c && !c.contains(e.relatedTarget)) c.classList.remove('drop'); });
+document.addEventListener('drop', e => { const c = e.target.closest?.('.mc'); $$('.mc.drop').forEach(x => x.classList.remove('drop')); if (!c) return; const id = e.dataTransfer.getData('text/agenda'); if (!id) return; e.preventDefault(); moveAgenda(id, c.dataset.mday); });
 /* =====================================================================
    ROUTER & BOOT
    ===================================================================== */
@@ -4934,8 +5193,8 @@ async function renderTeam() {
   S.cal.show = 'aktif'; renderJadwal($('#teamGantt'));
 }
 async function boot() {
-  try { const d = await api.load(); Object.assign(S, d); S.cpr = S.cpr || []; S.daftar = (S.daftar || []).map(fixDaftar); S.fin = (S.fin || []).map(fixFin); S.finJenis = (S.finJenis || []).map(fixFinJenis); if (!S.types.length) S.types = seed().types; syncFromClasses(); }
-  catch (e) { toast('Gagal memuat dari Sheet: ' + e.message + '. Menampilkan mode contoh.', 'err'); settings.pass = ''; Object.assign(S, store.get('pkt-demo2', null) || seed()); S.daftar = (S.daftar || []).map(fixDaftar); S.fin = (S.fin || []).map(fixFin); S.finJenis = (S.finJenis || []).map(fixFinJenis); }
+  try { const d = await api.load(); Object.assign(S, d); S.cpr = S.cpr || []; S.daftar = (S.daftar || []).map(fixDaftar); S.fin = (S.fin || []).map(fixFin); S.finJenis = (S.finJenis || []).map(fixFinJenis); S.agenda = (S.agenda || []).map(fixAgenda); if (!S.types.length) S.types = seed().types; syncFromClasses(); }
+  catch (e) { toast('Gagal memuat dari Sheet: ' + e.message + '. Menampilkan mode contoh.', 'err'); settings.pass = ''; Object.assign(S, store.get('pkt-demo2', null) || seed()); S.daftar = (S.daftar || []).map(fixDaftar); S.fin = (S.fin || []).map(fixFin); S.finJenis = (S.finJenis || []).map(fixFinJenis); S.agenda = (S.agenda || []).map(fixAgenda); }
   renderAll(); route();
   if (settings.url && !settings.pass && location.hash !== '#kalender-tim' && location.hash !== '#core-tim' && !location.hash.startsWith('#brief/') && !store.get('pkt-skip-pass', false)) askPass();
 }
