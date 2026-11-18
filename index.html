@@ -958,13 +958,14 @@ body.sheetmax{overflow:hidden}
 .mcal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--line);gap:1px;margin-top:4px}
 .mcal .dh{background:var(--bg2);padding:9px 10px;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
 .mcal .dh.we{color:#B45309}
-.mc{background:#fff;min-height:128px;padding:6px 6px 8px;display:flex;flex-direction:column;gap:3px;cursor:pointer;position:relative;min-width:0;transition:background .12s}
+.mwk{grid-column:1/-1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:1px;position:relative;--ln:0}
+.mc{background:#fff;min-height:calc(128px + var(--ln)*14px);padding:calc(38px + var(--ln)*22px) 6px 8px;display:flex;flex-direction:column;gap:3px;cursor:pointer;position:relative;min-width:0;transition:background .12s}
 .mc:hover{background:#FAFCFF}
 .mc.out{background:#FAFBFD}
 .mc.out .dn{color:var(--ink3);opacity:.6}
 .mc.we{background:#FFFDF8}
 .mc.drop{background:var(--blue-l);outline:2px dashed var(--blue);outline-offset:-3px}
-.mc .dn{display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:800;color:var(--ink);padding:2px 4px}
+.mc .dn{position:absolute;top:6px;left:6px;right:6px;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:800;color:var(--ink);padding:2px 4px}
 .mc .dn b{display:inline-grid;place-items:center;min-width:26px;height:26px;border-radius:999px;padding:0 6px}
 .mc.tdy .dn b{background:var(--blue);color:#fff}
 .mc .dn .plus{opacity:0;border:0;background:var(--blue-l);color:var(--blue-d);width:22px;height:22px;border-radius:8px;font-size:15px;font-weight:800;line-height:1;display:grid;place-items:center;transition:opacity .12s}
@@ -984,6 +985,16 @@ body.sheetmax{overflow:hidden}
 .ev.cu.done{opacity:.55;text-decoration:line-through}
 .ev[draggable="true"]{cursor:grab}
 .mc .more{border:0;background:transparent;font:inherit;font-size:11.5px;font-weight:800;color:var(--blue-d);text-align:left;padding:2px 7px;cursor:pointer}
+.mbar{position:absolute;z-index:2;height:19px;top:calc(36px + var(--l)*22px);left:calc((100% - 6px)/7*var(--c) + var(--c)*1px + 4px - var(--xl,0px));width:calc((100% - 6px)/7*var(--s) + (var(--s) - 1)*1px - 8px + var(--xl,0px) + var(--xr,0px));border:0;border-radius:7px;font:inherit;font-size:11px;font-weight:700;line-height:19px;padding:0 8px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;box-shadow:0 1px 2px rgba(11,26,51,.12)}
+.mbar:hover{filter:brightness(.95)}
+.mbar.nl{border-top-left-radius:0;border-bottom-left-radius:0}
+.mbar.nr{border-top-right-radius:0;border-bottom-right-radius:0}
+.mbar.reach{background:#BFD4FB;color:#123A99}
+.mbar.mkt{background:#5C93F0;color:#fff}
+.mbar.prep{background:#2563EB;color:#fff}
+.mbar.run{background:#0B1A33;color:#fff}
+.mbar.cust{outline:1.5px dashed var(--gold);outline-offset:-1.5px}
+.mbar.done{opacity:.45}.mbar.cancel{opacity:.35;text-decoration:line-through}
 .mlegend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--ink2);align-items:center}
 .mlegend span{display:inline-flex;align-items:center;gap:6px}
 .mlegend i{width:12px;height:12px;border-radius:4px;display:inline-block}
@@ -1005,8 +1016,9 @@ body.sheetmax{overflow:hidden}
 .grid3k{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:12px}
 @media (max-width:560px){.grid3k{grid-template-columns:1fr 1fr}.grid3k>:first-child{grid-column:1/-1}}
 @media (max-width:760px){
-  .mc{min-height:74px;padding:4px 3px}
-  .mc .dn{font-size:12px;padding:0 2px}.mc .dn b{min-width:22px;height:22px}
+  .mc{min-height:calc(74px + var(--ln)*6px);padding:calc(30px + var(--ln)*9px) 3px 4px}
+  .mc .dn{font-size:12px;padding:0 2px;top:3px;left:3px;right:3px}
+  .mbar{height:6px;top:calc(28px + var(--l)*9px);font-size:0;padding:0;border-radius:3px;box-shadow:none;left:calc((100% - 6px)/7*var(--c) + var(--c)*1px + 2px - var(--xl,0px));width:calc((100% - 6px)/7*var(--s) + (var(--s) - 1)*1px - 4px + var(--xl,0px) + var(--xr,0px))}.mc .dn b{min-width:22px;height:22px}
   .mc .dn .plus{display:none}
   .ev{padding:0;height:6px;border-radius:3px;font-size:0;background:var(--evd,var(--evb))}
   .ev > *{display:none}
@@ -1178,7 +1190,7 @@ body.sheetmax{overflow:hidden}
           <h3 id="calTitle">Kalender</h3>
           <div class="r">
             <div class="seg" id="calMode"><button data-cm="bulan" aria-pressed="true">Bulan</button><button data-cm="timeline" aria-pressed="false">Timeline</button></div>
-            <button class="tog mshow" id="calFase" aria-pressed="true" title="Tampilkan tanggal mulai reachout, marketing, dan persiapan"><span class="dot"></span>Fase kelas</button>
+            <div class="seg mshow" id="calFase" title="Cara menampilkan fase kelas (reachout, marketing, persiapan, pelaksanaan)"><button data-fz="garis" aria-pressed="true">Fase: Garis</button><button data-fz="titik" aria-pressed="false">Penanda</button><button data-fz="off" aria-pressed="false">Sembunyi</button></div>
             <div class="seg" id="calShow"><button data-s="aktif" aria-pressed="true">Aktif</button><button data-s="semua" aria-pressed="false">Semua</button></div>
             <div class="seg gshow" id="calSort"><button data-cs="tanggal" aria-pressed="true">Urut tanggal</button><button data-cs="tabel" aria-pressed="false">Urut tabel</button></div>
             <div class="seg gshow" id="calRange"><button data-w="8" aria-pressed="false">8 mgg</button><button data-w="13" aria-pressed="true">13 mgg</button></div>
@@ -1190,7 +1202,7 @@ body.sheetmax{overflow:hidden}
           </div>
         </div>
         <div class="legend" id="calLegG"><span><i style="background:#BFD4FB"></i>Reachout narasumber</span><span><i style="background:#5C93F0"></i>Visualisasi & marketing</span><span><i style="background:#2563EB"></i>Persiapan + marketing</span><span><i style="background:var(--gold);transform:rotate(45deg);width:10px"></i>Konfirmasi narasumber (H-7)</span><span><i style="background:#0B1A33"></i>Pelaksanaan</span><span style="color:var(--ink3)">Seret bar ke kiri/kanan untuk menggeser jadwal aktual · klik bar → "Atur jadwal" · garis putus-putus = jadwal custom</span></div>
-<div class="mlegend legend" id="calLegM"><span><i style="background:#0B1A33"></i>Pelaksanaan kelas</span><span><i style="background:var(--gold);transform:rotate(45deg);width:10px;height:10px"></i>Konfirmasi narsum (H-7)</span><span><i style="background:#5C93F0"></i>Mulai fase kelas</span><span style="color:var(--ink3)">Agenda tim:</span><span><i style="background:#7C3AED"></i>Rapat</span><span><i style="background:#0891B2"></i>Meet narsum</span><span><i style="background:#DC2626"></i>Deadline</span><span><i style="background:#DB2777"></i>Konten</span><span><i style="background:#EA580C"></i>Iklan</span><span><i style="background:#64748B"></i>Lainnya</span><span style="color:var(--ink3)">· klik tanggal untuk tambah agenda, seret agenda untuk pindah tanggal</span></div>
+<div class="mlegend legend" id="calLegM"><span><i style="background:#0B1A33"></i>Pelaksanaan kelas</span><span><i style="background:var(--gold);transform:rotate(45deg);width:10px;height:10px"></i>Konfirmasi narsum (H-7)</span><span><i style="background:#BFD4FB"></i>Reachout</span><span><i style="background:#5C93F0"></i>Marketing</span><span><i style="background:#2563EB"></i>Persiapan</span><span style="color:var(--ink3)">Agenda tim:</span><span><i style="background:#7C3AED"></i>Rapat</span><span><i style="background:#0891B2"></i>Meet narsum</span><span><i style="background:#DC2626"></i>Deadline</span><span><i style="background:#DB2777"></i>Konten</span><span><i style="background:#EA580C"></i>Iklan</span><span><i style="background:#64748B"></i>Lainnya</span><span style="color:var(--ink3)">· klik tanggal untuk tambah agenda, seret agenda untuk pindah tanggal</span></div>
         <div class="gscroll"><div class="gantt" id="gantt"></div></div>
         <div class="mcal" id="monthCal" role="grid" aria-label="Kalender bulanan"></div>
       </div>
@@ -4991,7 +5003,7 @@ const AG_ULANG = [['', 'Tidak berulang'], ['mingguan', 'Setiap minggu'], ['2ming
 S.agenda = S.agenda || [];
 S.cal.mode = store.get('pkt-calmode', 'bulan');
 S.cal.month = null;
-S.cal.fase = store.get('pkt-calfase', true);
+S.cal.fase = (v => v === true ? 'garis' : v === false ? 'off' : ['garis', 'titik', 'off'].includes(v) ? v : 'garis')(store.get('pkt-calfase', 'garis'));
 S.cal.agDays = store.get('pkt-agdays', 14);
 S.cal.agCol = store.get('pkt-agcol', false);
 
@@ -5027,9 +5039,9 @@ function calItems(from, to, opt = {}) {
   const out = [], short = c => c.judul.replace(/^Masterclass\s*/i, '');
   classesForCal().forEach(({c, p}) => {
     const n = Math.max(1, +c.sesi || 1);
-    for (let i = 0; i < n; i++) { const d = addDays(p.H, i); if (d >= from && d < to) out.push({d, k:'run', t:short(c), l:n > 1 ? `Kelas · sesi ${i + 1}/${n}` : 'Hari pelaksanaan kelas', cid:c.id, ord:0}); }
+    if (!opt.bars) for (let i = 0; i < n; i++) { const d = addDays(p.H, i); if (d >= from && d < to) out.push({d, k:'run', t:short(c), l:n > 1 ? `Kelas · sesi ${i + 1}/${n}` : 'Hari pelaksanaan kelas', cid:c.id, ord:0}); }
     if (p.konf >= from && p.konf < to) out.push({d:p.konf, k:'konf', t:short(c), l:'Konfirmasi jadi/tidak ke narasumber', cid:c.id, ord:1});
-    if (S.cal.fase || opt.fase) [['reach', 'Mulai reachout narasumber'], ['mkt', 'Mulai visualisasi & marketing'], ['prep', 'Mulai persiapan kelas']].forEach(([k, l]) => { const d = p[k][0]; if (d >= from && d < to) out.push({d, k, t:short(c), l, cid:c.id, ord:3}); });
+    if (!opt.bars && (S.cal.fase === 'titik' || opt.fase)) [['reach', 'Mulai reachout narasumber'], ['mkt', 'Mulai visualisasi & marketing'], ['prep', 'Mulai persiapan kelas']].forEach(([k, l]) => { const d = p[k][0]; if (d >= from && d < to) out.push({d, k, t:short(c), l, cid:c.id, ord:3}); });
   });
   (S.agenda || []).forEach(a => agOcc(a, from, to).forEach(d => out.push({d, k:'cu', t:a.judul, l:a.jenis, a, ord:2, tm:a.mulai})));
   return out.sort((x, y) => x.d - y.d || x.ord - y.ord || String(x.tm || '').localeCompare(String(y.tm || '')));
@@ -5043,15 +5055,27 @@ const evHtml = (e, drag) => {
 function renderMonth() {
   const m0 = monthStart(), first = addDays(m0, -((m0.getDay() + 6) % 7)), T = today0();
   const mEnd = addMonths(m0, 1), weeks = Math.ceil((((m0.getDay() + 6) % 7) + Math.round((mEnd - m0) / DAY)) / 7), end = addDays(first, weeks * 7);
-  const items = calItems(first, end), byDay = new Map();
+  const bars = S.cal.fase === 'garis', items = calItems(first, end, {bars}), byDay = new Map(), short = c => c.judul.replace(/^Masterclass\s*/i, ''), cls = bars ? classesForCal().sort((a, b) => a.p.H - b.p.H) : [];
   items.forEach(e => { const k = iso(e.d); if (!byDay.has(k)) byDay.set(k, []); byDay.get(k).push(e); });
   const MAX = 4;
   let h = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'].map((d, i) => `<div class="dh ${i > 4 ? 'we' : ''}">${d}</div>`).join('');
-  for (let d = new Date(first); d < end; d = addDays(d, 1)) {
-    const k = iso(d), L = byDay.get(k) || [], out = d.getMonth() !== m0.getMonth(), we = d.getDay() === 0 || d.getDay() === 6;
-    h += `<div class="mc${out ? ' out' : ''}${we ? ' we' : ''}${+d === +T ? ' tdy' : ''}" data-mday="${k}" role="gridcell" aria-label="${HARI[d.getDay()]} ${d.getDate()} ${BULAN[d.getMonth()]}${L.length ? ', ' + L.length + ' acara' : ''}">
+  const PH = [['reach', 'Reachout'], ['mkt', 'Marketing'], ['prep', 'Persiapan'], ['run', 'Kelas']];
+  for (let w = 0; w < weeks; w++) {
+    const ws = addDays(first, w * 7), wl = addDays(ws, 6); let lanes = 0, bh = '';
+    cls.forEach(({c, p}) => {
+      const segs = PH.map(([k, l]) => { const [a, b] = p[k], s0 = a < ws ? ws : a, e0 = b > wl ? wl : b; return s0 <= e0 ? {k, l, a, b, s0, e0} : null; }).filter(Boolean);
+      if (!segs.length) return; const ln = lanes++, st = c.progress === 'Done' ? ' done' : c.progress === 'Cancelled' ? ' cancel' : '';
+      segs.forEach(g => { const nl = +g.s0 !== +g.a, nr = +g.e0 !== +g.b, cu = g.k !== 'run' && (S.fase[c.id] || {})[g.k] ? ' cust' : '';
+        bh += `<button type="button" class="mbar ${g.k}${st}${cu}${nl ? ' nl' : ''}${nr ? ' nr' : ''}" style="--l:${ln};--c:${dayDiff(g.s0, ws)};--s:${dayDiff(g.e0, g.s0) + 1}${nl ? ';--xl:5px' : ''}${nr ? ';--xr:5px' : ''}" ${g.k === 'run' ? `data-cedit="${c.id}"` : `data-fase="${c.id}"`} title="${esc(`${g.l}: ${c.judul} (${fmt(g.a)}${+g.b !== +g.a ? '–' + fmt(g.b) : ''})`)}">${esc(g.k === 'run' ? short(c) : g.l + ' · ' + short(c))}</button>`; });
+    });
+    h += `<div class="mwk" style="--ln:${lanes}">`;
+    for (let d = new Date(ws); d <= wl; d = addDays(d, 1)) {
+      const k = iso(d), L = byDay.get(k) || [], out = d.getMonth() !== m0.getMonth(), we = d.getDay() === 0 || d.getDay() === 6;
+      h += `<div class="mc${out ? ' out' : ''}${we ? ' we' : ''}${+d === +T ? ' tdy' : ''}" data-mday="${k}" role="gridcell" aria-label="${HARI[d.getDay()]} ${d.getDate()} ${BULAN[d.getMonth()]}${L.length ? ', ' + L.length + ' acara' : ''}">
       <div class="dn"><b>${d.getDate()}</b><button type="button" class="plus" data-agnew="${k}" aria-label="Tambah agenda ${d.getDate()} ${BULAN[d.getMonth()]}">+</button></div>
       ${L.slice(0, L.length > MAX ? MAX - 1 : MAX).map(e => evHtml(e, true)).join('')}${L.length > MAX ? `<button type="button" class="more" data-agday="${k}">+${L.length - MAX + 1} lainnya</button>` : ''}</div>`;
+    }
+    h += bh + '</div>';
   }
   $('#monthCal').innerHTML = h;
   $('#calTitle').innerHTML = `<span class="mtitle">${BULAN[m0.getMonth()]} ${m0.getFullYear()}</span>`;
@@ -5060,7 +5084,7 @@ function calModeUI() {
   const on = S.cal.mode === 'bulan';
   $('#calCard').classList.toggle('mb-on', on);
   $$('#calMode button').forEach(b => b.setAttribute('aria-pressed', b.dataset.cm === S.cal.mode));
-  const f = $('#calFase'); if (f) f.setAttribute('aria-pressed', S.cal.fase);
+  $$('#calFase button').forEach(b => b.setAttribute('aria-pressed', b.dataset.fz === S.cal.fase));
   $('#calPrev').setAttribute('aria-label', on ? 'Bulan sebelumnya' : 'Mundur 4 minggu');
   $('#calNext').setAttribute('aria-label', on ? 'Bulan berikutnya' : 'Maju 4 minggu');
 }
@@ -5135,7 +5159,7 @@ async function moveAgenda(id, dayK) {
 }
 // klik di kalender bulan & panel agenda
 document.addEventListener('click', e => {
-  const t = e.target.closest('[data-agnew],[data-agedit],[data-agday],[data-agn],[data-cm],#calFase,#agTog,#agTog2,.calgrid.agc .agenda,[data-mday]');
+  const t = e.target.closest('[data-agnew],[data-agedit],[data-agday],[data-agn],[data-cm],[data-fz],#agTog,#agTog2,.calgrid.agc .agenda,[data-mday]');
   if (!t || $('#v-jadwal').hidden) return;
   const d = t.dataset;
   if ('agnew' in d) { e.stopPropagation(); closeModal(); const k = d.agnew || iso(today0()); return setTimeout(() => openAgForm(null, k), 10); }
@@ -5143,16 +5167,17 @@ document.addEventListener('click', e => {
   if (d.agday) { e.stopPropagation(); return openDay(d.agday); }
   if (d.agn) { S.cal.agDays = +d.agn; store.set('pkt-agdays', S.cal.agDays); return renderJadwal(); }
   if (d.cm) { S.cal.mode = d.cm; store.set('pkt-calmode', d.cm); return renderJadwal(); }
-  if (t.id === 'calFase') { S.cal.fase = !S.cal.fase; store.set('pkt-calfase', S.cal.fase); return renderJadwal(); }
+  if (d.fz) { S.cal.fase = d.fz; store.set('pkt-calfase', d.fz); return renderJadwal(); }
   if (t.id === 'agTog') return setAgCol(true);
   if (t.id === 'agTog2' || t.matches('.calgrid.agc .agenda')) return setAgCol(false);
-  if (d.mday && !e.target.closest('.ev,.more,.plus')) return openDay(d.mday);
+  if (d.mday && !e.target.closest('.ev,.more,.plus,.mbar')) return openDay(d.mday);
 });
 // seret agenda ke tanggal lain
 document.addEventListener('dragstart', e => { const b = e.target.closest?.('.ev.cu[draggable="true"]'); if (!b) return; e.dataTransfer.setData('text/agenda', b.dataset.agedit); e.dataTransfer.effectAllowed = 'move'; });
-document.addEventListener('dragover', e => { const c = e.target.closest?.('.mc'); if (!c || !e.dataTransfer.types.includes('text/agenda')) return; e.preventDefault(); $$('.mc.drop').forEach(x => x !== c && x.classList.remove('drop')); c.classList.add('drop'); });
+const cellAt = e => e.target.closest?.('.mc') || document.elementsFromPoint(e.clientX, e.clientY).find(x => x.classList?.contains('mc'));
+document.addEventListener('dragover', e => { const c = cellAt(e); if (!c || !e.dataTransfer.types.includes('text/agenda')) return; e.preventDefault(); $$('.mc.drop').forEach(x => x !== c && x.classList.remove('drop')); c.classList.add('drop'); });
 document.addEventListener('dragleave', e => { const c = e.target.closest?.('.mc'); if (c && !c.contains(e.relatedTarget)) c.classList.remove('drop'); });
-document.addEventListener('drop', e => { const c = e.target.closest?.('.mc'); $$('.mc.drop').forEach(x => x.classList.remove('drop')); if (!c) return; const id = e.dataTransfer.getData('text/agenda'); if (!id) return; e.preventDefault(); moveAgenda(id, c.dataset.mday); });
+document.addEventListener('drop', e => { const c = cellAt(e); $$('.mc.drop').forEach(x => x.classList.remove('drop')); if (!c) return; const id = e.dataTransfer.getData('text/agenda'); if (!id) return; e.preventDefault(); moveAgenda(id, c.dataset.mday); });
 /* =====================================================================
    ROUTER & BOOT
    ===================================================================== */
